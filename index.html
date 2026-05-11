@@ -618,12 +618,12 @@ e.preventDefault();
 
 fbq('track', 'Lead');
 
+const form = e.target;
+
 const button = form.querySelector("button");
 
 button.innerHTML = "Submitting...";
 button.disabled = true;
-
-const form = e.target;
 
 const data = new FormData(form);
 
