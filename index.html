@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Free Water Test</title>
+  <title>Florida Family Water Giveaway</title>
 
   <style>
     * {
@@ -16,37 +16,94 @@
     }
 
     body {
-      background: #081225;
+      background: #0a0a0a;
       color: white;
       min-height: 100vh;
+      padding: 20px;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
     }
 
     .container {
-      background: #0b1730;
       width: 100%;
-      max-width: 520px;
-      padding: 40px;
+      max-width: 540px;
+      background: #121212;
       border-radius: 24px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45);
+      border: 2px solid #facc15;
+    }
+
+    .top-bar {
+      background: #facc15;
+      color: #000;
+      text-align: center;
+      padding: 14px;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+
+    .content {
+      padding: 36px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .badge {
+      background: #27272a;
+      color: #facc15;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      border: 1px solid #3f3f46;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2.6rem;
       text-align: center;
       margin-bottom: 16px;
-      font-weight: 700;
+      line-height: 1.2;
     }
 
-    p {
+    .subtitle {
       text-align: center;
-      color: #d1d5db;
-      margin-bottom: 32px;
-      line-height: 1.6;
-      font-size: 1.2rem;
+      color: #d4d4d8;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      font-size: 1.05rem;
+    }
+
+    .giveaway-box {
+      background: #18181b;
+      border: 1px solid #3f3f46;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 28px;
+    }
+
+    .giveaway-title {
+      color: #facc15;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .giveaway-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: #e4e4e7;
+      font-size: 0.98rem;
     }
 
     form {
@@ -59,16 +116,16 @@
     select {
       width: 100%;
       padding: 18px;
-      border: none;
       border-radius: 14px;
-      background: #1b2a47;
+      border: none;
+      background: #27272a;
       color: white;
-      font-size: 1.05rem;
+      font-size: 1rem;
       outline: none;
     }
 
     input::placeholder {
-      color: #9ca3af;
+      color: #a1a1aa;
     }
 
     select {
@@ -76,12 +133,12 @@
     }
 
     button {
-      background: #22c55e;
-      color: white;
+      background: #facc15;
+      color: #000;
       border: none;
       padding: 20px;
       border-radius: 14px;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: bold;
       cursor: pointer;
       transition: 0.2s ease;
@@ -89,31 +146,40 @@
 
     button:hover {
       transform: scale(1.02);
-      background: #16a34a;
+      background: #eab308;
     }
 
-    .footer-text {
-      margin-top: 24px;
+    .trust-text {
       text-align: center;
-      color: #9ca3af;
-      font-size: 0.95rem;
+      color: #a1a1aa;
+      margin-top: 24px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 18px;
+      color: #71717a;
+      font-size: 0.8rem;
     }
 
     @media (max-width: 600px) {
-      .container {
+
+      .content {
         padding: 28px;
       }
 
       h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
-      p {
-        font-size: 1rem;
+      .subtitle {
+        font-size: 0.98rem;
       }
 
       button {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
     }
   </style>
@@ -123,59 +189,96 @@
 
   <div class="container">
 
-    <h1>Free Water Test</h1>
+    <div class="top-bar">
+      ⚠️ Limited Florida Homeowner Giveaway
+    </div>
 
-    <p>
-      Discover what’s really in your water.
-      Get a FREE in-home water analysis today.
-    </p>
+    <div class="content">
 
-    <form
-      name="lead-form"
-      method="POST"
-      data-netlify="true"
-    >
+      <div class="badge-row">
+        <div class="badge">FREE Water Test</div>
+        <div class="badge">Florida Homeowners</div>
+        <div class="badge">Limited Spots</div>
+      </div>
 
-      <input type="hidden" name="form-name" value="lead-form">
+      <h1>
+        Florida Family Water Giveaway
+      </h1>
 
-      <input
-        type="text"
-        name="name"
-        placeholder="Full Name"
-        required
+      <div class="subtitle">
+        Enter for a chance to receive a FREE in-home water analysis,
+        water testing kit, and exclusive homeowner giveaway offers.
+      </div>
+
+      <div class="giveaway-box">
+
+        <div class="giveaway-title">
+          Giveaway Includes:
+        </div>
+
+        <ul class="giveaway-list">
+          <li>✔ FREE Water Analysis</li>
+          <li>✔ FREE TDS Water Test</li>
+          <li>✔ FREE Water Test Strips</li>
+          <li>✔ Reverse Osmosis Giveaway Entry</li>
+          <li>✔ Florida Homeowner Offers</li>
+        </ul>
+
+      </div>
+
+      <form
+        name="lead-form"
+        method="POST"
+        data-netlify="true"
       >
 
-      <input
-        type="tel"
-        name="phone"
-        placeholder="Phone Number"
-        required
-      >
+        <input type="hidden" name="form-name" value="lead-form">
 
-      <input
-        type="text"
-        name="zip"
-        placeholder="ZIP Code"
-        required
-      >
+        <input
+          type="text"
+          name="name"
+          placeholder="Full Name"
+          required
+        >
 
-      <select
-        name="homeowner"
-        required
-      >
-        <option value="">Are you the homeowner?</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          required
+        >
 
-      <button type="submit">
-        Schedule My Free Test
-      </button>
+        <input
+          type="text"
+          name="zip"
+          placeholder="ZIP Code"
+          required
+        >
 
-    </form>
+        <select
+          name="homeowner"
+          required
+        >
+          <option value="">Are you the homeowner?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
 
-    <div class="footer-text">
-      Serving Florida homeowners
+        <button type="submit">
+          Claim My Free Water Test
+        </button>
+
+      </form>
+
+      <div class="trust-text">
+        No obligation. Limited availability for Florida residents.
+        Selected participants may qualify for additional homeowner promotions.
+      </div>
+
+      <div class="footer-note">
+        Serving Florida homeowners
+      </div>
+
     </div>
 
   </div>
