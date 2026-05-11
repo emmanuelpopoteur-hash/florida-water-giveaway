@@ -6,9 +6,10 @@
 
 <title>Florida Homeowner Giveaway</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -17,61 +18,64 @@ box-sizing:border-box;
 
 body{
 font-family:'Inter',sans-serif;
-background:#050505;
+background:#000;
 color:white;
 overflow-x:hidden;
 }
 
-.container{
+.main-container{
 max-width:520px;
 margin:auto;
-padding:14px;
+padding:20px 14px 60px;
 }
 
-.hero{
+.hero-box{
+background:linear-gradient(180deg,#050516,#000);
 border:3px solid #ffd500;
-border-radius:34px;
+border-radius:40px;
 overflow:hidden;
-background:#0d0d14;
-box-shadow:0 0 25px rgba(255,213,0,.2);
+box-shadow:
+0 0 30px rgba(255,213,0,.25),
+0 0 80px rgba(255,213,0,.08);
 }
 
-.topbar{
+.top-bar{
 background:#ffd500;
-color:#000;
-font-weight:800;
+padding:20px;
 text-align:center;
-padding:14px;
-font-size:18px;
-line-height:1.4;
+font-weight:900;
+font-size:17px;
+line-height:1.35;
+color:#000;
 }
 
-.trending{
-background:#ff2d6f;
-color:white;
-font-weight:700;
+.trending-pill{
 width:85%;
-margin:16px auto;
+margin:26px auto 0;
+background:#ff2678;
+color:white;
 text-align:center;
-padding:14px;
-border-radius:999px;
-font-size:18px;
-box-shadow:0 0 25px rgba(255,45,111,.45);
+padding:18px 20px;
+border-radius:100px;
+font-weight:800;
+font-size:16px;
+box-shadow:
+0 0 20px rgba(255,38,120,.8),
+0 0 50px rgba(255,38,120,.4);
 }
 
 .hero-image{
 position:relative;
+margin-top:20px;
 }
 
 .hero-image img{
 width:100%;
 display:block;
-height:340px;
-object-fit:cover;
-filter:brightness(.45);
+filter:brightness(.42);
 }
 
-.hero-content{
+.hero-overlay{
 position:absolute;
 top:0;
 left:0;
@@ -85,343 +89,373 @@ padding:20px;
 text-align:center;
 }
 
-.hero-content h1{
-font-size:56px;
-line-height:.95;
-font-weight:800;
-margin-bottom:18px;
-}
-
-.hero-content p{
-font-size:20px;
-line-height:1.6;
+.hero-title{
+font-size:60px;
+line-height:.92;
+font-weight:900;
+text-transform:uppercase;
 max-width:90%;
 }
 
-.badges{
+.hero-subtitle{
+margin-top:24px;
+font-size:18px;
+line-height:1.6;
+max-width:88%;
+}
+
+.tags{
+padding:28px 22px 10px;
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:14px;
-padding:22px 18px;
-}
-
-.badge{
-background:#181824;
-border:2px solid #2d2d3b;
-padding:14px 20px;
-border-radius:999px;
-font-weight:700;
-font-size:18px;
-color:#ffd500;
-}
-
-.section{
-padding:28px 22px;
-}
-
-.section-title{
-font-size:42px;
-font-weight:800;
-text-align:center;
-color:#ffd500;
-margin-bottom:24px;
-line-height:1.1;
-}
-
-.giveaway-box{
-background:#0f0f1a;
-border:3px solid #ffd500;
-border-radius:28px;
-padding:28px;
-margin-top:20px;
-}
-
-.giveaway-list{
-margin-top:24px;
-display:flex;
-flex-direction:column;
 gap:18px;
 }
 
-.giveaway-list div{
-font-size:22px;
-line-height:1.4;
-}
-
-.problem-card{
-background:#11111b;
-border-radius:30px;
-overflow:hidden;
-margin-top:28px;
-border:2px solid #232334;
-}
-
-.problem-card img{
-width:100%;
-height:260px;
-object-fit:cover;
-display:block;
-}
-
-.problem-card p{
-padding:28px;
-font-size:24px;
-line-height:1.5;
-text-align:center;
-}
-
-.warning{
-background:#351600;
-border:2px solid #ff9d00;
-border-radius:28px;
-padding:30px;
-font-size:22px;
-line-height:1.8;
-text-align:center;
-color:#ffe0b0;
-margin-top:32px;
-}
-
-.form-box{
-margin-top:32px;
-background:#0f0f18;
-border:3px solid #ffd500;
-border-radius:30px;
-padding:26px;
-box-shadow:0 0 30px rgba(255,213,0,.18);
-}
-
-.spots{
-background:#171723;
-border:2px solid #ffd500;
-border-radius:999px;
-padding:20px;
-font-size:22px;
+.tag{
+background:#101026;
+border:2px solid rgba(255,255,255,.08);
+border-radius:100px;
+padding:20px 28px;
+font-size:16px;
 font-weight:800;
-text-align:center;
 color:#ffd500;
-margin-bottom:24px;
+text-align:center;
+min-width:220px;
+}
+
+.form-section{
+margin:35px 22px 35px;
+padding:22px;
+border-radius:34px;
+background:linear-gradient(180deg,#06061b,#02020c);
+border:2px solid #ffd500;
+box-shadow:
+0 0 35px rgba(255,213,0,.14);
+}
+
+.form-title{
+text-align:center;
+font-size:22px;
+font-weight:900;
+color:#ffd500;
+padding:20px;
+border:3px solid #ffd500;
+border-radius:100px;
+margin-bottom:28px;
+background:#0c0c22;
 }
 
 .input{
 width:100%;
 padding:24px;
-border:none;
-border-radius:24px;
-background:#1b1b28;
 margin-bottom:18px;
-color:white;
-font-size:22px;
+border:none;
 outline:none;
+border-radius:26px;
+background:#14142b;
+color:white;
+font-size:18px;
+}
+
+.input::placeholder{
+color:#b8b8b8;
 }
 
 select.input{
 appearance:none;
 }
 
-.cta{
+.submit-btn{
 width:100%;
 border:none;
-background:#ffd500;
-color:#000;
-font-size:26px;
-font-weight:800;
+cursor:pointer;
 padding:28px;
 border-radius:28px;
-cursor:pointer;
+background:#ffd500;
+color:#000;
+font-size:24px;
+font-weight:900;
 margin-top:10px;
-box-shadow:0 0 35px rgba(255,213,0,.45);
+transition:.2s;
+box-shadow:
+0 0 30px rgba(255,213,0,.55);
 }
 
-.bottom-text{
-margin-top:28px;
-text-align:center;
-font-size:20px;
-line-height:1.9;
-color:#e6e6e6;
+.submit-btn:hover{
+transform:scale(1.02);
 }
 
 .disclaimer{
-margin-top:24px;
-font-size:15px;
-line-height:1.8;
+margin-top:26px;
 text-align:center;
-color:#8e8e99;
+font-size:15px;
+line-height:1.9;
+color:#d0d0d0;
 }
 
-.footer-space{
-height:40px;
+.small-disclaimer{
+margin-top:18px;
+font-size:13px;
+color:#888;
+line-height:1.7;
 }
 
-@media(max-width:600px){
-
-.hero-content h1{
-font-size:44px;
-}
-
-.hero-content p{
-font-size:18px;
-}
-
-.problem-card p{
-font-size:20px;
+.section-card{
+margin:28px 22px;
+padding:30px 24px;
+border-radius:34px;
+background:#060617;
+border:2px solid #ffd500;
 }
 
 .section-title{
-font-size:34px;
+font-size:26px;
+font-weight:900;
+color:#ffd500;
+margin-bottom:24px;
+text-align:center;
 }
 
-.giveaway-list div{
-font-size:19px;
+.benefit{
+display:flex;
+align-items:flex-start;
+gap:14px;
+margin-bottom:22px;
+font-size:18px;
+line-height:1.5;
 }
 
-.input{
+.gallery{
+padding:10px 18px 35px;
+}
+
+.gallery-card{
+overflow:hidden;
+border-radius:32px;
+background:#090919;
+margin-bottom:26px;
+border:2px solid rgba(255,255,255,.08);
+}
+
+.gallery-card img{
+width:100%;
+display:block;
+}
+
+.gallery-text{
+padding:28px;
+font-size:18px;
+line-height:1.7;
+text-align:center;
+}
+
+.warning-box{
+margin:20px 22px 40px;
+padding:30px;
+border-radius:32px;
+background:#4d2200;
+border:2px solid #ff9f1a;
+text-align:center;
+font-size:18px;
+line-height:2;
+}
+
+.live-popup{
+position:fixed;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+background:#111;
+border:1px solid rgba(255,255,255,.12);
+padding:14px 18px;
+border-radius:18px;
+font-size:14px;
+z-index:999;
+box-shadow:0 0 20px rgba(0,0,0,.5);
+animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateX(-50%) translateY(20px);
+}
+to{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+}
+
+@media(max-width:520px){
+
+.hero-title{
+font-size:52px;
+}
+
+.hero-subtitle{
+font-size:16px;
+}
+
+.submit-btn{
 font-size:20px;
-padding:22px;
 }
 
-.cta{
-font-size:24px;
 }
-}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="main-container">
 
-<div class="hero">
+<div class="hero-box">
 
-<div class="topbar">
+<div class="top-bar">
 🚨 FLORIDA HOMEOWNER GIVEAWAY • LIMITED ENTRIES
 </div>
 
-<div class="trending">
+<div class="trending-pill">
 🔥 Trending In Florida Deal Groups
 </div>
 
 <div class="hero-image">
 
-<img src="https://images.unsplash.com/photo-1584622781564-1d987f7333c1?q=80&w=1200&auto=format&fit=crop" alt="Water System"/>
+<img src="https://images.unsplash.com/photo-1584622781564-1d987ba9a7b3?q=80&w=1200&auto=format&fit=crop" alt="Water">
 
-<div class="hero-content">
+<div class="hero-overlay">
 
-<h1>
-WIN A FREE<br>
-REVERSE<br>
-OSMOSIS<br>
-SYSTEM
-</h1>
+<div class="hero-title">
+FREE WATER<br>
+SYSTEM<br>
+GIVEAWAY
+</div>
 
-<p>
+<div class="hero-subtitle">
 Florida homeowners are entering for a chance to receive a FREE reverse osmosis system plus complimentary water testing.
-</p>
+</div>
 
 </div>
 </div>
 
-<div class="badges">
-<div class="badge">FREE Water Test</div>
-<div class="badge">Florida Homeowners</div>
-<div class="badge">Limited Spots</div>
-<div class="badge">No Purchase Needed</div>
+<div class="tags">
+
+<div class="tag">FREE Water Test</div>
+
+<div class="tag">Florida Homeowners</div>
+
+<div class="tag">Limited Spots</div>
+
+<div class="tag">No Purchase Needed</div>
+
 </div>
 
-<div class="section">
+<div class="form-section">
 
-<div class="form-box">
-
-<div class="spots">
+<div class="form-title">
 ⏳ Entries Closing Soon
 </div>
 
-<form>
+<form action="https://formspree.io/f/mgodrvrw" method="POST">
 
-<input class="input" type="text" placeholder="Full Name">
+<input class="input" type="text" name="name" placeholder="Full Name" required>
 
-<input class="input" type="tel" placeholder="Phone Number">
+<input class="input" type="tel" name="phone" placeholder="Phone Number" required>
 
-<input class="input" type="text" placeholder="ZIP Code">
+<input class="input" type="text" name="zip" placeholder="ZIP Code" required>
 
-<select class="input">
-<option>Are you the homeowner?</option>
+<select class="input" name="homeowner" required>
+<option value="">Are you the homeowner?</option>
 <option>Yes</option>
 <option>No</option>
 </select>
 
-<button class="cta">
-ENTER GIVEAWAY NOW
+<input type="hidden" name="_subject" value="New Florida Giveaway Lead">
+
+<button class="submit-btn" type="submit">
+CHECK IF YOU QUALIFY
 </button>
+
+<p style="margin-top:18px;color:#9a9a9a;font-size:13px;text-align:center;">
+We respect your privacy and will never spam you.
+</p>
 
 </form>
 
-<div class="bottom-text">
-Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, and water quality concerns every year.
-</div>
-
 <div class="disclaimer">
+
+Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, and water quality concerns every year.
+
+<div class="small-disclaimer">
 No purchase necessary. Giveaway availability may vary by area. Selected participants may qualify for additional homeowner promotions.
 </div>
 
 </div>
 
-<div class="giveaway-box">
+</div>
+
+<div class="section-card">
 
 <div class="section-title">
 🎁 Giveaway Includes
 </div>
 
-<div class="giveaway-list">
+<div class="benefit">
+✔ FREE In-Home Water Analysis
+</div>
 
-<div>✔ FREE In-Home Water Analysis</div>
+<div class="benefit">
+✔ FREE TDS Water Testing
+</div>
 
-<div>✔ FREE TDS Water Testing</div>
+<div class="benefit">
+✔ FREE Water Test Strips
+</div>
 
-<div>✔ FREE Water Test Strips</div>
+<div class="benefit">
+✔ Entry Into Reverse Osmosis Giveaway
+</div>
 
-<div>✔ Entry Into Reverse Osmosis Giveaway</div>
-
-<div>✔ Florida Homeowner Promotions</div>
-
+<div class="benefit">
+✔ Florida Homeowner Promotions
 </div>
 
 </div>
 
-<div class="problem-card">
-<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop">
+<div class="gallery">
 
-<p>
+<div class="gallery-card">
+<img src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=1200&auto=format&fit=crop">
+<div class="gallery-text">
 Hard water buildup and dirty faucets caused by mineral deposits.
-</p>
+</div>
 </div>
 
-<div class="problem-card">
-<img src="https://images.unsplash.com/photo-1585421514738-01798e348b17?q=80&w=1200&auto=format&fit=crop">
-
-<p>
+<div class="gallery-card">
+<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop">
+<div class="gallery-text">
 Strange smells, stains, discoloration, and questionable water quality.
-</p>
+</div>
 </div>
 
-<div class="problem-card">
+<div class="gallery-card">
 <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop">
-
-<p>
+<div class="gallery-text">
 Families concerned about skin irritation, dryness, and eczema symptoms.
-</p>
+</div>
 </div>
 
-<div class="problem-card">
-<img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1200&auto=format&fit=crop">
-
-<p>
+<div class="gallery-card">
+<img src="https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=1200&auto=format&fit=crop">
+<div class="gallery-text">
 Old pipes, well water concerns, rust, sediment, and hard water damage.
-</p>
+</div>
 </div>
 
-<div class="warning">
+</div>
+
+<div class="warning-box">
 ⚠️ Due to high demand, only a limited number of Florida homeowners will be accepted this month.
 </div>
 
@@ -429,9 +463,32 @@ Old pipes, well water concerns, rust, sediment, and hard water damage.
 
 </div>
 
-<div class="footer-space"></div>
-
+<div class="live-popup" id="popup">
+🔥 Maria from Orlando just entered
 </div>
+
+<script>
+
+const messages = [
+"🔥 Maria from Orlando just entered",
+"🔥 David from Kissimmee just entered",
+"🔥 Jessica from St. Cloud just entered",
+"🔥 New homeowner entered from Tampa",
+"🔥 17 homeowners entered today",
+"🔥 Spots are filling fast",
+"🔥 Free water tests requested today"
+];
+
+setInterval(() => {
+
+const popup = document.getElementById("popup");
+
+popup.innerText =
+messages[Math.floor(Math.random()*messages.length)];
+
+},4000);
+
+</script>
 
 </body>
 </html>
