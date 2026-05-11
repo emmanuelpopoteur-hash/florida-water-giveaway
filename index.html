@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Florida Homeowner Giveaway</title>
+<title>Florida Homeowner Water Test</title>
 
 <meta name="description" content="Florida homeowners can request a FREE in-home water test and may qualify for additional water treatment promotions.">
 
@@ -64,8 +64,8 @@ right:20px;
 z-index:9999;
 background:#ffd400;
 color:#000;
-width:70px;
-height:70px;
+width:72px;
+height:72px;
 border-radius:50%;
 display:flex;
 align-items:center;
@@ -79,12 +79,12 @@ animation:pulse 2s infinite;
 
 .floating-form{
 position:fixed;
-bottom:100px;
+bottom:105px;
 right:20px;
 z-index:9999;
 background:#ff2d86;
 color:white;
-padding:14px 20px;
+padding:14px 22px;
 border-radius:40px;
 font-weight:bold;
 text-decoration:none;
@@ -183,7 +183,7 @@ padding:30px 0;
 }
 
 .feature{
-width:55%;
+width:58%;
 margin:22px auto;
 padding:24px;
 text-align:center;
@@ -232,8 +232,12 @@ padding:22px;
 font-size:20px;
 border:none;
 border-radius:25px;
-background:#cfd5e2;
 outline:none;
+}
+
+input{
+background:#d9dfeb;
+color:#000;
 }
 
 select{
@@ -288,7 +292,7 @@ color:#ddd;
 margin-bottom:25px;
 }
 
-/* GIVEAWAY */
+/* BENEFITS */
 
 .includes{
 width:86%;
@@ -301,19 +305,15 @@ background:#03051f;
 
 .includes h2{
 text-align:center;
-font-size:52px;
+font-size:50px;
 margin-bottom:25px;
 color:#ffd400;
 }
 
 .includes ul{
 list-style:none;
-font-size:28px;
+font-size:26px;
 line-height:2;
-}
-
-.includes li{
-margin-bottom:10px;
 }
 
 /* TESTIMONIALS */
@@ -333,6 +333,8 @@ border:2px solid rgba(255,255,255,0.08);
 .testimonial strong{
 color:#ffd400;
 font-size:20px;
+display:block;
+margin-bottom:10px;
 }
 
 /* ALERT */
@@ -345,7 +347,7 @@ border:4px solid orange;
 border-radius:30px;
 background:#3b1700;
 text-align:center;
-font-size:34px;
+font-size:32px;
 line-height:1.7;
 color:#fff;
 }
@@ -369,7 +371,7 @@ text-decoration:none;
 @media(max-width:768px){
 
 .hero-text h1{
-font-size:54px;
+font-size:52px;
 }
 
 .hero-text p{
@@ -377,12 +379,12 @@ font-size:16px;
 }
 
 .feature{
-width:78%;
+width:80%;
 font-size:18px;
 }
 
 .includes h2{
-font-size:42px;
+font-size:40px;
 }
 
 .includes ul{
@@ -390,7 +392,7 @@ font-size:20px;
 }
 
 .alert-box{
-font-size:26px;
+font-size:24px;
 }
 
 button{
@@ -399,8 +401,8 @@ padding:24px;
 }
 
 .floating-call{
-width:60px;
-height:60px;
+width:62px;
+height:62px;
 font-size:28px;
 }
 
@@ -421,6 +423,8 @@ font-size:28px;
 
 <div class="container">
 
+<!-- HEADER -->
+
 <div class="top-banner">
 🚨 FLORIDA HOMEOWNER WATER TEST • LIMITED SPOTS
 </div>
@@ -428,6 +432,8 @@ font-size:28px;
 <div class="pink-banner">
 🔥 Trending In Florida Deal Groups
 </div>
+
+<!-- HERO -->
 
 <div class="hero">
 
@@ -442,15 +448,19 @@ WATER TEST
 </h1>
 
 <p>
-Florida homeowners may qualify for a reverse osmosis giveaway and additional water treatment promotions.
+Florida homeowners may qualify for additional water treatment promotions and reverse osmosis giveaway opportunities.
 </p>
 
 </div>
 </div>
 
+<!-- COUNTDOWN -->
+
 <div class="countdown">
-⏳ Limited Spots Available This Month
+⏳ Limited Appointments Available This Month
 </div>
+
+<!-- FEATURES -->
 
 <div class="feature-list">
 
@@ -503,6 +513,15 @@ required
 </div>
 
 <div class="form-group">
+<input
+type="text"
+name="city"
+placeholder="City"
+required
+/>
+</div>
+
+<div class="form-group">
 <select name="issue" required>
 <option value="">Main Water Concern</option>
 <option>Hard Water</option>
@@ -520,6 +539,19 @@ required
 <option value="">Are you the homeowner?</option>
 <option>Yes</option>
 <option>No</option>
+</select>
+</div>
+
+<div class="form-group">
+<select name="referral">
+<option value="">How did you hear about us?</option>
+<option>Facebook Group</option>
+<option>Friend / Referral</option>
+<option>Telegram</option>
+<option>Instagram</option>
+<option>TikTok</option>
+<option>Google</option>
+<option>Other</option>
 </select>
 </div>
 
@@ -553,17 +585,21 @@ By submitting this form, you agree to be contacted by phone or SMS regarding you
 
 </div>
 
+<!-- DESCRIPTION -->
+
 <div class="description">
 
 <p>
-Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, and water quality concerns every year.
+Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, sediment, and water quality concerns every year.
 </p>
 
 <p>
-Many homeowners are unaware of the mineral content, sediment, chlorine, sulfur, or contaminants affecting their water quality.
+Many homeowners are unaware of the mineral content, chlorine, sulfur, or contaminants affecting their water quality.
 </p>
 
 </div>
+
+<!-- BENEFITS -->
 
 <div class="includes">
 
@@ -595,7 +631,7 @@ Many homeowners are unaware of the mineral content, sediment, chlorine, sulfur, 
 <div class="testimonial">
 <strong>⭐⭐⭐⭐⭐ Daniel - Kissimmee</strong>
 <p>
-"Our water smelled terrible before. The free analysis helped us understand the problem immediately."
+"Our water smelled terrible before. The free analysis helped us understand the issue immediately."
 </p>
 </div>
 
@@ -608,9 +644,13 @@ Many homeowners are unaware of the mineral content, sediment, chlorine, sulfur, 
 
 </div>
 
+<!-- ALERT -->
+
 <div class="alert-box">
 ⚠️ Due to high demand, only a limited number of Florida homeowners will be accepted this month.
 </div>
+
+<!-- PHONE -->
 
 <div class="phone-box">
 
@@ -625,6 +665,8 @@ Questions?<br><br>
 </div>
 
 <script>
+
+/* DATE */
 
 document
 .getElementById("submittedAt")
