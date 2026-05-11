@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Florida Homeowner Giveaway</title>
+
+<meta name="description" content="Florida homeowners can enter for a chance to receive a FREE reverse osmosis system and complimentary water testing. Limited entries available.">
+
+<!-- META PIXEL -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;
+n.push=n;
+n.loaded=!0;
+n.version='2.0';
+n.queue=[];
+t=b.createElement(e);
+t.async=!0;
+t.src=v;
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}
+(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '967427632676424');
+fbq('track', 'PageView');
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=967427632676424&ev=PageView&noscript=1"/>
+</noscript>
+<!-- END META PIXEL -->
 
 <style>
 
@@ -15,81 +45,103 @@ box-sizing:border-box;
 font-family:Arial,sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:#000;
-color:#fff;
+color:white;
 overflow-x:hidden;
 }
 
-.container{
-max-width:420px;
-margin:auto;
-border-left:4px solid #ffd800;
-border-right:4px solid #ffd800;
-background:#02021a;
-box-shadow:0 0 30px rgba(255,216,0,.25);
+/* FLOATING BUTTONS */
+
+.floating-call{
+position:fixed;
+bottom:20px;
+right:20px;
+z-index:9999;
+background:#ffd400;
+color:#000;
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:34px;
+text-decoration:none;
+font-weight:bold;
+box-shadow:0 0 30px rgba(255,212,0,0.7);
+animation:pulse 2s infinite;
 }
 
-.hero-top{
-background:#ffd800;
-padding:28px 20px;
-text-align:center;
+.floating-form{
+position:fixed;
+bottom:100px;
+right:20px;
+z-index:9999;
+background:#ff2d86;
+color:white;
+padding:14px 20px;
+border-radius:40px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 0 25px rgba(255,45,134,0.7);
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+
+.container{
+max-width:760px;
+margin:auto;
+background:#02031a;
+border-left:6px solid #ffd400;
+border-right:6px solid #ffd400;
+box-shadow:0 0 40px rgba(255,212,0,0.25);
+}
+
+/* HEADER */
+
+.top-banner{
+background:#ffd400;
 color:#000;
-font-weight:900;
+text-align:center;
+padding:35px 20px;
 font-size:28px;
+font-weight:900;
 line-height:1.2;
 border-radius:0 0 35px 35px;
 }
 
-.trending{
-background:#ff2d7a;
-margin:30px auto 20px;
+.pink-banner{
+margin:30px auto;
 width:85%;
-padding:20px;
-border-radius:50px;
+background:#ff2d86;
+padding:22px;
 text-align:center;
-font-size:22px;
-font-weight:900;
-box-shadow:0 0 30px #ff2d7a;
+font-size:24px;
+font-weight:bold;
+border-radius:60px;
+box-shadow:0 0 35px #ff2d86;
 }
 
-.live-counter{
-width:85%;
-margin:0 auto 25px;
-background:#3a1200;
-border:2px solid #ff9d00;
-padding:18px;
-border-radius:25px;
-text-align:center;
-font-size:20px;
-font-weight:800;
-color:#ffd59e;
-box-shadow:0 0 20px rgba(255,157,0,.35);
-animation:counterPulse 2s infinite;
-}
+/* HERO */
 
-@keyframes counterPulse{
-0%{
-transform:scale(1);
-}
-50%{
-transform:scale(1.03);
-}
-100%{
-transform:scale(1);
-}
-}
-
-.hero-image{
+.hero{
 position:relative;
-overflow:hidden;
-border-radius:0 0 35px 35px;
+text-align:center;
 }
 
-.hero-image img{
+.hero img{
 width:100%;
 display:block;
-filter:brightness(.45);
+opacity:0.42;
 }
 
 .hero-text{
@@ -97,217 +149,251 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-text-align:center;
 width:90%;
 }
 
 .hero-text h1{
-font-size:72px;
-line-height:.9;
+font-size:78px;
+line-height:0.9;
 font-weight:900;
-text-shadow:0 0 15px rgba(0,0,0,.8);
+text-shadow:0 0 20px rgba(0,0,0,0.7);
 }
 
 .hero-text p{
-margin-top:18px;
+margin-top:20px;
 font-size:18px;
-line-height:1.5;
+line-height:1.6;
 }
 
-.badges{
-padding:40px 20px;
-display:flex;
-flex-direction:column;
-gap:18px;
-align-items:center;
-}
+/* COUNTDOWN */
 
-.badge{
-background:#0f1035;
-border:2px solid rgba(255,255,255,.1);
-padding:18px 30px;
-border-radius:50px;
-font-weight:800;
-font-size:18px;
-color:#ffd800;
-width:85%;
+.countdown{
 text-align:center;
-box-shadow:0 0 15px rgba(255,216,0,.12);
+padding:25px;
+font-size:28px;
+font-weight:bold;
+color:#ffd400;
+text-shadow:0 0 15px rgba(255,212,0,0.5);
 }
 
-.form-wrapper{
-margin:20px;
+/* FEATURES */
+
+.feature-list{
+padding:30px 0;
+}
+
+.feature{
+width:55%;
+margin:22px auto;
 padding:24px;
-border:4px solid #ffd800;
-border-radius:40px;
-box-shadow:0 0 25px rgba(255,216,0,.3);
+text-align:center;
+background:#10133d;
+border-radius:50px;
+border:2px solid rgba(255,255,255,0.1);
+font-size:22px;
+font-weight:bold;
+color:#ffd400;
+box-shadow:0 0 25px rgba(255,212,0,0.15);
 }
 
-.form-header{
-border:4px solid #ffd800;
-border-radius:60px;
-padding:18px;
+/* FORM */
+
+.form-section{
+width:86%;
+margin:20px auto 50px;
+padding:45px 20px;
+border:5px solid #ffd400;
+border-radius:40px;
+background:#03051f;
+box-shadow:0 0 40px rgba(255,212,0,0.2);
+}
+
+.form-title{
+width:95%;
+margin:auto;
+margin-bottom:30px;
+padding:25px;
+border:5px solid #ffd400;
+border-radius:80px;
 text-align:center;
-font-size:24px;
+font-size:32px;
 font-weight:900;
-color:#ffd800;
-margin-bottom:25px;
+color:#ffd400;
 }
 
 .form-group{
-margin-bottom:18px;
+margin-bottom:20px;
 }
 
 input,
 select{
 width:100%;
-padding:20px;
+padding:22px;
+font-size:20px;
 border:none;
 border-radius:25px;
-background:#d9deea;
-font-size:18px;
+background:#cfd5e2;
+outline:none;
 }
 
 select{
-background:#12133b;
-color:#fff;
+background:#10133d;
+color:white;
 }
 
-.submit-btn{
+button{
 width:100%;
-padding:24px;
+padding:30px;
 border:none;
 border-radius:30px;
-background:#ffd800;
-color:#000;
-font-size:24px;
+background:#ffd400;
+font-size:30px;
 font-weight:900;
 cursor:pointer;
-box-shadow:0 0 25px rgba(255,216,0,.7);
-margin-top:10px;
+transition:0.3s;
+box-shadow:0 0 35px rgba(255,212,0,0.45);
 }
 
-.secure{
-text-align:center;
-font-size:11px;
-line-height:1.8;
-margin-top:14px;
-opacity:.85;
+button:hover{
+transform:scale(1.02);
 }
+
+.security{
+margin-top:18px;
+text-align:center;
+font-size:12px;
+line-height:1.8;
+opacity:0.85;
+}
+
+/* TEXT */
 
 .description{
-padding:10px 25px 35px;
+padding:0 35px 40px;
 text-align:center;
-line-height:1.8;
-font-size:15px;
+line-height:1.9;
+font-size:18px;
+color:#ddd;
 }
 
-.small{
-font-size:11px;
-opacity:.65;
-margin-top:20px;
-line-height:1.6;
+.description p{
+margin-bottom:25px;
 }
+
+/* GIVEAWAY */
 
 .includes{
-margin:25px 20px;
-padding:30px 25px;
-border:4px solid #ffd800;
+width:86%;
+margin:0 auto 50px;
+padding:35px;
+border:4px solid #ffd400;
 border-radius:35px;
+background:#03051f;
 }
 
 .includes h2{
 text-align:center;
-font-size:28px;
-color:#ffd800;
+font-size:52px;
 margin-bottom:25px;
+color:#ffd400;
 }
 
 .includes ul{
 list-style:none;
-display:flex;
-flex-direction:column;
-gap:18px;
-font-size:18px;
+font-size:28px;
+line-height:2;
 }
 
 .includes li{
-line-height:1.5;
+margin-bottom:10px;
 }
 
-.card{
-margin:25px 20px;
-background:#090921;
+/* TESTIMONIALS */
+
+.testimonials{
+padding:20px;
+}
+
+.testimonial{
+background:#11142f;
+margin-bottom:20px;
+padding:25px;
+border-radius:25px;
+border:2px solid rgba(255,255,255,0.08);
+}
+
+.testimonial strong{
+color:#ffd400;
+font-size:20px;
+}
+
+/* ALERT */
+
+.alert-box{
+width:86%;
+margin:40px auto;
+padding:40px;
+border:4px solid orange;
 border-radius:30px;
-overflow:hidden;
-border:2px solid rgba(255,255,255,.08);
-}
-
-.card img{
-width:100%;
-display:block;
-}
-
-.card p{
-padding:24px;
-font-size:18px;
-line-height:1.6;
+background:#3b1700;
 text-align:center;
+font-size:34px;
+line-height:1.7;
+color:#fff;
 }
 
-.warning{
-margin:25px 20px 40px;
-padding:35px 25px;
-background:#4b1d00;
-border:3px solid #ff9d00;
-border-radius:35px;
+/* PHONE */
+
+.phone-box{
 text-align:center;
-font-size:22px;
-line-height:1.8;
-color:#ffe3a1;
+padding:30px 20px 60px;
 }
 
-.sticky-cta{
-position:fixed;
-bottom:15px;
-left:50%;
-transform:translateX(-50%);
-background:#ffd800;
-color:#000;
-padding:14px 26px;
-border-radius:50px;
-font-size:18px;
+.phone-box a{
+color:#ffd400;
+font-size:38px;
 font-weight:900;
 text-decoration:none;
-z-index:99999;
-box-shadow:0 0 25px rgba(255,216,0,.8);
-animation:pulseGlow 2s infinite;
-border:3px solid #fff;
 }
 
-@keyframes pulseGlow{
-0%{
-transform:translateX(-50%) scale(1);
-box-shadow:0 0 15px rgba(255,216,0,.7);
-}
-50%{
-transform:translateX(-50%) scale(1.05);
-box-shadow:0 0 30px rgba(255,216,0,1);
-}
-100%{
-transform:translateX(-50%) scale(1);
-box-shadow:0 0 15px rgba(255,216,0,.7);
-}
-}
+/* MOBILE */
 
-@media(max-width:480px){
+@media(max-width:768px){
 
 .hero-text h1{
 font-size:58px;
 }
 
-.hero-top{
-font-size:24px;
+.hero-text p{
+font-size:16px;
+}
+
+.feature{
+width:78%;
+font-size:18px;
+}
+
+.includes h2{
+font-size:42px;
+}
+
+.includes ul{
+font-size:20px;
+}
+
+.alert-box{
+font-size:26px;
+}
+
+button{
+font-size:22px;
+padding:24px;
+}
+
+.floating-call{
+width:60px;
+height:60px;
+font-size:28px;
 }
 
 }
@@ -317,26 +403,32 @@ font-size:24px;
 
 <body>
 
+<a href="#leadForm" class="floating-form">
+🎁 Enter Giveaway
+</a>
+
+<a href="tel:14072576911" class="floating-call">
+📞
+</a>
+
 <div class="container">
 
-<div class="hero-top">
+<div class="top-banner">
 🚨 FLORIDA HOMEOWNER GIVEAWAY • LIMITED ENTRIES
 </div>
 
-<div class="trending">
+<div class="pink-banner">
 🔥 Trending In Florida Deal Groups
 </div>
 
-<div class="live-counter" id="liveCounter">
-⚠️ Only 7 spots remaining this month
-</div>
+<div class="hero">
 
-<div class="hero-image">
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="home">
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop">
 
 <div class="hero-text">
+
 <h1>
-WIN A FREE<br>
+FREE<br>
 REVERSE<br>
 OSMOSIS<br>
 SYSTEM
@@ -349,29 +441,40 @@ Florida homeowners are entering for a chance to receive a FREE reverse osmosis s
 </div>
 </div>
 
-<div class="badges">
-<div class="badge">FREE Water Test</div>
-<div class="badge">Florida Homeowners</div>
-<div class="badge">Limited Spots</div>
-<div class="badge">No Purchase Needed</div>
+<div class="countdown">
+⏳ Giveaway Spots Filling Fast
 </div>
 
-<div class="form-wrapper" id="form-section">
+<div class="feature-list">
 
-<div class="form-header">
+<div class="feature">FREE Water Test</div>
+<div class="feature">Florida Homeowners</div>
+<div class="feature">Limited Spots</div>
+<div class="feature">No Purchase Needed</div>
+
+</div>
+
+<!-- FORM -->
+
+<div class="form-section">
+
+<div class="form-title">
 ⏳ Entries Closing Soon
 </div>
 
 <form
+id="leadForm"
 action="https://hook.us2.make.com/2rx31o6aysg6rlvalgq6b8yxsgog3xtx"
-method="POST">
+method="POST"
+>
 
 <div class="form-group">
 <input
 type="text"
 name="name"
 placeholder="Full Name"
-required>
+required
+/>
 </div>
 
 <div class="form-group">
@@ -379,7 +482,8 @@ required>
 type="tel"
 name="phone"
 placeholder="Phone Number"
-required>
+required
+/>
 </div>
 
 <div class="form-group">
@@ -387,7 +491,8 @@ required>
 type="text"
 name="zip"
 placeholder="ZIP Code"
-required>
+required
+/>
 </div>
 
 <div class="form-group">
@@ -398,8 +503,8 @@ required>
 <option>Rust / Stains</option>
 <option>Dry Skin / Eczema</option>
 <option>Well Water</option>
-<option>Dirty Water</option>
-<option>Not Sure</option>
+<option>Cloudy Water</option>
+<option>Other</option>
 </select>
 </div>
 
@@ -411,27 +516,20 @@ required>
 </select>
 </div>
 
-<input
-type="hidden"
-name="source"
-value="Florida Giveaway Landing Page">
+<input type="hidden" name="source" value="Florida Giveaway Landing Page">
+<input type="hidden" name="submittedAt" id="submittedAt">
 
-<input
-type="hidden"
-name="submittedAt"
-id="submittedAt">
-
-<button type="submit" class="submit-btn">
+<button type="submit">
 ENTER GIVEAWAY NOW
 </button>
 
-</form>
-
-<div class="secure">
-✓ Secure Submission<br>
-✓ Florida Homeowners Only<br>
-✓ No Purchase Required
+<div class="security">
+✔ Secure Submission<br>
+✔ Florida Homeowners Only<br>
+✔ No Purchase Required
 </div>
+
+</form>
 
 </div>
 
@@ -441,7 +539,7 @@ ENTER GIVEAWAY NOW
 Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, and water quality concerns every year.
 </p>
 
-<p class="small">
+<p>
 No purchase necessary. Giveaway availability may vary by area. Selected participants may qualify for additional homeowner promotions.
 </p>
 
@@ -454,62 +552,89 @@ No purchase necessary. Giveaway availability may vary by area. Selected particip
 </h2>
 
 <ul>
-<li>✓ FREE In-Home Water Analysis</li>
-<li>✓ FREE TDS Water Testing</li>
-<li>✓ FREE Water Test Strips</li>
-<li>✓ Entry Into Reverse Osmosis Giveaway</li>
-<li>✓ Florida Homeowner Promotions</li>
+<li>✔ FREE In-Home Water Analysis</li>
+<li>✔ FREE TDS Water Testing</li>
+<li>✔ FREE Water Test Strips</li>
+<li>✔ Entry Into Reverse Osmosis Giveaway</li>
+<li>✔ Florida Homeowner Promotions</li>
 </ul>
 
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop">
+<!-- TESTIMONIALS -->
+
+<div class="testimonials">
+
+<div class="testimonial">
+<strong>⭐⭐⭐⭐⭐ Maria - Orlando</strong>
 <p>
-Hard water buildup and dirty faucets caused by mineral deposits.
+"The water test shocked us. We had hard water buildup everywhere. Very professional experience."
 </p>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1583947582886-f40ec95dd752?q=80&w=1200&auto=format&fit=crop">
+<div class="testimonial">
+<strong>⭐⭐⭐⭐⭐ Daniel - Kissimmee</strong>
 <p>
-Strange smells, stains, discoloration, and questionable water quality.
+"Our water smelled terrible before. The free analysis helped us understand the problem immediately."
 </p>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop">
+<div class="testimonial">
+<strong>⭐⭐⭐⭐⭐ Jessica - St. Cloud</strong>
 <p>
-Families concerned about skin irritation, dryness, and eczema symptoms.
+"The giveaway process was simple and the technician was amazing."
 </p>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop">
-<p>
-Old pipes, well water concerns, rust, sediment, and hard water damage.
-</p>
 </div>
 
-<div class="warning">
+<div class="alert-box">
 ⚠️ Due to high demand, only a limited number of Florida homeowners will be accepted this month.
 </div>
 
+<div class="phone-box">
+
+Questions?<br><br>
+
+<a href="tel:14072576911">
+📞 (407) 257-6911
+</a>
+
 </div>
 
-<a href="#form-section" class="sticky-cta">
-🔥 FREE WATER TEST
-</a>
+</div>
 
 <script>
 
-document.getElementById("submittedAt").value =
-new Date().toLocaleString();
+document
+.getElementById("submittedAt")
+.value = new Date().toLocaleString();
 
-const randomSpots = Math.floor(Math.random() * 5) + 3;
+document
+.getElementById("leadForm")
+.addEventListener("submit", async function(e){
 
-document.getElementById("liveCounter").innerHTML =
-"⚠️ Only " + randomSpots + " spots remaining this month";
+e.preventDefault();
+
+fbq('track', 'Lead');
+
+const button = form.querySelector("button");
+
+button.innerHTML = "Submitting...";
+button.disabled = true;
+
+const form = e.target;
+
+const data = new FormData(form);
+
+await fetch(form.action,{
+method:"POST",
+body:data
+});
+
+window.location.href="thanks.html";
+
+});
 
 </script>
 
