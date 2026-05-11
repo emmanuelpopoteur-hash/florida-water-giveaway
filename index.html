@@ -7,6 +7,7 @@
 <title>Florida Homeowner Giveaway</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -15,7 +16,7 @@
 
 body{
     background:#000;
-    color:white;
+    color:#fff;
     font-family:Arial, sans-serif;
     overflow-x:hidden;
 }
@@ -27,40 +28,44 @@ body{
     background:#05051a;
     border-left:4px solid gold;
     border-right:4px solid gold;
-    box-shadow:0 0 30px rgba(255,215,0,0.3);
+    box-shadow:0 0 35px rgba(255,215,0,0.25);
 }
 
 .top-bar{
     background:gold;
     color:#000;
     text-align:center;
-    font-weight:bold;
+    font-weight:900;
     font-size:2rem;
-    padding:25px 15px;
     line-height:1.2;
+    padding:28px 18px;
+    border-bottom:3px solid #000;
 }
 
 .trending{
-    background:#ff2c7d;
-    color:white;
     width:85%;
-    margin:25px auto;
+    margin:28px auto;
+    background:#ff2c7d;
+    color:#fff;
     text-align:center;
-    padding:18px;
-    border-radius:50px;
-    font-weight:bold;
+    padding:20px;
+    border-radius:60px;
     font-size:1.8rem;
-    box-shadow:0 0 25px #ff2c7d;
+    font-weight:bold;
+    box-shadow:0 0 35px rgba(255,44,125,0.8);
 }
 
 .hero{
     position:relative;
+    margin:0 20px;
+    overflow:hidden;
+    border-radius:35px;
 }
 
 .hero img{
     width:100%;
     display:block;
-    opacity:0.55;
+    opacity:0.45;
 }
 
 .hero-overlay{
@@ -68,54 +73,60 @@ body{
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:90%;
+    width:92%;
     text-align:center;
 }
 
 .hero-overlay h1{
-    font-size:4.5rem;
-    line-height:0.95;
+    font-size:3.4rem;
+    line-height:0.92;
     font-weight:900;
-    margin-bottom:25px;
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(0,0,0,0.8);
 }
 
 .hero-overlay p{
-    font-size:1.4rem;
+    font-size:1.3rem;
     line-height:1.5;
+    text-shadow:0 0 8px rgba(0,0,0,0.8);
 }
 
 .badges{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:22px;
     padding:35px 25px;
 }
 
 .badge{
-    border:3px solid rgba(255,255,255,0.1);
-    border-radius:60px;
-    padding:22px;
-    text-align:center;
-    color:gold;
-    font-size:1.9rem;
-    font-weight:bold;
+    width:85%;
+    margin:auto;
     background:#111127;
+    border:3px solid rgba(255,255,255,0.1);
+    color:gold;
+    text-align:center;
+    padding:24px;
+    border-radius:60px;
+    font-size:1.8rem;
+    font-weight:bold;
+    box-shadow:0 0 20px rgba(255,215,0,0.08);
 }
 
 .form-section{
-    margin:20px;
+    margin:25px 20px;
     border:4px solid gold;
     border-radius:40px;
     padding:30px 20px;
-    box-shadow:0 0 25px rgba(255,215,0,0.25);
+    box-shadow:0 0 35px rgba(255,215,0,0.2);
 }
 
 .form-title{
+    width:95%;
+    margin:auto auto 30px;
     border:4px solid gold;
-    border-radius:70px;
-    text-align:center;
+    border-radius:80px;
     padding:25px;
-    margin-bottom:30px;
+    text-align:center;
     color:gold;
     font-size:2.2rem;
     font-weight:bold;
@@ -124,22 +135,22 @@ body{
 form{
     display:flex;
     flex-direction:column;
-    gap:25px;
+    gap:24px;
 }
 
 input,
 select{
-    background:#16162c;
-    border:none;
-    color:white;
-    padding:24px;
-    border-radius:25px;
-    font-size:1.5rem;
     width:100%;
+    padding:24px;
+    border:none;
+    border-radius:25px;
+    background:#16162c;
+    color:#fff;
+    font-size:1.5rem;
 }
 
 input::placeholder{
-    color:#aaa;
+    color:#b9b9b9;
 }
 
 select{
@@ -150,30 +161,39 @@ button{
     background:gold;
     color:#000;
     border:none;
-    padding:30px;
+    padding:32px;
     border-radius:30px;
     font-size:2rem;
     font-weight:900;
     cursor:pointer;
-    box-shadow:0 0 35px rgba(255,215,0,0.5);
-    transition:0.3s;
+    box-shadow:0 0 40px rgba(255,215,0,0.55);
+    transition:0.25s;
 }
 
 button:hover{
-    transform:scale(1.03);
+    transform:scale(1.02);
+}
+
+.trust-text{
+    text-align:center;
+    font-size:14px;
+    opacity:0.8;
+    margin-top:5px;
+    line-height:1.7;
 }
 
 .description{
     text-align:center;
-    padding:35px 25px;
+    padding:10px 25px 35px;
     font-size:1.3rem;
     line-height:1.8;
 }
 
 .small{
-    opacity:0.5;
+    opacity:0.55;
     margin-top:25px;
     font-size:1rem;
+    line-height:1.8;
 }
 
 .giveaway-box{
@@ -184,10 +204,10 @@ button:hover{
 }
 
 .giveaway-box h2{
+    text-align:center;
     color:gold;
     font-size:3rem;
-    text-align:center;
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
 .giveaway-box ul{
@@ -204,12 +224,11 @@ button:hover{
     background:#0f1024;
     border-radius:35px;
     overflow:hidden;
-    border:2px solid rgba(255,255,255,0.08);
+    border:2px solid rgba(255,255,255,0.06);
 }
 
 .card img{
     width:100%;
-    height:auto;
     display:block;
 }
 
@@ -234,7 +253,7 @@ button:hover{
 
 .phone-section{
     text-align:center;
-    padding:10px 20px 50px;
+    padding:10px 20px 55px;
 }
 
 .phone-section a{
@@ -246,31 +265,52 @@ button:hover{
 
 @media(max-width:600px){
 
-.hero-overlay h1{
-    font-size:3.2rem;
-}
-
-.hero-overlay p{
-    font-size:1.1rem;
-}
-
 .top-bar{
     font-size:1.5rem;
 }
 
-.badge{
+.trending{
     font-size:1.4rem;
 }
 
+.hero-overlay h1{
+    font-size:2.6rem;
+}
+
+.hero-overlay p{
+    font-size:1rem;
+}
+
+.badge{
+    font-size:1.3rem;
+}
+
+.form-title{
+    font-size:1.8rem;
+}
+
 button{
-    font-size:1.6rem;
+    font-size:1.7rem;
 }
 
 .giveaway-box h2{
     font-size:2.3rem;
 }
 
+.giveaway-box ul{
+    font-size:1.3rem;
 }
+
+.card p{
+    font-size:1.3rem;
+}
+
+.warning{
+    font-size:1.4rem;
+}
+
+}
+
 </style>
 </head>
 
@@ -287,9 +327,14 @@ button{
 </div>
 
 <div class="hero">
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="House"/>
+
+<img
+src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop"
+alt="Florida Home"
+/>
 
 <div class="hero-overlay">
+
 <h1>
 WIN A FREE<br>
 REVERSE<br>
@@ -300,14 +345,28 @@ SYSTEM
 <p>
 Florida homeowners are entering for a chance to receive a FREE reverse osmosis system plus complimentary water testing.
 </p>
+
 </div>
 </div>
 
 <div class="badges">
-<div class="badge">FREE Water Test</div>
-<div class="badge">Florida Homeowners</div>
-<div class="badge">Limited Spots</div>
-<div class="badge">No Purchase Needed</div>
+
+<div class="badge">
+FREE Water Test
+</div>
+
+<div class="badge">
+Florida Homeowners
+</div>
+
+<div class="badge">
+Limited Spots
+</div>
+
+<div class="badge">
+No Purchase Needed
+</div>
+
 </div>
 
 <div class="form-section">
@@ -369,7 +428,6 @@ value="Florida Giveaway Landing Page"
 <input
 type="hidden"
 name="submittedAt"
-value=""
 id="submittedAt"
 />
 
@@ -377,16 +435,24 @@ id="submittedAt"
 ENTER GIVEAWAY NOW
 </button>
 
+<div class="trust-text">
+✔ Secure Submission<br>
+✔ Florida Homeowners Only<br>
+✔ No Purchase Required
+</div>
+
 </form>
 
 </div>
 
 <div class="description">
+
 Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, and water quality concerns every year.
 
 <div class="small">
 No purchase necessary. Giveaway availability may vary by area. Selected participants may qualify for additional homeowner promotions.
 </div>
+
 </div>
 
 <div class="giveaway-box">
@@ -446,7 +512,8 @@ Old pipes, well water concerns, rust, sediment, and hard water damage.
 </div>
 
 <script>
-document.getElementById("submittedAt").value = new Date().toLocaleString();
+document.getElementById("submittedAt").value =
+new Date().toLocaleString();
 </script>
 
 </body>
