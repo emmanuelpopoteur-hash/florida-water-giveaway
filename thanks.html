@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Thank You - Florida Giveaway</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#000;
+    color:white;
+    overflow-x:hidden;
+}
+
+.container{
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    min-height:100vh;
+    border:4px solid #FFD700;
+    background:linear-gradient(to bottom,#050510,#0b0b1f);
+    box-shadow:0 0 35px rgba(255,215,0,.35);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:40px 25px;
+    text-align:center;
+}
+
+.check{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:5rem;
+    margin-bottom:30px;
+    box-shadow:0 0 40px rgba(37,211,102,.6);
+}
+
+h1{
+    font-size:3rem;
+    line-height:1.1;
+    margin-bottom:25px;
+    color:#FFD700;
+    font-weight:900;
+}
+
+.subtitle{
+    font-size:1.5rem;
+    line-height:1.6;
+    color:#ddd;
+    margin-bottom:40px;
+}
+
+.notice{
+    background:#111122;
+    border:3px solid #FFD700;
+    border-radius:30px;
+    padding:30px;
+    margin-bottom:35px;
+    box-shadow:0 0 20px rgba(255,215,0,.2);
+}
+
+.notice h2{
+    color:#FFD700;
+    font-size:2rem;
+    margin-bottom:18px;
+}
+
+.notice p{
+    font-size:1.25rem;
+    line-height:1.7;
+}
+
+.whatsapp-btn{
+    display:inline-block;
+    width:100%;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:24px;
+    border-radius:25px;
+    font-size:1.8rem;
+    font-weight:bold;
+    margin-bottom:25px;
+    box-shadow:0 0 25px rgba(37,211,102,.6);
+    transition:.3s;
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.03);
+}
+
+.call-btn{
+    display:inline-block;
+    width:100%;
+    background:#FFD700;
+    color:black;
+    text-decoration:none;
+    padding:22px;
+    border-radius:25px;
+    font-size:1.7rem;
+    font-weight:900;
+    margin-bottom:30px;
+    box-shadow:0 0 30px rgba(255,215,0,.5);
+}
+
+.timer-box{
+    margin-top:20px;
+    background:#4a1d00;
+    border:3px solid #ff9900;
+    border-radius:25px;
+    padding:25px;
+    width:100%;
+}
+
+.timer-box h3{
+    color:#FFD700;
+    font-size:1.7rem;
+    margin-bottom:15px;
+}
+
+#countdown{
+    font-size:2.4rem;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.small{
+    margin-top:30px;
+    color:#777;
+    font-size:1rem;
+    line-height:1.7;
+}
+
+@media(max-width:600px){
+
+h1{
+    font-size:2.4rem;
+}
+
+.subtitle{
+    font-size:1.25rem;
+}
+
+.whatsapp-btn,
+.call-btn{
+    font-size:1.4rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="check">
+✓
+</div>
+
+<h1>
+ENTRY RECEIVED!
+</h1>
+
+<p class="subtitle">
+Thank you for entering the Florida Homeowner Giveaway.
+</p>
+
+<div class="notice">
+
+<h2>
+What Happens Next?
+</h2>
+
+<p>
+A local water quality specialist may contact you shortly to confirm eligibility and discuss common Florida water issues such as:
+<br><br>
+• Hard Water<br>
+• Sulfur Smells<br>
+• Iron Stains<br>
+• Chlorine Taste<br>
+• Skin Irritation
+</p>
+
+</div>
+
+<a class="whatsapp-btn"
+href="https://wa.me/14072576911?text=Hi%20I%20just%20entered%20the%20Florida%20Giveaway"
+target="_blank">
+
+💬 CHAT ON WHATSAPP
+
+</a>
+
+<a class="call-btn"
+href="tel:+14072576911">
+
+📞 CALL NOW: (407) 257-6911
+
+</a>
+
+<div class="timer-box">
+
+<h3>
+⏳ Priority Follow-Up Window
+</h3>
+
+<div id="countdown">
+15:00
+</div>
+
+</div>
+
+<p class="small">
+No purchase necessary. Giveaway participation does not guarantee selection. Availability may vary by area.
+</p>
+
+</div>
+
+<script>
+
+let time = 900;
+
+const countdown = document.getElementById("countdown");
+
+setInterval(()=>{
+
+let minutes = Math.floor(time / 60);
+let seconds = time % 60;
+
+minutes = minutes < 10 ? "0" + minutes : minutes;
+seconds = seconds < 10 ? "0" + seconds : seconds;
+
+countdown.innerHTML = `${minutes}:${seconds}`;
+
+if(time > 0){
+time--;
+}
+
+},1000);
+
+</script>
+
+</body>
+</html>
