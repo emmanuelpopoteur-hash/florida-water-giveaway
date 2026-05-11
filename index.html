@@ -1,137 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>Florida Homeowner Water Test</title>
-
-<meta name="description" content="Florida homeowners can request a FREE in-home water test and may qualify for additional water treatment promotions.">
-
-<!-- META PIXEL -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;
-n.push=n;
-n.loaded=!0;
-n.version='2.0';
-n.queue=[];
-t=b.createElement(e);
-t.async=!0;
-t.src=v;
-s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}
-(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '967427632676424');
-fbq('track', 'PageView');
-</script>
-
-<noscript>
-<img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=967427632676424&ev=PageView&noscript=1"/>
-</noscript>
-<!-- END META PIXEL -->
-
 <style>
+
+/* =========================
+GLOBAL
+========================= */
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-html{
-scroll-behavior:smooth;
 }
 
 body{
-background:#000;
+background:#000814;
+font-family:Arial,sans-serif;
 color:white;
 overflow-x:hidden;
 }
 
-/* FLOATING BUTTONS */
-
-.floating-call{
-position:fixed;
-bottom:20px;
-right:20px;
-z-index:9999;
-background:#ffd400;
-color:#000;
-width:72px;
-height:72px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px;
-text-decoration:none;
-font-weight:bold;
-box-shadow:0 0 30px rgba(255,212,0,0.7);
-animation:pulse 2s infinite;
-}
-
-.floating-form{
-position:fixed;
-bottom:105px;
-right:20px;
-z-index:9999;
-background:#ff2d86;
-color:white;
-padding:14px 22px;
-border-radius:40px;
-font-weight:bold;
-text-decoration:none;
-box-shadow:0 0 25px rgba(255,45,134,0.7);
-}
-
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.08);}
-100%{transform:scale(1);}
-}
-
 .container{
-max-width:760px;
+max-width:800px;
 margin:auto;
-background:#02031a;
-border-left:6px solid #ffd400;
-border-right:6px solid #ffd400;
-box-shadow:0 0 40px rgba(255,212,0,0.25);
+border-left:4px solid #ffd700;
+border-right:4px solid #ffd700;
+background:#000014;
 }
 
-/* HEADER */
+/* =========================
+TOP BANNERS
+========================= */
 
 .top-banner{
-background:#ffd400;
+background:#ffd700;
 color:#000;
-text-align:center;
-padding:35px 20px;
-font-size:28px;
 font-weight:900;
+text-align:center;
+padding:25px;
+font-size:34px;
 line-height:1.2;
-border-radius:0 0 35px 35px;
+border-radius:0 0 40px 40px;
 }
 
 .pink-banner{
-margin:30px auto;
+background:#ff2d7a;
 width:85%;
-background:#ff2d86;
-padding:22px;
+margin:30px auto;
+padding:25px;
 text-align:center;
-font-size:24px;
+font-size:26px;
 font-weight:bold;
-border-radius:60px;
-box-shadow:0 0 35px #ff2d86;
+border-radius:999px;
+box-shadow:0 0 30px rgba(255,0,100,.5);
 }
 
-/* HERO */
+/* =========================
+HERO
+========================= */
 
 .hero{
 position:relative;
@@ -141,7 +64,7 @@ text-align:center;
 .hero img{
 width:100%;
 display:block;
-opacity:0.42;
+filter:brightness(.55);
 }
 
 .hero-text{
@@ -153,567 +76,342 @@ width:90%;
 }
 
 .hero-text h1{
-font-size:72px;
-line-height:0.9;
+font-size:64px;
+line-height:0.95;
 font-weight:900;
-text-shadow:0 0 20px rgba(0,0,0,0.7);
+text-shadow:0 0 15px rgba(0,0,0,.9);
 }
 
 .hero-text p{
 margin-top:20px;
-font-size:20px;
-line-height:1.6;
+font-size:18px;
 }
 
-/* COUNTDOWN */
-
-.countdown{
-text-align:center;
-padding:25px;
-font-size:28px;
-font-weight:bold;
-color:#ffd400;
-text-shadow:0 0 15px rgba(255,212,0,0.5);
-}
-
-/* FEATURES */
+/* =========================
+FEATURES
+========================= */
 
 .feature-list{
-padding:30px 0;
+padding:40px 20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:22px;
 }
 
 .feature{
-width:58%;
-margin:22px auto;
-padding:24px;
+background:#111144;
+border:2px solid rgba(255,255,255,.1);
+padding:22px;
+width:80%;
 text-align:center;
-background:#10133d;
-border-radius:50px;
-border:2px solid rgba(255,255,255,0.1);
-font-size:22px;
+border-radius:999px;
 font-weight:bold;
-color:#ffd400;
-box-shadow:0 0 25px rgba(255,212,0,0.15);
+font-size:24px;
+color:#ffd700;
+box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* FORM */
+/* =========================
+FORM
+========================= */
 
 .form-section{
-width:86%;
-margin:20px auto 50px;
-padding:45px 20px;
-border:5px solid #ffd400;
-border-radius:40px;
-background:#03051f;
-box-shadow:0 0 40px rgba(255,212,0,0.2);
+margin:40px 20px;
+padding:30px;
+border:3px solid #ffd700;
+border-radius:35px;
+background:#02021d;
+box-shadow:0 0 30px rgba(255,215,0,.15);
 }
 
 .form-title{
-width:95%;
-margin:auto;
-margin-bottom:30px;
-padding:25px;
-border:5px solid #ffd400;
-border-radius:80px;
 text-align:center;
-font-size:32px;
+font-size:28px;
 font-weight:900;
-color:#ffd400;
+margin-bottom:25px;
+border:3px solid #ffd700;
+padding:20px;
+border-radius:999px;
+color:#ffd700;
+background:#111144;
 }
 
-.form-group{
-margin-bottom:20px;
+form{
+display:flex;
+flex-direction:column;
+gap:18px;
 }
 
 input,
 select{
-width:100%;
 padding:22px;
-font-size:20px;
 border:none;
-border-radius:25px;
-outline:none;
-}
-
-input{
-background:#d9dfeb;
+border-radius:20px;
+font-size:20px;
+background:#dbe3f2;
 color:#000;
+width:100%;
 }
 
 select{
-background:#10133d;
-color:white;
+background:#111144;
+color:#fff;
+border:2px solid rgba(255,255,255,.1);
 }
 
 button{
-width:100%;
-padding:30px;
+background:#ffd700;
+color:#000;
 border:none;
-border-radius:30px;
-background:#ffd400;
-font-size:28px;
+padding:28px;
+font-size:30px;
 font-weight:900;
+border-radius:25px;
 cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 35px rgba(255,212,0,0.45);
+box-shadow:0 0 35px rgba(255,215,0,.5);
+transition:.3s;
 }
 
 button:hover{
-transform:scale(1.02);
+transform:scale(1.03);
 }
 
-.security{
-margin-top:18px;
+.small-note{
 text-align:center;
 font-size:12px;
-line-height:1.8;
-opacity:0.85;
+opacity:.8;
+line-height:1.6;
+margin-top:10px;
 }
 
-.sms-consent{
-font-size:12px;
-opacity:.7;
-text-align:center;
-margin-top:15px;
-line-height:1.7;
-}
-
-/* TEXT */
+/* =========================
+DESCRIPTION
+========================= */
 
 .description{
-padding:0 35px 40px;
+padding:10px 30px 50px;
 text-align:center;
-line-height:1.9;
-font-size:18px;
+font-size:17px;
+line-height:1.8;
 color:#ddd;
 }
 
-.description p{
-margin-bottom:25px;
-}
-
-/* BENEFITS */
+/* =========================
+INCLUDES
+========================= */
 
 .includes{
-width:86%;
-margin:0 auto 50px;
-padding:35px;
-border:4px solid #ffd400;
+margin:20px;
+padding:40px;
 border-radius:35px;
-background:#03051f;
+border:2px solid #ffd700;
+background:#050522;
 }
 
 .includes h2{
 text-align:center;
-font-size:50px;
-margin-bottom:25px;
-color:#ffd400;
+font-size:42px;
+margin-bottom:30px;
+color:#ffd700;
 }
 
 .includes ul{
 list-style:none;
-font-size:26px;
-line-height:2;
+display:flex;
+flex-direction:column;
+gap:18px;
+font-size:22px;
 }
 
-/* TESTIMONIALS */
+.includes li{
+padding-left:10px;
+}
+
+/* =========================
+TESTIMONIALS
+========================= */
 
 .testimonials{
-padding:20px;
+padding:30px 20px 60px;
 }
 
 .testimonial{
-background:#11142f;
-margin-bottom:20px;
+background:#111144;
 padding:25px;
 border-radius:25px;
-border:2px solid rgba(255,255,255,0.08);
+margin-bottom:20px;
+border:1px solid rgba(255,255,255,.1);
 }
 
 .testimonial strong{
-color:#ffd400;
-font-size:20px;
+color:#ffd700;
 display:block;
 margin-bottom:10px;
 }
 
-/* ALERT */
+/* =========================
+ALERT
+========================= */
 
 .alert-box{
-width:86%;
-margin:40px auto;
-padding:40px;
-border:4px solid orange;
-border-radius:30px;
-background:#3b1700;
-text-align:center;
-font-size:32px;
-line-height:1.7;
+margin:30px 20px;
+padding:25px;
+background:#ff2d2d;
 color:#fff;
+font-size:24px;
+font-weight:900;
+text-align:center;
+border-radius:25px;
+box-shadow:0 0 25px rgba(255,0,0,.5);
 }
 
-/* PHONE */
+/* =========================
+PHONE
+========================= */
 
 .phone-box{
+padding:40px;
 text-align:center;
-padding:30px 20px 60px;
 }
 
 .phone-box a{
-color:#ffd400;
+color:#ffd700;
 font-size:38px;
-font-weight:900;
+font-weight:bold;
 text-decoration:none;
 }
 
-/* MOBILE */
+/* =========================
+DESKTOP VERSION
+========================= */
 
-@media(max-width:768px){
+@media(min-width: 992px){
+
+.container{
+max-width:1400px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+padding:40px;
+align-items:start;
+border-left:none;
+border-right:none;
+}
+
+.top-banner{
+grid-column:1/3;
+font-size:42px;
+padding:45px;
+border-radius:35px;
+}
+
+.pink-banner{
+grid-column:1/3;
+font-size:32px;
+width:70%;
+}
+
+.hero{
+border-radius:35px;
+overflow:hidden;
+box-shadow:0 0 35px rgba(255,255,255,0.08);
+}
+
+.hero img{
+height:100%;
+object-fit:cover;
+min-height:700px;
+}
 
 .hero-text h1{
-font-size:52px;
+font-size:88px;
 }
 
 .hero-text p{
-font-size:16px;
+font-size:24px;
+max-width:700px;
+margin:auto;
+margin-top:25px;
+}
+
+.feature-list{
+padding-top:0;
 }
 
 .feature{
-width:80%;
-font-size:18px;
-}
-
-.includes h2{
-font-size:40px;
-}
-
-.includes ul{
-font-size:20px;
-}
-
-.alert-box{
+width:90%;
 font-size:24px;
 }
 
-button{
+.form-section{
+margin-top:0;
+padding:50px;
+position:sticky;
+top:20px;
+}
+
+.form-title{
+font-size:42px;
+}
+
+input,
+select{
 font-size:22px;
 padding:24px;
 }
 
-.floating-call{
-width:62px;
-height:62px;
+button{
+font-size:32px;
+padding:32px;
+}
+
+.description{
+grid-column:1/3;
+max-width:1100px;
+margin:auto;
+font-size:22px;
+}
+
+.includes{
+grid-column:1/3;
+max-width:1100px;
+}
+
+.includes h2{
+font-size:58px;
+}
+
+.includes ul{
 font-size:28px;
+}
+
+.testimonials{
+grid-column:1/3;
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+gap:20px;
+}
+
+.testimonial{
+margin-bottom:0;
+}
+
+.alert-box{
+grid-column:1/3;
+max-width:1000px;
+margin:auto;
+font-size:38px;
+}
+
+.phone-box{
+grid-column:1/3;
+}
+
+.phone-box a{
+font-size:52px;
 }
 
 }
 
 </style>
-</head>
-
-<body>
-
-<a href="#leadForm" class="floating-form">
-💧 Free Water Test
-</a>
-
-<a href="tel:14072576911" class="floating-call">
-📞
-</a>
-
-<div class="container">
-
-<!-- HEADER -->
-
-<div class="top-banner">
-🚨 FLORIDA HOMEOWNER WATER TEST • LIMITED SPOTS
-</div>
-
-<div class="pink-banner">
-🔥 Trending In Florida Deal Groups
-</div>
-
-<!-- HERO -->
-
-<div class="hero">
-
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop">
-
-<div class="hero-text">
-
-<h1>
-FREE<br>
-IN-HOME<br>
-WATER TEST
-</h1>
-
-<p>
-Florida homeowners may qualify for additional water treatment promotions and reverse osmosis giveaway opportunities.
-</p>
-
-</div>
-</div>
-
-<!-- COUNTDOWN -->
-
-<div class="countdown">
-⏳ Limited Appointments Available This Month
-</div>
-
-<!-- FEATURES -->
-
-<div class="feature-list">
-
-<div class="feature">FREE Water Test</div>
-<div class="feature">Florida Homeowners</div>
-<div class="feature">Water Quality Analysis</div>
-<div class="feature">No Purchase Needed</div>
-
-</div>
-
-<!-- FORM -->
-
-<div class="form-section">
-
-<div class="form-title">
-💧 Check Your Water Quality
-</div>
-
-<form
-id="leadForm"
-action="https://hook.us2.make.com/2rx31o6aysg6rlvalgq6b8yxsgog3xtx"
-method="POST"
->
-
-<div class="form-group">
-<input
-type="text"
-name="name"
-placeholder="Full Name"
-required
-/>
-</div>
-
-<div class="form-group">
-<input
-type="tel"
-name="phone"
-placeholder="Phone Number"
-required
-/>
-</div>
-
-<div class="form-group">
-<input
-type="text"
-name="zip"
-placeholder="ZIP Code"
-required
-/>
-</div>
-
-<div class="form-group">
-<input
-type="text"
-name="city"
-placeholder="City"
-required
-/>
-</div>
-
-<div class="form-group">
-<select name="issue" required>
-<option value="">Main Water Concern</option>
-<option>Hard Water</option>
-<option>Bad Smell</option>
-<option>Rust / Stains</option>
-<option>Dry Skin / Eczema</option>
-<option>Well Water</option>
-<option>Cloudy Water</option>
-<option>Other</option>
-</select>
-</div>
-
-<div class="form-group">
-<select name="homeowner" required>
-<option value="">Are you the homeowner?</option>
-<option>Yes</option>
-<option>No</option>
-</select>
-</div>
-
-<div class="form-group">
-<select name="referral">
-<option value="">How did you hear about us?</option>
-<option>Facebook Group</option>
-<option>Friend / Referral</option>
-<option>Telegram</option>
-<option>Instagram</option>
-<option>TikTok</option>
-<option>Google</option>
-<option>Other</option>
-</select>
-</div>
-
-<!-- HIDDEN FIELDS -->
-
-<input type="hidden" name="source" value="Florida Giveaway Landing Page">
-
-<input type="hidden" name="submittedAt" id="submittedAt">
-
-<input type="hidden" name="utm_source" id="utm_source">
-
-<input type="hidden" name="utm_campaign" id="utm_campaign">
-
-<input type="hidden" name="utm_medium" id="utm_medium">
-
-<button type="submit">
-GET MY FREE WATER TEST
-</button>
-
-<div class="security">
-✔ Secure Submission<br>
-✔ Florida Homeowners Only<br>
-✔ No Purchase Required
-</div>
-
-<p class="sms-consent">
-By submitting this form, you agree to be contacted by phone or SMS regarding your water test request.
-</p>
-
-</form>
-
-</div>
-
-<!-- DESCRIPTION -->
-
-<div class="description">
-
-<p>
-Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, sediment, and water quality concerns every year.
-</p>
-
-<p>
-Many homeowners are unaware of the mineral content, chlorine, sulfur, or contaminants affecting their water quality.
-</p>
-
-</div>
-
-<!-- BENEFITS -->
-
-<div class="includes">
-
-<h2>
-🎁 Homeowner Benefits
-</h2>
-
-<ul>
-<li>✔ FREE In-Home Water Analysis</li>
-<li>✔ FREE TDS Water Testing</li>
-<li>✔ FREE Water Test Strips</li>
-<li>✔ Water Quality Consultation</li>
-<li>✔ Potential Giveaway Eligibility</li>
-</ul>
-
-</div>
-
-<!-- TESTIMONIALS -->
-
-<div class="testimonials">
-
-<div class="testimonial">
-<strong>⭐⭐⭐⭐⭐ Maria - Orlando</strong>
-<p>
-"The water test shocked us. We had hard water buildup everywhere. Very professional experience."
-</p>
-</div>
-
-<div class="testimonial">
-<strong>⭐⭐⭐⭐⭐ Daniel - Kissimmee</strong>
-<p>
-"Our water smelled terrible before. The free analysis helped us understand the issue immediately."
-</p>
-</div>
-
-<div class="testimonial">
-<strong>⭐⭐⭐⭐⭐ Jessica - St. Cloud</strong>
-<p>
-"The process was simple and the technician explained everything clearly."
-</p>
-</div>
-
-</div>
-
-<!-- ALERT -->
-
-<div class="alert-box">
-⚠️ Due to high demand, only a limited number of Florida homeowners will be accepted this month.
-</div>
-
-<!-- PHONE -->
-
-<div class="phone-box">
-
-Questions?<br><br>
-
-<a href="tel:14072576911">
-📞 (407) 257-6911
-</a>
-
-</div>
-
-</div>
-
-<script>
-
-/* DATE */
-
-document
-.getElementById("submittedAt")
-.value = new Date().toLocaleString();
-
-/* UTM TRACKING */
-
-const params = new URLSearchParams(window.location.search);
-
-document.getElementById("utm_source").value =
-params.get("utm_source") || "";
-
-document.getElementById("utm_campaign").value =
-params.get("utm_campaign") || "";
-
-document.getElementById("utm_medium").value =
-params.get("utm_medium") || "";
-
-/* FORM SUBMIT */
-
-document
-.getElementById("leadForm")
-.addEventListener("submit", async function(e){
-
-e.preventDefault();
-
-fbq('track', 'Lead');
-
-const form = e.target;
-
-const button = form.querySelector("button");
-
-button.innerHTML = "Submitting...";
-button.disabled = true;
-
-const data = new FormData(form);
-
-await fetch(form.action,{
-method:"POST",
-body:data
-});
-
-window.location.href="thanks.html";
-
-});
-
-</script>
-
-</body>
-</html>
