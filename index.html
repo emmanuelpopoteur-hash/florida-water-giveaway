@@ -7,273 +7,270 @@
 <title>Florida Homeowner Giveaway</title>
 
 <style>
-
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 body{
-background:#050510;
-color:white;
-overflow-x:hidden;
+    background:#000;
+    color:white;
+    font-family:Arial, sans-serif;
+    overflow-x:hidden;
 }
 
 .container{
-max-width:500px;
-margin:auto;
-padding:20px;
-border-left:4px solid #ffd400;
-border-right:4px solid #ffd400;
-background:linear-gradient(to bottom,#02020a,#07071c);
-box-shadow:0 0 30px rgba(255,212,0,0.25);
+    width:100%;
+    max-width:520px;
+    margin:auto;
+    background:#05051a;
+    border-left:4px solid gold;
+    border-right:4px solid gold;
+    box-shadow:0 0 30px rgba(255,215,0,0.3);
 }
 
-.top-banner{
-background:#ffd400;
-color:#000;
-padding:20px;
-text-align:center;
-font-weight:bold;
-font-size:2rem;
-line-height:1.2;
-border-radius:40px 40px 0 0;
+.top-bar{
+    background:gold;
+    color:#000;
+    text-align:center;
+    font-weight:bold;
+    font-size:2rem;
+    padding:25px 15px;
+    line-height:1.2;
 }
 
 .trending{
-background:#ff2e7a;
-padding:18px;
-text-align:center;
-font-weight:bold;
-font-size:1.5rem;
-border-radius:50px;
-margin:20px auto;
-width:90%;
-box-shadow:0 0 25px rgba(255,0,100,0.7);
+    background:#ff2c7d;
+    color:white;
+    width:85%;
+    margin:25px auto;
+    text-align:center;
+    padding:18px;
+    border-radius:50px;
+    font-weight:bold;
+    font-size:1.8rem;
+    box-shadow:0 0 25px #ff2c7d;
 }
 
 .hero{
-position:relative;
-overflow:hidden;
-border-radius:0 0 30px 30px;
+    position:relative;
 }
 
 .hero img{
-width:100%;
-display:block;
-filter:brightness(45%);
+    width:100%;
+    display:block;
+    opacity:0.55;
 }
 
-.hero-content{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:90%;
-text-align:center;
+.hero-overlay{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:90%;
+    text-align:center;
 }
 
-.hero-content h1{
-font-size:4rem;
-line-height:0.95;
-font-weight:900;
-margin-bottom:20px;
-text-shadow:0 0 10px rgba(0,0,0,0.8);
+.hero-overlay h1{
+    font-size:4.5rem;
+    line-height:0.95;
+    font-weight:900;
+    margin-bottom:25px;
 }
 
-.hero-content p{
-font-size:1.1rem;
-line-height:1.6;
+.hero-overlay p{
+    font-size:1.4rem;
+    line-height:1.5;
 }
 
 .badges{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-padding:40px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    padding:35px 25px;
 }
 
 .badge{
-border:3px solid rgba(255,255,255,0.1);
-padding:20px 30px;
-border-radius:50px;
-font-size:1.2rem;
-font-weight:bold;
-background:#111128;
-color:#ffd400;
-box-shadow:0 0 15px rgba(255,212,0,0.15);
+    border:3px solid rgba(255,255,255,0.1);
+    border-radius:60px;
+    padding:22px;
+    text-align:center;
+    color:gold;
+    font-size:1.9rem;
+    font-weight:bold;
+    background:#111127;
 }
 
 .form-section{
-margin-top:40px;
-padding:30px;
-border:4px solid #ffd400;
-border-radius:40px;
-background:#080818;
-box-shadow:0 0 40px rgba(255,212,0,0.25);
+    margin:20px;
+    border:4px solid gold;
+    border-radius:40px;
+    padding:30px 20px;
+    box-shadow:0 0 25px rgba(255,215,0,0.25);
 }
 
 .form-title{
-border:4px solid #ffd400;
-padding:25px;
-text-align:center;
-border-radius:80px;
-font-size:2rem;
-font-weight:bold;
-margin-bottom:30px;
-color:#ffd400;
-background:#101028;
+    border:4px solid gold;
+    border-radius:70px;
+    text-align:center;
+    padding:25px;
+    margin-bottom:30px;
+    color:gold;
+    font-size:2.2rem;
+    font-weight:bold;
 }
 
 form{
-display:flex;
-flex-direction:column;
-gap:25px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
 }
 
-input,select{
-padding:25px;
-border:none;
-border-radius:25px;
-background:#151530;
-color:white;
-font-size:1.5rem;
-outline:none;
+input,
+select{
+    background:#16162c;
+    border:none;
+    color:white;
+    padding:24px;
+    border-radius:25px;
+    font-size:1.5rem;
+    width:100%;
+}
+
+input::placeholder{
+    color:#aaa;
+}
+
+select{
+    color:#fff;
 }
 
 button{
-padding:30px;
-border:none;
-border-radius:30px;
-background:#ffd400;
-color:#000;
-font-size:2rem;
-font-weight:900;
-cursor:pointer;
-transition:0.3s;
-box-shadow:0 0 30px rgba(255,212,0,0.6);
+    background:gold;
+    color:#000;
+    border:none;
+    padding:30px;
+    border-radius:30px;
+    font-size:2rem;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 0 35px rgba(255,215,0,0.5);
+    transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.02);
+    transform:scale(1.03);
 }
 
-.disclaimer{
-text-align:center;
-margin-top:30px;
-font-size:1rem;
-line-height:1.8;
-color:#b8b8b8;
+.description{
+    text-align:center;
+    padding:35px 25px;
+    font-size:1.3rem;
+    line-height:1.8;
 }
 
-.section-card{
-margin-top:40px;
-background:#0d0d20;
-border:4px solid rgba(255,212,0,0.8);
-border-radius:35px;
-padding:35px;
-box-shadow:0 0 25px rgba(255,212,0,0.2);
+.small{
+    opacity:0.5;
+    margin-top:25px;
+    font-size:1rem;
 }
 
-.section-card h2{
-text-align:center;
-font-size:3rem;
-margin-bottom:25px;
-color:#ffd400;
+.giveaway-box{
+    margin:20px;
+    border:4px solid gold;
+    border-radius:40px;
+    padding:35px;
 }
 
-.benefits{
-display:flex;
-flex-direction:column;
-gap:25px;
-font-size:1.4rem;
-line-height:1.4;
+.giveaway-box h2{
+    color:gold;
+    font-size:3rem;
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.benefits div{
-display:flex;
-gap:15px;
-align-items:flex-start;
+.giveaway-box ul{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+    font-size:1.6rem;
+    line-height:1.4;
 }
 
-.image-card{
-margin-top:40px;
-background:#0d0d20;
-border-radius:35px;
-overflow:hidden;
-border:3px solid rgba(255,255,255,0.08);
+.card{
+    margin:25px 20px;
+    background:#0f1024;
+    border-radius:35px;
+    overflow:hidden;
+    border:2px solid rgba(255,255,255,0.08);
 }
 
-.image-card img{
-width:100%;
-display:block;
+.card img{
+    width:100%;
+    height:auto;
+    display:block;
 }
 
-.image-card p{
-padding:30px;
-text-align:center;
-font-size:1.4rem;
-line-height:1.6;
+.card p{
+    padding:35px 25px;
+    text-align:center;
+    font-size:1.5rem;
+    line-height:1.6;
 }
 
 .warning{
-margin-top:40px;
-padding:40px;
-background:#542300;
-border:3px solid #ff9f1a;
-border-radius:30px;
-text-align:center;
-font-size:1.5rem;
-line-height:2;
+    margin:25px 20px 40px;
+    background:#3b1c00;
+    border:3px solid #ff9f1c;
+    border-radius:35px;
+    padding:35px;
+    text-align:center;
+    font-size:1.8rem;
+    line-height:1.7;
+    color:#ffe5b4;
 }
 
-.contact-box{
-margin-top:40px;
-text-align:center;
-padding:30px;
-background:#101028;
-border-radius:30px;
-border:2px solid rgba(255,212,0,0.3);
+.phone-section{
+    text-align:center;
+    padding:10px 20px 50px;
 }
 
-.contact-box h3{
-font-size:2rem;
-color:#ffd400;
-margin-bottom:15px;
-}
-
-.contact-box p{
-font-size:1.4rem;
-line-height:1.8;
-}
-
-.footer-space{
-height:50px;
+.phone-section a{
+    color:gold;
+    font-size:2rem;
+    text-decoration:none;
+    font-weight:bold;
 }
 
 @media(max-width:600px){
 
-.hero-content h1{
-font-size:3rem;
+.hero-overlay h1{
+    font-size:3.2rem;
 }
 
-.top-banner{
-font-size:1.5rem;
+.hero-overlay p{
+    font-size:1.1rem;
+}
+
+.top-bar{
+    font-size:1.5rem;
+}
+
+.badge{
+    font-size:1.4rem;
 }
 
 button{
-font-size:1.5rem;
+    font-size:1.6rem;
 }
 
-.section-card h2{
-font-size:2.3rem;
+.giveaway-box h2{
+    font-size:2.3rem;
 }
 
 }
-
 </style>
 </head>
 
@@ -281,7 +278,7 @@ font-size:2.3rem;
 
 <div class="container">
 
-<div class="top-banner">
+<div class="top-bar">
 🚨 FLORIDA HOMEOWNER GIVEAWAY • LIMITED ENTRIES
 </div>
 
@@ -290,11 +287,9 @@ font-size:2.3rem;
 </div>
 
 <div class="hero">
+<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="House"/>
 
-<img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt="Home">
-
-<div class="hero-content">
-
+<div class="hero-overlay">
 <h1>
 WIN A FREE<br>
 REVERSE<br>
@@ -305,20 +300,14 @@ SYSTEM
 <p>
 Florida homeowners are entering for a chance to receive a FREE reverse osmosis system plus complimentary water testing.
 </p>
-
 </div>
 </div>
 
 <div class="badges">
-
 <div class="badge">FREE Water Test</div>
-
 <div class="badge">Florida Homeowners</div>
-
 <div class="badge">Limited Spots</div>
-
 <div class="badge">No Purchase Needed</div>
-
 </div>
 
 <div class="form-section">
@@ -327,19 +316,62 @@ Florida homeowners are entering for a chance to receive a FREE reverse osmosis s
 ⏳ Entries Closing Soon
 </div>
 
-<form id="giveawayForm">
+<form
+action="https://hook.us2.make.com/2rx31o6aysg6rlvalgq6b8yxsgog3xtx"
+method="POST"
+>
 
-<input type="text" name="name" placeholder="Full Name" required>
+<input
+type="text"
+name="name"
+placeholder="Full Name"
+required
+/>
 
-<input type="tel" name="phone" placeholder="Phone Number" required>
+<input
+type="tel"
+name="phone"
+placeholder="Phone Number"
+required
+/>
 
-<input type="text" name="zip" placeholder="ZIP Code" required>
+<input
+type="text"
+name="zip"
+placeholder="ZIP Code"
+required
+/>
+
+<select name="issue" required>
+<option value="">Main Water Concern</option>
+<option>Hard Water</option>
+<option>Bad Smell</option>
+<option>Dry Skin / Eczema</option>
+<option>Stains / Rust</option>
+<option>Well Water</option>
+<option>Drinking Water Taste</option>
+<option>High TDS</option>
+<option>Not Sure</option>
+</select>
 
 <select name="homeowner" required>
 <option value="">Are you the homeowner?</option>
-<option value="Yes">Yes</option>
-<option value="No">No</option>
+<option>Yes</option>
+<option>No</option>
 </select>
+
+<input
+type="hidden"
+name="source"
+value="Florida Giveaway Landing Page"
+/>
+
+<input
+type="hidden"
+name="submittedAt"
+value=""
+id="submittedAt"
+/>
 
 <button type="submit">
 ENTER GIVEAWAY NOW
@@ -347,154 +379,74 @@ ENTER GIVEAWAY NOW
 
 </form>
 
-<div class="disclaimer">
+</div>
+
+<div class="description">
 Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, stains, rust, and water quality concerns every year.
-<br><br>
+
+<div class="small">
 No purchase necessary. Giveaway availability may vary by area. Selected participants may qualify for additional homeowner promotions.
 </div>
-
 </div>
 
-<div class="section-card">
+<div class="giveaway-box">
 
 <h2>
 🎁 Giveaway Includes
 </h2>
 
-<div class="benefits">
-
-<div>✔ FREE In-Home Water Analysis</div>
-
-<div>✔ FREE TDS Water Testing</div>
-
-<div>✔ FREE Water Test Strips</div>
-
-<div>✔ Entry Into Reverse Osmosis Giveaway</div>
-
-<div>✔ Florida Homeowner Promotions</div>
+<ul>
+<li>✔ FREE In-Home Water Analysis</li>
+<li>✔ FREE TDS Water Testing</li>
+<li>✔ FREE Water Test Strips</li>
+<li>✔ Entry Into Reverse Osmosis Giveaway</li>
+<li>✔ Florida Homeowner Promotions</li>
+</ul>
 
 </div>
 
-</div>
-
-<div class="image-card">
-
-<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop">
-
+<div class="card">
+<img src="https://images.unsplash.com/photo-1584622781564-1d987ba9f1b8?q=80&w=1200&auto=format&fit=crop">
 <p>
 Hard water buildup and dirty faucets caused by mineral deposits.
 </p>
-
 </div>
 
-<div class="image-card">
-
-<img src="https://images.unsplash.com/photo-1583947582886-f40ec95dd752?q=80&w=1200&auto=format&fit=crop">
-
+<div class="card">
+<img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200&auto=format&fit=crop">
 <p>
 Strange smells, stains, discoloration, and questionable water quality.
 </p>
-
 </div>
 
-<div class="image-card">
-
+<div class="card">
 <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop">
-
 <p>
 Families concerned about skin irritation, dryness, and eczema symptoms.
 </p>
-
 </div>
 
-<div class="image-card">
-
-<img src="https://images.unsplash.com/photo-1448630360428-65456885c650?q=80&w=1200&auto=format&fit=crop">
-
+<div class="card">
+<img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop">
 <p>
 Old pipes, well water concerns, rust, sediment, and hard water damage.
 </p>
-
 </div>
 
 <div class="warning">
 ⚠️ Due to high demand, only a limited number of Florida homeowners will be accepted this month.
 </div>
 
-<div class="contact-box">
-
-<h3>
-📞 Questions?
-</h3>
-
-<p>
-Call or Text:<br>
-(407)257-6911
-</p>
-
+<div class="phone-section">
+<a href="tel:14072576911">
+📞 (407) 257-6911
+</a>
 </div>
-
-<div class="footer-space"></div>
 
 </div>
 
 <script>
-
-const form = document.getElementById('giveawayForm');
-
-form.addEventListener('submit', async function(e) {
-
-e.preventDefault();
-
-const formData = new FormData(form);
-
-const data = {
-
-name: formData.get('name'),
-phone: formData.get('phone'),
-zip: formData.get('zip'),
-homeowner: formData.get('homeowner'),
-source: 'Florida Giveaway Landing Page',
-submittedAt: new Date().toISOString()
-
-};
-
-try {
-
-await fetch('https://formspree.io/f/mgodrvrw', {
-
-method: 'POST',
-
-headers: {
-'Content-Type': 'application/json'
-},
-
-body: JSON.stringify(data)
-
-});
-
-await fetch('https://hook.us2.make.com/2rx31o6aysg6rlvalgq6b8yxsgog3xtx', {
-
-method: 'POST',
-
-headers: {
-'Content-Type': 'application/json'
-},
-
-body: JSON.stringify(data)
-
-});
-
-window.location.href = "thanks.html";
-
-} catch(error){
-
-alert("Something went wrong. Please try again.");
-
-}
-
-});
-
+document.getElementById("submittedAt").value = new Date().toLocaleString();
 </script>
 
 </body>
