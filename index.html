@@ -16,10 +16,10 @@
     }
 
     body {
-      background: #0a0a0a;
+      background: #050505;
       color: white;
       min-height: 100vh;
-      padding: 20px;
+      padding: 18px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -28,31 +28,62 @@
     .container {
       width: 100%;
       max-width: 560px;
-      background: #121212;
-      border-radius: 24px;
+      background: #111111;
+      border-radius: 26px;
       overflow: hidden;
-      border: 2px solid #facc15;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.45);
+      border: 3px solid #facc15;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.6);
     }
 
-    .hero-image {
+    .hero {
+      position: relative;
+    }
+
+    .hero img {
       width: 100%;
-      height: 260px;
+      height: 300px;
       object-fit: cover;
       display: block;
+      filter: brightness(0.65);
     }
 
-    .top-bar {
-      background: #facc15;
-      color: #000;
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 14px;
+      padding: 20px;
+    }
+
+    .hero-warning {
+      background: rgba(250, 204, 21, 0.95);
+      color: black;
+      padding: 10px 16px;
+      border-radius: 999px;
       font-weight: bold;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #f4f4f5;
+      max-width: 450px;
     }
 
     .content {
-      padding: 34px;
+      padding: 32px;
     }
 
     .badge-row {
@@ -60,7 +91,7 @@
       flex-wrap: wrap;
       gap: 10px;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 26px;
     }
 
     .badge {
@@ -73,19 +104,44 @@
       border: 1px solid #3f3f46;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 16px;
-      line-height: 1.2;
+    .pain-section {
+      margin-bottom: 28px;
     }
 
-    .subtitle {
+    .pain-title {
       text-align: center;
-      color: #d4d4d8;
-      line-height: 1.7;
-      margin-bottom: 28px;
-      font-size: 1.05rem;
+      font-size: 1.3rem;
+      margin-bottom: 18px;
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .pain-card {
+      background: #18181b;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid #3f3f46;
+    }
+
+    .pain-card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pain-card p {
+      padding: 14px;
+      font-size: 0.9rem;
+      color: #e4e4e7;
+      line-height: 1.5;
+      text-align: center;
     }
 
     .giveaway-box {
@@ -93,15 +149,15 @@
       border: 1px solid #3f3f46;
       border-radius: 18px;
       padding: 22px;
-      margin-bottom: 28px;
+      margin-bottom: 30px;
     }
 
     .giveaway-title {
       color: #facc15;
+      text-align: center;
       font-size: 1.1rem;
       font-weight: bold;
-      margin-bottom: 14px;
-      text-align: center;
+      margin-bottom: 16px;
     }
 
     .giveaway-list {
@@ -109,23 +165,8 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      color: #e4e4e7;
+      color: #f4f4f5;
       font-size: 0.98rem;
-    }
-
-    .photo-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-
-    .photo-grid img {
-      width: 100%;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 2px solid #27272a;
     }
 
     form {
@@ -171,37 +212,33 @@
       text-align: center;
       color: #a1a1aa;
       margin-top: 24px;
+      line-height: 1.7;
       font-size: 0.92rem;
-      line-height: 1.6;
     }
 
     .footer-note {
       text-align: center;
-      margin-top: 18px;
+      margin-top: 20px;
       color: #71717a;
       font-size: 0.82rem;
     }
 
     @media (max-width: 600px) {
 
+      .hero img {
+        height: 260px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
       .content {
         padding: 24px;
       }
 
-      h1 {
-        font-size: 2rem;
-      }
-
-      .hero-image {
-        height: 220px;
-      }
-
-      .photo-grid {
+      .pain-grid {
         grid-template-columns: 1fr;
-      }
-
-      .photo-grid img {
-        height: 180px;
       }
     }
   </style>
@@ -211,34 +248,109 @@
 
   <div class="container">
 
-    <!-- HERO IMAGE -->
-    <img
-      class="hero-image"
-      src="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=1200&auto=format&fit=crop"
-      alt="Clean Water"
-    >
+    <!-- HERO -->
+    <div class="hero">
 
-    <div class="top-bar">
-      ⚠️ Limited Florida Homeowner Giveaway
+      <img
+        src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop"
+        alt="Concerned Family"
+      >
+
+      <div class="hero-overlay">
+
+        <div class="hero-warning">
+          ⚠️ Florida Homeowner Giveaway
+        </div>
+
+        <h1>
+          What’s Really In Your Water?
+        </h1>
+
+        <p>
+          Florida families are claiming FREE water testing
+          and homeowner giveaway offers for a limited time.
+        </p>
+
+      </div>
+
     </div>
 
+    <!-- CONTENT -->
     <div class="content">
 
+      <!-- BADGES -->
       <div class="badge-row">
         <div class="badge">FREE Water Test</div>
         <div class="badge">Florida Homeowners</div>
         <div class="badge">Limited Spots</div>
       </div>
 
-      <h1>
-        Florida Family Water Giveaway
-      </h1>
+      <!-- PAIN SECTION -->
+      <div class="pain-section">
 
-      <div class="subtitle">
-        Enter for a chance to receive a FREE in-home water analysis,
-        water testing kit, and exclusive homeowner giveaway offers.
+        <div class="pain-title">
+          Common Water Problems
+        </div>
+
+        <div class="pain-grid">
+
+          <div class="pain-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1000&auto=format&fit=crop"
+              alt="Hair Problems"
+            >
+
+            <p>
+              Dry hair, damaged skin, and irritation from harsh water.
+            </p>
+
+          </div>
+
+          <div class="pain-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1000&auto=format&fit=crop"
+              alt="Dirty Water"
+            >
+
+            <p>
+              Bad smell, stains, buildup, and questionable tap water quality.
+            </p>
+
+          </div>
+
+          <div class="pain-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?q=80&w=1000&auto=format&fit=crop"
+              alt="Old Pipes"
+            >
+
+            <p>
+              Pipe buildup, corrosion, and hard water affecting your home.
+            </p>
+
+          </div>
+
+          <div class="pain-card">
+
+            <img
+              src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1000&auto=format&fit=crop"
+              alt="Family Concern"
+            >
+
+            <p>
+              Families concerned about what they drink every day.
+            </p>
+
+          </div>
+
+        </div>
+
       </div>
 
+      <!-- GIVEAWAY BOX -->
       <div class="giveaway-box">
 
         <div class="giveaway-title">
@@ -255,32 +367,7 @@
 
       </div>
 
-      <!-- PHOTO GRID -->
-      <div class="photo-grid">
-
-        <img
-          src="https://images.unsplash.com/photo-1564419320408-38e24e038739?q=80&w=1000&auto=format&fit=crop"
-          alt="Water Test"
-        >
-
-        <img
-          src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1000&auto=format&fit=crop"
-          alt="Family Drinking Water"
-        >
-
-        <img
-          src="https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=1000&auto=format&fit=crop"
-          alt="Kitchen Water"
-        >
-
-        <img
-          src="https://images.unsplash.com/photo-1523362628745-0c100150b504?q=80&w=1000&auto=format&fit=crop"
-          alt="Clean Water"
-        >
-
-      </div>
-
-      <!-- NETLIFY FORM -->
+      <!-- FORM -->
       <form
         name="lead-form"
         method="POST"
@@ -320,7 +407,7 @@
         </select>
 
         <button type="submit">
-          Claim My Free Water Test
+          Claim Free Water Analysis
         </button>
 
       </form>
