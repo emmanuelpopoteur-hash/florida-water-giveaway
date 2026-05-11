@@ -6,7 +6,7 @@
 
 <title>Florida Homeowner Giveaway</title>
 
-<meta name="description" content="Florida homeowners can enter for a chance to receive a FREE reverse osmosis system and complimentary water testing. Limited entries available.">
+<meta name="description" content="Florida homeowners can request a FREE in-home water test and may qualify for additional water treatment promotions.">
 
 <!-- META PIXEL -->
 <script>
@@ -153,7 +153,7 @@ width:90%;
 }
 
 .hero-text h1{
-font-size:78px;
+font-size:72px;
 line-height:0.9;
 font-weight:900;
 text-shadow:0 0 20px rgba(0,0,0,0.7);
@@ -161,7 +161,7 @@ text-shadow:0 0 20px rgba(0,0,0,0.7);
 
 .hero-text p{
 margin-top:20px;
-font-size:18px;
+font-size:20px;
 line-height:1.6;
 }
 
@@ -247,7 +247,7 @@ padding:30px;
 border:none;
 border-radius:30px;
 background:#ffd400;
-font-size:30px;
+font-size:28px;
 font-weight:900;
 cursor:pointer;
 transition:0.3s;
@@ -264,6 +264,14 @@ text-align:center;
 font-size:12px;
 line-height:1.8;
 opacity:0.85;
+}
+
+.sms-consent{
+font-size:12px;
+opacity:.7;
+text-align:center;
+margin-top:15px;
+line-height:1.7;
 }
 
 /* TEXT */
@@ -361,7 +369,7 @@ text-decoration:none;
 @media(max-width:768px){
 
 .hero-text h1{
-font-size:58px;
+font-size:54px;
 }
 
 .hero-text p{
@@ -404,7 +412,7 @@ font-size:28px;
 <body>
 
 <a href="#leadForm" class="floating-form">
-🎁 Enter Giveaway
+💧 Free Water Test
 </a>
 
 <a href="tel:14072576911" class="floating-call">
@@ -414,7 +422,7 @@ font-size:28px;
 <div class="container">
 
 <div class="top-banner">
-🚨 FLORIDA HOMEOWNER GIVEAWAY • LIMITED ENTRIES
+🚨 FLORIDA HOMEOWNER WATER TEST • LIMITED SPOTS
 </div>
 
 <div class="pink-banner">
@@ -429,27 +437,26 @@ font-size:28px;
 
 <h1>
 FREE<br>
-REVERSE<br>
-OSMOSIS<br>
-SYSTEM
+IN-HOME<br>
+WATER TEST
 </h1>
 
 <p>
-Florida homeowners are entering for a chance to receive a FREE reverse osmosis system plus complimentary water testing.
+Florida homeowners may qualify for a reverse osmosis giveaway and additional water treatment promotions.
 </p>
 
 </div>
 </div>
 
 <div class="countdown">
-⏳ Giveaway Spots Filling Fast
+⏳ Limited Spots Available This Month
 </div>
 
 <div class="feature-list">
 
 <div class="feature">FREE Water Test</div>
 <div class="feature">Florida Homeowners</div>
-<div class="feature">Limited Spots</div>
+<div class="feature">Water Quality Analysis</div>
 <div class="feature">No Purchase Needed</div>
 
 </div>
@@ -459,7 +466,7 @@ Florida homeowners are entering for a chance to receive a FREE reverse osmosis s
 <div class="form-section">
 
 <div class="form-title">
-⏳ Entries Closing Soon
+💧 Check Your Water Quality
 </div>
 
 <form
@@ -516,11 +523,20 @@ required
 </select>
 </div>
 
+<!-- HIDDEN FIELDS -->
+
 <input type="hidden" name="source" value="Florida Giveaway Landing Page">
+
 <input type="hidden" name="submittedAt" id="submittedAt">
 
+<input type="hidden" name="utm_source" id="utm_source">
+
+<input type="hidden" name="utm_campaign" id="utm_campaign">
+
+<input type="hidden" name="utm_medium" id="utm_medium">
+
 <button type="submit">
-ENTER GIVEAWAY NOW
+GET MY FREE WATER TEST
 </button>
 
 <div class="security">
@@ -528,6 +544,10 @@ ENTER GIVEAWAY NOW
 ✔ Florida Homeowners Only<br>
 ✔ No Purchase Required
 </div>
+
+<p class="sms-consent">
+By submitting this form, you agree to be contacted by phone or SMS regarding your water test request.
+</p>
 
 </form>
 
@@ -540,7 +560,7 @@ Thousands of Florida homeowners deal with hard water, sulfur smells, buildup, st
 </p>
 
 <p>
-No purchase necessary. Giveaway availability may vary by area. Selected participants may qualify for additional homeowner promotions.
+Many homeowners are unaware of the mineral content, sediment, chlorine, sulfur, or contaminants affecting their water quality.
 </p>
 
 </div>
@@ -548,15 +568,15 @@ No purchase necessary. Giveaway availability may vary by area. Selected particip
 <div class="includes">
 
 <h2>
-🎁 Giveaway Includes
+🎁 Homeowner Benefits
 </h2>
 
 <ul>
 <li>✔ FREE In-Home Water Analysis</li>
 <li>✔ FREE TDS Water Testing</li>
 <li>✔ FREE Water Test Strips</li>
-<li>✔ Entry Into Reverse Osmosis Giveaway</li>
-<li>✔ Florida Homeowner Promotions</li>
+<li>✔ Water Quality Consultation</li>
+<li>✔ Potential Giveaway Eligibility</li>
 </ul>
 
 </div>
@@ -582,7 +602,7 @@ No purchase necessary. Giveaway availability may vary by area. Selected particip
 <div class="testimonial">
 <strong>⭐⭐⭐⭐⭐ Jessica - St. Cloud</strong>
 <p>
-"The giveaway process was simple and the technician was amazing."
+"The process was simple and the technician explained everything clearly."
 </p>
 </div>
 
@@ -609,6 +629,21 @@ Questions?<br><br>
 document
 .getElementById("submittedAt")
 .value = new Date().toLocaleString();
+
+/* UTM TRACKING */
+
+const params = new URLSearchParams(window.location.search);
+
+document.getElementById("utm_source").value =
+params.get("utm_source") || "";
+
+document.getElementById("utm_campaign").value =
+params.get("utm_campaign") || "";
+
+document.getElementById("utm_medium").value =
+params.get("utm_medium") || "";
+
+/* FORM SUBMIT */
 
 document
 .getElementById("leadForm")
