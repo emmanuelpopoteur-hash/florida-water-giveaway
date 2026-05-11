@@ -1,305 +1,172 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Florida Family Water Giveaway | Ecoverse</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-yellow: #FFD700;
-            --dark-black: #121212;
-            --bg-gray: #1a1a1a;
-            --white: #ffffff;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+  <title>Free Water Test</title>
 
-        body {
-            background-color: var(--dark-black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
 
-        /* Smooth Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    body{
+      background:#0f172a;
+      color:white;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
 
-        .animate {
-            animation: fadeInUp 0.6s forwards;
-        }
+    .container{
+      background:#111827;
+      width:100%;
+      max-width:500px;
+      padding:35px;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    }
 
-        /* Layout Container */
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    h1{
+      font-size:32px;
+      margin-bottom:10px;
+      text-align:center;
+    }
 
-        /* Hero Section */
-        header {
-            text-align: center;
-            padding: 40px 0 20px;
-        }
+    p{
+      text-align:center;
+      margin-bottom:25px;
+      color:#cbd5e1;
+      line-height:1.5;
+    }
 
-        .badge {
-            background: rgba(255, 215, 0, 0.1);
-            color: var(--primary-yellow);
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid var(--primary-yellow);
-            display: inline-block;
-            margin-bottom: 15px;
-        }
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+    }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 15px;
-        }
+    input,
+    select{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      font-size:16px;
+      background:#1e293b;
+      color:white;
+    }
 
-        .subheadline {
-            font-size: 1.1rem;
-            color: #ccc;
-            margin-bottom: 30px;
-        }
+    input::placeholder{
+      color:#94a3b8;
+    }
 
-        /* Benefits Grid */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
+    button{
+      padding:16px;
+      border:none;
+      border-radius:12px;
+      background:#22c55e;
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+    }
 
-        .benefit-card {
-            background: var(--bg-gray);
-            padding: 20px;
-            border-radius: 16px;
-            text-align: center;
-            border: 1px solid #333;
-            transition: var(--transition);
-        }
+    button:hover{
+      transform:scale(1.02);
+      background:#16a34a;
+    }
 
-        .benefit-card:hover {
-            border-color: var(--primary-yellow);
-            transform: translateY(-5px);
-        }
+    .badge{
+      margin-top:20px;
+      text-align:center;
+      color:#94a3b8;
+      font-size:14px;
+    }
 
-        .icon {
-            font-size: 1.5rem;
-            display: block;
-            margin-bottom: 8px;
-        }
+    @media(max-width:600px){
+      .container{
+        padding:25px;
+      }
 
-        .benefit-text {
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        /* Lead Capture Form */
-        .form-container {
-            background: var(--white);
-            color: var(--dark-black);
-            padding: 30px 25px;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #555;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            border: 2px solid #eee;
-            font-size: 1rem;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        input:focus, select:focus {
-            border-color: var(--primary-yellow);
-        }
-
-        .cta-button {
-            width: 100%;
-            background: var(--primary-yellow);
-            color: var(--dark-black);
-            border: none;
-            padding: 18px;
-            font-size: 1.2rem;
-            font-weight: 900;
-            border-radius: 12px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: var(--transition);
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
-        }
-
-        .cta-button:active {
-            transform: scale(0.98);
-        }
-
-        /* Disclaimer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #666;
-            font-size: 0.75rem;
-        }
-
-        /* Trust Signals */
-        .trust-text {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
-
-        .trust-text svg {
-            width: 14px;
-            fill: #4CAF50;
-        }
-    </style>
+      h1{
+        font-size:26px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <header class="animate" style="animation-delay: 0.1s;">
-            <span class="badge">Limited Time Offer</span>
-            <h1>🎁 Florida Family Water Giveaway</h1>
-            <p class="subheadline">Win a FREE Reverse Osmosis System for Your Home</p>
-        </header>
+  <div class="container">
 
-        <!-- Benefits Grid -->
-        <div class="benefits-grid animate" style="animation-delay: 0.2s;">
-            <div class="benefit-card">
-                <span class="icon">💧</span>
-                <span class="benefit-text">Free Water Testing</span>
-            </div>
-            <div class="benefit-card">
-                <span class="icon">📏</span>
-                <span class="benefit-text">TDS Meters</span>
-            </div>
-            <div class="benefit-card">
-                <span class="icon">🎁</span>
-                <span class="benefit-text">Quality Tools</span>
-            </div>
-            <div class="benefit-card">
-                <span class="icon">🏠</span>
-                <span class="benefit-text">FL Homeowners</span>
-            </div>
-        </div>
+    <h1>Free Water Test</h1>
 
-        <!-- Form Section -->
-        <div class="form-container animate" style="animation-delay: 0.3s;">
-            <form id="giveawayForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" placeholder="John Doe" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" placeholder="(407) 555-0123" required>
-                </div>
+    <p>
+      Discover what’s really in your water.
+      Get a FREE in-home water analysis today.
+    </p>
 
-                <div class="form-group">
-                    <label for="zip">ZIP Code</label>
-                    <input type="text" id="zip" placeholder="34769" required pattern="[0-9]{5}">
-                </div>
+    <!-- NETLIFY FORM -->
+    <form
+      name="lead-form"
+      method="POST"
+      data-netlify="true"
+    >
 
-                <div class="form-group">
-                    <label for="homeowner">Are you a Homeowner?</label>
-                    <select id="homeowner" required>
-                        <option value="" disabled selected>Select option</option>
-                        <option value="yes">Yes, I own my home</option>
-                        <option value="no">No, I am renting</option>
-                    </select>
-                </div>
+      <!-- Required hidden field -->
+      <input type="hidden" name="form-name" value="lead-form">
 
-                <button type="submit" class="cta-button">ENTER GIVEAWAY</button>
-                
-                <div class="trust-text">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                    Your data is secure and encrypted.
-                </div>
-            </form>
-        </div>
+      <input
+        type="text"
+        name="name"
+        placeholder="Full Name"
+        required
+      >
 
-        <!-- Footer -->
-        <footer>
-            <p>No purchase necessary. Florida residents only. Winners will be notified via phone. This promotion is not affiliated with Facebook or Instagram.</p>
-        </footer>
+      <input
+        type="tel"
+        name="phone"
+        placeholder="Phone Number"
+        required
+      >
+
+      <input
+        type="text"
+        name="zip"
+        placeholder="ZIP Code"
+        required
+      >
+
+      <select
+        name="homeowner"
+        required
+      >
+        <option value="">Are you the homeowner?</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+
+      <button type="submit">
+        Schedule My Free Test
+      </button>
+
+    </form>
+
+    <div class="badge">
+      Serving Florida homeowners
     </div>
 
-    <script>
-        document.getElementById('giveawayForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const btn = document.querySelector('.cta-button');
-            btn.textContent = 'PROCESSING...';
-            btn.style.opacity = '0.7';
-            btn.disabled = true;
+  </div>
 
-            // Simple success simulation
-            setTimeout(() => {
-                document.querySelector('.form-container').innerHTML = `
-                    <div style="text-align: center; padding: 20px;">
-                        <h2 style="font-size: 2rem; margin-bottom: 10px;">🎉 You're In!</h2>
-                        <p style="color: #666;">Thank you for entering. We will contact the winner shortly!</p>
-                    </div>
-                `;
-            }, 1500);
-        });
-
-        // Simple Intersection Observer for scroll animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate');
-                }
-            });
-        });
-
-        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
-    </script>
 </body>
 </html>
+```
