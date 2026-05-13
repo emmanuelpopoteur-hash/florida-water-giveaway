@@ -511,6 +511,7 @@ font-size:52px;
 id="leadForm"
 action="https://hook.us2.make.com/2rx31o6aysg6rlvalgq6b8yxsgog3xtx"
 method="POST"
+target="_self"
 >
 
 <input type="text" name="name" placeholder="Full Name" required>
@@ -675,27 +676,9 @@ params.get("utm_medium") || "";
 
 document
 .getElementById("leadForm")
-.addEventListener("submit", async function(e){
-
-e.preventDefault();
+.addEventListener("submit", function(){
 
 fbq('track', 'Lead');
-
-const form = e.target;
-
-const button = form.querySelector("button");
-
-button.innerHTML = "Submitting...";
-button.disabled = true;
-
-const data = new FormData(form);
-
-await fetch(form.action,{
-method:"POST",
-body:data
-});
-
-window.location.href="thanks.html";
 
 });
 
