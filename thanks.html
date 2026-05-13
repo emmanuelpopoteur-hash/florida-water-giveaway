@@ -4,161 +4,212 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Thank You - Florida Giveaway</title>
+<title>Request Received</title>
+
+<meta name="description" content="Your request has been received. A local water specialist may contact you shortly.">
+
+<!-- META PIXEL -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;
+n.push=n;
+n.loaded=!0;
+n.version='2.0';
+n.queue=[];
+t=b.createElement(e);
+t.async=!0;
+t.src=v;
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}
+(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '967427632676424');
+fbq('track', 'PageView');
+fbq('track', 'CompleteRegistration');
+</script>
+
+<noscript>
+<img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=967427632676424&ev=PageView&noscript=1"/>
+</noscript>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#000;
-    color:white;
-    overflow-x:hidden;
+background:#000814;
+color:white;
+overflow-x:hidden;
 }
 
 .container{
-    width:100%;
-    max-width:520px;
-    margin:auto;
-    min-height:100vh;
-    border:4px solid #FFD700;
-    background:linear-gradient(to bottom,#050510,#0b0b1f);
-    box-shadow:0 0 35px rgba(255,215,0,.35);
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:40px 25px;
-    text-align:center;
+max-width:850px;
+margin:auto;
+padding:30px 20px 80px;
+text-align:center;
+}
+
+/* HEADER */
+
+.top-banner{
+background:#ffd700;
+color:#000;
+font-weight:900;
+font-size:34px;
+padding:28px;
+border-radius:0 0 35px 35px;
+line-height:1.2;
+margin-bottom:35px;
+}
+
+/* CARD */
+
+.card{
+background:#050522;
+border:3px solid #ffd700;
+border-radius:35px;
+padding:45px 30px;
+box-shadow:0 0 35px rgba(255,215,0,.18);
 }
 
 .check{
-    width:140px;
-    height:140px;
-    border-radius:50%;
-    background:#25D366;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:5rem;
-    margin-bottom:30px;
-    box-shadow:0 0 40px rgba(37,211,102,.6);
+font-size:80px;
+margin-bottom:20px;
 }
 
-h1{
-    font-size:3rem;
-    line-height:1.1;
-    margin-bottom:25px;
-    color:#FFD700;
-    font-weight:900;
+.card h1{
+font-size:58px;
+line-height:1;
+margin-bottom:25px;
+color:#ffd700;
 }
 
-.subtitle{
-    font-size:1.5rem;
-    line-height:1.6;
-    color:#ddd;
-    margin-bottom:40px;
+.card p{
+font-size:22px;
+line-height:1.8;
+color:#ddd;
+margin-bottom:25px;
 }
 
-.notice{
-    background:#111122;
-    border:3px solid #FFD700;
-    border-radius:30px;
-    padding:30px;
-    margin-bottom:35px;
-    box-shadow:0 0 20px rgba(255,215,0,.2);
+/* ALERT */
+
+.alert{
+background:#2a1200;
+border:2px solid orange;
+padding:22px;
+border-radius:25px;
+font-size:22px;
+line-height:1.6;
+margin:35px 0;
+color:#ffd59e;
 }
 
-.notice h2{
-    color:#FFD700;
-    font-size:2rem;
-    margin-bottom:18px;
+/* PHONE BUTTON */
+
+.call-btn{
+display:inline-block;
+background:#ffd700;
+color:#000;
+padding:26px 34px;
+border-radius:25px;
+font-size:28px;
+font-weight:900;
+text-decoration:none;
+box-shadow:0 0 30px rgba(255,215,0,.5);
+transition:.3s;
+margin-top:10px;
 }
 
-.notice p{
-    font-size:1.25rem;
-    line-height:1.7;
+.call-btn:hover{
+transform:scale(1.03);
 }
 
-.whatsapp-btn{
-    display:inline-block;
-    width:100%;
-    background:#25D366;
-    color:white;
-    text-decoration:none;
-    padding:24px;
-    border-radius:25px;
-    font-size:1.8rem;
-    font-weight:bold;
-    margin-bottom:25px;
-    box-shadow:0 0 25px rgba(37,211,102,.6);
-    transition:.3s;
+/* INFO BOXES */
+
+.info-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:20px;
+margin-top:45px;
 }
 
-.whatsapp-btn:hover{
-    transform:scale(1.03);
+.info-box{
+background:#111144;
+padding:25px;
+border-radius:25px;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.info-box h3{
+color:#ffd700;
+margin-bottom:12px;
+font-size:24px;
+}
+
+.info-box p{
+font-size:17px;
+line-height:1.7;
+color:#ddd;
+}
+
+/* FOOTER */
+
+.footer{
+margin-top:45px;
+font-size:13px;
+opacity:.7;
+line-height:1.8;
+}
+
+/* DESKTOP */
+
+@media(min-width:992px){
+
+.container{
+max-width:1200px;
+}
+
+.card{
+padding:70px;
+}
+
+.card h1{
+font-size:76px;
+}
+
+.card p{
+font-size:28px;
+}
+
+.alert{
+font-size:28px;
+padding:30px;
 }
 
 .call-btn{
-    display:inline-block;
-    width:100%;
-    background:#FFD700;
-    color:black;
-    text-decoration:none;
-    padding:22px;
-    border-radius:25px;
-    font-size:1.7rem;
-    font-weight:900;
-    margin-bottom:30px;
-    box-shadow:0 0 30px rgba(255,215,0,.5);
+font-size:34px;
+padding:30px 42px;
 }
 
-.timer-box{
-    margin-top:20px;
-    background:#4a1d00;
-    border:3px solid #ff9900;
-    border-radius:25px;
-    padding:25px;
-    width:100%;
+.info-grid{
+grid-template-columns:1fr 1fr 1fr;
 }
 
-.timer-box h3{
-    color:#FFD700;
-    font-size:1.7rem;
-    margin-bottom:15px;
+.info-box h3{
+font-size:28px;
 }
 
-#countdown{
-    font-size:2.4rem;
-    font-weight:900;
-    letter-spacing:2px;
-}
-
-.small{
-    margin-top:30px;
-    color:#777;
-    font-size:1rem;
-    line-height:1.7;
-}
-
-@media(max-width:600px){
-
-h1{
-    font-size:2.4rem;
-}
-
-.subtitle{
-    font-size:1.25rem;
-}
-
-.whatsapp-btn,
-.call-btn{
-    font-size:1.4rem;
+.info-box p{
+font-size:18px;
 }
 
 }
@@ -170,92 +221,78 @@ h1{
 
 <div class="container">
 
+<div class="top-banner">
+🎉 Florida Homeowner Request Received
+</div>
+
+<div class="card">
+
 <div class="check">
-✓
+✅
 </div>
 
 <h1>
-ENTRY RECEIVED!
+REQUEST<br>
+RECEIVED
 </h1>
 
-<p class="subtitle">
-Thank you for entering the Florida Homeowner Giveaway.
+<p>
+Your information has been successfully submitted.
 </p>
-
-<div class="notice">
-
-<h2>
-What Happens Next?
-</h2>
 
 <p>
-A local water quality specialist may contact you shortly to confirm eligibility and discuss common Florida water issues such as:
-<br><br>
-• Hard Water<br>
-• Sulfur Smells<br>
-• Iron Stains<br>
-• Chlorine Taste<br>
-• Skin Irritation
+A local water specialist may contact you shortly to confirm availability in your area.
 </p>
 
+<div class="alert">
+⚠️ Limited homeowner appointments are available each month. Please keep your phone nearby in case a local representative reaches out.
 </div>
 
-<a class="whatsapp-btn"
-href="https://wa.me/14072576911?text=Hi%20I%20just%20entered%20the%20Florida%20Giveaway"
-target="_blank">
-
-💬 CHAT ON WHATSAPP
-
+<a href="tel:14072576911" class="call-btn">
+📞 CALL NOW TO CONFIRM YOUR SPOT
 </a>
 
-<a class="call-btn"
-href="tel:+14072576911">
+<div class="info-grid">
 
-📞 CALL NOW: (407) 257-6911
-
-</a>
-
-<div class="timer-box">
-
+<div class="info-box">
 <h3>
-⏳ Priority Follow-Up Window
+💧 Complimentary Testing
 </h3>
 
-<div id="countdown">
-15:00
-</div>
-
-</div>
-
-<p class="small">
-No purchase necessary. Giveaway participation does not guarantee selection. Availability may vary by area.
+<p>
+Selected Florida homeowners may qualify for complimentary in-home water testing and consultation.
 </p>
+</div>
+
+<div class="info-box">
+<h3>
+🏠 Local Homeowners
+</h3>
+
+<p>
+Our team is currently organizing appointments by area and ZIP code availability.
+</p>
+</div>
+
+<div class="info-box">
+<h3>
+🎁 Giveaway Opportunity
+</h3>
+
+<p>
+Some homeowners may also qualify for additional promotions and reverse osmosis giveaway opportunities.
+</p>
+</div>
 
 </div>
 
-<script>
+<div class="footer">
+No purchase necessary. Promotions and availability may vary by location. By submitting your request, you agree to be contacted regarding your inquiry.
+</div>
 
-let time = 900;
+</div>
 
-const countdown = document.getElementById("countdown");
-
-setInterval(()=>{
-
-let minutes = Math.floor(time / 60);
-let seconds = time % 60;
-
-minutes = minutes < 10 ? "0" + minutes : minutes;
-seconds = seconds < 10 ? "0" + seconds : seconds;
-
-countdown.innerHTML = `${minutes}:${seconds}`;
-
-if(time > 0){
-time--;
-}
-
-},1000);
-
-</script>
+</div>
 
 </body>
 </html>
