@@ -1,68 +1,557 @@
-<!-- HERO SECTION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Florida Homeowner Rewards Program</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#f5f7fb;
+      color:#1b1b1b;
+      line-height:1.6;
+    }
+
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    /* HERO */
+
+    .hero-section{
+      background:
+      linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.65)),
+      url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:white;
+      padding:80px 20px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      line-height:1.1;
+      margin-bottom:20px;
+      font-weight:800;
+    }
+
+    .hero-subtitle{
+      font-size:22px;
+      margin-bottom:20px;
+      color:#d7efff;
+    }
+
+    .hero-description{
+      max-width:850px;
+      margin:auto;
+      font-size:18px;
+      margin-bottom:35px;
+      opacity:0.95;
+    }
+
+    .hero-badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:15px;
+      justify-content:center;
+      margin-bottom:40px;
+    }
+
+    .hero-badges span{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.2);
+      padding:14px 22px;
+      border-radius:50px;
+      backdrop-filter:blur(10px);
+      font-weight:500;
+    }
+
+    .hero-btn{
+      display:inline-block;
+      padding:18px 38px;
+      background:#00b4ff;
+      color:white;
+      text-decoration:none;
+      border-radius:60px;
+      font-size:18px;
+      font-weight:700;
+      transition:0.3s;
+      box-shadow:0 10px 30px rgba(0,180,255,0.4);
+    }
+
+    .hero-btn:hover{
+      transform:translateY(-3px);
+    }
+
+    /* TRUST STATS */
+
+    .trust-stats{
+      padding:80px 20px;
+      background:#0d1b2a;
+      color:white;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    }
+
+    .stat-card{
+      background:rgba(255,255,255,0.08);
+      padding:40px 25px;
+      border-radius:25px;
+      text-align:center;
+      backdrop-filter:blur(10px);
+    }
+
+    .stat-card h2{
+      font-size:48px;
+      color:#4cc9f0;
+      margin-bottom:10px;
+    }
+
+    /* SECTION GENERAL */
+
+    section{
+      padding:90px 20px;
+    }
+
+    h2{
+      font-size:42px;
+      margin-bottom:20px;
+      text-align:center;
+      font-weight:800;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      max-width:800px;
+      margin:0 auto 50px;
+      color:#666;
+      font-size:18px;
+    }
+
+    /* STEPS */
+
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .step-card{
+      background:white;
+      padding:40px 30px;
+      border-radius:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+      text-align:center;
+    }
+
+    .step-icon{
+      width:70px;
+      height:70px;
+      margin:auto;
+      background:#00b4ff;
+      color:white;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      font-weight:700;
+      margin-bottom:25px;
+    }
+
+    /* WATER PROBLEMS */
+
+    .water-problems{
+      background:#eef7ff;
+    }
+
+    .problems-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:25px;
+      margin-top:50px;
+    }
+
+    .problem-card{
+      background:white;
+      border-radius:25px;
+      padding:35px 25px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.07);
+    }
+
+    .problem-icon{
+      font-size:50px;
+      margin-bottom:20px;
+    }
+
+    /* BEFORE AFTER */
+
+    .before-after{
+      background:#f9fbfd;
+    }
+
+    .before-after-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:35px;
+      margin-top:50px;
+    }
+
+    .before-card,
+    .after-card{
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .before-card img,
+    .after-card img{
+      width:100%;
+      height:350px;
+      object-fit:cover;
+    }
+
+    .before-card h3,
+    .after-card h3{
+      padding:25px 25px 10px;
+      font-size:30px;
+    }
+
+    .before-card p,
+    .after-card p{
+      padding:0 25px 30px;
+    }
+
+    /* TDS SECTION */
+
+    .tds-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .tds-text h2{
+      text-align:left;
+    }
+
+    .tds-text ul{
+      margin-top:25px;
+      list-style:none;
+      font-size:18px;
+      line-height:2.2;
+    }
+
+    .tds-image img{
+      border-radius:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    /* GIFTS */
+
+    .featured-gifts{
+      background:#f3faff;
+    }
+
+    .gift-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .gift-card{
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .gift-card img{
+      height:250px;
+      width:100%;
+      object-fit:cover;
+    }
+
+    .gift-card h3{
+      padding:20px;
+    }
+
+    .gift-note{
+      text-align:center;
+      margin-top:40px;
+      font-weight:600;
+      color:#0077b6;
+    }
+
+    /* AREAS */
+
+    .service-areas{
+      background:#0d1b2a;
+      color:white;
+    }
+
+    .areas-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      justify-content:center;
+      margin-top:40px;
+    }
+
+    .areas-grid span{
+      background:rgba(255,255,255,0.12);
+      padding:15px 24px;
+      border-radius:50px;
+      font-weight:600;
+    }
+
+    /* TESTIMONIALS */
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+      margin-top:50px;
+    }
+
+    .testimonial-card{
+      background:white;
+      padding:35px;
+      border-radius:25px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .testimonial-card h4{
+      margin-top:20px;
+      color:#0077b6;
+    }
+
+    /* FORM */
+
+    .referral-form-section{
+      background:
+      linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.75)),
+      url('https://images.unsplash.com/photo-1521207418485-99c705420785?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      color:white;
+    }
+
+    .referral-form{
+      max-width:700px;
+      margin:50px auto 0;
+      background:white;
+      padding:40px;
+      border-radius:30px;
+      box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+      width:100%;
+      padding:18px;
+      border-radius:15px;
+      border:1px solid #d9d9d9;
+      font-size:16px;
+      font-family:'Poppins',sans-serif;
+    }
+
+    .form-group textarea{
+      height:120px;
+      resize:none;
+    }
+
+    .submit-btn{
+      width:100%;
+      padding:20px;
+      border:none;
+      background:#00b4ff;
+      color:white;
+      font-size:18px;
+      border-radius:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .submit-btn:hover{
+      background:#0096d6;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      .before-after-grid,
+      .tds-content{
+        grid-template-columns:1fr;
+      }
+
+      h2{
+        font-size:34px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
 <section class="hero-section">
-  <div class="hero-overlay">
-    <div class="hero-content">
-      <h1>Florida Homeowner Rewards Program</h1>
 
-      <p class="hero-subtitle">
-        FREE Water Testing • FREE TDS Analysis • Homeowner Rewards
-      </p>
+  <div class="hero-content">
 
-      <p class="hero-description">
-        Helping Central Florida homeowners improve their water quality while earning bonus rewards for friends and family referrals.
-      </p>
+    <h1>Florida Homeowner Rewards Program</h1>
 
-      <div class="hero-badges">
-        <span>💧 Free Water Quality Test</span>
-        <span>🏠 Florida Homeowners</span>
-        <span>🎁 Choose Your Gift</span>
+    <p class="hero-subtitle">
+      FREE Water Testing • FREE TDS Analysis • Homeowner Rewards
+    </p>
+
+    <p class="hero-description">
+      Helping Central Florida homeowners improve their water quality while earning bonus rewards for referrals.
+    </p>
+
+    <div class="hero-badges">
+      <span>💧 Free Water Quality Test</span>
+      <span>🏠 Florida Homeowners</span>
+      <span>🎁 Choose Your Gift</span>
+    </div>
+
+    <a href="#referral-form" class="hero-btn">
+      Check Availability
+    </a>
+
+  </div>
+
+</section>
+
+<!-- TRUST STATS -->
+
+<section class="trust-stats">
+
+  <div class="container">
+
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <h2>2,000+</h2>
+        <p>Florida Homeowners Helped</p>
       </div>
 
-      <a href="#referral-form" class="hero-btn">
-        Check Availability
-      </a>
+      <div class="stat-card">
+        <h2>FREE</h2>
+        <p>In-Home Water Testing</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>24hr</h2>
+        <p>Fast Local Response</p>
+      </div>
+
+      <div class="stat-card">
+        <h2>4.9★</h2>
+        <p>Homeowner Satisfaction</p>
+      </div>
+
     </div>
+
   </div>
+
 </section>
 
 <!-- HOW IT WORKS -->
+
 <section class="how-it-works">
+
   <div class="container">
-    <h2>How The Homeowner Rewards Program Works</h2>
+
+    <h2>How The Program Works</h2>
 
     <div class="steps-grid">
 
       <div class="step-card">
         <div class="step-icon">1</div>
-        <h3>Submit Your Referral</h3>
+        <h3>Submit Information</h3>
         <p>
-          Share the program with friends, neighbors, or family members interested in improving their water quality.
+          Check if your ZIP code qualifies for a FREE homeowner water analysis.
         </p>
       </div>
 
       <div class="step-card">
         <div class="step-icon">2</div>
-        <h3>Free Water Testing</h3>
+        <h3>FREE Water Testing</h3>
         <p>
-          We provide a FREE in-home water quality and TDS analysis for qualifying homeowners.
+          We perform a FREE in-home water quality and TDS analysis.
         </p>
       </div>
 
       <div class="step-card">
         <div class="step-icon">3</div>
-        <h3>Earn Bonus Rewards</h3>
+        <h3>Unlock Rewards</h3>
         <p>
-          Once their system is installed, you may qualify to choose a homeowner appreciation gift.
+          Qualifying homeowners may receive bonus rewards and referral gifts.
         </p>
       </div>
 
     </div>
+
   </div>
+
 </section>
 
 <!-- WATER PROBLEMS -->
+
 <section class="water-problems">
+
   <div class="container">
+
     <h2>Why Florida Homeowners Are Checking Their Water</h2>
 
     <div class="problems-grid">
@@ -92,11 +581,93 @@
       </div>
 
     </div>
+
   </div>
+
 </section>
 
-<!-- FEATURED GIFTS -->
+<!-- BEFORE AFTER -->
+
+<section class="before-after">
+
+  <div class="container">
+
+    <h2>See The Difference</h2>
+
+    <p class="section-subtitle">
+      Florida hard water can affect fixtures, appliances, and overall water quality.
+    </p>
+
+    <div class="before-after-grid">
+
+      <div class="before-card">
+        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=1200&auto=format&fit=crop">
+
+        <h3>Before</h3>
+
+        <p>
+          Hard water stains and mineral buildup.
+        </p>
+      </div>
+
+      <div class="after-card">
+        <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1200&auto=format&fit=crop">
+
+        <h3>After</h3>
+
+        <p>
+          Cleaner water experience for homeowners.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- TDS SECTION -->
+
+<section class="tds-section">
+
+  <div class="container">
+
+    <div class="tds-content">
+
+      <div class="tds-text">
+
+        <h2>FREE TDS Water Testing</h2>
+
+        <p>
+          Many homeowners are surprised when they see what is inside their tap water.
+        </p>
+
+        <ul>
+          <li>✔ Water Quality Analysis</li>
+          <li>✔ Hard Water Minerals</li>
+          <li>✔ Chlorine Awareness</li>
+          <li>✔ Appliance Impact</li>
+          <li>✔ Drinking Water Review</li>
+        </ul>
+
+      </div>
+
+      <div class="tds-image">
+
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop">
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- GIFTS -->
+
 <section class="featured-gifts">
+
   <div class="container">
 
     <h2>Choose Your Homeowner Appreciation Gift</h2>
@@ -108,22 +679,22 @@
     <div class="gift-grid">
 
       <div class="gift-card">
-        <img src="images/airfryer.jpg" alt="Air Fryer">
+        <img src="https://images.unsplash.com/photo-1585515656973-5b49b70d72a0?q=80&w=1200&auto=format&fit=crop">
         <h3>Air Fryer</h3>
       </div>
 
       <div class="gift-card">
-        <img src="images/applewatch.jpg" alt="Apple Watch">
+        <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1200&auto=format&fit=crop">
         <h3>Apple Watch</h3>
       </div>
 
       <div class="gift-card">
-        <img src="images/blender.jpg" alt="Blender">
+        <img src="https://images.unsplash.com/photo-1570222094114-d054a817e56b?q=80&w=1200&auto=format&fit=crop">
         <h3>Kitchen Blender</h3>
       </div>
 
       <div class="gift-card">
-        <img src="images/smarttv.jpg" alt="Smart TV">
+        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=1200&auto=format&fit=crop">
         <h3>Smart TV</h3>
       </div>
 
@@ -134,19 +705,47 @@
     </p>
 
   </div>
+
+</section>
+
+<!-- SERVICE AREAS -->
+
+<section class="service-areas">
+
+  <div class="container">
+
+    <h2>Serving Central Florida Homeowners</h2>
+
+    <div class="areas-grid">
+
+      <span>Lake Nona</span>
+      <span>Orlando</span>
+      <span>St. Cloud</span>
+      <span>Kissimmee</span>
+      <span>Winter Garden</span>
+      <span>Davenport</span>
+      <span>Hunter's Creek</span>
+      <span>Meadow Woods</span>
+
+    </div>
+
+  </div>
+
 </section>
 
 <!-- TESTIMONIALS -->
+
 <section class="testimonials">
+
   <div class="container">
 
-    <h2>What Local Homeowners Are Saying</h2>
+    <h2>What Homeowners Are Saying</h2>
 
     <div class="testimonial-grid">
 
       <div class="testimonial-card">
         <p>
-          “We noticed a huge difference in our water almost immediately. The free testing was very informative.”
+          “Very professional and informative. The FREE testing showed us things we never noticed before.”
         </p>
 
         <h4>— Orlando Homeowner</h4>
@@ -154,7 +753,7 @@
 
       <div class="testimonial-card">
         <p>
-          “The water stains improved and the drinking water tastes much better now.”
+          “The water stains improved and the water tastes cleaner now.”
         </p>
 
         <h4>— Lake Nona Family</h4>
@@ -162,7 +761,7 @@
 
       <div class="testimonial-card">
         <p>
-          “Very professional and not pushy at all. The testing was free and helpful.”
+          “Friendly experience and zero pressure. Highly recommended.”
         </p>
 
         <h4>— Kissimmee Resident</h4>
@@ -171,15 +770,18 @@
     </div>
 
   </div>
+
 </section>
 
-<!-- FORM SECTION -->
+<!-- FORM -->
+
 <section id="referral-form" class="referral-form-section">
+
   <div class="container">
 
     <h2>Check Availability In Your Area</h2>
 
-    <p class="form-subtitle">
+    <p class="section-subtitle">
       Limited homeowner spots available in select Florida ZIP codes.
     </p>
 
@@ -216,4 +818,8 @@
     </form>
 
   </div>
+
 </section>
+
+</body>
+</html>
