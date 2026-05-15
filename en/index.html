@@ -1,1 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+<title>Legacy Water USA | Free Water Analysis</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#f5f9fc;
+color:#102030;
+overflow-x:hidden;
+}
+
+a{
+text-decoration:none;
+}
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.60)),
+url('https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=2070&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:60px 25px;
+}
+
+.hero-content{
+max-width:720px;
+}
+
+.badge{
+display:inline-block;
+background:#00aaff;
+padding:10px 18px;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+color:white;
+margin-bottom:28px;
+}
+
+.hero h1{
+font-size:clamp(46px,7vw,82px);
+line-height:1.05;
+font-weight:800;
+color:white;
+margin-bottom:28px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.8;
+color:#e0eef9;
+margin-bottom:40px;
+max-width:650px;
+}
+
+.cta-btn{
+display:inline-block;
+background:#00aaff;
+color:white;
+padding:18px 34px;
+border-radius:14px;
+font-size:17px;
+font-weight:700;
+transition:.3s;
+box-shadow:0 10px 30px rgba(0,170,255,.30);
+}
+
+.cta-btn:hover{
+transform:translateY(-3px);
+background:#008fe0;
+}
+
+.section{
+padding:90px 25px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:46px;
+font-weight:800;
+text-align:center;
+margin-bottom:20px;
+}
+
+.section-subtitle{
+font-size:18px;
+text-align:center;
+max-width:850px;
+margin:auto;
+line-height:1.8;
+color:#5c6976;
+margin-bottom:65px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+}
+
+.card-content{
+padding:28px;
+}
+
+.card h3{
+font-size:25px;
+font-weight:800;
+margin-bottom:15px;
+}
+
+.card p{
+font-size:15px;
+line-height:1.8;
+color:#5c6976;
+}
+
+.dark-section{
+background:#07131f;
+color:white;
+}
+
+.dark-section .section-title,
+.dark-section .section-subtitle{
+color:white;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:55px;
+}
+
+.stat-box{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:35px;
+border-radius:24px;
+text-align:center;
+}
+
+.stat-number{
+font-size:52px;
+font-weight:800;
+color:#00aaff;
+margin-bottom:12px;
+}
+
+.stat-label{
+font-size:16px;
+line-height:1.7;
+color:#d9e6f2;
+}
+
+.alert-box{
+background:#fff8e6;
+border-left:5px solid #ffbb00;
+padding:30px;
+border-radius:18px;
+margin-top:45px;
+}
+
+.alert-box h3{
+font-size:26px;
+margin-bottom:15px;
+}
+
+.alert-box p{
+line-height:1.9;
+color:#5d6976;
+}
+
+.cta-section{
+padding:100px 25px;
+background:white;
+text-align:center;
+}
+
+.cta-section h2{
+font-size:52px;
+font-weight:800;
+margin-bottom:25px;
+}
+
+.cta-section p{
+max-width:850px;
+margin:auto;
+font-size:19px;
+line-height:1.9;
+color:#5d6976;
+margin-bottom:45px;
+}
+
+.button-group{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.whatsapp-btn{
+background:#25D366;
+}
+
+.footer{
+background:#07131f;
+padding:55px 25px;
+text-align:center;
+color:#d9e6f2;
+}
+
+.footer h3{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.footer p{
+margin-bottom:12px;
+line-height:1.8;
+}
+
+.floating-whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:70px;
+height:70px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+z-index:999;
+}
+
+@media(max-width:768px){
+
+.hero{
+padding-top:120px;
+padding-bottom:120px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section-title{
+font-size:36px;
+}
+
+.cta-section h2{
+font-size:38px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+⚠️ Florida Homeowner Water Awareness Program
+</div>
+
+<h1>
+Your home's water could be affecting your family… even if it looks clean.
+</h1>
+
+<p>
+Many Florida homeowners only discover water quality concerns after performing a real in-home water analysis.
+We are currently offering FREE water testing in selected areas.
+</p>
+
+<a href="https://docs.google.com/forms/" class="cta-btn">
+GET MY FREE WATER TEST
+</a>
+
+</div>
+
+</section>
+
+<!-- PROBLEMS -->
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+What many homeowners discover in their water
+</h2>
+
+<p class="section-subtitle">
+Even when water meets regulations, many families still notice chlorine taste, hard water stains, odors, residue and other unwanted issues.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?q=80&w=1974&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>⚠️ Chlorine & Chemicals</h3>
+
+<p>
+Treated water may contain chlorine and other chemicals that many families prefer to reduce inside their homes.
+</p>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=2070&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>⚠️ Hard Water Minerals</h3>
+
+<p>
+Hard water can create stains, buildup and long-term effects on appliances, plumbing and surfaces.
+</p>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="../RO.png">
+
+<div class="card-content">
+
+<h3>⚠️ Invisible Contaminants</h3>
+
+<p>
+Many homeowners are surprised by what can appear during a professional in-home water analysis.
+</p>
+
+</div>
+</div>
+
+</div>
+
+<div class="alert-box">
+
+<h3>
+🚨 FREE homeowner water testing available this week
+</h3>
+
+<p>
+We are currently helping local homeowners better understand their water quality through FREE in-home water analysis appointments.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SOCIAL PROOF -->
+
+<section class="section dark-section">
+
+<div class="container">
+
+<h2 class="section-title">
+More families are checking their water
+</h2>
+
+<p class="section-subtitle">
+Local homeowners are becoming more aware of what their families consume every day.
+</p>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<div class="stat-number">
+100+
+</div>
+
+<div class="stat-label">
+Water tests completed in Florida areas
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+523
+</div>
+
+<div class="stat-label">
+PPM found during some local water tests
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+FREE
+</div>
+
+<div class="stat-label">
+Complete in-home water analysis
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+30
+</div>
+
+<div class="stat-label">
+Minutes average appointment time
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+<h2>
+Find out what's in your home's water
+</h2>
+
+<p>
+Most homeowners never truly know what is inside their water until they perform a real test.
+You can now request a FREE analysis with no obligation.
+</p>
+
+<div class="button-group">
+
+<a href="https://docs.google.com/forms/" class="cta-btn">
+REQUEST FREE ANALYSIS
+</a>
+
+<a href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis" class="cta-btn whatsapp-btn">
+WHATSAPP
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<h3>
+Legacy Water USA
+</h3>
+
+<p>
+Florida Homeowner Water Awareness Program
+</p>
+
+<p>
+📍 Florida, USA
+</p>
+
+<p>
+📱 (407) 257-6911
+</p>
+
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+
+<a 
+class="floating-whatsapp"
+href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis"
+target="_blank">
+
+💬
+
+</a>
+
+</body>
+</html>
