@@ -1,1 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+<title>Legacy Water USA | Análisis de Agua GRATIS</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:#f4f8fb;
+color:#0d1b2a;
+overflow-x:hidden;
+}
+
+a{
+text-decoration:none;
+}
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.60)),
+url('https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2070&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+padding:50px 25px;
+}
+
+.hero-content{
+max-width:700px;
+}
+
+.badge{
+display:inline-block;
+background:#00a8ff;
+color:white;
+padding:10px 18px;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:clamp(42px,7vw,78px);
+line-height:1.05;
+color:white;
+font-weight:800;
+margin-bottom:25px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.7;
+color:#dfefff;
+margin-bottom:35px;
+max-width:650px;
+}
+
+.cta-button{
+display:inline-block;
+background:#00a8ff;
+color:white;
+padding:18px 34px;
+border-radius:14px;
+font-size:17px;
+font-weight:700;
+transition:.3s;
+box-shadow:0 10px 30px rgba(0,168,255,.35);
+}
+
+.cta-button:hover{
+transform:translateY(-3px);
+background:#008fe0;
+}
+
+.section{
+padding:90px 25px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:44px;
+font-weight:800;
+text-align:center;
+margin-bottom:20px;
+}
+
+.section-subtitle{
+text-align:center;
+font-size:18px;
+max-width:850px;
+margin:auto;
+line-height:1.8;
+color:#52616f;
+margin-bottom:60px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:white;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+}
+
+.card-content{
+padding:28px;
+}
+
+.card h3{
+font-size:25px;
+margin-bottom:15px;
+font-weight:800;
+}
+
+.card p{
+line-height:1.8;
+color:#55606d;
+font-size:15px;
+}
+
+.highlight{
+background:#07131f;
+color:white;
+}
+
+.highlight .section-title,
+.highlight .section-subtitle{
+color:white;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:50px;
+}
+
+.stat-box{
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.08);
+padding:35px;
+border-radius:24px;
+text-align:center;
+}
+
+.stat-number{
+font-size:52px;
+font-weight:800;
+color:#00a8ff;
+margin-bottom:10px;
+}
+
+.stat-label{
+font-size:16px;
+line-height:1.7;
+color:#dce8f4;
+}
+
+.cta-section{
+background:white;
+text-align:center;
+padding:100px 25px;
+}
+
+.cta-section h2{
+font-size:52px;
+font-weight:800;
+margin-bottom:25px;
+}
+
+.cta-section p{
+max-width:850px;
+margin:auto;
+font-size:19px;
+line-height:1.8;
+color:#5d6976;
+margin-bottom:45px;
+}
+
+.button-group{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.secondary-btn{
+background:#25D366;
+}
+
+.footer{
+background:#07131f;
+padding:50px 25px;
+text-align:center;
+color:#d7e4ef;
+}
+
+.footer h3{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.footer p{
+line-height:1.8;
+margin-bottom:12px;
+}
+
+.floating-whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+background:#25D366;
+width:70px;
+height:70px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:34px;
+color:white;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+z-index:999;
+}
+
+.warning-box{
+background:#fff8e8;
+border-left:5px solid #ffbf00;
+padding:30px;
+border-radius:18px;
+margin-top:40px;
+}
+
+.warning-box h3{
+margin-bottom:15px;
+font-size:26px;
+}
+
+.warning-box p{
+line-height:1.9;
+color:#5d6976;
+}
+
+@media(max-width:768px){
+
+.hero{
+padding-top:120px;
+padding-bottom:120px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section-title{
+font-size:36px;
+}
+
+.cta-section h2{
+font-size:38px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+⚠️ Florida Homeowner Water Awareness Program
+</div>
+
+<h1>
+El agua de tu casa puede estar afectando tu familia… aunque se vea limpia.
+</h1>
+
+<p>
+Muchos homeowners en Florida descubren problemas en su agua solamente después de hacer una prueba real en casa.
+Ahora estamos ofreciendo análisis de agua GRATIS por tiempo limitado en ciertas zonas.
+</p>
+
+<a href="https://docs.google.com/forms/" class="cta-button">
+QUIERO MI PRUEBA GRATIS
+</a>
+
+</div>
+
+</section>
+
+<!-- PROBLEMAS -->
+
+<section class="section">
+
+<div class="container">
+
+<h2 class="section-title">
+Lo que muchas familias descubren en su agua
+</h2>
+
+<p class="section-subtitle">
+Aunque el agua cumpla regulaciones, eso no significa que sea la mejor para consumir diariamente. Muchas personas notan problemas en su piel, sabor, manchas, olor o residuos.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?q=80&w=1974&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>⚠️ Cloro y químicos</h3>
+
+<p>
+El agua tratada puede contener cloro y otros químicos que muchas familias prefieren reducir en el hogar.
+</p>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=2070&auto=format&fit=crop">
+
+<div class="card-content">
+
+<h3>⚠️ Minerales pesados</h3>
+
+<p>
+El agua dura puede dejar manchas, residuos y afectar tuberías, duchas, electrodomésticos y superficies.
+</p>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="RO.png">
+
+<div class="card-content">
+
+<h3>⚠️ Contaminantes invisibles</h3>
+
+<p>
+Muchas veces el agua se ve normal, pero los resultados pueden sorprender cuando se analiza correctamente.
+</p>
+
+</div>
+</div>
+
+</div>
+
+<div class="warning-box">
+
+<h3>
+🚨 Esta semana estamos haciendo pruebas GRATIS en algunas zonas
+</h3>
+
+<p>
+No estamos cobrando por el análisis. Solo queremos ayudar a homeowners locales a entender mejor qué contiene el agua de su casa.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SOCIAL PROOF -->
+
+<section class="section highlight">
+
+<div class="container">
+
+<h2 class="section-title">
+Más familias están verificando su agua
+</h2>
+
+<p class="section-subtitle">
+Cada vez más homeowners quieren saber exactamente qué están consumiendo diariamente.
+</p>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<div class="stat-number">
+100+
+</div>
+
+<div class="stat-label">
+Pruebas realizadas en zonas de Florida
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+523
+</div>
+
+<div class="stat-label">
+PPM encontrados en algunas pruebas locales
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+FREE
+</div>
+
+<div class="stat-label">
+Análisis completo directamente en tu hogar
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+30
+</div>
+
+<div class="stat-label">
+Minutos aproximados para realizar la prueba
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA FINAL -->
+
+<section class="cta-section">
+
+<h2>
+Descubre lo que contiene el agua de tu hogar
+</h2>
+
+<p>
+La mayoría de las familias no saben qué contiene realmente el agua que usan todos los días hasta que hacen una prueba real.
+Ahora puedes verificarla GRATIS y sin compromiso.
+</p>
+
+<div class="button-group">
+
+<a href="https://docs.google.com/forms/" class="cta-button">
+SOLICITAR PRUEBA GRATIS
+</a>
+
+<a href="https://wa.me/14072576911?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20la%20prueba%20de%20agua" class="cta-button secondary-btn">
+WHATSAPP
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<h3>
+Legacy Water USA
+</h3>
+
+<p>
+Florida Homeowner Water Awareness Program
+</p>
+
+<p>
+📍 Florida, USA
+</p>
+
+<p>
+📱 (407) 257-6911
+</p>
+
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+
+<a 
+class="floating-whatsapp"
+href="https://wa.me/14072576911?text=Hola%20quiero%20informaci%C3%B3n%20sobre%20el%20an%C3%A1lisis%20de%20agua"
+target="_blank">
+
+💬
+
+</a>
+
+</body>
+</html>
