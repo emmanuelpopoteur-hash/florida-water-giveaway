@@ -37,9 +37,30 @@ max-width:1200px;
 margin:auto;
 }
 
+section{
+padding:90px 20px;
+}
+
+h2{
+font-size:42px;
+margin-bottom:20px;
+text-align:center;
+font-weight:800;
+}
+
+.section-subtitle{
+text-align:center;
+max-width:800px;
+margin:0 auto 50px;
+color:#666;
+font-size:18px;
+}
+
+/* HERO */
+
 .hero-section{
 background:
-linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.7)),
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.75)),
 url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop');
 background-size:cover;
 background-position:center;
@@ -107,6 +128,8 @@ box-shadow:0 10px 30px rgba(0,180,255,0.4);
 transform:translateY(-3px);
 }
 
+/* STATS */
+
 .trust-stats{
 padding:80px 20px;
 background:#0d1b2a;
@@ -132,24 +155,7 @@ margin-bottom:10px;
 color:#4cc9f0;
 }
 
-section{
-padding:90px 20px;
-}
-
-h2{
-font-size:42px;
-margin-bottom:20px;
-text-align:center;
-font-weight:800;
-}
-
-.section-subtitle{
-text-align:center;
-max-width:800px;
-margin:0 auto 50px;
-color:#666;
-font-size:18px;
-}
+/* HOW IT WORKS */
 
 .steps-grid{
 display:grid;
@@ -181,6 +187,8 @@ font-weight:700;
 margin-bottom:25px;
 }
 
+/* WATER PROBLEMS */
+
 .water-problems{
 background:#eef7ff;
 }
@@ -205,65 +213,7 @@ font-size:50px;
 margin-bottom:20px;
 }
 
-.before-after{
-background:#f9fbfd;
-}
-
-.before-after-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:35px;
-margin-top:50px;
-}
-
-.before-card,
-.after-card{
-background:white;
-border-radius:25px;
-overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-.before-card img,
-.after-card img{
-width:100%;
-height:350px;
-object-fit:cover;
-}
-
-.before-card h3,
-.after-card h3{
-padding:25px 25px 10px;
-font-size:30px;
-}
-
-.before-card p,
-.after-card p{
-padding:0 25px 30px;
-}
-
-.tds-content{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:50px;
-align-items:center;
-}
-
-.tds-text h2{
-text-align:left;
-}
-
-.tds-text ul{
-list-style:none;
-margin-top:25px;
-line-height:2.2;
-font-size:18px;
-}
-
-.tds-image img{
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-}
+/* GIFTS */
 
 .featured-gifts{
 background:#f3faff;
@@ -276,6 +226,12 @@ gap:30px;
 margin-top:50px;
 }
 
+.gift-link{
+text-decoration:none;
+color:inherit;
+display:block;
+}
+
 .gift-card{
 background:white;
 border-radius:25px;
@@ -283,10 +239,31 @@ overflow:hidden;
 text-align:center;
 box-shadow:0 10px 30px rgba(0,0,0,0.08);
 transition:0.3s;
+cursor:pointer;
+position:relative;
 }
 
 .gift-card:hover{
 transform:translateY(-5px);
+}
+
+.gift-card::after{
+content:'Claim Info';
+position:absolute;
+bottom:15px;
+right:15px;
+background:#00b4ff;
+color:white;
+padding:10px 16px;
+border-radius:50px;
+font-size:14px;
+font-weight:700;
+opacity:0;
+transition:0.3s;
+}
+
+.gift-card:hover::after{
+opacity:1;
 }
 
 .gift-card img{
@@ -306,6 +283,8 @@ margin-top:40px;
 font-weight:600;
 color:#0077b6;
 }
+
+/* SERVICE AREAS */
 
 .service-areas{
 background:#0d1b2a;
@@ -327,6 +306,8 @@ border-radius:50px;
 font-weight:600;
 }
 
+/* TESTIMONIALS */
+
 .testimonial-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -345,6 +326,60 @@ box-shadow:0 10px 30px rgba(0,0,0,0.08);
 margin-top:20px;
 color:#0077b6;
 }
+
+/* BUSINESS CARD */
+
+.business-section{
+background:white;
+padding:90px 20px;
+}
+
+.business-card-wrapper{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:50px;
+align-items:center;
+margin-top:50px;
+}
+
+.business-image img{
+width:100%;
+border-radius:25px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+}
+
+.business-info h3{
+font-size:36px;
+margin-bottom:20px;
+}
+
+.business-buttons{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+margin-top:30px;
+}
+
+.contact-btn{
+display:inline-block;
+padding:16px 24px;
+border-radius:50px;
+background:#00b4ff;
+color:white;
+text-decoration:none;
+font-weight:700;
+transition:0.3s;
+}
+
+.contact-btn:hover{
+transform:translateY(-3px);
+}
+
+.whatsapp-btn{
+background:#25D366;
+}
+
+/* FORM */
 
 .referral-form-section{
 background:
@@ -401,14 +436,40 @@ transition:0.3s;
 background:#0096d6;
 }
 
+/* WHATSAPP FLOAT */
+
+.whatsapp-float{
+position:fixed;
+width:65px;
+height:65px;
+bottom:25px;
+right:25px;
+background:#25D366;
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+text-decoration:none;
+box-shadow:0 10px 30px rgba(0,0,0,0.25);
+z-index:999;
+transition:0.3s;
+}
+
+.whatsapp-float:hover{
+transform:scale(1.08);
+}
+
+/* MOBILE */
+
 @media(max-width:900px){
 
 .hero-content h1{
 font-size:42px;
 }
 
-.before-after-grid,
-.tds-content{
+.business-card-wrapper{
 grid-template-columns:1fr;
 }
 
@@ -423,6 +484,8 @@ font-size:34px;
 
 <body>
 
+<!-- HERO -->
+
 <section class="hero-section">
 
 <div class="hero-content">
@@ -434,7 +497,7 @@ FREE Water Testing • FREE TDS Analysis • Homeowner Rewards
 </p>
 
 <p class="hero-description">
-Helping Central Florida homeowners improve their water quality while earning bonus rewards for referrals and homeowner participation.
+Helping Central Florida homeowners improve their water quality while unlocking premium homeowner rewards.
 </p>
 
 <div class="hero-badges">
@@ -450,6 +513,8 @@ Check Availability
 </div>
 
 </section>
+
+<!-- STATS -->
 
 <section class="trust-stats">
 
@@ -483,6 +548,8 @@ Check Availability
 
 </section>
 
+<!-- HOW IT WORKS -->
+
 <section class="how-it-works">
 
 <div class="container">
@@ -494,25 +561,19 @@ Check Availability
 <div class="step-card">
 <div class="step-icon">1</div>
 <h3>Submit Information</h3>
-<p>
-Check if your ZIP code qualifies for FREE water testing.
-</p>
+<p>Check if your ZIP code qualifies for FREE water testing.</p>
 </div>
 
 <div class="step-card">
 <div class="step-icon">2</div>
 <h3>FREE Water Analysis</h3>
-<p>
-We provide a FREE in-home TDS and water quality analysis.
-</p>
+<p>We provide FREE in-home TDS and water quality testing.</p>
 </div>
 
 <div class="step-card">
 <div class="step-icon">3</div>
 <h3>Unlock Rewards</h3>
-<p>
-Qualifying homeowners may receive bonus gifts and rewards.
-</p>
+<p>Qualifying homeowners may unlock premium gifts and rewards.</p>
 </div>
 
 </div>
@@ -520,6 +581,8 @@ Qualifying homeowners may receive bonus gifts and rewards.
 </div>
 
 </section>
+
+<!-- WATER PROBLEMS -->
 
 <section class="water-problems">
 
@@ -544,7 +607,7 @@ Qualifying homeowners may receive bonus gifts and rewards.
 <div class="problem-card">
 <div class="problem-icon">⚪</div>
 <h3>Water Stains</h3>
-<p>White residue and buildup around faucets and glass.</p>
+<p>White residue around faucets and glass.</p>
 </div>
 
 <div class="problem-card">
@@ -559,79 +622,7 @@ Qualifying homeowners may receive bonus gifts and rewards.
 
 </section>
 
-<section class="before-after">
-
-<div class="container">
-
-<h2>See The Difference</h2>
-
-<p class="section-subtitle">
-Florida hard water can affect fixtures, appliances, skin, and overall water quality.
-</p>
-
-<div class="before-after-grid">
-
-<div class="before-card">
-<img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?q=80&w=1200&auto=format&fit=crop">
-
-<h3>Before</h3>
-
-<p>
-Hard water stains and mineral buildup.
-</p>
-</div>
-
-<div class="after-card">
-<img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1200&auto=format&fit=crop">
-
-<h3>After</h3>
-
-<p>
-Cleaner water experience for homeowners.
-</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="tds-section">
-
-<div class="container">
-
-<div class="tds-content">
-
-<div class="tds-text">
-
-<h2>FREE TDS Water Testing</h2>
-
-<p>
-Many homeowners are surprised when they see what is actually inside their tap water.
-</p>
-
-<ul>
-<li>✔ Water Quality Analysis</li>
-<li>✔ Hard Water Minerals</li>
-<li>✔ Chlorine Awareness</li>
-<li>✔ Appliance Impact</li>
-<li>✔ Drinking Water Review</li>
-</ul>
-
-</div>
-
-<div class="tds-image">
-
-<img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop">
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+<!-- GIFTS -->
 
 <section class="featured-gifts">
 
@@ -645,45 +636,47 @@ Qualifying homeowners and successful referrals may unlock premium gifts and home
 
 <div class="gift-grid">
 
+<a href="https://forms.gle/XHqRLShKVPoSsvi79" target="_blank" class="gift-link">
 <div class="gift-card">
-<img src="https://i.imgur.com/fzU967Q.jpeg" alt="Apple Watch Series 9">
+<img src="https://i.imgur.com/fzU967Q.jpeg" alt="Apple Watch">
 <h3>Apple Watch Series 9</h3>
 </div>
+</a>
 
+<a href="https://forms.gle/XHqRLShKVPoSsvi79" target="_blank" class="gift-link">
 <div class="gift-card">
 <img src="https://i.imgur.com/0oQpSFS.jpeg" alt="Ninja Blender">
 <h3>Ninja Blender</h3>
 </div>
+</a>
 
+<a href="https://forms.gle/XHqRLShKVPoSsvi79" target="_blank" class="gift-link">
 <div class="gift-card">
-<img src="https://i.imgur.com/uQ1y2CK.jpeg" alt="55 Smart TV">
+<img src="https://i.imgur.com/uQ1y2CK.jpeg" alt="Smart TV">
 <h3>55” Smart TV</h3>
 </div>
+</a>
 
+<a href="https://forms.gle/XHqRLShKVPoSsvi79" target="_blank" class="gift-link">
 <div class="gift-card">
 <img src="https://i.imgur.com/n4w4HY5.jpeg" alt="Air Fryer">
 <h3>Air Fryer</h3>
 </div>
+</a>
 
+<a href="https://forms.gle/XHqRLShKVPoSsvi79" target="_blank" class="gift-link">
 <div class="gift-card">
 <img src="https://i.imgur.com/d7hDLDr.jpeg" alt="Walking Treadmill">
 <h3>Walking Treadmill</h3>
 </div>
+</a>
 
+<a href="https://forms.gle/XHqRLShKVPoSsvi79" target="_blank" class="gift-link">
 <div class="gift-card">
 <img src="https://i.imgur.com/UeVvzXU.jpeg" alt="Espresso Machine">
 <h3>Espresso Machine</h3>
 </div>
-
-<div class="gift-card">
-<img src="https://i.imgur.com/Q6XzY8p.jpeg" alt="Ninja Creami">
-<h3>Ninja Creami</h3>
-</div>
-
-<div class="gift-card">
-<img src="https://i.imgur.com/NbULwCz.jpeg" alt="Outdoor Cooler">
-<h3>Outdoor Cooler</h3>
-</div>
+</a>
 
 </div>
 
@@ -694,6 +687,8 @@ Limited homeowner promotions available in select Florida ZIP codes.
 </div>
 
 </section>
+
+<!-- SERVICE AREAS -->
 
 <section class="service-areas">
 
@@ -717,6 +712,8 @@ Limited homeowner promotions available in select Florida ZIP codes.
 </div>
 
 </section>
+
+<!-- TESTIMONIALS -->
 
 <section class="testimonials">
 
@@ -756,6 +753,58 @@ Limited homeowner promotions available in select Florida ZIP codes.
 
 </section>
 
+<!-- BUSINESS CARD -->
+
+<section class="business-section">
+
+<div class="container">
+
+<h2>Your Local Water Specialist</h2>
+
+<p class="section-subtitle">
+Questions about water quality, homeowner promotions, or free testing?
+</p>
+
+<div class="business-card-wrapper">
+
+<div class="business-image">
+<img src="https://i.imgur.com/bHG7FuZ.jpeg" alt="Business Card">
+</div>
+
+<div class="business-info">
+
+<h3>Emmanuel Popoteur</h3>
+
+<p>
+Helping Central Florida homeowners improve their water quality with FREE in-home water testing and modern water solutions.
+</p>
+
+<div class="business-buttons">
+
+<a href="tel:+13477220976" class="contact-btn">
+📞 Call Now
+</a>
+
+<a href="https://wa.me/13477220976" target="_blank" class="contact-btn whatsapp-btn">
+💬 WhatsApp
+</a>
+
+<a href="mailto:emmanuel.ecoverse@gmail.com" class="contact-btn">
+✉ Email
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FORM -->
+
 <section id="referral-form" class="referral-form-section">
 
 <div class="container">
@@ -763,44 +812,34 @@ Limited homeowner promotions available in select Florida ZIP codes.
 <h2>Check Availability In Your Area</h2>
 
 <p class="section-subtitle">
-Limited homeowner spots available in select Florida ZIP codes.
+Click below to open the secure homeowner form.
 </p>
 
-<form class="referral-form">
+<div style="text-align:center; margin-top:40px;">
 
-<div class="form-group">
-<input type="text" placeholder="Your Name" required>
+<a href="https://forms.gle/XHqRLShKVPoSsvi79"
+target="_blank"
+class="hero-btn">
+
+Open Homeowner Form
+
+</a>
+
 </div>
-
-<div class="form-group">
-<input type="tel" placeholder="Phone Number" required>
-</div>
-
-<div class="form-group">
-<input type="text" placeholder="ZIP Code" required>
-</div>
-
-<div class="form-group">
-<select required>
-<option value="">Are You A Homeowner?</option>
-<option>Yes</option>
-<option>No</option>
-</select>
-</div>
-
-<div class="form-group">
-<textarea placeholder="Optional Notes"></textarea>
-</div>
-
-<button type="submit" class="submit-btn">
-Check Availability
-</button>
-
-</form>
 
 </div>
 
 </section>
+
+<!-- WHATSAPP FLOAT -->
+
+<a href="https://wa.me/13477220976"
+class="whatsapp-float"
+target="_blank">
+
+💬
+
+</a>
 
 </body>
 </html>
