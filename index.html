@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -26,45 +27,47 @@ background:#000;
 color:white;
 }
 
-a{
-text-decoration:none;
+/* VIDEO BACKGROUND */
+
+.bg-video{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+z-index:-2;
 }
 
+/* DARK OVERLAY */
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.65)
+);
+z-index:-1;
+}
+
+/* PAGE */
+
 .language-page{
+position:relative;
 min-height:100vh;
 padding:60px 20px;
 display:flex;
 justify-content:center;
 align-items:center;
-position:relative;
 overflow:hidden;
 }
 
-/* NEW WATER BACKGROUND */
-.language-page::before{
-content:'';
-position:absolute;
-inset:0;
-
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.60)),
-url('https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=1974&auto=format&fit=crop');
-
-background-size:cover;
-background-position:center;
-filter:blur(0px);
-transform:scale(1.05);
-}
-
-.overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(
-180deg,
-rgba(0,0,0,.15),
-rgba(0,0,0,.55)
-);
-}
+/* CONTENT */
 
 .content{
 position:relative;
@@ -73,32 +76,50 @@ width:100%;
 max-width:1200px;
 }
 
+/* LOGO */
+
 .logo{
 text-align:center;
 font-size:18px;
-letter-spacing:8px;
 font-weight:700;
-color:#79c8ff;
-margin-bottom:30px;
-}
-
-.main-title{
-text-align:center;
-font-size:clamp(42px,7vw,82px);
-font-weight:900;
-line-height:1;
+letter-spacing:8px;
+color:#7fd0ff;
 margin-bottom:25px;
 }
 
-.subtitle{
-max-width:900px;
-margin:0 auto 60px;
+/* TITLE */
+
+.main-title{
 text-align:center;
-font-size:clamp(18px,2vw,30px);
-line-height:1.7;
-color:rgba(255,255,255,.85);
-font-weight:300;
+font-size:clamp(48px,8vw,92px);
+font-weight:900;
+line-height:1;
+margin-bottom:25px;
+
+text-shadow:
+0 10px 35px rgba(0,0,0,.4);
 }
+
+/* SUBTITLE */
+
+.subtitle{
+max-width:950px;
+margin:0 auto 70px;
+
+text-align:center;
+
+font-size:clamp(18px,2vw,30px);
+line-height:1.8;
+
+font-weight:300;
+
+color:rgba(255,255,255,.92);
+
+text-shadow:
+0 5px 25px rgba(0,0,0,.35);
+}
+
+/* CARDS */
 
 .cards{
 display:grid;
@@ -106,21 +127,23 @@ grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:40px;
 }
 
+/* CARD */
+
 .card{
+
 position:relative;
+
 overflow:hidden;
 
-background:rgba(255,255,255,.08);
+background:rgba(255,255,255,.10);
 
-backdrop-filter:blur(12px);
+backdrop-filter:blur(14px);
 
 border:1px solid rgba(255,255,255,.18);
 
 border-radius:40px;
 
-padding:50px 40px;
-
-min-height:500px;
+padding:55px 40px;
 
 display:flex;
 flex-direction:column;
@@ -135,79 +158,124 @@ box-shadow:
 
 .card:hover{
 transform:translateY(-10px);
+
 border-color:#27b0ff;
+
 box-shadow:
-0 25px 70px rgba(39,176,255,.25);
+0 25px 80px rgba(39,176,255,.28);
 }
+
+/* WATER GLOW */
 
 .card::before{
 content:'';
+
 position:absolute;
+
 width:220px;
 height:220px;
-background:rgba(255,255,255,.05);
+
 border-radius:50%;
+
+background:rgba(255,255,255,.05);
+
 top:-80px;
 right:-60px;
 }
 
+/* FLAG */
+
 .flag{
-font-size:70px;
+font-size:72px;
 margin-bottom:20px;
 }
 
+/* LANGUAGE */
+
 .language{
-font-size:clamp(48px,5vw,70px);
+font-size:clamp(50px,5vw,75px);
 font-weight:800;
 margin-bottom:20px;
 }
 
+/* DESCRIPTION */
+
 .description{
+
 font-size:clamp(18px,2vw,28px);
+
 line-height:1.8;
+
 text-align:center;
-color:rgba(255,255,255,.88);
-margin-bottom:45px;
+
 font-weight:300;
+
+color:rgba(255,255,255,.92);
+
+margin-bottom:45px;
 }
 
-.button{
-display:inline-flex;
-align-items:center;
-justify-content:center;
+/* BUTTONS */
 
-padding:22px 55px;
+.button{
+
+display:inline-flex;
+
+justify-content:center;
+align-items:center;
+
+padding:22px 60px;
 
 border-radius:100px;
 
-font-size:26px;
+font-size:24px;
 font-weight:800;
 
 transition:.3s ease;
+
+text-decoration:none;
 }
 
 .button:hover{
 transform:scale(1.05);
 }
 
+/* ENGLISH BUTTON */
+
 .en-btn{
 background:white;
 color:#08142b;
 }
 
+/* SPANISH BUTTON */
+
 .es-btn{
 background:#16a9ff;
 color:white;
-box-shadow:0 15px 40px rgba(22,169,255,.35);
+
+box-shadow:
+0 15px 40px rgba(22,169,255,.35);
 }
 
+/* FOOTER */
+
 .footer{
+
 text-align:center;
+
 margin-top:70px;
+
 font-size:18px;
-color:rgba(255,255,255,.65);
+
 line-height:1.8;
+
+color:rgba(255,255,255,.72);
+
+text-shadow:
+0 5px 20px rgba(0,0,0,.3);
 }
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -215,8 +283,13 @@ line-height:1.8;
 padding:40px 18px;
 }
 
+.logo{
+font-size:14px;
+letter-spacing:5px;
+}
+
 .main-title{
-font-size:56px;
+font-size:58px;
 }
 
 .subtitle{
@@ -224,17 +297,25 @@ font-size:18px;
 margin-bottom:40px;
 }
 
+.cards{
+gap:28px;
+}
+
 .card{
 padding:40px 28px;
-min-height:auto;
+border-radius:35px;
+}
+
+.flag{
+font-size:58px;
 }
 
 .language{
-font-size:54px;
+font-size:58px;
 }
 
 .description{
-font-size:17px;
+font-size:18px;
 line-height:1.8;
 }
 
@@ -243,21 +324,36 @@ font-size:22px;
 padding:18px 45px;
 }
 
-.logo{
-font-size:14px;
-letter-spacing:5px;
+.footer{
+font-size:16px;
+margin-top:50px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<section class="language-page">
+<!-- VIDEO BACKGROUND -->
+
+<video autoplay muted loop playsinline class="bg-video">
+
+<source 
+src="https://raw.githubusercontent.com/emmanuelpopoteur-hash/florida-water-giveaway/main/gemini_generated_video_5DA64296.mov" 
+type="video/mp4">
+
+</video>
+
+<!-- DARK OVERLAY -->
 
 <div class="overlay"></div>
+
+<!-- PAGE -->
+
+<section class="language-page">
 
 <div class="content">
 
@@ -284,7 +380,9 @@ solutions for Florida homeowners.
 
 <div class="flag">🇺🇸</div>
 
-<h2 class="language">English</h2>
+<h2 class="language">
+English
+</h2>
 
 <p class="description">
 Explore homeowner promotions,
@@ -299,13 +397,15 @@ ENTER SITE
 
 </div>
 
-<!-- ESPAÑOL -->
+<!-- SPANISH -->
 
 <div class="card">
 
 <div class="flag">🇪🇸</div>
 
-<h2 class="language">Español</h2>
+<h2 class="language">
+Español
+</h2>
 
 <p class="description">
 Descubre promociones para
