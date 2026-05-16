@@ -1,240 +1,332 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Legacy Water USA</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<title>Legacy Water USA | Choose Language</title>
 
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    body{
-      font-family:'Montserrat',sans-serif;
-      background:#07131f;
-      color:white;
-      overflow-x:hidden;
-    }
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    .hero{
-      min-height:100vh;
-      background:
-      linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
-      url('https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=2070&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:30px;
-      text-align:center;
-    }
+<style>
 
-    .container{
-      max-width:1100px;
-      width:100%;
-    }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-    .logo{
-      font-size:18px;
-      letter-spacing:4px;
-      margin-bottom:25px;
-      color:#8fd3ff;
-      font-weight:700;
-    }
+body{
+font-family:'Montserrat',sans-serif;
+overflow-x:hidden;
+background:#000;
+color:white;
+}
 
-    h1{
-      font-size:clamp(40px,7vw,80px);
-      line-height:1.05;
-      margin-bottom:20px;
-      font-weight:800;
-    }
+a{
+text-decoration:none;
+}
 
-    .subtitle{
-      font-size:20px;
-      color:#d7e6f3;
-      max-width:800px;
-      margin:0 auto 60px auto;
-      line-height:1.7;
-    }
+.language-page{
+min-height:100vh;
+padding:60px 20px;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+overflow:hidden;
+}
 
-    .language-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-      gap:30px;
-      margin-top:20px;
-    }
+/* NEW WATER BACKGROUND */
+.language-page::before{
+content:'';
+position:absolute;
+inset:0;
 
-    .language-card{
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-      backdrop-filter:blur(8px);
-      border-radius:28px;
-      padding:45px 35px;
-      transition:.3s;
-      text-decoration:none;
-      color:white;
-      position:relative;
-      overflow:hidden;
-    }
+background:
+linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.60)),
+url('https://images.unsplash.com/photo-1548839140-29a749e1cf4d?q=80&w=1974&auto=format&fit=crop');
 
-    .language-card:hover{
-      transform:translateY(-8px);
-      background:rgba(255,255,255,.12);
-      border-color:#4dc3ff;
-      box-shadow:0 15px 40px rgba(0,0,0,.35);
-    }
+background-size:cover;
+background-position:center;
+filter:blur(0px);
+transform:scale(1.05);
+}
 
-    .flag{
-      font-size:70px;
-      margin-bottom:25px;
-    }
+.overlay{
+position:absolute;
+inset:0;
+background:linear-gradient(
+180deg,
+rgba(0,0,0,.15),
+rgba(0,0,0,.55)
+);
+}
 
-    .language-title{
-      font-size:34px;
-      font-weight:700;
-      margin-bottom:12px;
-    }
+.content{
+position:relative;
+z-index:2;
+width:100%;
+max-width:1200px;
+}
 
-    .language-description{
-      color:#d5e2ee;
-      line-height:1.7;
-      font-size:16px;
-      margin-bottom:30px;
-    }
+.logo{
+text-align:center;
+font-size:18px;
+letter-spacing:8px;
+font-weight:700;
+color:#79c8ff;
+margin-bottom:30px;
+}
 
-    .enter-button{
-      display:inline-block;
-      background:#00aaff;
-      color:white;
-      padding:14px 28px;
-      border-radius:999px;
-      font-weight:700;
-      text-decoration:none;
-      transition:.3s;
-      font-size:15px;
-    }
+.main-title{
+text-align:center;
+font-size:clamp(42px,7vw,82px);
+font-weight:900;
+line-height:1;
+margin-bottom:25px;
+}
 
-    .language-card:hover .enter-button{
-      background:white;
-      color:#07131f;
-    }
+.subtitle{
+max-width:900px;
+margin:0 auto 60px;
+text-align:center;
+font-size:clamp(18px,2vw,30px);
+line-height:1.7;
+color:rgba(255,255,255,.85);
+font-weight:300;
+}
 
-    .footer{
-      margin-top:55px;
-      color:#c8d6e2;
-      font-size:14px;
-      opacity:.85;
-    }
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:40px;
+}
 
-    .water-badge{
-      position:absolute;
-      top:-40px;
-      right:-40px;
-      width:140px;
-      height:140px;
-      background:rgba(255,255,255,.04);
-      border-radius:50%;
-    }
+.card{
+position:relative;
+overflow:hidden;
 
-    @media(max-width:768px){
+background:rgba(255,255,255,.08);
 
-      .hero{
-        padding:40px 20px;
-      }
+backdrop-filter:blur(12px);
 
-      .subtitle{
-        font-size:17px;
-      }
+border:1px solid rgba(255,255,255,.18);
 
-      .language-card{
-        padding:35px 25px;
-      }
+border-radius:40px;
 
-    }
-  </style>
+padding:50px 40px;
+
+min-height:500px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+transition:.4s ease;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.35);
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#27b0ff;
+box-shadow:
+0 25px 70px rgba(39,176,255,.25);
+}
+
+.card::before{
+content:'';
+position:absolute;
+width:220px;
+height:220px;
+background:rgba(255,255,255,.05);
+border-radius:50%;
+top:-80px;
+right:-60px;
+}
+
+.flag{
+font-size:70px;
+margin-bottom:20px;
+}
+
+.language{
+font-size:clamp(48px,5vw,70px);
+font-weight:800;
+margin-bottom:20px;
+}
+
+.description{
+font-size:clamp(18px,2vw,28px);
+line-height:1.8;
+text-align:center;
+color:rgba(255,255,255,.88);
+margin-bottom:45px;
+font-weight:300;
+}
+
+.button{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+
+padding:22px 55px;
+
+border-radius:100px;
+
+font-size:26px;
+font-weight:800;
+
+transition:.3s ease;
+}
+
+.button:hover{
+transform:scale(1.05);
+}
+
+.en-btn{
+background:white;
+color:#08142b;
+}
+
+.es-btn{
+background:#16a9ff;
+color:white;
+box-shadow:0 15px 40px rgba(22,169,255,.35);
+}
+
+.footer{
+text-align:center;
+margin-top:70px;
+font-size:18px;
+color:rgba(255,255,255,.65);
+line-height:1.8;
+}
+
+@media(max-width:768px){
+
+.language-page{
+padding:40px 18px;
+}
+
+.main-title{
+font-size:56px;
+}
+
+.subtitle{
+font-size:18px;
+margin-bottom:40px;
+}
+
+.card{
+padding:40px 28px;
+min-height:auto;
+}
+
+.language{
+font-size:54px;
+}
+
+.description{
+font-size:17px;
+line-height:1.8;
+}
+
+.button{
+font-size:22px;
+padding:18px 45px;
+}
+
+.logo{
+font-size:14px;
+letter-spacing:5px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-<section class="hero">
+<section class="language-page">
 
-  <div class="container">
+<div class="overlay"></div>
 
-    <div class="logo">
-      LEGACY WATER USA
-    </div>
+<div class="content">
 
-    <h1>
-      Choose Your Language
-    </h1>
+<div class="logo">
+LEGACY WATER USA
+</div>
 
-    <p class="subtitle">
-      Water quality awareness, homeowner programs, free water testing,
-      giveaways and family-focused solutions for Florida homeowners.
-    </p>
+<h1 class="main-title">
+Choose Your<br>
+Language
+</h1>
 
-    <div class="language-grid">
+<p class="subtitle">
+Water quality awareness, homeowner programs,
+free water testing, giveaways and family-focused
+solutions for Florida homeowners.
+</p>
 
-      <!-- ENGLISH -->
+<div class="cards">
 
-      <a href="/en/index.html" class="language-card">
+<!-- ENGLISH -->
 
-        <div class="water-badge"></div>
+<div class="card">
 
-        <div class="flag">🇺🇸</div>
+<div class="flag">🇺🇸</div>
 
-        <div class="language-title">
-          English
-        </div>
+<h2 class="language">English</h2>
 
-        <div class="language-description">
-          Explore homeowner promotions, free water analysis,
-          giveaways, rewards and water quality solutions for your home.
-        </div>
+<p class="description">
+Explore homeowner promotions,
+free water analysis, giveaways,
+rewards and water quality
+solutions for your home.
+</p>
 
-        <span class="enter-button">
-          ENTER SITE
-        </span>
+<a href="/en/" class="button en-btn">
+ENTER SITE
+</a>
 
-      </a>
+</div>
 
-      <!-- ESPAÑOL -->
+<!-- ESPAÑOL -->
 
-      <a href="/es/index.html" class="language-card">
+<div class="card">
 
-        <div class="water-badge"></div>
+<div class="flag">🇪🇸</div>
 
-        <div class="flag">🇪🇸</div>
+<h2 class="language">Español</h2>
 
-        <div class="language-title">
-          Español
-        </div>
+<p class="description">
+Descubre promociones para
+homeowners, pruebas de agua GRATIS,
+regalos, recompensas y soluciones
+para mejorar el agua de tu hogar.
+</p>
 
-        <div class="language-description">
-          Descubre promociones para homeowners, pruebas de agua GRATIS,
-          regalos, recompensas y soluciones para mejorar el agua de tu hogar.
-        </div>
+<a href="/es/" class="button es-btn">
+ENTRAR
+</a>
 
-        <span class="enter-button">
-          ENTRAR
-        </span>
+</div>
 
-      </a>
+</div>
 
-    </div>
+<div class="footer">
+Legacy Water USA • Florida Homeowner Water Awareness Program
+</div>
 
-    <div class="footer">
-      Legacy Water USA • Florida Homeowner Water Awareness Program
-    </div>
-
-  </div>
+</div>
 
 </section>
 
