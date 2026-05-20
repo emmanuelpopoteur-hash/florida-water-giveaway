@@ -78,9 +78,9 @@ height:100%;
 background:
 linear-gradient(
 180deg,
-rgba(0,0,0,.55) 0%,
-rgba(0,0,0,.50) 40%,
-rgba(0,0,0,.68) 100%
+rgba(0,0,0,.52) 0%,
+rgba(0,0,0,.48) 40%,
+rgba(0,0,0,.72) 100%
 );
 
 z-index:-2;
@@ -99,7 +99,6 @@ z-index:2;
 min-height:100vh;
 
 padding:
-
 60px
 24px
 80px;
@@ -125,15 +124,20 @@ padding-top:40px;
 
 .logo{
 
-width:340px;
+width:360px;
 
 margin-bottom:42px;
 
-filter:
-drop-shadow(0 0 18px rgba(255,255,255,.35))
-drop-shadow(0 10px 40px rgba(0,0,0,.55));
-
 opacity:.98;
+
+filter:
+
+brightness(1.25)
+contrast(1.15)
+
+drop-shadow(0 0 8px rgba(255,255,255,.25))
+drop-shadow(0 0 25px rgba(90,190,255,.18))
+drop-shadow(0 10px 45px rgba(0,0,0,.65));
 
 animation:fadeIn 1.4s ease;
 
@@ -166,7 +170,7 @@ font-size:26px;
 line-height:1.9;
 font-weight:300;
 
-color:rgba(255,255,255,.92);
+color:rgba(255,255,255,.94);
 
 margin-bottom:70px;
 
@@ -315,7 +319,7 @@ font-weight:300;
 
 max-width:520px;
 
-color:rgba(255,255,255,.9);
+color:rgba(255,255,255,.92);
 
 margin-bottom:42px;
 
@@ -398,7 +402,7 @@ padding:
 }
 
 .logo{
-width:280px;
+width:300px;
 }
 
 .hero h1{
@@ -485,7 +489,7 @@ autoplay
 muted
 loop
 playsinline
-webkits-playsinline
+webkit-playsinline
 >
 
 <source
@@ -508,7 +512,7 @@ type="video/mp4"
 <!-- LOGO -->
 
 <img
-src="media/shared/images/genera legacy-water-logo-white-premium.png"
+src="media/shared/images/legacy-water-logo-transparent.png"
 alt="Legacy Water USA"
 class="logo"
 >
