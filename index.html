@@ -45,7 +45,7 @@ object-fit:cover;
 z-index:-2;
 }
 
-/* DARK OVERLAY */
+/* OVERLAY */
 
 .overlay{
 position:fixed;
@@ -57,7 +57,7 @@ height:100%;
 background:
 linear-gradient(
 rgba(0,0,0,.45),
-rgba(0,0,0,.72)
+rgba(0,0,0,.78)
 );
 
 z-index:-1;
@@ -84,37 +84,39 @@ width:100%;
 max-width:1250px;
 }
 
-/* PREMIUM LOGO */
+/* LOGO */
 
 .logo-wrap{
 display:flex;
 justify-content:center;
-margin-bottom:30px;
+margin-bottom:35px;
 }
 
 .logo{
-width:240px;
+width:260px;
+
 filter:
-drop-shadow(0 10px 30px rgba(0,0,0,.35));
+drop-shadow(0 10px 35px rgba(0,0,0,.45));
 }
 
 /* TITLE */
 
 .main-title{
+
 text-align:center;
 
-font-size:clamp(52px,8vw,96px);
+font-size:clamp(56px,8vw,100px);
 
 font-weight:900;
 
 line-height:0.95;
 
-margin-bottom:28px;
-
 letter-spacing:-3px;
 
+margin-bottom:30px;
+
 text-shadow:
-0 10px 35px rgba(0,0,0,.45);
+0 10px 40px rgba(0,0,0,.45);
 }
 
 /* SUBTITLE */
@@ -123,13 +125,13 @@ text-shadow:
 
 max-width:980px;
 
-margin:0 auto 75px;
+margin:0 auto 80px;
 
 text-align:center;
 
 font-size:clamp(18px,2vw,30px);
 
-line-height:1.8;
+line-height:1.9;
 
 font-weight:300;
 
@@ -155,11 +157,11 @@ position:relative;
 
 overflow:hidden;
 
-background:rgba(255,255,255,.10);
+background:rgba(255,255,255,.08);
 
-backdrop-filter:blur(16px);
+backdrop-filter:blur(18px);
 
-border:1px solid rgba(255,255,255,.18);
+border:1px solid rgba(255,255,255,.14);
 
 border-radius:42px;
 
@@ -183,7 +185,7 @@ transform:translateY(-10px);
 border-color:#27b0ff;
 
 box-shadow:
-0 25px 90px rgba(39,176,255,.30);
+0 25px 90px rgba(39,176,255,.28);
 }
 
 /* WATER GLOW */
@@ -199,7 +201,7 @@ height:240px;
 
 border-radius:50%;
 
-background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.04);
 
 top:-90px;
 right:-70px;
@@ -215,9 +217,9 @@ margin-bottom:20px;
 /* LANGUAGE */
 
 .language{
-font-size:clamp(50px,5vw,76px);
+font-size:clamp(52px,5vw,76px);
 font-weight:800;
-margin-bottom:22px;
+margin-bottom:24px;
 }
 
 /* DESCRIPTION */
@@ -307,11 +309,11 @@ padding:50px 18px;
 }
 
 .logo{
-width:190px;
+width:210px;
 }
 
 .main-title{
-font-size:58px;
+font-size:64px;
 line-height:1;
 }
 
@@ -365,7 +367,7 @@ margin-top:55px;
 <video autoplay muted loop playsinline class="bg-video">
 
 <source
-src="https://raw.githubusercontent.com/emmanuelpopoteur-hash/florida-water-giveaway/main/media/shared/video/legacy-water-hero-video.mov"
+src="media/shared/video/legacy-water-hero-video.mp4"
 type="video/mp4">
 
 </video>
@@ -385,7 +387,7 @@ type="video/mp4">
 <div class="logo-wrap">
 
 <img
-src="media/shared/images/genera legacy-water-logo-white-premium.png"
+src="media/shared/images/legacy-water-logo-transparent.png"
 alt="Legacy Water USA"
 class="logo">
 
@@ -406,7 +408,7 @@ free water testing, rewards, giveaways
 and premium water solutions for your family.
 </p>
 
-<!-- LANGUAGE CARDS -->
+<!-- CARDS -->
 
 <div class="cards">
 
