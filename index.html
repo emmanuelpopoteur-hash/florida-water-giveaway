@@ -24,7 +24,12 @@ href="media/shared/images/favicon.png"
 />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+>
 
 <link
 href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
@@ -32,8 +37,6 @@ rel="stylesheet"
 >
 
 <style>
-
-/* RESET */
 
 *{
 margin:0;
@@ -51,9 +54,9 @@ font-family:'Poppins',sans-serif;
 
 background:#000;
 
-overflow-x:hidden;
+color:#fff;
 
-color:white;
+overflow-x:hidden;
 
 }
 
@@ -62,6 +65,7 @@ color:white;
 .hero-video{
 
 position:fixed;
+
 top:0;
 left:0;
 
@@ -74,13 +78,13 @@ z-index:-3;
 
 filter:
 brightness(1.02)
-contrast(1.02)
-saturate(1.02);
+contrast(1.03)
+saturate(1.04);
 
-transform:scale(1.06);
+transform:scale(1.05);
 
 animation:
-slowZoom 18s ease-in-out infinite alternate;
+slowZoom 20s ease-in-out infinite alternate;
 
 }
 
@@ -89,26 +93,27 @@ slowZoom 18s ease-in-out infinite alternate;
 .video-overlay{
 
 position:fixed;
+
 top:0;
 left:0;
 
 width:100%;
 height:100%;
 
+z-index:-2;
+
 background:
 
 linear-gradient(
 180deg,
-rgba(0,0,0,.28) 0%,
-rgba(0,0,0,.18) 20%,
-rgba(0,0,0,.28) 55%,
-rgba(0,0,0,.45) 100%
+rgba(0,0,0,.22) 0%,
+rgba(0,0,0,.18) 28%,
+rgba(0,0,0,.26) 60%,
+rgba(0,0,0,.34) 100%
 );
 
-z-index:-2;
-
 backdrop-filter:
-blur(.6px);
+blur(1px);
 
 }
 
@@ -124,7 +129,7 @@ min-height:100vh;
 padding:
 60px
 24px
-90px;
+80px;
 
 }
 
@@ -139,10 +144,7 @@ justify-content:center;
 
 text-align:center;
 
-padding-top:40px;
-
-animation:
-fadeIn 1.2s ease;
+padding-top:30px;
 
 }
 
@@ -152,7 +154,7 @@ fadeIn 1.2s ease;
 
 width:420px;
 
-max-width:92%;
+max-width:90%;
 
 margin-bottom:34px;
 
@@ -160,12 +162,14 @@ opacity:1;
 
 filter:
 
-brightness(1.08)
-contrast(1.04)
+brightness(1.18)
+contrast(1.1)
 
-drop-shadow(0 0 14px rgba(255,255,255,.28))
-drop-shadow(0 0 32px rgba(80,180,255,.18))
-drop-shadow(0 10px 45px rgba(0,0,0,.35));
+drop-shadow(0 0 10px rgba(255,255,255,.18))
+drop-shadow(0 0 30px rgba(50,150,255,.12))
+drop-shadow(0 10px 40px rgba(0,0,0,.28));
+
+animation:fadeIn 1.2s ease;
 
 }
 
@@ -173,17 +177,18 @@ drop-shadow(0 10px 45px rgba(0,0,0,.35));
 
 .hero h1{
 
-font-size:110px;
+font-size:96px;
+
 font-weight:900;
 
-line-height:.9;
+line-height:.92;
 
-letter-spacing:-5px;
+letter-spacing:-4px;
 
 margin-bottom:26px;
 
 text-shadow:
-0 10px 40px rgba(0,0,0,.35);
+0 10px 40px rgba(0,0,0,.30);
 
 }
 
@@ -191,60 +196,63 @@ text-shadow:
 
 .subtitle{
 
-max-width:980px;
+max-width:920px;
 
-font-size:26px;
-line-height:1.9;
+font-size:25px;
+
+line-height:1.75;
 
 font-weight:300;
 
-color:rgba(255,255,255,.97);
+color:rgba(255,255,255,.96);
 
-margin-bottom:34px;
+margin-bottom:38px;
 
 text-shadow:
-0 5px 25px rgba(0,0,0,.25);
+0 5px 25px rgba(0,0,0,.22);
 
 }
 
-/* BADGES */
+/* FEATURES */
 
-.badges{
+.features{
 
 display:flex;
 flex-wrap:wrap;
+
 justify-content:center;
-gap:14px;
+
+gap:18px;
 
 margin-bottom:60px;
 
-max-width:1100px;
+max-width:1000px;
 
 }
 
-.badge{
+.feature-pill{
 
 padding:
-14px
-22px;
+16px
+28px;
 
 border-radius:999px;
 
 background:
-rgba(255,255,255,.10);
+rgba(255,255,255,.16);
 
 backdrop-filter:blur(10px);
 
 border:
-1px solid rgba(255,255,255,.14);
+1px solid rgba(255,255,255,.22);
 
-font-size:14px;
+font-size:17px;
 font-weight:600;
 
-letter-spacing:.3px;
+color:white;
 
 box-shadow:
-0 8px 25px rgba(0,0,0,.18);
+0 5px 20px rgba(0,0,0,.12);
 
 }
 
@@ -253,12 +261,14 @@ box-shadow:
 .language-grid{
 
 display:grid;
+
 grid-template-columns:1fr 1fr;
 
 gap:30px;
 
 width:100%;
-max-width:1250px;
+
+max-width:1200px;
 
 }
 
@@ -284,22 +294,22 @@ background:
 
 linear-gradient(
 145deg,
-rgba(22,22,28,.58),
-rgba(8,8,12,.42)
+rgba(24,24,28,.54),
+rgba(10,10,14,.42)
 );
 
 backdrop-filter:blur(14px);
 
 border:
-1.5px solid rgba(120,190,255,.42);
+2px solid rgba(95,190,255,.68);
 
 box-shadow:
-0 20px 70px rgba(0,0,0,.28),
-0 0 25px rgba(70,160,255,.10);
+0 20px 70px rgba(0,0,0,.18),
+0 0 25px rgba(50,150,255,.08);
 
-transition:.45s ease;
+transition:.4s ease;
 
-min-height:430px;
+min-height:420px;
 
 display:flex;
 flex-direction:column;
@@ -315,19 +325,18 @@ text-align:center;
 .language-card:hover{
 
 transform:
-translateY(-10px)
-scale(1.015);
+translateY(-8px)
+scale(1.01);
 
-border-color:
-rgba(130,210,255,.8);
+border-color:#8ad4ff;
 
 box-shadow:
-0 30px 90px rgba(0,0,0,.35),
-0 0 50px rgba(80,180,255,.18);
+0 25px 90px rgba(0,0,0,.22),
+0 0 40px rgba(80,180,255,.18);
 
 }
 
-/* LIGHT */
+/* LIGHT EFFECT */
 
 .language-card::before{
 
@@ -335,8 +344,8 @@ content:"";
 
 position:absolute;
 
-top:-140px;
-right:-140px;
+top:-120px;
+right:-120px;
 
 width:340px;
 height:340px;
@@ -347,8 +356,8 @@ background:
 
 radial-gradient(
 circle,
-rgba(255,255,255,.08),
-transparent 72%
+rgba(255,255,255,.06),
+transparent 70%
 );
 
 }
@@ -367,17 +376,18 @@ margin-bottom:24px;
 
 .language-card h2{
 
-font-size:92px;
+font-size:82px;
+
 font-weight:900;
 
-line-height:.9;
+line-height:.92;
 
-letter-spacing:-4px;
+letter-spacing:-3px;
 
 margin-bottom:24px;
 
 text-shadow:
-0 10px 30px rgba(0,0,0,.30);
+0 8px 25px rgba(0,0,0,.18);
 
 }
 
@@ -385,16 +395,17 @@ text-shadow:
 
 .language-card p{
 
-font-size:23px;
-line-height:1.8;
+font-size:24px;
+
+line-height:1.75;
 
 font-weight:300;
 
 max-width:520px;
 
-color:rgba(255,255,255,.93);
+color:rgba(255,255,255,.94);
 
-margin-bottom:42px;
+margin-bottom:40px;
 
 }
 
@@ -403,6 +414,7 @@ margin-bottom:42px;
 .enter-btn{
 
 display:inline-flex;
+
 align-items:center;
 justify-content:center;
 
@@ -417,7 +429,7 @@ background:
 linear-gradient(
 135deg,
 #1da1ff,
-#53d2ff
+#49c8ff
 );
 
 color:white;
@@ -430,7 +442,7 @@ letter-spacing:.4px;
 text-decoration:none;
 
 box-shadow:
-0 10px 40px rgba(0,150,255,.25);
+0 10px 35px rgba(0,150,255,.22);
 
 transition:.3s ease;
 
@@ -438,11 +450,10 @@ transition:.3s ease;
 
 .enter-btn:hover{
 
-transform:
-scale(1.06);
+transform:scale(1.05);
 
 box-shadow:
-0 18px 50px rgba(0,150,255,.45);
+0 15px 50px rgba(0,150,255,.35);
 
 }
 
@@ -450,15 +461,15 @@ box-shadow:
 
 .footer{
 
-margin-top:60px;
+margin-top:70px;
 
 text-align:center;
 
-font-size:14px;
-
-color:rgba(255,255,255,.72);
+font-size:15px;
 
 font-weight:300;
+
+color:rgba(255,255,255,.75);
 
 }
 
@@ -467,13 +478,21 @@ font-weight:300;
 @keyframes fadeIn{
 
 from{
+
 opacity:0;
-transform:translateY(25px);
+
+transform:
+translateY(20px);
+
 }
 
 to{
+
 opacity:1;
-transform:translateY(0);
+
+transform:
+translateY(0);
+
 }
 
 }
@@ -481,11 +500,11 @@ transform:translateY(0);
 @keyframes slowZoom{
 
 from{
-transform:scale(1.06);
+transform:scale(1.05);
 }
 
 to{
-transform:scale(1.12);
+transform:scale(1.10);
 }
 
 }
@@ -499,21 +518,25 @@ transform:scale(1.12);
 padding:
 42px
 18px
-70px;
+60px;
 
 }
 
+/* LOGO */
+
 .logo{
 
-width:340px;
+width:320px;
 
 margin-bottom:28px;
 
 }
 
+/* TITLE */
+
 .hero h1{
 
-font-size:84px;
+font-size:68px;
 
 letter-spacing:-3px;
 
@@ -521,33 +544,39 @@ margin-bottom:22px;
 
 }
 
+/* SUBTITLE */
+
 .subtitle{
 
 font-size:19px;
 
-line-height:1.8;
+line-height:1.7;
 
-margin-bottom:28px;
-
-}
-
-.badges{
-
-gap:10px;
-
-margin-bottom:42px;
+margin-bottom:34px;
 
 }
 
-.badge{
+/* FEATURES */
 
-font-size:12px;
+.features{
+
+gap:14px;
+
+margin-bottom:44px;
+
+}
+
+.feature-pill{
+
+font-size:15px;
 
 padding:
-12px
-16px;
+14px
+22px;
 
 }
+
+/* GRID */
 
 .language-grid{
 
@@ -557,9 +586,11 @@ gap:22px;
 
 }
 
+/* CARD */
+
 .language-card{
 
-min-height:350px;
+min-height:320px;
 
 padding:
 50px
@@ -569,23 +600,23 @@ border-radius:34px;
 
 }
 
+/* FLAG */
+
 .flag{
 
-font-size:56px;
-
-margin-bottom:20px;
+font-size:54px;
 
 }
+
+/* CARD TITLE */
 
 .language-card h2{
 
-font-size:68px;
-
-letter-spacing:-2px;
-
-margin-bottom:18px;
+font-size:64px;
 
 }
+
+/* CARD TEXT */
 
 .language-card p{
 
@@ -593,9 +624,9 @@ font-size:18px;
 
 line-height:1.7;
 
-margin-bottom:34px;
-
 }
+
+/* BUTTON */
 
 .enter-btn{
 
@@ -603,22 +634,23 @@ padding:
 18px
 34px;
 
-font-size:15px;
+font-size:16px;
 
 }
 
+/* FOOTER */
+
 .footer{
 
-font-size:12px;
+margin-top:50px;
 
-margin-top:40px;
+font-size:14px;
 
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
@@ -649,6 +681,8 @@ type="video/mp4"
 
 <div class="page">
 
+<!-- HERO -->
+
 <section class="hero">
 
 <!-- LOGO -->
@@ -662,11 +696,9 @@ class="logo"
 <!-- TITLE -->
 
 <h1>
-
 Choose<br>
 Your<br>
 Language
-
 </h1>
 
 <!-- SUBTITLE -->
@@ -681,23 +713,23 @@ for your family.
 
 </p>
 
-<!-- BADGES -->
+<!-- FEATURE PILLS -->
 
-<div class="badges">
+<div class="features">
 
-<div class="badge">
+<div class="feature-pill">
 ✔ Free Water Testing
 </div>
 
-<div class="badge">
+<div class="feature-pill">
 ✔ Florida Homeowners
 </div>
 
-<div class="badge">
+<div class="feature-pill">
 ✔ Family Safe Water
 </div>
 
-<div class="badge">
+<div class="feature-pill">
 ✔ Premium Water Solutions
 </div>
 
@@ -714,12 +746,12 @@ href="en/"
 class="language-card"
 >
 
-<div class="flag">🇺🇸</div>
+<div class="flag">
+🇺🇸
+</div>
 
 <h2>
-
 English
-
 </h2>
 
 <p>
@@ -746,12 +778,12 @@ href="es/"
 class="language-card"
 >
 
-<div class="flag">🇪🇸</div>
+<div class="flag">
+🇪🇸
+</div>
 
 <h2>
-
 Español
-
 </h2>
 
 <p>
