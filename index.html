@@ -3,16 +3,28 @@
 <head>
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Legacy Water USA | Choose Language</title>
+<title>Legacy Water USA</title>
 
-<link rel="icon" type="image/png" href="media/shared/images/favicon.png">
+<meta
+name="description"
+content="Florida homeowner water awareness, free water testing, giveaways, rewards and premium water solutions for your family."
+/>
+
+<link
+rel="icon"
+type="image/png"
+href="media/shared/images/favicon.png"
+/>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+rel="stylesheet"
+>
 
 <style>
 
@@ -27,455 +39,564 @@ scroll-behavior:smooth;
 }
 
 body{
-font-family:'Montserrat',sans-serif;
-overflow-x:hidden;
+
+font-family:'Poppins',sans-serif;
 background:#000;
+overflow-x:hidden;
 color:white;
+
 }
 
 /* VIDEO BACKGROUND */
 
-.bg-video{
+.hero-video{
+
 position:fixed;
 top:0;
 left:0;
+
 width:100%;
 height:100%;
+
 object-fit:cover;
-z-index:-2;
+
+z-index:-3;
+
 }
 
-/* OVERLAY */
+/* DARK OVERLAY */
 
-.overlay{
+.video-overlay{
+
 position:fixed;
 top:0;
 left:0;
+
 width:100%;
 height:100%;
 
 background:
 linear-gradient(
-rgba(0,0,0,.45),
-rgba(0,0,0,.78)
+180deg,
+rgba(0,0,0,.55) 0%,
+rgba(0,0,0,.50) 40%,
+rgba(0,0,0,.68) 100%
 );
 
-z-index:-1;
+z-index:-2;
+
+backdrop-filter:blur(1px);
+
 }
 
 /* PAGE */
 
-.language-page{
-position:relative;
-min-height:100vh;
-padding:70px 24px;
-display:flex;
-justify-content:center;
-align-items:center;
-overflow:hidden;
-}
+.page{
 
-/* CONTENT */
-
-.content{
 position:relative;
 z-index:2;
-width:100%;
-max-width:1250px;
+
+min-height:100vh;
+
+padding:
+
+60px
+24px
+80px;
+
+}
+
+/* HERO */
+
+.hero{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+padding-top:40px;
+
 }
 
 /* LOGO */
 
-.logo-wrap{
-display:flex;
-justify-content:center;
-margin-bottom:35px;
-}
-
 .logo{
-width:260px;
+
+width:340px;
+
+margin-bottom:42px;
 
 filter:
-drop-shadow(0 10px 35px rgba(0,0,0,.45));
+drop-shadow(0 0 18px rgba(255,255,255,.35))
+drop-shadow(0 10px 40px rgba(0,0,0,.55));
+
+opacity:.98;
+
+animation:fadeIn 1.4s ease;
+
 }
 
 /* TITLE */
 
-.main-title{
+.hero h1{
 
-text-align:center;
-
-font-size:clamp(56px,8vw,100px);
-
+font-size:96px;
 font-weight:900;
+line-height:.92;
 
-line-height:0.95;
-
-letter-spacing:-3px;
+letter-spacing:-4px;
 
 margin-bottom:30px;
 
 text-shadow:
-0 10px 40px rgba(0,0,0,.45);
+0 8px 40px rgba(0,0,0,.6);
+
 }
 
 /* SUBTITLE */
 
 .subtitle{
 
-max-width:980px;
+max-width:900px;
 
-margin:0 auto 80px;
-
-text-align:center;
-
-font-size:clamp(18px,2vw,30px);
-
+font-size:26px;
 line-height:1.9;
-
 font-weight:300;
 
-color:rgba(255,255,255,.93);
+color:rgba(255,255,255,.92);
+
+margin-bottom:70px;
 
 text-shadow:
-0 5px 25px rgba(0,0,0,.35);
+0 4px 30px rgba(0,0,0,.6);
+
 }
 
 /* CARDS */
 
-.cards{
+.language-grid{
+
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:40px;
+grid-template-columns:1fr 1fr;
+gap:30px;
+
+width:100%;
+max-width:1200px;
+
 }
 
 /* CARD */
 
-.card{
+.language-card{
 
 position:relative;
 
 overflow:hidden;
 
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.14);
-
 border-radius:42px;
 
-padding:60px 40px;
+padding:70px 50px;
+
+text-decoration:none;
+
+color:white;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(24,24,28,.82),
+rgba(10,10,14,.72)
+);
+
+backdrop-filter:blur(14px);
+
+border:
+
+2px solid rgba(63,170,255,.9);
+
+box-shadow:
+
+0 20px 80px rgba(0,0,0,.45),
+0 0 35px rgba(50,150,255,.15);
+
+transition:.4s ease;
+
+min-height:420px;
 
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 
-transition:.4s ease;
+text-align:center;
 
-box-shadow:
-0 20px 60px rgba(0,0,0,.35);
 }
 
-.card:hover{
+/* HOVER */
 
-transform:translateY(-10px);
+.language-card:hover{
 
-border-color:#27b0ff;
+transform:
+translateY(-10px)
+scale(1.015);
+
+border-color:#7ec8ff;
 
 box-shadow:
-0 25px 90px rgba(39,176,255,.28);
+
+0 25px 100px rgba(0,0,0,.55),
+0 0 50px rgba(80,180,255,.35);
+
 }
 
-/* WATER GLOW */
+/* CIRCLE EFFECT */
 
-.card::before{
+.language-card::before{
 
-content:'';
+content:"";
 
 position:absolute;
 
-width:240px;
-height:240px;
+top:-120px;
+right:-120px;
+
+width:340px;
+height:340px;
 
 border-radius:50%;
 
-background:rgba(255,255,255,.04);
+background:
 
-top:-90px;
-right:-70px;
+radial-gradient(
+circle,
+rgba(255,255,255,.08),
+transparent 70%
+);
+
 }
 
 /* FLAG */
 
 .flag{
-font-size:72px;
-margin-bottom:20px;
+
+font-size:70px;
+
+margin-bottom:26px;
+
 }
 
-/* LANGUAGE */
+/* CARD TITLE */
 
-.language{
-font-size:clamp(52px,5vw,76px);
-font-weight:800;
-margin-bottom:24px;
+.language-card h2{
+
+font-size:88px;
+font-weight:900;
+
+line-height:.92;
+
+margin-bottom:26px;
+
+letter-spacing:-3px;
+
 }
 
-/* DESCRIPTION */
+/* CARD TEXT */
 
-.description{
+.language-card p{
 
-font-size:clamp(18px,2vw,28px);
-
+font-size:24px;
 line-height:1.8;
-
-text-align:center;
 
 font-weight:300;
 
-color:rgba(255,255,255,.92);
+max-width:520px;
 
-margin-bottom:45px;
+color:rgba(255,255,255,.9);
+
+margin-bottom:42px;
+
 }
 
 /* BUTTON */
 
-.button{
+.enter-btn{
 
 display:inline-flex;
-
-justify-content:center;
 align-items:center;
+justify-content:center;
 
-padding:22px 60px;
+padding:
+20px
+42px;
 
-border-radius:100px;
+border-radius:999px;
 
-font-size:24px;
-font-weight:800;
+background:
+
+linear-gradient(
+135deg,
+#1da1ff,
+#42c7ff
+);
+
+color:white;
+
+font-size:18px;
+font-weight:700;
+
+letter-spacing:.5px;
+
+text-decoration:none;
+
+box-shadow:
+0 10px 40px rgba(0,150,255,.35);
 
 transition:.3s ease;
 
-text-decoration:none;
 }
 
-.button:hover{
+.enter-btn:hover{
+
 transform:scale(1.05);
-}
-
-/* ENGLISH BUTTON */
-
-.en-btn{
-background:white;
-color:#08142b;
-}
-
-/* SPANISH BUTTON */
-
-.es-btn{
-
-background:#16a9ff;
-color:white;
 
 box-shadow:
-0 15px 40px rgba(22,169,255,.35);
+0 15px 50px rgba(0,150,255,.55);
+
 }
 
-/* FOOTER */
+/* ANIMATION */
 
-.footer{
+@keyframes fadeIn{
 
-text-align:center;
+from{
+opacity:0;
+transform:translateY(20px);
+}
 
-margin-top:75px;
+to{
+opacity:1;
+transform:translateY(0);
+}
 
-font-size:18px;
-
-line-height:1.8;
-
-color:rgba(255,255,255,.72);
-
-text-shadow:
-0 5px 20px rgba(0,0,0,.3);
 }
 
 /* MOBILE */
 
-@media(max-width:768px){
+@media(max-width:900px){
 
-.language-page{
-padding:50px 18px;
+.page{
+
+padding:
+40px
+18px
+60px;
+
 }
 
 .logo{
-width:210px;
+width:280px;
 }
 
-.main-title{
-font-size:64px;
-line-height:1;
+.hero h1{
+
+font-size:78px;
+
+letter-spacing:-3px;
+
+margin-bottom:24px;
+
 }
 
 .subtitle{
-font-size:18px;
-margin-bottom:42px;
+
+font-size:20px;
+line-height:1.8;
+
+margin-bottom:50px;
+
 }
 
-.cards{
-gap:28px;
+.language-grid{
+
+grid-template-columns:1fr;
+
+gap:22px;
+
 }
 
-.card{
-padding:42px 28px;
-border-radius:35px;
+.language-card{
+
+min-height:340px;
+
+padding:
+50px
+28px;
+
+border-radius:34px;
+
 }
 
 .flag{
-font-size:58px;
+
+font-size:56px;
+
 }
 
-.language{
-font-size:58px;
+.language-card h2{
+
+font-size:64px;
+
 }
 
-.description{
+.language-card p{
+
 font-size:18px;
-line-height:1.8;
+
+line-height:1.7;
+
 }
 
-.button{
-font-size:22px;
-padding:18px 45px;
-}
+.enter-btn{
 
-.footer{
+padding:
+18px
+36px;
+
 font-size:16px;
-margin-top:55px;
+
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<!-- VIDEO BACKGROUND -->
+<!-- VIDEO -->
 
 <video
+class="hero-video"
 autoplay
 muted
 loop
 playsinline
-webkit-playsinline
-preload="auto"
-class="bg-video">
+webkits-playsinline
+>
 
 <source
 src="media/shared/video/legacy-water-hero-video.mov"
-type="video/quicktime">
+type="video/mp4"
+/>
 
 </video>
 
-<!-- DARK OVERLAY -->
+<!-- OVERLAY -->
 
-<div class="overlay"></div>
+<div class="video-overlay"></div>
 
 <!-- PAGE -->
 
-<section class="language-page">
+<div class="page">
 
-<div class="content">
+<section class="hero">
 
 <!-- LOGO -->
 
-<div class="logo-wrap">
-
 <img
-src="media/shared/images/legacy-water-logo-transparent.png"
+src="media/shared/images/genera legacy-water-logo-white-premium.png"
 alt="Legacy Water USA"
-class="logo">
-
-</div>
+class="logo"
+>
 
 <!-- TITLE -->
 
-<h1 class="main-title">
-Choose Your<br>
+<h1>
+Choose<br>
+Your<br>
 Language
 </h1>
 
 <!-- SUBTITLE -->
 
 <p class="subtitle">
+
 Florida homeowner water awareness,
-free water testing, rewards, giveaways
-and premium water solutions for your family.
+free water testing,
+rewards, giveaways and premium water solutions
+for your family.
+
 </p>
 
-<!-- CARDS -->
+<!-- LANGUAGE CARDS -->
 
-<div class="cards">
+<div class="language-grid">
 
 <!-- ENGLISH -->
 
-<div class="card">
+<a
+href="en/"
+class="language-card"
+>
 
 <div class="flag">🇺🇸</div>
 
-<h2 class="language">
-English
-</h2>
+<h2>English</h2>
 
-<p class="description">
+<p>
+
 Explore homeowner promotions,
-free water analysis, giveaways,
-rewards and water quality
-solutions for your home.
+free water analysis,
+giveaways,
+rewards and premium water solutions.
+
 </p>
 
-<a href="/en/" class="button en-btn">
-ENTER SITE
-</a>
+<span class="enter-btn">
 
-</div>
+ENTER SITE
+
+</span>
+
+</a>
 
 <!-- SPANISH -->
 
-<div class="card">
+<a
+href="es/"
+class="language-card"
+>
 
 <div class="flag">🇪🇸</div>
 
-<h2 class="language">
-Español
-</h2>
+<h2>Español</h2>
 
-<p class="description">
-Descubre promociones para
-homeowners, pruebas de agua GRATIS,
-regalos, recompensas y soluciones
-para mejorar el agua de tu hogar.
+<p>
+
+Descubre promociones,
+pruebas de agua GRATIS,
+regalos,
+recompensas y soluciones premium para tu hogar.
+
 </p>
 
-<a href="/es/" class="button es-btn">
+<span class="enter-btn">
+
 ENTRAR
+
+</span>
+
 </a>
-
-</div>
-
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-Legacy Water USA • Florida Homeowner Water Awareness Program
-</div>
 
 </div>
 
 </section>
+
+</div>
 
 </body>
 </html>
