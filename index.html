@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+/>
 
 <title>Legacy Water USA</title>
 
@@ -28,6 +33,8 @@ rel="stylesheet"
 
 <style>
 
+/* RESET */
+
 *{
 margin:0;
 padding:0;
@@ -41,8 +48,11 @@ scroll-behavior:smooth;
 body{
 
 font-family:'Poppins',sans-serif;
+
 background:#000;
+
 overflow-x:hidden;
+
 color:white;
 
 }
@@ -63,11 +73,11 @@ object-fit:cover;
 z-index:-3;
 
 filter:
-brightness(.95)
-contrast(1.05)
-saturate(1.05);
+brightness(1.02)
+contrast(1.02)
+saturate(1.02);
 
-transform:scale(1.08);
+transform:scale(1.06);
 
 animation:
 slowZoom 18s ease-in-out infinite alternate;
@@ -89,17 +99,16 @@ background:
 
 linear-gradient(
 180deg,
-rgba(0,0,0,.38) 0%,
-rgba(0,0,0,.28) 30%,
-rgba(0,0,0,.42) 65%,
-rgba(0,0,0,.55) 100%
+rgba(0,0,0,.28) 0%,
+rgba(0,0,0,.18) 20%,
+rgba(0,0,0,.28) 55%,
+rgba(0,0,0,.45) 100%
 );
 
 z-index:-2;
 
 backdrop-filter:
-blur(1px)
-brightness(.96);
+blur(.6px);
 
 }
 
@@ -115,7 +124,7 @@ min-height:100vh;
 padding:
 60px
 24px
-80px;
+90px;
 
 }
 
@@ -132,28 +141,31 @@ text-align:center;
 
 padding-top:40px;
 
+animation:
+fadeIn 1.2s ease;
+
 }
 
 /* LOGO */
 
 .logo{
 
-width:360px;
+width:420px;
 
-margin-bottom:42px;
+max-width:92%;
 
-opacity:.98;
+margin-bottom:34px;
+
+opacity:1;
 
 filter:
 
-brightness(1.45)
-contrast(1.18)
+brightness(1.08)
+contrast(1.04)
 
-drop-shadow(0 0 10px rgba(255,255,255,.35))
-drop-shadow(0 0 28px rgba(80,180,255,.20))
-drop-shadow(0 8px 35px rgba(0,0,0,.45));
-
-animation:fadeIn 1.4s ease;
+drop-shadow(0 0 14px rgba(255,255,255,.28))
+drop-shadow(0 0 32px rgba(80,180,255,.18))
+drop-shadow(0 10px 45px rgba(0,0,0,.35));
 
 }
 
@@ -161,16 +173,17 @@ animation:fadeIn 1.4s ease;
 
 .hero h1{
 
-font-size:96px;
+font-size:110px;
 font-weight:900;
-line-height:.92;
 
-letter-spacing:-4px;
+line-height:.9;
 
-margin-bottom:30px;
+letter-spacing:-5px;
+
+margin-bottom:26px;
 
 text-shadow:
-0 10px 50px rgba(0,0,0,.55);
+0 10px 40px rgba(0,0,0,.35);
 
 }
 
@@ -178,18 +191,60 @@ text-shadow:
 
 .subtitle{
 
-max-width:900px;
+max-width:980px;
 
 font-size:26px;
 line-height:1.9;
+
 font-weight:300;
 
-color:rgba(255,255,255,.96);
+color:rgba(255,255,255,.97);
 
-margin-bottom:70px;
+margin-bottom:34px;
 
 text-shadow:
-0 5px 30px rgba(0,0,0,.45);
+0 5px 25px rgba(0,0,0,.25);
+
+}
+
+/* BADGES */
+
+.badges{
+
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:14px;
+
+margin-bottom:60px;
+
+max-width:1100px;
+
+}
+
+.badge{
+
+padding:
+14px
+22px;
+
+border-radius:999px;
+
+background:
+rgba(255,255,255,.10);
+
+backdrop-filter:blur(10px);
+
+border:
+1px solid rgba(255,255,255,.14);
+
+font-size:14px;
+font-weight:600;
+
+letter-spacing:.3px;
+
+box-shadow:
+0 8px 25px rgba(0,0,0,.18);
 
 }
 
@@ -199,10 +254,11 @@ text-shadow:
 
 display:grid;
 grid-template-columns:1fr 1fr;
+
 gap:30px;
 
 width:100%;
-max-width:1200px;
+max-width:1250px;
 
 }
 
@@ -216,7 +272,9 @@ overflow:hidden;
 
 border-radius:42px;
 
-padding:70px 50px;
+padding:
+70px
+50px;
 
 text-decoration:none;
 
@@ -226,22 +284,22 @@ background:
 
 linear-gradient(
 145deg,
-rgba(24,24,28,.72),
-rgba(10,10,14,.58)
+rgba(22,22,28,.58),
+rgba(8,8,12,.42)
 );
 
-backdrop-filter:blur(12px);
+backdrop-filter:blur(14px);
 
 border:
-2px solid rgba(63,170,255,.85);
+1.5px solid rgba(120,190,255,.42);
 
 box-shadow:
-0 20px 80px rgba(0,0,0,.35),
-0 0 35px rgba(50,150,255,.12);
+0 20px 70px rgba(0,0,0,.28),
+0 0 25px rgba(70,160,255,.10);
 
-transition:.4s ease;
+transition:.45s ease;
 
-min-height:420px;
+min-height:430px;
 
 display:flex;
 flex-direction:column;
@@ -260,15 +318,16 @@ transform:
 translateY(-10px)
 scale(1.015);
 
-border-color:#7ec8ff;
+border-color:
+rgba(130,210,255,.8);
 
 box-shadow:
-0 25px 100px rgba(0,0,0,.45),
-0 0 50px rgba(80,180,255,.28);
+0 30px 90px rgba(0,0,0,.35),
+0 0 50px rgba(80,180,255,.18);
 
 }
 
-/* LIGHT EFFECT */
+/* LIGHT */
 
 .language-card::before{
 
@@ -276,8 +335,8 @@ content:"";
 
 position:absolute;
 
-top:-120px;
-right:-120px;
+top:-140px;
+right:-140px;
 
 width:340px;
 height:340px;
@@ -288,8 +347,8 @@ background:
 
 radial-gradient(
 circle,
-rgba(255,255,255,.06),
-transparent 70%
+rgba(255,255,255,.08),
+transparent 72%
 );
 
 }
@@ -298,9 +357,9 @@ transparent 70%
 
 .flag{
 
-font-size:70px;
+font-size:68px;
 
-margin-bottom:26px;
+margin-bottom:24px;
 
 }
 
@@ -308,14 +367,17 @@ margin-bottom:26px;
 
 .language-card h2{
 
-font-size:88px;
+font-size:92px;
 font-weight:900;
 
-line-height:.92;
+line-height:.9;
 
-margin-bottom:26px;
+letter-spacing:-4px;
 
-letter-spacing:-3px;
+margin-bottom:24px;
+
+text-shadow:
+0 10px 30px rgba(0,0,0,.30);
 
 }
 
@@ -323,14 +385,14 @@ letter-spacing:-3px;
 
 .language-card p{
 
-font-size:24px;
+font-size:23px;
 line-height:1.8;
 
 font-weight:300;
 
 max-width:520px;
 
-color:rgba(255,255,255,.92);
+color:rgba(255,255,255,.93);
 
 margin-bottom:42px;
 
@@ -355,7 +417,7 @@ background:
 linear-gradient(
 135deg,
 #1da1ff,
-#42c7ff
+#53d2ff
 );
 
 color:white;
@@ -363,7 +425,7 @@ color:white;
 font-size:18px;
 font-weight:700;
 
-letter-spacing:.5px;
+letter-spacing:.4px;
 
 text-decoration:none;
 
@@ -376,10 +438,27 @@ transition:.3s ease;
 
 .enter-btn:hover{
 
-transform:scale(1.05);
+transform:
+scale(1.06);
 
 box-shadow:
-0 15px 50px rgba(0,150,255,.45);
+0 18px 50px rgba(0,150,255,.45);
+
+}
+
+/* FOOTER */
+
+.footer{
+
+margin-top:60px;
+
+text-align:center;
+
+font-size:14px;
+
+color:rgba(255,255,255,.72);
+
+font-weight:300;
 
 }
 
@@ -389,7 +468,7 @@ box-shadow:
 
 from{
 opacity:0;
-transform:translateY(20px);
+transform:translateY(25px);
 }
 
 to{
@@ -402,11 +481,11 @@ transform:translateY(0);
 @keyframes slowZoom{
 
 from{
-transform:scale(1.08);
+transform:scale(1.06);
 }
 
 to{
-transform:scale(1.14);
+transform:scale(1.12);
 }
 
 }
@@ -418,32 +497,55 @@ transform:scale(1.14);
 .page{
 
 padding:
-40px
+42px
 18px
-60px;
+70px;
 
 }
 
 .logo{
-width:320px;
+
+width:340px;
+
+margin-bottom:28px;
+
 }
 
 .hero h1{
 
-font-size:78px;
+font-size:84px;
 
 letter-spacing:-3px;
 
-margin-bottom:24px;
+margin-bottom:22px;
 
 }
 
 .subtitle{
 
-font-size:20px;
+font-size:19px;
+
 line-height:1.8;
 
-margin-bottom:50px;
+margin-bottom:28px;
+
+}
+
+.badges{
+
+gap:10px;
+
+margin-bottom:42px;
+
+}
+
+.badge{
+
+font-size:12px;
+
+padding:
+12px
+16px;
 
 }
 
@@ -457,7 +559,7 @@ gap:22px;
 
 .language-card{
 
-min-height:340px;
+min-height:350px;
 
 padding:
 50px
@@ -471,11 +573,17 @@ border-radius:34px;
 
 font-size:56px;
 
+margin-bottom:20px;
+
 }
 
 .language-card h2{
 
-font-size:64px;
+font-size:68px;
+
+letter-spacing:-2px;
+
+margin-bottom:18px;
 
 }
 
@@ -485,21 +593,32 @@ font-size:18px;
 
 line-height:1.7;
 
+margin-bottom:34px;
+
 }
 
 .enter-btn{
 
 padding:
 18px
-36px;
+34px;
 
-font-size:16px;
+font-size:15px;
+
+}
+
+.footer{
+
+font-size:12px;
+
+margin-top:40px;
 
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -543,9 +662,11 @@ class="logo"
 <!-- TITLE -->
 
 <h1>
+
 Choose<br>
 Your<br>
 Language
+
 </h1>
 
 <!-- SUBTITLE -->
@@ -560,6 +681,28 @@ for your family.
 
 </p>
 
+<!-- BADGES -->
+
+<div class="badges">
+
+<div class="badge">
+✔ Free Water Testing
+</div>
+
+<div class="badge">
+✔ Florida Homeowners
+</div>
+
+<div class="badge">
+✔ Family Safe Water
+</div>
+
+<div class="badge">
+✔ Premium Water Solutions
+</div>
+
+</div>
+
 <!-- LANGUAGE GRID -->
 
 <div class="language-grid">
@@ -573,7 +716,11 @@ class="language-card"
 
 <div class="flag">🇺🇸</div>
 
-<h2>English</h2>
+<h2>
+
+English
+
+</h2>
 
 <p>
 
@@ -586,7 +733,7 @@ rewards and premium water solutions.
 
 <span class="enter-btn">
 
-ENTER SITE
+CONTINUE IN ENGLISH
 
 </span>
 
@@ -601,7 +748,11 @@ class="language-card"
 
 <div class="flag">🇪🇸</div>
 
-<h2>Español</h2>
+<h2>
+
+Español
+
+</h2>
 
 <p>
 
@@ -614,11 +765,19 @@ recompensas y soluciones premium para tu hogar.
 
 <span class="enter-btn">
 
-ENTRAR
+CONTINUAR EN ESPAÑOL
 
 </span>
 
 </a>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+Legacy Water USA © 2026
 
 </div>
 
