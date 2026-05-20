@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <title>Legacy Water USA | Free Water Analysis</title>
 
+<link rel="icon" type="image/png" href="../media/shared/images/favicon.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
+
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
@@ -15,6 +19,10 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
@@ -28,31 +36,46 @@ a{
 text-decoration:none;
 }
 
+img{
+display:block;
+}
+
+/* HERO */
+
 .hero{
 min-height:100vh;
 background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.60)),
-url('https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=2070&auto=format&fit=crop');
+linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.68)),
+url('../media/shared/images/fondo-agua.png');
 background-size:cover;
 background-position:center;
 display:flex;
 align-items:center;
 padding:60px 25px;
+position:relative;
 }
 
 .hero-content{
-max-width:720px;
+max-width:760px;
+z-index:2;
+}
+
+.hero-logo{
+width:240px;
+margin-bottom:35px;
+filter:drop-shadow(0 10px 30px rgba(0,0,0,.35));
 }
 
 .badge{
 display:inline-block;
 background:#00aaff;
-padding:10px 18px;
+padding:12px 20px;
 border-radius:999px;
 font-size:13px;
 font-weight:700;
 color:white;
-margin-bottom:28px;
+margin-bottom:30px;
+box-shadow:0 10px 25px rgba(0,170,255,.25);
 }
 
 .hero h1{
@@ -61,22 +84,23 @@ line-height:1.05;
 font-weight:800;
 color:white;
 margin-bottom:28px;
+letter-spacing:-2px;
 }
 
 .hero p{
 font-size:20px;
-line-height:1.8;
+line-height:1.9;
 color:#e0eef9;
-margin-bottom:40px;
-max-width:650px;
+margin-bottom:45px;
+max-width:700px;
 }
 
 .cta-btn{
 display:inline-block;
 background:#00aaff;
 color:white;
-padding:18px 34px;
-border-radius:14px;
+padding:18px 36px;
+border-radius:16px;
 font-size:17px;
 font-weight:700;
 transition:.3s;
@@ -84,12 +108,14 @@ box-shadow:0 10px 30px rgba(0,170,255,.30);
 }
 
 .cta-btn:hover{
-transform:translateY(-3px);
-background:#008fe0;
+transform:translateY(-4px);
+background:#0092ea;
 }
 
+/* SECTION */
+
 .section{
-padding:90px 25px;
+padding:100px 25px;
 }
 
 .container{
@@ -98,10 +124,11 @@ margin:auto;
 }
 
 .section-title{
-font-size:46px;
+font-size:48px;
 font-weight:800;
 text-align:center;
 margin-bottom:20px;
+letter-spacing:-1px;
 }
 
 .section-subtitle{
@@ -109,23 +136,25 @@ font-size:18px;
 text-align:center;
 max-width:850px;
 margin:auto;
-line-height:1.8;
+line-height:1.9;
 color:#5c6976;
-margin-bottom:65px;
+margin-bottom:70px;
 }
+
+/* GRID */
 
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
+gap:32px;
 }
 
 .card{
 background:white;
-border-radius:24px;
+border-radius:28px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-transition:.3s;
+box-shadow:0 10px 35px rgba(0,0,0,.08);
+transition:.35s;
 }
 
 .card:hover{
@@ -134,25 +163,28 @@ transform:translateY(-8px);
 
 .card img{
 width:100%;
-height:240px;
+height:260px;
 object-fit:cover;
 }
 
 .card-content{
-padding:28px;
+padding:32px;
 }
 
 .card h3{
-font-size:25px;
+font-size:28px;
 font-weight:800;
-margin-bottom:15px;
+margin-bottom:16px;
+line-height:1.2;
 }
 
 .card p{
-font-size:15px;
-line-height:1.8;
+font-size:16px;
+line-height:1.9;
 color:#5c6976;
 }
+
+/* DARK SECTION */
 
 .dark-section{
 background:#07131f;
@@ -164,23 +196,26 @@ color:white;
 color:white;
 }
 
+/* STATS */
+
 .stats{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:25px;
-margin-top:55px;
+margin-top:60px;
 }
 
 .stat-box{
 background:rgba(255,255,255,.05);
 border:1px solid rgba(255,255,255,.08);
-padding:35px;
+padding:40px;
 border-radius:24px;
 text-align:center;
+backdrop-filter:blur(6px);
 }
 
 .stat-number{
-font-size:52px;
+font-size:54px;
 font-weight:800;
 color:#00aaff;
 margin-bottom:12px;
@@ -188,38 +223,46 @@ margin-bottom:12px;
 
 .stat-label{
 font-size:16px;
-line-height:1.7;
+line-height:1.8;
 color:#d9e6f2;
 }
 
+/* ALERT */
+
 .alert-box{
 background:#fff8e6;
-border-left:5px solid #ffbb00;
-padding:30px;
-border-radius:18px;
-margin-top:45px;
+border-left:6px solid #ffbb00;
+padding:35px;
+border-radius:20px;
+margin-top:55px;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
 }
 
 .alert-box h3{
-font-size:26px;
-margin-bottom:15px;
+font-size:28px;
+margin-bottom:16px;
+font-weight:800;
 }
 
 .alert-box p{
 line-height:1.9;
 color:#5d6976;
+font-size:16px;
 }
 
+/* CTA SECTION */
+
 .cta-section{
-padding:100px 25px;
+padding:110px 25px;
 background:white;
 text-align:center;
 }
 
 .cta-section h2{
-font-size:52px;
+font-size:56px;
 font-weight:800;
 margin-bottom:25px;
+letter-spacing:-1px;
 }
 
 .cta-section p{
@@ -228,7 +271,7 @@ margin:auto;
 font-size:19px;
 line-height:1.9;
 color:#5d6976;
-margin-bottom:45px;
+margin-bottom:50px;
 }
 
 .button-group{
@@ -240,41 +283,68 @@ flex-wrap:wrap;
 
 .whatsapp-btn{
 background:#25D366;
+box-shadow:0 10px 30px rgba(37,211,102,.25);
 }
+
+.whatsapp-btn:hover{
+background:#1ebe5d;
+}
+
+/* FOOTER */
 
 .footer{
 background:#07131f;
-padding:55px 25px;
+padding:60px 25px;
 text-align:center;
 color:#d9e6f2;
 }
 
+.footer-logo{
+width:180px;
+margin:auto;
+margin-bottom:25px;
+opacity:.95;
+}
+
 .footer h3{
-font-size:28px;
-margin-bottom:15px;
+font-size:30px;
+margin-bottom:16px;
+font-weight:800;
 }
 
 .footer p{
 margin-bottom:12px;
-line-height:1.8;
+line-height:1.9;
 }
+
+/* FLOATING WHATSAPP */
 
 .floating-whatsapp{
 position:fixed;
-right:20px;
-bottom:20px;
-width:70px;
-height:70px;
+right:22px;
+bottom:22px;
+width:72px;
+height:72px;
 background:#25D366;
 border-radius:50%;
 display:flex;
 justify-content:center;
 align-items:center;
-font-size:34px;
-color:white;
-box-shadow:0 10px 30px rgba(0,0,0,.25);
+box-shadow:0 12px 35px rgba(0,0,0,.25);
 z-index:999;
+transition:.3s;
 }
+
+.floating-whatsapp:hover{
+transform:scale(1.08);
+}
+
+.floating-whatsapp img{
+width:34px;
+height:34px;
+}
+
+/* MOBILE */
 
 @media(max-width:768px){
 
@@ -283,21 +353,34 @@ padding-top:120px;
 padding-bottom:120px;
 }
 
+.hero-logo{
+width:190px;
+}
+
+.hero h1{
+font-size:52px;
+}
+
 .hero p{
 font-size:18px;
 }
 
 .section-title{
-font-size:36px;
+font-size:38px;
 }
 
 .cta-section h2{
-font-size:38px;
+font-size:42px;
+}
+
+.card img{
+height:220px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
@@ -308,6 +391,11 @@ font-size:38px;
 
 <div class="hero-content">
 
+<img 
+src="../media/shared/images/legacy-water-logo-transparent.png"
+alt="Legacy Water USA"
+class="hero-logo">
+
 <div class="badge">
 ⚠️ Florida Homeowner Water Awareness Program
 </div>
@@ -317,12 +405,15 @@ Your home's water could be affecting your family… even if it looks clean.
 </h1>
 
 <p>
-Many Florida homeowners only discover water quality concerns after performing a real in-home water analysis.
-We are currently offering FREE water testing in selected areas.
+Many Florida families only discover hidden water quality concerns after completing a real in-home water analysis.
+
+From chlorine taste to hard water buildup and invisible contaminants, your water may impact your daily life more than you realize.
+
+We are currently offering FREE homeowner water testing in selected Florida areas.
 </p>
 
 <a href="https://docs.google.com/forms/" class="cta-btn">
-GET MY FREE WATER TEST
+CHECK MY WATER FOR FREE
 </a>
 
 </div>
@@ -336,22 +427,26 @@ GET MY FREE WATER TEST
 <div class="container">
 
 <h2 class="section-title">
-What many homeowners discover in their water
+What Florida families are discovering in their water
 </h2>
 
 <p class="section-subtitle">
-Even when water meets regulations, many families still notice chlorine taste, hard water stains, odors, residue and other unwanted issues.
+Even when water appears clean, many homeowners still notice chlorine taste, strange odors, mineral buildup, dry skin, stains and other common water quality concerns.
 </p>
 
 <div class="grid">
 
+<!-- CARD 1 -->
+
 <div class="card">
 
-<img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?q=80&w=1974&auto=format&fit=crop">
+<img src="../media/en/images/chlorine-chemicals.png">
 
 <div class="card-content">
 
-<h3>⚠️ Chlorine & Chemicals</h3>
+<h3>
+⚠️ Chlorine & Chemicals
+</h3>
 
 <p>
 Treated water may contain chlorine and other chemicals that many families prefer to reduce inside their homes.
@@ -360,13 +455,17 @@ Treated water may contain chlorine and other chemicals that many families prefer
 </div>
 </div>
 
+<!-- CARD 2 -->
+
 <div class="card">
 
-<img src="https://images.unsplash.com/photo-1502740479091-635887520276?q=80&w=2070&auto=format&fit=crop">
+<img src="../media/shared/images/heavy-metals.png">
 
 <div class="card-content">
 
-<h3>⚠️ Hard Water Minerals</h3>
+<h3>
+⚠️ Hard Water Minerals
+</h3>
 
 <p>
 Hard water can create stains, buildup and long-term effects on appliances, plumbing and surfaces.
@@ -375,13 +474,17 @@ Hard water can create stains, buildup and long-term effects on appliances, plumb
 </div>
 </div>
 
+<!-- CARD 3 -->
+
 <div class="card">
 
-<img src="../RO.png">
+<img src="../media/en/images/invisible-contaminants.png">
 
 <div class="card-content">
 
-<h3>⚠️ Invisible Contaminants</h3>
+<h3>
+⚠️ Invisible Contaminants
+</h3>
 
 <p>
 Many homeowners are surprised by what can appear during a professional in-home water analysis.
@@ -419,7 +522,7 @@ More families are checking their water
 </h2>
 
 <p class="section-subtitle">
-Local homeowners are becoming more aware of what their families consume every day.
+Local homeowners are becoming more aware of what their families consume every single day.
 </p>
 
 <div class="stats">
@@ -483,11 +586,12 @@ Minutes average appointment time
 <section class="cta-section">
 
 <h2>
-Find out what's in your home's water
+Find out what's really in your home's water
 </h2>
 
 <p>
 Most homeowners never truly know what is inside their water until they perform a real test.
+
 You can now request a FREE analysis with no obligation.
 </p>
 
@@ -497,8 +601,12 @@ You can now request a FREE analysis with no obligation.
 REQUEST FREE ANALYSIS
 </a>
 
-<a href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis" class="cta-btn whatsapp-btn">
+<a 
+href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis"
+class="cta-btn whatsapp-btn">
+
 WHATSAPP
+
 </a>
 
 </div>
@@ -508,6 +616,11 @@ WHATSAPP
 <!-- FOOTER -->
 
 <footer class="footer">
+
+<img 
+src="../media/shared/images/legacy-water-logo-white-premium.png"
+alt="Legacy Water USA"
+class="footer-logo">
 
 <h3>
 Legacy Water USA
@@ -534,7 +647,9 @@ class="floating-whatsapp"
 href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis"
 target="_blank">
 
-💬
+<img 
+src="../media/shared/images/whatsapp-icon.png"
+alt="WhatsApp">
 
 </a>
 
