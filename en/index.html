@@ -81,7 +81,7 @@ width:100%;
 max-width:560px;
 }
 
-/* LOGO WRAPPER */
+/* LOGO */
 
 .logo-wrapper{
 
@@ -91,8 +91,6 @@ justify-content:center;
 margin-bottom:26px;
 
 }
-
-/* LOGO */
 
 .hero-logo{
 
@@ -381,6 +379,80 @@ color:#5d6976;
 font-size:16px;
 }
 
+/* MISSION SECTION */
+
+.mission-section{
+background:#ffffff;
+}
+
+.mission-wrapper{
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:60px;
+align-items:center;
+
+}
+
+.mission-image{
+
+border-radius:32px;
+overflow:hidden;
+
+box-shadow:
+0 15px 45px rgba(0,0,0,.10);
+
+}
+
+.mission-image img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+.mission-content h2{
+
+font-size:54px;
+font-weight:900;
+line-height:1.05;
+letter-spacing:-2px;
+
+margin-bottom:24px;
+
+color:#071b34;
+
+}
+
+.mission-content p{
+
+font-size:18px;
+line-height:1.95;
+color:#5d6976;
+
+margin-bottom:24px;
+
+}
+
+.mission-highlight{
+
+background:#f2f8fd;
+
+padding:26px;
+
+border-radius:24px;
+
+border-left:6px solid #20b8ff;
+
+font-weight:700;
+
+color:#071b34;
+
+line-height:1.8;
+
+}
+
 /* CTA SECTION */
 
 .cta-section{
@@ -536,53 +608,25 @@ box-shadow:
 
 }
 
-/* DESKTOP */
-
-@media(min-width:768px){
-
-.hero{
-
-align-items:center;
-
-padding:60px 40px 90px;
-}
-
-.hero-content{
-max-width:680px;
-}
-
-.hero-logo{
-max-width:520px;
-}
-
-.hero h1{
-
-font-size:clamp(70px,7vw,108px);
-
-line-height:1;
-
-letter-spacing:-5px;
-}
-
-.hero p{
-
-font-size:20px;
-}
-
-.cta-btn{
-
-display:inline-block;
-
-width:auto;
-
-padding:20px 34px;
-
-font-size:20px;
-}
-
-}
-
 /* MOBILE */
+
+@media(max-width:900px){
+
+.mission-wrapper{
+
+grid-template-columns:1fr;
+
+gap:40px;
+
+}
+
+.mission-content h2{
+
+font-size:42px;
+
+}
+
+}
 
 @media(max-width:768px){
 
@@ -864,6 +908,48 @@ Help protect appliances, plumbing fixtures and surfaces from mineral buildup cau
 
 </section>
 
+<!-- OUR MISSION -->
+
+<section class="section mission-section">
+
+<div class="container">
+
+<div class="mission-wrapper">
+
+<div class="mission-image">
+
+<img src="../media/shared/images/family-drinking-water.png">
+
+</div>
+
+<div class="mission-content">
+
+<h2>
+Our Mission
+</h2>
+
+<p>
+Legacy Water USA was created to help Florida homeowners better understand the water they use every single day and explore premium solutions designed for modern healthy living.
+</p>
+
+<p>
+Our goal is to combine education, advanced water technology and personalized in-home analysis to help families make more informed decisions about their home's water quality.
+</p>
+
+<div class="mission-highlight">
+
+We proudly work with advanced Watts water technology and authorized Ecoverse installation partnerships to help provide trusted whole-home water solutions for Florida families.
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <!-- SOCIAL PROOF -->
 
 <section class="section dark-section">
@@ -926,73 +1012,6 @@ Complete in-home water analysis
 Minutes average appointment time
 </div>
 
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- TRUST SECTION -->
-
-<section class="section">
-
-<div class="container">
-
-<h2 class="section-title">
-Why Homeowners Choose Legacy Water USA
-</h2>
-
-<p class="section-subtitle">
-Legacy Water USA helps Florida homeowners explore premium water solutions through advanced water technology, professional installation partnerships and personalized in-home analysis.
-</p>
-
-<div class="grid">
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>
-✔️ Advanced Watts Technology
-</h3>
-
-<p>
-Featuring trusted whole-home water treatment technology designed for modern residential water systems.
-</p>
-
-</div>
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>
-✔️ Authorized Ecoverse Dealer
-</h3>
-
-<p>
-Professional installation, financing options, warranty support and ongoing customer service through authorized Ecoverse partnerships.
-</p>
-
-</div>
-</div>
-
-<div class="card">
-
-<div class="card-content">
-
-<h3>
-✔️ Free In-Home Water Analysis
-</h3>
-
-<p>
-Personalized water testing and product recommendations designed specifically for Florida homeowners.
-</p>
-
-</div>
 </div>
 
 </div>
