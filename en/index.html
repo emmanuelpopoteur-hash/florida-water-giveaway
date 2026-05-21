@@ -50,7 +50,7 @@ min-height:100vh;
 background:
 linear-gradient(
 rgba(0,0,0,.38),
-rgba(0,0,0,.50)
+rgba(0,0,0,.52)
 ),
 url('../media/shared/images/fondo-agua.png');
 
@@ -80,7 +80,7 @@ inset:0;
 
 background:
 radial-gradient(circle at top left,
-rgba(255,255,255,.18),
+rgba(255,255,255,.15),
 transparent 40%);
 
 pointer-events:none;
@@ -106,7 +106,7 @@ width:100%;
 display:flex;
 justify-content:flex-start;
 
-margin-bottom:24px;
+margin-bottom:28px;
 
 overflow:hidden;
 
@@ -114,18 +114,20 @@ overflow:hidden;
 
 .hero-logo{
 
-width:520px;
-max-width:none;
+width:320px;
 
-transform:scale(1.85);
+/* ZOOM MÁS NATURAL */
+transform:scale(1.28);
+
 transform-origin:left center;
 
-margin-left:-115px;
-margin-top:-55px;
-margin-bottom:-55px;
+/* RECORTA SOLO EL VACÍO */
+margin-left:-38px;
+margin-top:-12px;
+margin-bottom:-12px;
 
 filter:
-drop-shadow(0 12px 35px rgba(0,0,0,.22));
+drop-shadow(0 10px 30px rgba(0,0,0,.18));
 
 }
 
@@ -288,19 +290,19 @@ align-items:flex-start;
 
 .logo-wrap{
 
-margin-bottom:10px;
+margin-bottom:18px;
 
 }
 
 .hero-logo{
 
-width:430px;
+width:290px;
 
-transform:scale(1.75);
+transform:scale(1.22);
 
-margin-left:-95px;
-margin-top:-42px;
-margin-bottom:-42px;
+margin-left:-28px;
+margin-top:-8px;
+margin-bottom:-8px;
 
 }
 
