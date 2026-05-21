@@ -1,248 +1,295 @@
 <section class="hero-water">
-  
-  <div class="hero-overlay"></div>
 
-  <div class="hero-content">
+    <!-- OVERLAY -->
+    <div class="hero-overlay"></div>
 
-    <!-- LOGO -->
-    <div class="hero-logo-wrap">
-      <img 
-        src="https://legacywaterusa.com/wp-content/uploads/2026/05/legacy-water-logo-transparent.png"
-        alt="Legacy Water USA"
-        class="hero-logo"
-      >
+    <!-- CONTENT -->
+    <div class="hero-content">
+
+        <!-- LOGO -->
+        <img
+            src="https://legacywaterusa.com/wp-content/uploads/2026/05/legacy-water-logo-transparent.png"
+            alt="Legacy Water USA"
+            class="hero-logo"
+        >
+
+        <!-- ALERT -->
+        <div class="hero-alert">
+            ⚠️ Florida Homeowner Water Awareness Program
+        </div>
+
+        <!-- TITLE -->
+        <h1 class="hero-title">
+            Your home's water could be affecting your family... even if it looks clean.
+        </h1>
+
+        <!-- DESCRIPTION -->
+        <p class="hero-text">
+            Many Florida families only discover hidden water quality concerns after completing a real in-home water analysis. From chlorine taste to hard water buildup and invisible contaminants, your water may impact your daily life more than you realize. We are currently offering FREE homeowner water testing in selected Florida areas.
+        </p>
+
+        <!-- BUTTON -->
+        <a href="#form" class="hero-button">
+            CHECK MY WATER FOR FREE
+        </a>
+
     </div>
 
-    <!-- ALERT BAR -->
-    <div class="hero-alert">
-      ⚠️ Florida Homeowner Water Awareness Program
-    </div>
-
-    <!-- HEADLINE -->
-    <h1 class="hero-title">
-      Your home's water could be affecting your family... even if it looks clean.
-    </h1>
-
-    <!-- DESCRIPTION -->
-    <p class="hero-text">
-      Many Florida families only discover hidden water quality concerns after completing a real in-home water analysis. From chlorine taste to hard water buildup and invisible contaminants, your water may impact your daily life more than you realize. We are currently offering FREE homeowner water testing in selected Florida areas.
-    </p>
-
-    <!-- CTA -->
-    <a href="#form" class="hero-button">
-      CHECK MY WATER FOR FREE
-    </a>
-
-  </div>
-
-  <!-- WHATSAPP -->
-  <a 
-    href="https://wa.me/14075555555"
-    class="floating-whatsapp"
-    target="_blank"
-  >
-    <img 
-      src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
-      alt="WhatsApp"
+    <!-- WHATSAPP -->
+    <a
+        href="https://wa.me/14075555555"
+        class="floating-whatsapp"
+        target="_blank"
     >
-  </a>
+        <img
+            src="https://cdn-icons-png.flaticon.com/512/733/733585.png"
+            alt="WhatsApp"
+        >
+    </a>
 
 </section>
 
 <style>
 
+/* HERO */
+
 .hero-water{
-position:relative;
-min-height:100vh;
-overflow:hidden;
-display:flex;
-align-items:flex-start;
-justify-content:center;
-padding:60px 22px 90px;
-background-image:url('https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1600&auto=format&fit=crop');
-background-size:cover;
-background-position:center;
+    position:relative;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:40px 22px 80px;
+
+    background-image:url('https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
 }
+
+/* DARK OVERLAY */
 
 .hero-overlay{
-position:absolute;
-inset:0;
-background:
-linear-gradient(
-180deg,
-rgba(15,23,42,.28) 0%,
-rgba(15,23,42,.42) 45%,
-rgba(15,23,42,.58) 100%
-);
-backdrop-filter:blur(1px);
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(5,15,35,.40) 0%,
+        rgba(5,15,35,.52) 45%,
+        rgba(5,15,35,.72) 100%
+    );
+
+    z-index:1;
 }
 
+/* CONTENT */
+
 .hero-content{
-position:relative;
-z-index:2;
-width:100%;
-max-width:720px;
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:720px;
 }
 
 /* LOGO */
 
-.hero-logo-wrap{
-display:flex;
-justify-content:center;
-margin-bottom:26px;
-}
-
 .hero-logo{
-width:100%;
-max-width:640px;
-height:auto;
-display:block;
-object-fit:contain;
-filter:
-drop-shadow(0 10px 25px rgba(0,0,0,.22));
+    width:100%;
+    max-width:520px;
+
+    display:block;
+    margin:0 auto 28px auto;
+
+    object-fit:contain;
+
+    filter:
+    drop-shadow(0 10px 30px rgba(0,0,0,.22));
 }
 
-/* ALERT */
+/* ALERT BAR */
 
 .hero-alert{
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:18px 26px;
-border-radius:999px;
-background:#29B6F6;
-color:#fff;
-font-size:18px;
-font-weight:700;
-margin-bottom:34px;
-box-shadow:0 10px 30px rgba(41,182,246,.35);
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    background:#29B6F6;
+
+    color:#fff;
+
+    font-size:15px;
+    font-weight:700;
+
+    padding:16px 22px;
+
+    border-radius:999px;
+
+    margin-bottom:30px;
+
+    box-shadow:
+    0 12px 30px rgba(41,182,246,.35);
 }
 
 /* TITLE */
 
 .hero-title{
-font-size:76px;
-line-height:.93;
-font-weight:900;
-letter-spacing:-3px;
-color:#fff;
-margin:0 0 34px;
-text-shadow:
-0 10px 30px rgba(0,0,0,.22);
+    color:#fff;
+
+    font-size:72px;
+    font-weight:900;
+
+    line-height:.95;
+    letter-spacing:-3px;
+
+    margin:0 0 30px 0;
+
+    text-shadow:
+    0 10px 30px rgba(0,0,0,.25);
 }
 
 /* TEXT */
 
 .hero-text{
-font-size:25px;
-line-height:1.7;
-color:rgba(255,255,255,.94);
-margin-bottom:42px;
-text-shadow:
-0 5px 18px rgba(0,0,0,.25);
+    color:rgba(255,255,255,.94);
+
+    font-size:23px;
+    line-height:1.7;
+
+    margin-bottom:40px;
+
+    text-shadow:
+    0 5px 18px rgba(0,0,0,.22);
 }
 
 /* BUTTON */
 
 .hero-button{
-display:flex;
-justify-content:center;
-align-items:center;
-width:100%;
-padding:28px 30px;
-border-radius:28px;
-background:#29B6F6;
-color:#fff;
-font-size:24px;
-font-weight:800;
-text-decoration:none;
-letter-spacing:.5px;
-box-shadow:
-0 15px 35px rgba(41,182,246,.35);
-transition:.3s;
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#29B6F6;
+    color:#fff;
+
+    text-decoration:none;
+
+    padding:26px 24px;
+
+    border-radius:28px;
+
+    font-size:22px;
+    font-weight:800;
+    letter-spacing:.5px;
+
+    transition:.3s;
+
+    box-shadow:
+    0 14px 35px rgba(41,182,246,.35);
 }
 
 .hero-button:hover{
-transform:translateY(-2px);
-background:#1ea7e6;
+    transform:translateY(-2px);
+    background:#1ea7e6;
 }
 
 /* WHATSAPP */
 
 .floating-whatsapp{
-position:fixed;
-right:18px;
-bottom:120px;
-width:68px;
-height:68px;
-background:#25D366;
-border-radius:50%;
-display:flex;
-justify-content:center;
-align-items:center;
-box-shadow:0 12px 35px rgba(0,0,0,.25);
-z-index:999;
-transition:.3s;
-}
+    position:fixed;
 
-.floating-whatsapp img{
-width:34px;
-height:34px;
+    right:18px;
+    bottom:120px;
+
+    width:70px;
+    height:70px;
+
+    background:#25D366;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    z-index:999;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.28);
+
+    transition:.3s;
 }
 
 .floating-whatsapp:hover{
-transform:scale(1.08);
+    transform:scale(1.08);
+}
+
+.floating-whatsapp img{
+    width:34px;
+    height:34px;
 }
 
 /* MOBILE */
 
 @media(max-width:768px){
 
-.hero-water{
-padding:40px 20px 80px;
-}
+    .hero-water{
+        padding:40px 20px 80px;
+    }
 
-.hero-logo{
-max-width:560px;
-}
+    .hero-logo{
+        max-width:360px;
+        margin-bottom:24px;
+    }
 
-.hero-alert{
-font-size:14px;
-padding:16px 18px;
-margin-bottom:28px;
-}
+    .hero-alert{
+        font-size:14px;
+        padding:15px 18px;
+        margin-bottom:28px;
+    }
 
-.hero-title{
-font-size:44px;
-line-height:.96;
-letter-spacing:-2px;
-margin-bottom:28px;
-}
+    .hero-title{
+        font-size:44px;
+        line-height:.98;
+        letter-spacing:-2px;
 
-.hero-text{
-font-size:18px;
-line-height:1.65;
-margin-bottom:34px;
-}
+        margin-bottom:24px;
+    }
 
-.hero-button{
-font-size:18px;
-padding:24px 18px;
-border-radius:24px;
-}
+    .hero-text{
+        font-size:18px;
+        line-height:1.65;
 
-.floating-whatsapp{
-width:64px;
-height:64px;
-bottom:120px;
-right:16px;
-}
+        margin-bottom:34px;
+    }
 
-.floating-whatsapp img{
-width:30px;
-height:30px;
-}
+    .hero-button{
+        font-size:18px;
+        padding:22px 16px;
+
+        border-radius:24px;
+    }
+
+    .floating-whatsapp{
+        width:64px;
+        height:64px;
+
+        bottom:120px;
+        right:16px;
+    }
+
+    .floating-whatsapp img{
+        width:30px;
+        height:30px;
+    }
 
 }
 
