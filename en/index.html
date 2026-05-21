@@ -81,7 +81,7 @@ width:100%;
 max-width:560px;
 }
 
-/* LOGO WRAPPER */
+/* LOGO */
 
 .logo-wrapper{
 
@@ -89,26 +89,18 @@ display:flex;
 justify-content:center;
 
 margin-bottom:26px;
-
 }
-
-/* LOGO */
 
 .hero-logo{
 
 width:100%;
 max-width:420px;
 
-position:relative;
-
 filter:
 drop-shadow(0 10px 25px rgba(0,0,0,.14));
 
 animation: luxuryGlow 8s ease-in-out infinite;
-
 }
-
-/* PREMIUM LUXURY LOGO EFFECT */
 
 @keyframes luxuryGlow{
 
@@ -118,18 +110,14 @@ filter:
 drop-shadow(0 10px 25px rgba(0,0,0,.14))
 drop-shadow(0 0 0 rgba(120,220,255,0));
 
-transform:scale(1);
-
 }
 
 50%{
 
 filter:
-drop-shadow(0 14px 32px rgba(0,0,0,.18))
-drop-shadow(0 0 10px rgba(160,240,255,.22))
-drop-shadow(0 0 22px rgba(255,255,255,.10));
-
-transform:scale(1.018);
+drop-shadow(0 12px 28px rgba(0,0,0,.18))
+drop-shadow(0 0 18px rgba(120,220,255,.28))
+drop-shadow(0 0 35px rgba(255,255,255,.16));
 
 }
 
@@ -138,8 +126,6 @@ transform:scale(1.018);
 filter:
 drop-shadow(0 10px 25px rgba(0,0,0,.14))
 drop-shadow(0 0 0 rgba(120,220,255,0));
-
-transform:scale(1);
 
 }
 
@@ -475,8 +461,6 @@ align-items:center;
 
 z-index:999;
 
-overflow:hidden;
-
 border:8px solid rgba(255,255,255,.95);
 
 box-shadow:
@@ -492,26 +476,19 @@ animation: whatsappGlow 5s ease-in-out infinite;
 
 .floating-whatsapp:hover{
 
-transform:scale(1.06);
-
-box-shadow:
-0 0 0 22px rgba(37,211,102,.16),
-0 0 60px rgba(37,211,102,.45),
-0 22px 55px rgba(0,0,0,.30);
+transform:scale(1.08);
 
 }
 
-.whatsapp-svg{
+.floating-whatsapp img{
 
-width:54px;
-height:54px;
+width:52px;
+height:52px;
 
 filter:
 drop-shadow(0 2px 4px rgba(0,0,0,.18));
 
 }
-
-/* PREMIUM WHATSAPP GLOW */
 
 @keyframes whatsappGlow{
 
@@ -643,11 +620,9 @@ bottom:20px;
 
 }
 
-.whatsapp-svg{
-
-width:50px;
-height:50px;
-
+.floating-whatsapp img{
+width:48px;
+height:48px;
 }
 
 }
@@ -732,16 +707,16 @@ Treated water may contain chlorine and other chemicals that many families prefer
 
 <div class="card">
 
-<img src="../media/shared/images/water-faucet.png">
+<img src="../media/shared/images/heavy-metals.png">
 
 <div class="card-content">
 
 <h3>
-⚠️ Hard Water Minerals
+⚠️ Heavy Metals
 </h3>
 
 <p>
-Hard water can create stains, buildup and long-term effects on appliances, plumbing and surfaces.
+Some water sources may contain heavy metals and contaminants that homeowners never realize are present.
 </p>
 
 </div>
@@ -749,7 +724,7 @@ Hard water can create stains, buildup and long-term effects on appliances, plumb
 
 <div class="card">
 
-<img src="../media/shared/images/fondo-agua.png">
+<img src="../media/shared/images/invisible-contaminants.png">
 
 <div class="card-content">
 
@@ -918,18 +893,9 @@ class="floating-whatsapp"
 href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis"
 target="_blank">
 
-<svg
-xmlns="http://www.w3.org/2000/svg"
-viewBox="0 0 32 32"
-fill="white"
-class="whatsapp-svg"
->
-
-<path d="M19.11 17.2c-.29-.15-1.72-.85-1.99-.95-.27-.1-.47-.15-.67.15-.2.29-.77.95-.95 1.14-.17.2-.35.22-.64.08-.29-.15-1.24-.46-2.36-1.48-.88-.79-1.47-1.77-1.64-2.06-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.29-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.37.24-.67.24-1.24.17-1.37-.07-.12-.27-.19-.56-.34z"/>
-
-<path d="M16.02 3C8.83 3 3 8.82 3 16c0 2.54.74 5.01 2.13 7.13L3 29l6.05-1.98A12.93 12.93 0 0016.02 29C23.2 29 29 23.18 29 16S23.2 3 16.02 3zm0 23.67c-2.13 0-4.22-.57-6.04-1.66l-.43-.26-3.59 1.18 1.17-3.5-.28-.45a10.6 10.6 0 01-1.63-5.67c0-5.9 4.8-10.7 10.71-10.7 2.85 0 5.53 1.1 7.55 3.13A10.62 10.62 0 0126.73 16c0 5.9-4.8 10.67-10.71 10.67z"/>
-
-</svg>
+<img 
+src="../media/shared/images/whatsapp-icon.png"
+alt="WhatsApp">
 
 </a>
 
