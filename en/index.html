@@ -118,15 +118,13 @@ filter:
 drop-shadow(0 10px 25px rgba(0,0,0,.14))
 drop-shadow(0 0 0 rgba(120,220,255,0));
 
-opacity:1;
-
 }
 
 25%{
 
 filter:
 drop-shadow(0 12px 28px rgba(0,0,0,.16))
-drop-shadow(0 0 8px rgba(120,220,255,.10));
+drop-shadow(0 0 10px rgba(120,220,255,.12));
 
 }
 
@@ -134,8 +132,8 @@ drop-shadow(0 0 8px rgba(120,220,255,.10));
 
 filter:
 drop-shadow(0 14px 32px rgba(0,0,0,.18))
-drop-shadow(0 0 18px rgba(120,220,255,.24))
-drop-shadow(0 0 28px rgba(255,255,255,.10));
+drop-shadow(0 0 22px rgba(120,220,255,.30))
+drop-shadow(0 0 40px rgba(255,255,255,.10));
 
 }
 
@@ -441,24 +439,53 @@ background:#1ebe5d;
 /* FOOTER */
 
 .footer{
-background:#07131f;
-padding:60px 25px;
+background:#03101d;
+padding:70px 25px;
 text-align:center;
 color:#d9e6f2;
+position:relative;
+overflow:hidden;
+}
+
+.footer::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center, rgba(0,160,255,.12), transparent 60%);
+pointer-events:none;
 }
 
 .footer-logo{
-
 width:260px;
-
 margin:auto;
-margin-bottom:30px;
-
-opacity:1;
+margin-bottom:28px;
+position:relative;
+z-index:2;
 
 filter:
-drop-shadow(0 0 12px rgba(255,255,255,.18))
-drop-shadow(0 0 35px rgba(0,180,255,.12));
+drop-shadow(0 0 22px rgba(80,200,255,.28));
+
+animation: footerGlow 8s ease-in-out infinite;
+}
+
+@keyframes footerGlow{
+
+0%{
+filter:
+drop-shadow(0 0 12px rgba(80,200,255,.16));
+}
+
+50%{
+filter:
+drop-shadow(0 0 28px rgba(80,200,255,.35))
+drop-shadow(0 0 45px rgba(255,255,255,.08));
+}
+
+100%{
+filter:
+drop-shadow(0 0 12px rgba(80,200,255,.16));
+}
 
 }
 
@@ -466,11 +493,15 @@ drop-shadow(0 0 35px rgba(0,180,255,.12));
 font-size:30px;
 margin-bottom:16px;
 font-weight:900;
+position:relative;
+z-index:2;
 }
 
 .footer p{
 margin-bottom:12px;
 line-height:1.9;
+position:relative;
+z-index:2;
 }
 
 /* FLOATING WHATSAPP */
@@ -498,58 +529,60 @@ z-index:999;
 border:8px solid rgba(255,255,255,.95);
 
 box-shadow:
-0 12px 30px rgba(0,0,0,.25),
-0 0 25px rgba(37,211,102,.20);
+0 0 0 18px rgba(37,211,102,.10),
+0 0 45px rgba(37,211,102,.25),
+0 18px 45px rgba(0,0,0,.28);
 
-transition:.35s ease;
-
-animation: whatsappGlow 4s ease-in-out infinite;
+animation: whatsappGlow 5s ease-in-out infinite;
 
 }
 
 .floating-whatsapp:hover{
 
-transform:scale(1.08);
+transform:scale(1.06);
 
 }
 
 .floating-whatsapp img{
 
-width:56px;
-height:56px;
+width:54px;
+height:54px;
 
 object-fit:contain;
 
 filter:
-drop-shadow(0 2px 6px rgba(0,0,0,.22));
+drop-shadow(0 2px 4px rgba(0,0,0,.18));
 
 }
 
-/* PREMIUM WHATSAPP GLOW */
+/* WHATSAPP GLOW */
 
 @keyframes whatsappGlow{
 
 0%{
 
 box-shadow:
-0 12px 30px rgba(0,0,0,.24),
-0 0 18px rgba(37,211,102,.14);
+0 0 0 18px rgba(37,211,102,.10),
+0 0 40px rgba(37,211,102,.18),
+0 18px 45px rgba(0,0,0,.28);
 
 }
 
 50%{
 
 box-shadow:
-0 14px 34px rgba(0,0,0,.28),
-0 0 28px rgba(37,211,102,.24);
+0 0 0 24px rgba(37,211,102,.16),
+0 0 65px rgba(37,211,102,.30),
+0 18px 55px rgba(0,0,0,.30);
 
 }
 
 100%{
 
 box-shadow:
-0 12px 30px rgba(0,0,0,.24),
-0 0 18px rgba(37,211,102,.14);
+0 0 0 18px rgba(37,211,102,.10),
+0 0 40px rgba(37,211,102,.18),
+0 18px 45px rgba(0,0,0,.28);
 
 }
 
@@ -655,8 +688,8 @@ bottom:20px;
 }
 
 .floating-whatsapp img{
-width:52px;
-height:52px;
+width:50px;
+height:50px;
 }
 
 }
@@ -784,7 +817,7 @@ Many homeowners are surprised by what can appear during a professional in-home w
 </h3>
 
 <p>
-Some water sources may contain heavy metals and other unwanted contaminants that homeowners may want to reduce.
+Some water sources may contain heavy metals and other unwanted contaminants that homeowners cannot see with the naked eye.
 </p>
 
 </div>
@@ -915,7 +948,7 @@ WHATSAPP
 <footer class="footer">
 
 <img 
-src="../media/shared/images/logo-white-premium.png"
+src="../media/shared/images/logo-white-premium.PNG"
 alt="Legacy Water USA"
 class="footer-logo">
 
@@ -945,7 +978,7 @@ href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20th
 target="_blank">
 
 <img 
-src="../media/shared/images/whatsapp-clean.png"
+src="../media/shared/images/whatsapp-premium.svg"
 alt="WhatsApp">
 
 </a>
