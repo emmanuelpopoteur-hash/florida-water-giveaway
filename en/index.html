@@ -5,12 +5,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<title>Legacy Water USA</title>
+<title>Legacy Water USA | Free Water Analysis</title>
+
+<link rel="icon" type="image/png" href="../media/shared/images/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -25,500 +26,910 @@ scroll-behavior:smooth;
 }
 
 body{
-
-font-family:'Poppins',sans-serif;
-
-background:
-linear-gradient(
-rgba(10,25,40,.40),
-rgba(10,25,40,.50)
-),
-url('/media/shared/fondo-agua.png');
-
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-
-color:white;
-
+font-family:'Montserrat',sans-serif;
+background:#f5f9fc;
+color:#102030;
 overflow-x:hidden;
-
 }
 
+a{
+text-decoration:none;
+}
 
-/* =========================
-   HERO SECTION
-========================= */
+img{
+display:block;
+max-width:100%;
+}
+
+/* HERO */
 
 .hero{
 
-min-height:100vh;
+min-height:100svh;
 
-padding:40px 22px 100px;
+background:
+linear-gradient(rgba(6,15,24,.36),rgba(6,15,24,.60)),
+url('../media/shared/images/fondo-agua.png');
+
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
 
 display:flex;
-flex-direction:column;
-align-items:center;
+justify-content:center;
+align-items:flex-start;
 
-text-align:center;
+padding:28px 22px 60px;
 
-backdrop-filter:blur(2px);
-
+position:relative;
+overflow:hidden;
 }
 
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+backdrop-filter:blur(2px);
+}
 
-/* =========================
-   LOGO
-========================= */
+.hero-content{
 
-.logo-container{
+position:relative;
+z-index:2;
 
 width:100%;
+max-width:560px;
+}
+
+/* LOGO WRAPPER */
+
+.logo-wrapper{
 
 display:flex;
 justify-content:center;
 
-margin-bottom:28px;
+margin-bottom:26px;
 
 }
+
+/* LOGO */
 
 .hero-logo{
 
 width:100%;
-max-width:390px;
+max-width:420px;
 
 position:relative;
 
-transition:all .5s ease;
+filter:
+drop-shadow(0 10px 25px rgba(0,0,0,.14));
 
-animation: luxuryGlow 7s ease-in-out infinite;
+animation: luxuryGlow 8s ease-in-out infinite;
 
 }
 
-/* LUXURY GLOW EFFECT */
+/* PREMIUM LUXURY LOGO EFFECT */
 
 @keyframes luxuryGlow{
 
 0%{
 
+filter:
+drop-shadow(0 10px 25px rgba(0,0,0,.14))
+drop-shadow(0 0 0 rgba(120,220,255,0));
+
 transform:scale(1);
-
-filter:
-drop-shadow(0 0 0 rgba(255,255,255,0))
-drop-shadow(0 0 0 rgba(80,190,255,0));
-
-opacity:1;
-
-}
-
-25%{
-
-transform:scale(1.012);
-
-filter:
-drop-shadow(0 0 10px rgba(255,255,255,.22))
-drop-shadow(0 0 18px rgba(120,220,255,.18));
 
 }
 
 50%{
 
-transform:scale(1.02);
-
 filter:
-drop-shadow(0 0 18px rgba(255,255,255,.38))
-drop-shadow(0 0 34px rgba(120,220,255,.32));
+drop-shadow(0 14px 32px rgba(0,0,0,.18))
+drop-shadow(0 0 10px rgba(160,240,255,.22))
+drop-shadow(0 0 22px rgba(255,255,255,.10));
 
-}
-
-75%{
-
-transform:scale(1.012);
-
-filter:
-drop-shadow(0 0 10px rgba(255,255,255,.20))
-drop-shadow(0 0 20px rgba(120,220,255,.18));
+transform:scale(1.018);
 
 }
 
 100%{
 
+filter:
+drop-shadow(0 10px 25px rgba(0,0,0,.14))
+drop-shadow(0 0 0 rgba(120,220,255,0));
+
 transform:scale(1);
 
-filter:
-drop-shadow(0 0 0 rgba(255,255,255,0))
-drop-shadow(0 0 0 rgba(80,190,255,0));
-
 }
 
 }
 
+/* BADGE */
 
-/* =========================
-   PROGRAM BANNER
-========================= */
-
-.program-banner{
-
-background:#27B4F5;
-
-padding:22px 28px;
-
-border-radius:999px;
-
-font-size:16px;
-font-weight:700;
-
-width:100%;
-max-width:760px;
-
-line-height:1.45;
-
-margin-bottom:45px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.20);
-
-}
-
-
-/* =========================
-   HEADLINE
-========================= */
-
-.hero h1{
-
-font-size:clamp(54px,9vw,96px);
-
-font-weight:800;
-
-line-height:.95;
-
-letter-spacing:-2px;
-
-margin-bottom:38px;
-
-text-align:left;
-
-width:100%;
-max-width:900px;
-
-text-shadow:
-0 5px 20px rgba(0,0,0,.35);
-
-}
-
-
-/* =========================
-   DESCRIPTION
-========================= */
-
-.hero p{
-
-font-size:clamp(22px,2vw,30px);
-
-font-weight:300;
-
-line-height:1.8;
-
-max-width:900px;
-
-text-align:left;
-
-color:rgba(255,255,255,.94);
-
-text-shadow:
-0 3px 10px rgba(0,0,0,.25);
-
-}
-
-
-/* =========================
-   CTA BUTTON
-========================= */
-
-.cta-button{
-
-margin-top:45px;
-
-display:inline-flex;
-align-items:center;
-justify-content:center;
-
-padding:26px 42px;
-
-background:#27B4F5;
-
-color:white;
-
-font-size:22px;
-font-weight:700;
-
-border-radius:999px;
-
-text-decoration:none;
-
-width:100%;
-max-width:760px;
-
-transition:all .35s ease;
-
-box-shadow:
-0 10px 35px rgba(0,0,0,.25);
-
-}
-
-.cta-button:hover{
-
-transform:translateY(-3px);
-
-background:#1EA7E8;
-
-box-shadow:
-0 14px 45px rgba(0,0,0,.35);
-
-}
-
-
-/* =========================
-   WHATSAPP FLOAT BUTTON
-========================= */
-
-.whatsapp-float{
-
-position:fixed;
-
-right:22px;
-bottom:24px;
-
-width:110px;
-height:110px;
-
-border-radius:50%;
+.badge{
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-background:
-radial-gradient(circle at top left,
-#45ff7a,
-#25D366 70%);
+background:#20b8ff;
 
-border:10px solid rgba(255,255,255,.92);
+padding:16px 20px;
+
+border-radius:999px;
+
+font-size:15px;
+font-weight:800;
+
+color:white;
+
+margin-bottom:28px;
+
+text-align:center;
 
 box-shadow:
-0 0 0 12px rgba(37,211,102,.12),
-0 12px 35px rgba(0,0,0,.35),
-0 0 30px rgba(37,211,102,.35);
+0 10px 35px rgba(0,170,255,.28);
 
-z-index:9999;
+}
 
-transition:all .35s ease;
+/* TITLE */
 
+.hero h1{
+
+font-size:clamp(56px,11vw,110px);
+
+line-height:.94;
+
+font-weight:900;
+
+letter-spacing:-4px;
+
+color:white;
+
+margin-bottom:30px;
+
+text-shadow:
+0 10px 30px rgba(0,0,0,.18);
+
+}
+
+/* TEXT */
+
+.hero p{
+
+font-size:18px;
+
+line-height:1.8;
+
+color:rgba(255,255,255,.95);
+
+margin-bottom:34px;
+
+text-shadow:
+0 4px 20px rgba(0,0,0,.15);
+
+}
+
+/* BUTTON */
+
+.cta-btn{
+
+display:block;
+
+width:100%;
+
+background:#20b8ff;
+
+color:white;
+
+text-align:center;
+
+padding:22px 20px;
+
+border-radius:22px;
+
+font-size:20px;
+font-weight:800;
+
+transition:.35s;
+
+box-shadow:
+0 14px 35px rgba(0,170,255,.28);
+
+}
+
+.cta-btn:hover{
+
+transform:translateY(-4px);
+
+background:#0ca9f3;
+}
+
+/* SECTION */
+
+.section{
+padding:100px 25px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+}
+
+.section-title{
+font-size:48px;
+font-weight:900;
+text-align:center;
+margin-bottom:20px;
+letter-spacing:-2px;
+line-height:1.05;
+}
+
+.section-subtitle{
+font-size:18px;
+text-align:center;
+max-width:850px;
+margin:auto;
+line-height:1.9;
+color:#5c6976;
+margin-bottom:70px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:32px;
+}
+
+.card{
+background:white;
+border-radius:28px;
+overflow:hidden;
+box-shadow:0 10px 35px rgba(0,0,0,.08);
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:260px;
+object-fit:cover;
+}
+
+.card-content{
+padding:32px;
+}
+
+.card h3{
+font-size:28px;
+font-weight:800;
+margin-bottom:16px;
+line-height:1.2;
+}
+
+.card p{
+font-size:16px;
+line-height:1.9;
+color:#5c6976;
+}
+
+/* DARK SECTION */
+
+.dark-section{
+background:#07131f;
+color:white;
+}
+
+.dark-section .section-title,
+.dark-section .section-subtitle{
+color:white;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:60px;
+}
+
+.stat-box{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+padding:40px;
+border-radius:24px;
+text-align:center;
 backdrop-filter:blur(6px);
+}
+
+.stat-number{
+font-size:54px;
+font-weight:900;
+color:#20b8ff;
+margin-bottom:12px;
+}
+
+.stat-label{
+font-size:16px;
+line-height:1.8;
+color:#d9e6f2;
+}
+
+/* ALERT */
+
+.alert-box{
+background:#fff8e6;
+border-left:6px solid #ffbb00;
+padding:35px;
+border-radius:20px;
+margin-top:55px;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.alert-box h3{
+font-size:28px;
+margin-bottom:16px;
+font-weight:800;
+}
+
+.alert-box p{
+line-height:1.9;
+color:#5d6976;
+font-size:16px;
+}
+
+/* CTA SECTION */
+
+.cta-section{
+padding:110px 25px;
+background:white;
+text-align:center;
+}
+
+.cta-section h2{
+font-size:56px;
+font-weight:900;
+margin-bottom:25px;
+letter-spacing:-2px;
+line-height:1.05;
+}
+
+.cta-section p{
+max-width:850px;
+margin:auto;
+font-size:19px;
+line-height:1.9;
+color:#5d6976;
+margin-bottom:50px;
+}
+
+.button-group{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.whatsapp-btn{
+background:#25D366;
+box-shadow:0 10px 30px rgba(37,211,102,.25);
+}
+
+.whatsapp-btn:hover{
+background:#1ebe5d;
+}
+
+/* FOOTER */
+
+.footer{
+background:#07131f;
+padding:60px 25px;
+text-align:center;
+color:#d9e6f2;
+}
+
+.footer-logo{
+width:220px;
+margin:auto;
+margin-bottom:25px;
+opacity:.95;
+}
+
+.footer h3{
+font-size:30px;
+margin-bottom:16px;
+font-weight:900;
+}
+
+.footer p{
+margin-bottom:12px;
+line-height:1.9;
+}
+
+/* FLOATING WHATSAPP */
+
+.floating-whatsapp{
+
+position:fixed;
+
+right:20px;
+bottom:22px;
+
+width:112px;
+height:112px;
+
+background:#25D366;
+
+border-radius:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+z-index:999;
+
+overflow:hidden;
+
+border:8px solid rgba(255,255,255,.95);
+
+box-shadow:
+0 0 0 18px rgba(37,211,102,.12),
+0 0 45px rgba(37,211,102,.38),
+0 18px 45px rgba(0,0,0,.28);
+
+transition:.35s ease;
 
 animation: whatsappGlow 5s ease-in-out infinite;
 
 }
 
-.whatsapp-float:hover{
+.floating-whatsapp:hover{
 
-transform:scale(1.08);
+transform:scale(1.06);
 
 box-shadow:
-0 0 0 16px rgba(37,211,102,.18),
-0 15px 40px rgba(0,0,0,.45),
-0 0 40px rgba(37,211,102,.45);
+0 0 0 22px rgba(37,211,102,.16),
+0 0 60px rgba(37,211,102,.45),
+0 22px 55px rgba(0,0,0,.30);
 
 }
 
-.whatsapp-float img{
+.whatsapp-svg{
 
-width:48px;
-height:48px;
+width:54px;
+height:54px;
 
 filter:
-drop-shadow(0 3px 5px rgba(0,0,0,.35));
+drop-shadow(0 2px 4px rgba(0,0,0,.18));
 
 }
 
-/* SOFT PREMIUM GLOW */
+/* PREMIUM WHATSAPP GLOW */
 
 @keyframes whatsappGlow{
 
 0%{
 
 box-shadow:
-0 0 0 12px rgba(37,211,102,.10),
-0 12px 35px rgba(0,0,0,.35),
-0 0 25px rgba(37,211,102,.18);
+0 0 0 18px rgba(37,211,102,.10),
+0 0 35px rgba(37,211,102,.22),
+0 18px 45px rgba(0,0,0,.25);
 
 }
 
 50%{
 
 box-shadow:
-0 0 0 18px rgba(37,211,102,.18),
-0 12px 40px rgba(0,0,0,.42),
-0 0 40px rgba(37,211,102,.35);
+0 0 0 24px rgba(37,211,102,.16),
+0 0 55px rgba(37,211,102,.42),
+0 22px 55px rgba(0,0,0,.30);
 
 }
 
 100%{
 
 box-shadow:
-0 0 0 12px rgba(37,211,102,.10),
-0 12px 35px rgba(0,0,0,.35),
-0 0 25px rgba(37,211,102,.18);
+0 0 0 18px rgba(37,211,102,.10),
+0 0 35px rgba(37,211,102,.22),
+0 18px 45px rgba(0,0,0,.25);
 
 }
 
 }
 
+/* DESKTOP */
 
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:768px){
+@media(min-width:768px){
 
 .hero{
 
-padding:34px 20px 120px;
+align-items:center;
 
+padding:60px 40px 90px;
+}
+
+.hero-content{
+max-width:680px;
 }
 
 .hero-logo{
-
-max-width:340px;
-
-}
-
-.program-banner{
-
-font-size:15px;
-
-padding:20px;
-
-margin-bottom:38px;
-
+max-width:520px;
 }
 
 .hero h1{
 
-font-size:64px;
+font-size:clamp(70px,7vw,108px);
 
-letter-spacing:-3px;
+line-height:1;
 
-margin-bottom:28px;
-
+letter-spacing:-5px;
 }
 
 .hero p{
 
 font-size:20px;
-
-line-height:1.7;
-
 }
 
-.cta-button{
+.cta-btn{
+
+display:inline-block;
+
+width:auto;
+
+padding:20px 34px;
 
 font-size:20px;
-
-padding:24px 28px;
+}
 
 }
 
-.whatsapp-float{
+/* MOBILE */
 
-width:105px;
-height:105px;
+@media(max-width:768px){
 
-right:18px;
-bottom:22px;
+.section{
+padding:80px 22px;
+}
+
+.section-title{
+font-size:42px;
+}
+
+.section-subtitle{
+font-size:17px;
+line-height:1.8;
+}
+
+.card img{
+height:220px;
+}
+
+.cta-section h2{
+font-size:44px;
+}
+
+.footer-logo{
+width:180px;
+}
+
+.hero-logo{
+max-width:380px;
+}
+
+.hero h1{
+font-size:clamp(54px,12vw,76px);
+line-height:.95;
+}
+
+.hero p{
+font-size:17px;
+line-height:1.75;
+}
+
+.floating-whatsapp{
+
+width:104px;
+height:104px;
+
+right:16px;
+bottom:20px;
 
 }
 
-.whatsapp-float img{
+.whatsapp-svg{
 
-width:46px;
-height:46px;
+width:50px;
+height:50px;
 
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
+<!-- HERO -->
+
 <section class="hero">
 
-<div class="logo-container">
+<div class="hero-content">
 
-<img
-src="/media/shared/legacy-water-logo-transparent.png"
+<div class="logo-wrapper">
+
+<img 
+src="../media/shared/images/legacy-water-logo-transparent.png"
 alt="Legacy Water USA"
-class="hero-logo"
-/>
+class="hero-logo">
 
 </div>
 
-
-<div class="program-banner">
-
+<div class="badge">
 ⚠️ Florida Homeowner Water Awareness Program
-
 </div>
-
 
 <h1>
-
-Your home's<br>
-water could be<br>
-affecting your<br>
-family… even if<br>
-it looks clean.
-
+Your home's water could be affecting your family... even if it looks clean.
 </h1>
 
-
 <p>
-
 Many Florida families only discover hidden water quality concerns after completing a real in-home water analysis.
 
 From chlorine taste to hard water buildup and invisible contaminants, your water may impact your daily life more than you realize.
 
 We are currently offering FREE homeowner water testing in selected Florida areas.
-
 </p>
 
-
-<a href="#contact" class="cta-button">
-
+<a href="https://docs.google.com/forms/" class="cta-btn">
 CHECK MY WATER FOR FREE
-
 </a>
+
+</div>
 
 </section>
 
+<!-- PROBLEMS -->
 
+<section class="section">
 
-<!-- WHATSAPP BUTTON -->
+<div class="container">
 
-<a
-href="https://wa.me/14075555555"
-class="whatsapp-float"
-target="_blank"
+<h2 class="section-title">
+What Florida families are discovering in their water
+</h2>
+
+<p class="section-subtitle">
+Even when water appears clean, many homeowners still notice chlorine taste, strange odors, mineral buildup, dry skin, stains and other common water quality concerns.
+</p>
+
+<div class="grid">
+
+<div class="card">
+
+<img src="../media/shared/images/family-drinking-water.png">
+
+<div class="card-content">
+
+<h3>
+⚠️ Chlorine & Chemicals
+</h3>
+
+<p>
+Treated water may contain chlorine and other chemicals that many families prefer to reduce inside their homes.
+</p>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="../media/shared/images/water-faucet.png">
+
+<div class="card-content">
+
+<h3>
+⚠️ Hard Water Minerals
+</h3>
+
+<p>
+Hard water can create stains, buildup and long-term effects on appliances, plumbing and surfaces.
+</p>
+
+</div>
+</div>
+
+<div class="card">
+
+<img src="../media/shared/images/fondo-agua.png">
+
+<div class="card-content">
+
+<h3>
+⚠️ Invisible Contaminants
+</h3>
+
+<p>
+Many homeowners are surprised by what can appear during a professional in-home water analysis.
+</p>
+
+</div>
+</div>
+
+</div>
+
+<div class="alert-box">
+
+<h3>
+🚨 FREE homeowner water testing available this week
+</h3>
+
+<p>
+We are currently helping local homeowners better understand their water quality through FREE in-home water analysis appointments.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SOCIAL PROOF -->
+
+<section class="section dark-section">
+
+<div class="container">
+
+<h2 class="section-title">
+More families are checking their water
+</h2>
+
+<p class="section-subtitle">
+Local homeowners are becoming more aware of what their families consume every single day.
+</p>
+
+<div class="stats">
+
+<div class="stat-box">
+
+<div class="stat-number">
+100+
+</div>
+
+<div class="stat-label">
+Water tests completed in Florida areas
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+523
+</div>
+
+<div class="stat-label">
+PPM found during some local water tests
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+FREE
+</div>
+
+<div class="stat-label">
+Complete in-home water analysis
+</div>
+
+</div>
+
+<div class="stat-box">
+
+<div class="stat-number">
+30
+</div>
+
+<div class="stat-label">
+Minutes average appointment time
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta-section">
+
+<h2>
+Find out what's really in your home's water
+</h2>
+
+<p>
+Most homeowners never truly know what is inside their water until they perform a real test.
+
+You can now request a FREE analysis with no obligation.
+</p>
+
+<div class="button-group">
+
+<a href="https://docs.google.com/forms/" class="cta-btn">
+REQUEST FREE ANALYSIS
+</a>
+
+<a 
+href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis"
+class="cta-btn whatsapp-btn">
+
+WHATSAPP
+
+</a>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+<img 
+src="../media/shared/images/genera legacy-water-logo-white-premium.png"
+alt="Legacy Water USA"
+class="footer-logo">
+
+<h3>
+Legacy Water USA
+</h3>
+
+<p>
+Florida Homeowner Water Awareness Program
+</p>
+
+<p>
+📍 Florida, USA
+</p>
+
+<p>
+📱 (407) 257-6911
+</p>
+
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+
+<a 
+class="floating-whatsapp"
+href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20the%20free%20water%20analysis"
+target="_blank">
+
+<svg
+xmlns="http://www.w3.org/2000/svg"
+viewBox="0 0 32 32"
+fill="white"
+class="whatsapp-svg"
 >
 
-<img
-src="/media/shared/whatsapp-icon.png"
-alt="WhatsApp"
-/>
+<path d="M19.11 17.2c-.29-.15-1.72-.85-1.99-.95-.27-.1-.47-.15-.67.15-.2.29-.77.95-.95 1.14-.17.2-.35.22-.64.08-.29-.15-1.24-.46-2.36-1.48-.88-.79-1.47-1.77-1.64-2.06-.17-.29-.02-.44.13-.59.13-.13.29-.35.44-.52.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.79.37-.27.29-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.35.19 1.86.12.57-.08 1.72-.7 1.96-1.37.24-.67.24-1.24.17-1.37-.07-.12-.27-.19-.56-.34z"/>
+
+<path d="M16.02 3C8.83 3 3 8.82 3 16c0 2.54.74 5.01 2.13 7.13L3 29l6.05-1.98A12.93 12.93 0 0016.02 29C23.2 29 29 23.18 29 16S23.2 3 16.02 3zm0 23.67c-2.13 0-4.22-.57-6.04-1.66l-.43-.26-3.59 1.18 1.17-3.5-.28-.45a10.6 10.6 0 01-1.63-5.67c0-5.9 4.8-10.7 10.71-10.7 2.85 0 5.53 1.1 7.55 3.13A10.62 10.62 0 0126.73 16c0 5.9-4.8 10.67-10.71 10.67z"/>
+
+</svg>
 
 </a>
 
