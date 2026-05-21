@@ -83,6 +83,20 @@ width:100%;
 max-width:650px;
 }
 
+/* LOGO WRAPPER */
+
+.logo-wrapper{
+
+position:relative;
+
+display:flex;
+justify-content:center;
+
+overflow:hidden;
+
+margin-bottom:26px;
+}
+
 /* LOGO */
 
 .hero-logo{
@@ -90,49 +104,98 @@ max-width:650px;
 width:100%;
 max-width:420px;
 
-margin:0 auto 26px auto;
+position:relative;
 
 filter:
-drop-shadow(0 10px 25px rgba(0,0,0,.18));
+drop-shadow(0 12px 35px rgba(0,0,0,.16));
 
-animation: floatLogo 5s ease-in-out infinite;
-
-transform-origin:center;
+animation: premiumFloat 8s ease-in-out infinite;
 
 }
 
-/* PREMIUM LOGO ANIMATION */
+/* PREMIUM FLOAT */
 
-@keyframes floatLogo{
+@keyframes premiumFloat{
 
 0%{
-transform:translateY(0px) scale(1);
+transform:translateY(0px);
 filter:
-drop-shadow(0 10px 25px rgba(0,0,0,.18));
+drop-shadow(0 12px 35px rgba(0,0,0,.16));
 }
 
 25%{
-transform:translateY(-4px) scale(1.01);
+transform:translateY(-3px);
 filter:
-drop-shadow(0 16px 30px rgba(0,0,0,.22));
+drop-shadow(0 18px 40px rgba(0,0,0,.18));
 }
 
 50%{
-transform:translateY(-8px) scale(1.02);
+transform:translateY(-6px);
 filter:
-drop-shadow(0 22px 40px rgba(32,184,255,.22));
+drop-shadow(0 22px 45px rgba(32,184,255,.18));
 }
 
 75%{
-transform:translateY(-4px) scale(1.01);
+transform:translateY(-3px);
 filter:
-drop-shadow(0 16px 30px rgba(0,0,0,.22));
+drop-shadow(0 18px 40px rgba(0,0,0,.18));
 }
 
 100%{
-transform:translateY(0px) scale(1);
+transform:translateY(0px);
 filter:
-drop-shadow(0 10px 25px rgba(0,0,0,.18));
+drop-shadow(0 12px 35px rgba(0,0,0,.16));
+}
+
+}
+
+/* SHIMMER EFFECT */
+
+.logo-wrapper::after{
+
+content:'';
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:60%;
+height:100%;
+
+background:
+linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.45),
+transparent
+);
+
+transform:skewX(-20deg);
+
+animation: shimmer 7s infinite;
+
+}
+
+@keyframes shimmer{
+
+0%{
+left:-120%;
+opacity:0;
+}
+
+15%{
+opacity:1;
+}
+
+40%{
+left:140%;
+opacity:0;
+}
+
+100%{
+left:140%;
+opacity:0;
 }
 
 }
@@ -478,7 +541,7 @@ box-shadow:
 0 0 35px rgba(37,211,102,.55),
 0 14px 35px rgba(0,0,0,.25);
 
-animation: whatsappPulse 2.8s infinite;
+animation: whatsappGlow 4s ease-in-out infinite;
 
 transition:.3s;
 
@@ -486,7 +549,7 @@ transition:.3s;
 
 .floating-whatsapp:hover{
 
-transform:scale(1.08);
+transform:scale(1.06);
 
 box-shadow:
 0 0 0 14px rgba(37,211,102,.15),
@@ -505,20 +568,35 @@ drop-shadow(0 4px 10px rgba(0,0,0,.2));
 
 }
 
-/* WHATSAPP PULSE */
+/* PREMIUM WHATSAPP EFFECT */
 
-@keyframes whatsappPulse{
+@keyframes whatsappGlow{
 
 0%{
-transform:scale(1);
+
+box-shadow:
+0 0 0 10px rgba(37,211,102,.10),
+0 0 25px rgba(37,211,102,.45),
+0 14px 35px rgba(0,0,0,.20);
+
 }
 
 50%{
-transform:scale(1.05);
+
+box-shadow:
+0 0 0 16px rgba(37,211,102,.18),
+0 0 45px rgba(37,211,102,.70),
+0 18px 45px rgba(0,0,0,.28);
+
 }
 
 100%{
-transform:scale(1);
+
+box-shadow:
+0 0 0 10px rgba(37,211,102,.10),
+0 0 25px rgba(37,211,102,.45),
+0 14px 35px rgba(0,0,0,.20);
+
 }
 
 }
@@ -540,7 +618,6 @@ max-width:760px;
 
 .hero-logo{
 max-width:520px;
-margin-bottom:32px;
 }
 
 .badge{
@@ -655,10 +732,14 @@ height:48px;
 
 <div class="hero-content">
 
+<div class="logo-wrapper">
+
 <img 
 src="../media/shared/images/legacy-water-logo-transparent.png"
 alt="Legacy Water USA"
 class="hero-logo">
+
+</div>
 
 <div class="badge">
 ⚠️ Florida Homeowner Water Awareness Program
