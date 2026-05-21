@@ -7,7 +7,7 @@
 
 <title>Legacy Water USA | Free Water Analysis</title>
 
-<link rel="icon" type="image/png" href="../media/shared/images/favicon.png">
+<link rel="icon" type="image/png" href="/media/shared/images/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -49,7 +49,7 @@ min-height:100svh;
 
 background:
 linear-gradient(rgba(6,15,24,.36),rgba(6,15,24,.60)),
-url('../media/shared/images/fondo-agua.png');
+url('/media/shared/images/fondo-agua.png');
 
 background-size:cover;
 background-position:center;
@@ -81,7 +81,7 @@ width:100%;
 max-width:560px;
 }
 
-/* LOGO WRAPPER */
+/* LOGO */
 
 .logo-wrapper{
 
@@ -91,8 +91,6 @@ justify-content:center;
 margin-bottom:26px;
 
 }
-
-/* HERO LOGO */
 
 .hero-logo{
 
@@ -108,7 +106,7 @@ animation: luxuryGlow 10s ease-in-out infinite;
 
 }
 
-/* PREMIUM GLOW */
+/* LUXURY GLOW */
 
 @keyframes luxuryGlow{
 
@@ -120,28 +118,12 @@ drop-shadow(0 0 0 rgba(120,220,255,0));
 
 }
 
-25%{
-
-filter:
-drop-shadow(0 12px 28px rgba(0,0,0,.16))
-drop-shadow(0 0 10px rgba(120,220,255,.12));
-
-}
-
 50%{
 
 filter:
 drop-shadow(0 14px 32px rgba(0,0,0,.18))
-drop-shadow(0 0 22px rgba(120,220,255,.30))
-drop-shadow(0 0 40px rgba(255,255,255,.10));
-
-}
-
-75%{
-
-filter:
-drop-shadow(0 12px 28px rgba(0,0,0,.16))
-drop-shadow(0 0 10px rgba(120,220,255,.12));
+drop-shadow(0 0 18px rgba(120,220,255,.24))
+drop-shadow(0 0 28px rgba(255,255,255,.10));
 
 }
 
@@ -439,69 +421,32 @@ background:#1ebe5d;
 /* FOOTER */
 
 .footer{
-background:#03101d;
-padding:70px 25px;
+background:#07131f;
+padding:60px 25px;
 text-align:center;
 color:#d9e6f2;
-position:relative;
-overflow:hidden;
-}
-
-.footer::before{
-content:"";
-position:absolute;
-inset:0;
-background:
-radial-gradient(circle at center, rgba(0,160,255,.12), transparent 60%);
-pointer-events:none;
 }
 
 .footer-logo{
 width:260px;
 margin:auto;
-margin-bottom:28px;
-position:relative;
-z-index:2;
+margin-bottom:25px;
 
 filter:
-drop-shadow(0 0 22px rgba(80,200,255,.28));
+drop-shadow(0 0 20px rgba(255,255,255,.18));
 
-animation: footerGlow 8s ease-in-out infinite;
-}
-
-@keyframes footerGlow{
-
-0%{
-filter:
-drop-shadow(0 0 12px rgba(80,200,255,.16));
-}
-
-50%{
-filter:
-drop-shadow(0 0 28px rgba(80,200,255,.35))
-drop-shadow(0 0 45px rgba(255,255,255,.08));
-}
-
-100%{
-filter:
-drop-shadow(0 0 12px rgba(80,200,255,.16));
-}
-
+opacity:1;
 }
 
 .footer h3{
 font-size:30px;
 margin-bottom:16px;
 font-weight:900;
-position:relative;
-z-index:2;
 }
 
 .footer p{
 margin-bottom:12px;
 line-height:1.9;
-position:relative;
-z-index:2;
 }
 
 /* FLOATING WHATSAPP */
@@ -529,26 +474,33 @@ z-index:999;
 border:8px solid rgba(255,255,255,.95);
 
 box-shadow:
-0 0 0 18px rgba(37,211,102,.10),
-0 0 45px rgba(37,211,102,.25),
+0 0 0 18px rgba(37,211,102,.12),
+0 0 45px rgba(37,211,102,.38),
 0 18px 45px rgba(0,0,0,.28);
 
-animation: whatsappGlow 5s ease-in-out infinite;
+transition:.35s ease;
+
+animation: whatsappGlow 4s ease-in-out infinite;
 
 }
 
 .floating-whatsapp:hover{
 
-transform:scale(1.06);
+transform:scale(1.08);
 
 }
 
 .floating-whatsapp img{
 
-width:54px;
-height:54px;
+width:48px;
+height:48px;
 
 object-fit:contain;
+
+display:block;
+
+filter:
+drop-shadow(0 2px 4px rgba(0,0,0,.18));
 
 }
 
@@ -560,8 +512,8 @@ object-fit:contain;
 
 box-shadow:
 0 0 0 18px rgba(37,211,102,.10),
-0 0 40px rgba(37,211,102,.18),
-0 18px 45px rgba(0,0,0,.28);
+0 0 35px rgba(37,211,102,.22),
+0 18px 45px rgba(0,0,0,.25);
 
 }
 
@@ -569,8 +521,8 @@ box-shadow:
 
 box-shadow:
 0 0 0 24px rgba(37,211,102,.16),
-0 0 65px rgba(37,211,102,.30),
-0 18px 55px rgba(0,0,0,.30);
+0 0 55px rgba(37,211,102,.42),
+0 22px 55px rgba(0,0,0,.30);
 
 }
 
@@ -578,8 +530,8 @@ box-shadow:
 
 box-shadow:
 0 0 0 18px rgba(37,211,102,.10),
-0 0 40px rgba(37,211,102,.18),
-0 18px 45px rgba(0,0,0,.28);
+0 0 35px rgba(37,211,102,.22),
+0 18px 45px rgba(0,0,0,.25);
 
 }
 
@@ -685,8 +637,8 @@ bottom:20px;
 }
 
 .floating-whatsapp img{
-width:50px;
-height:50px;
+width:44px;
+height:44px;
 }
 
 }
@@ -706,7 +658,7 @@ height:50px;
 <div class="logo-wrapper">
 
 <img 
-src="../media/shared/images/legacy-water-logo-transparent.png"
+src="/media/shared/images/legacy-water-logo-transparent.png"
 alt="Legacy Water USA"
 class="hero-logo">
 
@@ -754,7 +706,7 @@ Even when water appears clean, many homeowners still notice chlorine taste, stra
 
 <div class="card">
 
-<img src="../media/shared/images/family-drinking-water.png">
+<img src="/media/shared/images/family-drinking-water.png">
 
 <div class="card-content">
 
@@ -771,7 +723,7 @@ Treated water may contain chlorine and other chemicals that many families prefer
 
 <div class="card">
 
-<img src="../media/shared/images/water-faucet.png">
+<img src="/media/shared/images/water-faucet.png">
 
 <div class="card-content">
 
@@ -788,7 +740,7 @@ Hard water can create stains, buildup and long-term effects on appliances, plumb
 
 <div class="card">
 
-<img src="../media/shared/images/invisible-contaminants.png">
+<img src="/media/shared/images/invisible-contaminants.png">
 
 <div class="card-content">
 
@@ -802,35 +754,6 @@ Many homeowners are surprised by what can appear during a professional in-home w
 
 </div>
 </div>
-
-<div class="card">
-
-<img src="../media/shared/images/heavy-metals.png">
-
-<div class="card-content">
-
-<h3>
-⚠️ Heavy Metals
-</h3>
-
-<p>
-Some water sources may contain heavy metals and other unwanted contaminants that homeowners cannot see with the naked eye.
-</p>
-
-</div>
-</div>
-
-</div>
-
-<div class="alert-box">
-
-<h3>
-🚨 FREE homeowner water testing available this week
-</h3>
-
-<p>
-We are currently helping local homeowners better understand their water quality through FREE in-home water analysis appointments.
-</p>
 
 </div>
 
@@ -945,7 +868,7 @@ WHATSAPP
 <footer class="footer">
 
 <img 
-src="../media/shared/images/logo-white-premium.png"
+src="/media/shared/images/logo-white-premium.png"
 alt="Legacy Water USA"
 class="footer-logo">
 
@@ -975,7 +898,7 @@ href="https://wa.me/14072576911?text=Hello%20I%20want%20information%20about%20th
 target="_blank">
 
 <img 
-src="../media/shared/images/whatsapp-premium.svg"
+src="/media/shared/images/whatsapp-icon.png"
 alt="WhatsApp">
 
 </a>
