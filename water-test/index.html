@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free In-Home Water Test | Legacy Water USA</title>
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="0;url=https://check.legacywaterusa.com/water-test">
+  <link rel="canonical" href="https://check.legacywaterusa.com/water-test">
+  <style>body{font:18px/1.5 system-ui,sans-serif;max-width:36rem;margin:12vh auto;padding:1.5rem;color:#16334a}a{color:#087b95}</style>
+</head>
+<body>
+  <h1>Legacy Water USA</h1>
+  <p>Opening your free in-home water test…</p>
+  <p><a id="continue" href="https://check.legacywaterusa.com/water-test">Continue to the water test</a></p>
+  <script>
+    const destination = new URL("https://check.legacywaterusa.com/water-test");
+    destination.search = window.location.search;
+    document.getElementById("continue").href = destination.href;
+    window.location.replace(destination.href);
+  </script>
+</body>
+</html>
