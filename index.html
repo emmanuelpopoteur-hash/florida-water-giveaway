@@ -81,6 +81,16 @@
     .uses{display:grid;grid-template-columns:1fr 1fr;gap:13px}
     .uses span{background:#fff;border:1px solid #d4e8e2;border-radius:13px;padding:18px;font-size:14px;font-weight:700}
     .uses span::before{content:"•";color:#0c9b95;font-size:20px;margin-right:9px}
+    .faq-section{padding:84px 0;background:#fff}
+    .faq-section h2{font-size:clamp(30px,3.6vw,44px);line-height:1.2;letter-spacing:-.045em;margin:15px 0 32px}
+    .faq-list{max-width:830px}
+    .faq-list details{border-top:1px solid #dce8e6;padding:21px 0}
+    .faq-list details:last-child{border-bottom:1px solid #dce8e6}
+    .faq-list summary{cursor:pointer;font:700 17px/1.4 Manrope,sans-serif;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .faq-list summary::-webkit-details-marker{display:none}
+    .faq-list summary::after{content:"+";color:#0c8b87;font-size:24px;line-height:1;flex:none}
+    .faq-list details[open] summary::after{content:"−"}
+    .faq-list p{color:#55707b;line-height:1.7;font-size:15px;max-width:690px;margin:13px 0 0}
     .cta-section{background:var(--navy);color:#fff;text-align:center;padding:86px 0}
     .cta-section h2{font-size:clamp(32px,4vw,50px);letter-spacing:-.05em;margin:14px 0}
     .cta-section p{color:#bcd3d9;line-height:1.65;max-width:620px;margin:0 auto 26px}
@@ -88,7 +98,7 @@
     .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
     footer a{color:#c9e6e5}
     @media(max-width:950px){.nav{display:none}.header-inner{justify-content:space-between}.header-actions{margin-left:auto}.hero-inner{gap:25px}.visual{min-height:430px}}
-    @media(max-width:700px){.container{width:min(100% - 36px,1160px)}.header-inner{min-height:72px;gap:10px}.brand-mark{width:38px;height:38px;font-size:22px}.brand-name{font-size:12px}.brand-name small{font-size:7px}.header-actions{gap:8px}.header-cta{display:none}.language button{padding:6px 8px}.hero-inner{grid-template-columns:1fr;padding:66px 0 70px;gap:40px;min-height:0}.hero-copy{font-size:16px}.visual{min-height:350px}.visual h2{font-size:25px}.section{padding:70px 0}.grid-3,.band-inner{grid-template-columns:1fr}.band{padding:65px 0}.band-inner{gap:28px}.footer-inner{display:block}.footer-inner span{display:block;margin-bottom:12px}}
+    @media(max-width:700px){.container{width:min(100% - 36px,1160px)}.header-inner{min-height:72px;gap:10px}.brand-mark{width:38px;height:38px;font-size:22px}.brand-name{font-size:12px}.brand-name small{font-size:7px}.header-actions{gap:8px}.header-cta{display:none}.language button{padding:6px 8px}.hero-inner{grid-template-columns:1fr;padding:66px 0 70px;gap:40px;min-height:0}.hero-copy{font-size:16px}.visual{min-height:350px}.visual h2{font-size:25px}.section{padding:70px 0}.grid-3,.band-inner{grid-template-columns:1fr}.band{padding:65px 0}.band-inner{gap:28px}.faq-section{padding:65px 0}.faq-list summary{font-size:16px}.footer-inner{display:block}.footer-inner span{display:block;margin-bottom:12px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.header-cta,.button{transition:none}}
   </style>
 </head>
@@ -152,6 +162,17 @@
       <div class="container band-inner">
         <div><span class="eyebrow" data-en="Everyday water" data-es="El agua de cada día">Everyday water</span><h2 data-en="It touches more of your home than you think." data-es="El agua forma parte de todo tu hogar.">It touches more of your home than you think.</h2><a class="guide-link" href="/sistemas/" data-en="Explore water treatment options ↗" data-es="Conoce las opciones para tu agua ↗">Explore water treatment options ↗</a></div>
         <div class="uses"><span data-en="Drinking & cooking" data-es="Beber y cocinar">Drinking & cooking</span><span data-en="Bathing & showering" data-es="Baño y ducha">Bathing & showering</span><span data-en="Laundry & cleaning" data-es="Lavado y limpieza">Laundry & cleaning</span><span data-en="Fixtures & appliances" data-es="Grifos y electrodomésticos">Fixtures & appliances</span></div>
+      </div>
+    </section>
+    <section class="faq-section" id="questions">
+      <div class="container">
+        <span class="eyebrow" style="color:#0c8584" data-en="Before you request" data-es="Antes de solicitar">Before you request</span>
+        <h2 data-en="A few answers up front." data-es="Respuestas claras desde el inicio.">A few answers up front.</h2>
+        <div class="faq-list">
+          <details><summary data-en="Is the in-home water test really free?" data-es="¿La prueba de agua en casa es gratis de verdad?">Is the in-home water test really free?</summary><p data-en="Yes. The initial in-home water test costs $0 and there is no obligation to buy a system." data-es="Sí. La prueba inicial en casa cuesta $0 y no tienes obligación de comprar un sistema.">Yes. The initial in-home water test costs $0 and there is no obligation to buy a system.</p></details>
+          <details><summary data-en="What will I learn during the visit?" data-es="¿Qué voy a saber durante la visita?">What will I learn during the visit?</summary><p data-en="We explain the characteristics we actually measure in your home's water and discuss possible next steps. A home visit does not test for every contaminant; concerns such as lead, PFAS, or bacteria require appropriate specific testing." data-es="Te explicamos las características que realmente medimos en el agua de tu casa y conversamos sobre posibles próximos pasos. Una visita no analiza todos los contaminantes; inquietudes como plomo, PFAS o bacterias requieren pruebas específicas adecuadas.">We explain the characteristics we actually measure in your home's water and discuss possible next steps. A home visit does not test for every contaminant; concerns such as lead, PFAS, or bacteria require appropriate specific testing.</p></details>
+          <details><summary data-en="Is my preferred day and time a confirmed appointment?" data-es="¿El día y horario que elijo ya son una cita confirmada?">Is my preferred day and time a confirmed appointment?</summary><p data-en="No. They help us understand your availability. After you submit your request, a specialist will contact you to confirm the visit." data-es="No. Nos ayudan a conocer tu disponibilidad. Después de enviar la solicitud, un especialista se comunicará contigo para confirmar la visita.">No. They help us understand your availability. After you submit your request, a specialist will contact you to confirm the visit.</p></details>
+        </div>
       </div>
     </section>
     <section class="cta-section" id="service-area">
