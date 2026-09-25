@@ -156,7 +156,15 @@
       document.querySelectorAll("[data-en][data-es]").forEach(element => {
         element.textContent = element.dataset[language];
       });
-      document.querySelectorAll('a[href^="/water-test"]').forEach(link => { link.href = "/water-test?lang=" + language; });
+      const campaign = new URLSearchParams(window.location.search);
+      document.querySelectorAll('a[href^="/water-test"]').forEach(link => {
+        const target = new URL('/water-test', window.location.origin);
+        target.searchParams.set('lang', language);
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(key => {
+          if (campaign.has(key)) target.searchParams.set(key, campaign.get(key).slice(0, 100));
+        });
+        link.href = target.pathname + target.search;
+      });
       buttons.en.setAttribute("aria-pressed", String(language === "en"));
       buttons.es.setAttribute("aria-pressed", String(language === "es"));
       document.title = language === "es" ? "Legacy Water USA | Conoce tu agua" : "Legacy Water USA | Know Your Water";
