@@ -73,6 +73,8 @@
     .band{background:#e4f1ee;padding:75px 0}
     .band-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
     .band h2{font-size:clamp(31px,3.3vw,45px);line-height:1.2;letter-spacing:-.045em;margin:0}
+    .guide-link{display:inline-flex;margin-top:24px;font-size:14px;font-weight:800;color:#086d70;border-bottom:1px solid currentColor;padding-bottom:5px}
+    .guide-link:hover,.guide-link:focus-visible{color:#034a4f}
     .uses{display:grid;grid-template-columns:1fr 1fr;gap:13px}
     .uses span{background:#fff;border:1px solid #d4e8e2;border-radius:13px;padding:18px;font-size:14px;font-weight:700}
     .uses span::before{content:"•";color:#0c9b95;font-size:20px;margin-right:9px}
@@ -143,7 +145,7 @@
     </section>
     <section class="band" id="your-water">
       <div class="container band-inner">
-        <div><span class="eyebrow" data-en="Everyday water" data-es="El agua de cada día">Everyday water</span><h2 data-en="It touches more of your home than you think." data-es="El agua forma parte de todo tu hogar.">It touches more of your home than you think.</h2></div>
+        <div><span class="eyebrow" data-en="Everyday water" data-es="El agua de cada día">Everyday water</span><h2 data-en="It touches more of your home than you think." data-es="El agua forma parte de todo tu hogar.">It touches more of your home than you think.</h2><a class="guide-link" href="/sistemas/" data-en="Explore water treatment options ↗" data-es="Conoce las opciones para tu agua ↗">Explore water treatment options ↗</a></div>
         <div class="uses"><span data-en="Drinking & cooking" data-es="Beber y cocinar">Drinking & cooking</span><span data-en="Bathing & showering" data-es="Baño y ducha">Bathing & showering</span><span data-en="Laundry & cleaning" data-es="Lavado y limpieza">Laundry & cleaning</span><span data-en="Fixtures & appliances" data-es="Grifos y electrodomésticos">Fixtures & appliances</span></div>
       </div>
     </section>
@@ -166,8 +168,8 @@
         element.textContent = element.dataset[language];
       });
       const campaign = new URLSearchParams(window.location.search);
-      document.querySelectorAll('a[href^="/water-test"]').forEach(link => {
-        const target = new URL('/water-test', window.location.origin);
+      document.querySelectorAll('a[href^="/water-test"], a[href^="/sistemas/"]').forEach(link => {
+        const target = new URL(link.pathname, window.location.origin);
         target.searchParams.set('lang', language);
         ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(key => {
           if (campaign.has(key)) target.searchParams.set(key, campaign.get(key).slice(0, 100));
