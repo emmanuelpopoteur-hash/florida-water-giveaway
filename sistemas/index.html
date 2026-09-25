@@ -89,6 +89,7 @@
         if(link.dataset.product){
           const campaign=(current.get("utm_campaign")||"site").trim().slice(0,55);
           target.searchParams.set("utm_campaign",campaign+"__"+link.dataset.product);
+          target.searchParams.set("interest",link.dataset.product);
         }
         link.href=target.pathname+target.search;
       });
