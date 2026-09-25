@@ -1,821 +1,173 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-
-<meta charset="UTF-8" />
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
-/>
-
-<title>Legacy Water USA</title>
-
-<meta
-name="description"
-content="Florida homeowner water awareness, free water testing, giveaways, rewards and premium water solutions for your family."
-/>
-
-<link
-rel="icon"
-type="image/png"
-href="media/shared/images/favicon.png"
-/>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin
->
-
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-rel="stylesheet"
->
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-
-font-family:'Poppins',sans-serif;
-
-background:#000;
-
-color:#fff;
-
-overflow-x:hidden;
-
-}
-
-/* VIDEO */
-
-.hero-video{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-object-fit:cover;
-
-z-index:-3;
-
-filter:
-brightness(1.02)
-contrast(1.03)
-saturate(1.04);
-
-transform:scale(1.05);
-
-animation:
-slowZoom 20s ease-in-out infinite alternate;
-
-}
-
-/* OVERLAY */
-
-.video-overlay{
-
-position:fixed;
-
-top:0;
-left:0;
-
-width:100%;
-height:100%;
-
-z-index:-2;
-
-background:
-
-linear-gradient(
-180deg,
-rgba(0,0,0,.22) 0%,
-rgba(0,0,0,.18) 28%,
-rgba(0,0,0,.26) 60%,
-rgba(0,0,0,.34) 100%
-);
-
-backdrop-filter:
-blur(1px);
-
-}
-
-/* PAGE */
-
-.page{
-
-position:relative;
-z-index:2;
-
-min-height:100vh;
-
-padding:
-60px
-24px
-80px;
-
-}
-
-/* HERO */
-
-.hero{
-
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-
-text-align:center;
-
-padding-top:30px;
-
-}
-
-/* LOGO */
-
-.logo{
-
-width:420px;
-
-max-width:90%;
-
-margin-bottom:34px;
-
-opacity:1;
-
-filter:
-
-brightness(1.18)
-contrast(1.1)
-
-drop-shadow(0 0 10px rgba(255,255,255,.18))
-drop-shadow(0 0 30px rgba(50,150,255,.12))
-drop-shadow(0 10px 40px rgba(0,0,0,.28));
-
-animation:fadeIn 1.2s ease;
-
-}
-
-/* TITLE */
-
-.hero h1{
-
-font-size:96px;
-
-font-weight:900;
-
-line-height:.92;
-
-letter-spacing:-4px;
-
-margin-bottom:26px;
-
-text-shadow:
-0 10px 40px rgba(0,0,0,.30);
-
-}
-
-/* SUBTITLE */
-
-.subtitle{
-
-max-width:920px;
-
-font-size:25px;
-
-line-height:1.75;
-
-font-weight:300;
-
-color:rgba(255,255,255,.96);
-
-margin-bottom:38px;
-
-text-shadow:
-0 5px 25px rgba(0,0,0,.22);
-
-}
-
-/* FEATURES */
-
-.features{
-
-display:flex;
-flex-wrap:wrap;
-
-justify-content:center;
-
-gap:18px;
-
-margin-bottom:60px;
-
-max-width:1000px;
-
-}
-
-.feature-pill{
-
-padding:
-16px
-28px;
-
-border-radius:999px;
-
-background:
-rgba(255,255,255,.16);
-
-backdrop-filter:blur(10px);
-
-border:
-1px solid rgba(255,255,255,.22);
-
-font-size:17px;
-font-weight:600;
-
-color:white;
-
-box-shadow:
-0 5px 20px rgba(0,0,0,.12);
-
-}
-
-/* GRID */
-
-.language-grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:30px;
-
-width:100%;
-
-max-width:1200px;
-
-}
-
-/* CARD */
-
-.language-card{
-
-position:relative;
-
-overflow:hidden;
-
-border-radius:42px;
-
-padding:
-70px
-50px;
-
-text-decoration:none;
-
-color:white;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(24,24,28,.54),
-rgba(10,10,14,.42)
-);
-
-backdrop-filter:blur(14px);
-
-border:
-2px solid rgba(95,190,255,.68);
-
-box-shadow:
-0 20px 70px rgba(0,0,0,.18),
-0 0 25px rgba(50,150,255,.08);
-
-transition:.4s ease;
-
-min-height:420px;
-
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-
-text-align:center;
-
-}
-
-/* CARD HOVER */
-
-.language-card:hover{
-
-transform:
-translateY(-8px)
-scale(1.01);
-
-border-color:#8ad4ff;
-
-box-shadow:
-0 25px 90px rgba(0,0,0,.22),
-0 0 40px rgba(80,180,255,.18);
-
-}
-
-/* LIGHT EFFECT */
-
-.language-card::before{
-
-content:"";
-
-position:absolute;
-
-top:-120px;
-right:-120px;
-
-width:340px;
-height:340px;
-
-border-radius:50%;
-
-background:
-
-radial-gradient(
-circle,
-rgba(255,255,255,.06),
-transparent 70%
-);
-
-}
-
-/* FLAG */
-
-.flag{
-
-font-size:68px;
-
-margin-bottom:24px;
-
-}
-
-/* CARD TITLE */
-
-.language-card h2{
-
-font-size:82px;
-
-font-weight:900;
-
-line-height:.92;
-
-letter-spacing:-3px;
-
-margin-bottom:24px;
-
-text-shadow:
-0 8px 25px rgba(0,0,0,.18);
-
-}
-
-/* CARD TEXT */
-
-.language-card p{
-
-font-size:24px;
-
-line-height:1.75;
-
-font-weight:300;
-
-max-width:520px;
-
-color:rgba(255,255,255,.94);
-
-margin-bottom:40px;
-
-}
-
-/* BUTTON */
-
-.enter-btn{
-
-display:inline-flex;
-
-align-items:center;
-justify-content:center;
-
-padding:
-20px
-42px;
-
-border-radius:999px;
-
-background:
-
-linear-gradient(
-135deg,
-#1da1ff,
-#49c8ff
-);
-
-color:white;
-
-font-size:18px;
-font-weight:700;
-
-letter-spacing:.4px;
-
-text-decoration:none;
-
-box-shadow:
-0 10px 35px rgba(0,150,255,.22);
-
-transition:.3s ease;
-
-}
-
-.enter-btn:hover{
-
-transform:scale(1.05);
-
-box-shadow:
-0 15px 50px rgba(0,150,255,.35);
-
-}
-
-/* FOOTER */
-
-.footer{
-
-margin-top:70px;
-
-text-align:center;
-
-font-size:15px;
-
-font-weight:300;
-
-color:rgba(255,255,255,.75);
-
-}
-
-/* ANIMATIONS */
-
-@keyframes fadeIn{
-
-from{
-
-opacity:0;
-
-transform:
-translateY(20px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:
-translateY(0);
-
-}
-
-}
-
-@keyframes slowZoom{
-
-from{
-transform:scale(1.05);
-}
-
-to{
-transform:scale(1.10);
-}
-
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.page{
-
-padding:
-42px
-18px
-60px;
-
-}
-
-/* LOGO */
-
-.logo{
-
-width:320px;
-
-margin-bottom:28px;
-
-}
-
-/* TITLE */
-
-.hero h1{
-
-font-size:68px;
-
-letter-spacing:-3px;
-
-margin-bottom:22px;
-
-}
-
-/* SUBTITLE */
-
-.subtitle{
-
-font-size:19px;
-
-line-height:1.7;
-
-margin-bottom:34px;
-
-}
-
-/* FEATURES */
-
-.features{
-
-gap:14px;
-
-margin-bottom:44px;
-
-}
-
-.feature-pill{
-
-font-size:15px;
-
-padding:
-14px
-22px;
-
-}
-
-/* GRID */
-
-.language-grid{
-
-grid-template-columns:1fr;
-
-gap:22px;
-
-}
-
-/* CARD */
-
-.language-card{
-
-min-height:320px;
-
-padding:
-50px
-28px;
-
-border-radius:34px;
-
-}
-
-/* FLAG */
-
-.flag{
-
-font-size:54px;
-
-}
-
-/* CARD TITLE */
-
-.language-card h2{
-
-font-size:64px;
-
-}
-
-/* CARD TEXT */
-
-.language-card p{
-
-font-size:18px;
-
-line-height:1.7;
-
-}
-
-/* BUTTON */
-
-.enter-btn{
-
-padding:
-18px
-34px;
-
-font-size:16px;
-
-}
-
-/* FOOTER */
-
-.footer{
-
-margin-top:50px;
-
-font-size:14px;
-
-}
-
-}
-
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071b2a">
+  <meta name="description" content="Understand your home's water with a free in-home water test from Legacy Water USA, serving Central Florida homeowners.">
+  <title>Legacy Water USA | Know Your Water</title>
+  <link rel="icon" type="image/png" href="/media/shared/images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--navy:#071b2a;--deep:#0d2b3b;--teal:#58d1c8;--mint:#c8f3ed;--paper:#f4f7f5;--ink:#183343}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--paper)}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .container{width:min(1160px,calc(100% - 48px));margin:auto}
+    .site-header{position:relative;z-index:10;background:var(--navy);color:#fff;border-bottom:1px solid #ffffff20}
+    .header-inner{display:flex;align-items:center;gap:30px;min-height:88px}
+    .brand{display:flex;align-items:center;gap:14px;flex:0 0 auto}
+    .brand-mark{width:49px;height:49px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#80e7de,#1c8f9b);color:#06313b;font-size:28px;font-weight:800;line-height:1}
+    .brand-name{font:800 18px/1.07 Manrope,sans-serif;letter-spacing:.12em}
+    .brand-name small{display:block;margin-top:4px;font-size:10px;letter-spacing:.3em;color:#a7d7d4}
+    .nav{display:flex;align-items:center;gap:25px;margin-left:auto;font-size:13px;font-weight:700;color:#d8e8ec}
+    .nav a:hover,.nav a:focus-visible{color:var(--teal)}
+    .header-actions{display:flex;align-items:center;gap:16px}
+    .language{display:flex;align-items:center;gap:2px;border:1px solid #ffffff5c;border-radius:999px;padding:3px;white-space:nowrap}
+    .language button{border:0;background:none;color:#afc8cf;padding:7px 9px;border-radius:999px;cursor:pointer;font-size:12px;font-weight:800}
+    .language button[aria-pressed="true"]{background:#ecfbf7;color:#07313b}
+    .header-cta,.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;font-size:13px;font-weight:800;letter-spacing:.02em;transition:transform .2s,background .2s}
+    .header-cta{background:var(--teal);color:#092a34;padding:15px 21px;white-space:nowrap}
+    .header-cta:hover,.button:hover{transform:translateY(-2px)}
+    .hero{background:radial-gradient(circle at 74% 35%,#194a55 0%,transparent 37%),linear-gradient(125deg,#071b2a,#0b2e3e 70%,#134c54);color:#fff;overflow:hidden}
+    .hero-inner{min-height:625px;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:55px;padding:85px 0 95px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:#8fe4d9}
+    .eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2,h3{font-family:Manrope,sans-serif}
+    h1{font-size:clamp(47px,5.5vw,78px);line-height:1.06;letter-spacing:-.055em;margin:25px 0}
+    h1 em{font-style:normal;color:var(--teal)}
+    .hero-copy{max-width:520px;font-size:18px;line-height:1.75;color:#c7dbe0;margin-bottom:30px}
+    .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:20px}
+    .button{padding:18px 26px;background:var(--teal);color:#092a34}
+    .text-link{font-size:14px;font-weight:800;color:#e0f5f3;border-bottom:1px solid #95cfc9;padding-bottom:5px}
+    .assurance{font-size:12px;color:#a4c2c8;margin:18px 0 0}
+    .visual{position:relative;min-height:480px;border:1px solid #b1e9df39;border-radius:28px;background:linear-gradient(180deg,#07253630,#071b2a9e),url("/media/shared/images/fondo-agua.png") center/cover,#123f4a;box-shadow:0 40px 80px #0005;overflow:hidden}
+    .visual::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,#061c29d9)}
+    .visual-content{position:absolute;z-index:1;left:30px;right:30px;bottom:28px}
+    .visual-kicker{font-size:11px;font-weight:800;letter-spacing:.19em;color:#a6eee7}
+    .visual h2{font-size:31px;line-height:1.2;letter-spacing:-.035em;margin:12px 0}
+    .visual p{color:#d0e6e7;line-height:1.6;margin:0}
+    .section{padding:96px 0}
+    .section-title{max-width:720px;margin-bottom:38px}
+    .section-title h2{font-size:clamp(31px,3.4vw,46px);line-height:1.18;letter-spacing:-.045em;margin:14px 0}
+    .section-title p{color:#55707b;line-height:1.7}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{padding:31px;border-radius:22px;background:#fff;border:1px solid #dde8e7;box-shadow:0 10px 30px #0b354008}
+    .card .number{color:#0d8e8c;font:800 13px Manrope,sans-serif;letter-spacing:.15em}
+    .card h3{font-size:20px;letter-spacing:-.03em;margin:29px 0 11px}
+    .card p{font-size:14px;line-height:1.7;color:#5a727b;margin:0}
+    .band{background:#e4f1ee;padding:75px 0}
+    .band-inner{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+    .band h2{font-size:clamp(31px,3.3vw,45px);line-height:1.2;letter-spacing:-.045em;margin:0}
+    .uses{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    .uses span{background:#fff;border:1px solid #d4e8e2;border-radius:13px;padding:18px;font-size:14px;font-weight:700}
+    .uses span::before{content:"•";color:#0c9b95;font-size:20px;margin-right:9px}
+    .cta-section{background:var(--navy);color:#fff;text-align:center;padding:86px 0}
+    .cta-section h2{font-size:clamp(32px,4vw,50px);letter-spacing:-.05em;margin:14px 0}
+    .cta-section p{color:#bcd3d9;line-height:1.65;max-width:620px;margin:0 auto 26px}
+    footer{background:#061723;color:#9fb9c1;padding:30px 0;font-size:12px}
+    .footer-inner{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    footer a{color:#c9e6e5}
+    @media(max-width:950px){.nav{display:none}.header-inner{justify-content:space-between}.header-actions{margin-left:auto}.hero-inner{gap:25px}.visual{min-height:430px}}
+    @media(max-width:700px){.container{width:min(100% - 36px,1160px)}.header-inner{min-height:72px;gap:10px}.brand-mark{width:38px;height:38px;font-size:22px}.brand-name{font-size:12px}.brand-name small{font-size:7px}.header-actions{gap:8px}.header-cta{display:none}.language button{padding:6px 8px}.hero-inner{grid-template-columns:1fr;padding:66px 0 70px;gap:40px;min-height:0}.hero-copy{font-size:16px}.visual{min-height:350px}.visual h2{font-size:25px}.section{padding:70px 0}.grid-3,.band-inner{grid-template-columns:1fr}.band{padding:65px 0}.band-inner{gap:28px}.footer-inner{display:block}.footer-inner span{display:block;margin-bottom:12px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.header-cta,.button{transition:none}}
+  </style>
 </head>
-
 <body>
-
-<!-- VIDEO -->
-
-<video
-class="hero-video"
-autoplay
-muted
-loop
-playsinline
-webkit-playsinline
->
-
-<source
-src="media/shared/video/legacy-water-hero-video.mov"
-type="video/mp4"
-/>
-
-</video>
-
-<!-- OVERLAY -->
-
-<div class="video-overlay"></div>
-
-<!-- PAGE -->
-
-<div class="page">
-
-<!-- HERO -->
-
-<section class="hero">
-
-<!-- LOGO -->
-
-<img
-src="media/shared/images/legacy-water-logo-transparent.png"
-alt="Legacy Water USA"
-class="logo"
->
-
-<!-- TITLE -->
-
-<h1>
-Choose<br>
-Your<br>
-Language
-</h1>
-
-<!-- SUBTITLE -->
-
-<p class="subtitle">
-
-Florida homeowner water awareness,
-free water testing,
-rewards,
-giveaways and premium water solutions
-for your family.
-
-</p>
-
-<!-- FEATURE PILLS -->
-
-<div class="features">
-
-<div class="feature-pill">
-✔ Free Water Testing
-</div>
-
-<div class="feature-pill">
-✔ Florida Homeowners
-</div>
-
-<div class="feature-pill">
-✔ Family Safe Water
-</div>
-
-<div class="feature-pill">
-✔ Premium Water Solutions
-</div>
-
-</div>
-
-<!-- LANGUAGE GRID -->
-
-<div class="language-grid">
-
-<!-- ENGLISH -->
-
-<a
-href="en/"
-class="language-card"
->
-
-<div class="flag">
-🇺🇸
-</div>
-
-<h2>
-English
-</h2>
-
-<p>
-
-Explore homeowner promotions,
-free water analysis,
-giveaways,
-rewards and premium water solutions.
-
-</p>
-
-<span class="enter-btn">
-
-CONTINUE IN ENGLISH
-
-</span>
-
-</a>
-
-<!-- SPANISH -->
-
-<a
-href="es/"
-class="language-card"
->
-
-<div class="flag">
-🇪🇸
-</div>
-
-<h2>
-Español
-</h2>
-
-<p>
-
-Descubre promociones,
-pruebas de agua GRATIS,
-regalos,
-recompensas y soluciones premium para tu hogar.
-
-</p>
-
-<span class="enter-btn">
-
-CONTINUAR EN ESPAÑOL
-
-</span>
-
-</a>
-
-</div>
-
-<!-- FOOTER -->
-
-<div class="footer">
-
-Legacy Water USA © 2026
-
-</div>
-
-</section>
-
-</div>
-
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="Legacy Water USA home"><span class="brand-mark" aria-hidden="true">≈</span><span class="brand-name">LEGACY<small>WATER USA</small></span></a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#your-water" data-en="Your Water" data-es="Tu agua">Your Water</a>
+        <a href="#how-it-works" data-en="How It Works" data-es="Cómo funciona">How It Works</a>
+        <a href="#service-area" data-en="Service Area" data-es="Área de servicio">Service Area</a>
+      </nav>
+      <div class="header-actions">
+        <div class="language" role="group" aria-label="Language / Idioma">
+          <button type="button" id="en" aria-label="English" aria-pressed="true">EN</button>
+          <button type="button" id="es" aria-label="Español" aria-pressed="false">ES</button>
+        </div>
+        <a class="header-cta" href="/water-test" data-en="Free Water Test ↗" data-es="Prueba gratis ↗">Free Water Test ↗</a>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <span class="eyebrow" data-en="For Florida homeowners" data-es="Para propietarios en Florida">For Florida homeowners</span>
+          <h1><span data-en="Know your water." data-es="Conoce tu agua.">Know your water.</span><br><em data-en="Feel at home." data-es="Cuida tu hogar.">Feel at home.</em></h1>
+          <p class="hero-copy" data-en="Understand the water your family uses every day. We bring a complimentary water test to your home, explain what we find, and help you explore your options." data-es="Entiende el agua que tu familia usa cada día. Llevamos una prueba gratuita a tu hogar, te explicamos los resultados y te ayudamos a conocer tus opciones.">Understand the water your family uses every day. We bring a complimentary water test to your home, explain what we find, and help you explore your options.</p>
+          <div class="hero-actions">
+            <a class="button" href="/water-test" data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
+            <a class="text-link" href="#how-it-works" data-en="See how it works" data-es="Descubre cómo funciona">See how it works</a>
+          </div>
+          <p class="assurance" data-en="$0 test  •  No obligation  •  At your home" data-es="Prueba $0  •  Sin compromiso  •  En tu hogar">$0 test  •  No obligation  •  At your home</p>
+        </div>
+        <div class="visual" role="img" aria-label="Water at home">
+          <div class="visual-content">
+            <span class="visual-kicker" data-en="A CLEARER PICTURE" data-es="MÁS CLARIDAD">A CLEARER PICTURE</span>
+            <h2 data-en="Your home's water, explained." data-es="Entiende el agua de tu hogar.">Your home's water, explained.</h2>
+            <p data-en="A local conversation about what matters in your home." data-es="Una conversación cercana sobre lo que importa en tu hogar.">A local conversation about what matters in your home.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-title">
+          <span class="eyebrow" data-en="Simple from the start" data-es="Fácil desde el comienzo">Simple from the start</span>
+          <h2 data-en="Three steps to understand your water." data-es="Tres pasos para entender tu agua.">Three steps to understand your water.</h2>
+          <p data-en="No guesswork. Just a convenient visit and a clear explanation." data-es="Una visita conveniente y una explicación clara, sin adivinar.">No guesswork. Just a convenient visit and a clear explanation.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card"><span class="number">01</span><h3 data-en="Request a visit" data-es="Solicita una visita">Request a visit</h3><p data-en="Share your ZIP code and the day and time that work for you." data-es="Indica tu código postal y el día y horario que prefieres.">Share your ZIP code and the day and time that work for you.</p></article>
+          <article class="card"><span class="number">02</span><h3 data-en="See your water" data-es="Conoce tu agua">See your water</h3><p data-en="We test water in your home and walk you through the findings." data-es="Probamos el agua en tu hogar y te explicamos lo que encontramos.">We test water in your home and walk you through the findings.</p></article>
+          <article class="card"><span class="number">03</span><h3 data-en="Choose what's next" data-es="Decide el próximo paso">Choose what's next</h3><p data-en="Ask questions and explore solutions only if they make sense for you." data-es="Haz preguntas y conoce soluciones solo si tienen sentido para ti.">Ask questions and explore solutions only if they make sense for you.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="band" id="your-water">
+      <div class="container band-inner">
+        <div><span class="eyebrow" data-en="Everyday water" data-es="El agua de cada día">Everyday water</span><h2 data-en="It touches more of your home than you think." data-es="El agua forma parte de todo tu hogar.">It touches more of your home than you think.</h2></div>
+        <div class="uses"><span data-en="Drinking & cooking" data-es="Beber y cocinar">Drinking & cooking</span><span data-en="Bathing & showering" data-es="Baño y ducha">Bathing & showering</span><span data-en="Laundry & cleaning" data-es="Lavado y limpieza">Laundry & cleaning</span><span data-en="Fixtures & appliances" data-es="Grifos y electrodomésticos">Fixtures & appliances</span></div>
+      </div>
+    </section>
+    <section class="cta-section" id="service-area">
+      <div class="container">
+        <span class="eyebrow" data-en="Central Florida" data-es="Florida Central">Central Florida</span>
+        <h2 data-en="Start with a free in-home water test." data-es="Comienza con una prueba de agua gratis en casa.">Start with a free in-home water test.</h2>
+        <p data-en="Serving homeowners in St. Cloud, Kissimmee, Orlando, and surrounding areas. Enter your ZIP code to request a visit." data-es="Atendemos a propietarios en St. Cloud, Kissimmee, Orlando y áreas cercanas. Ingresa tu código postal para solicitar una visita.">Serving homeowners in St. Cloud, Kissimmee, Orlando, and surrounding areas. Enter your ZIP code to request a visit.</p>
+        <a class="button" href="/water-test" data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
+      </div>
+    </section>
+  </main>
+  <footer><div class="container footer-inner"><span>© 2026 Legacy Water USA</span><span data-en="Helping Florida homeowners understand their water." data-es="Ayudando a familias en Florida a conocer su agua.">Helping Florida homeowners understand their water.</span></div></footer>
+  <script>
+    const buttons = {en: document.getElementById("en"), es: document.getElementById("es")};
+    function setLanguage(language) {
+      if (!buttons[language]) return;
+      document.documentElement.lang = language;
+      document.querySelectorAll("[data-en][data-es]").forEach(element => {
+        element.textContent = element.dataset[language];
+      });
+      buttons.en.setAttribute("aria-pressed", String(language === "en"));
+      buttons.es.setAttribute("aria-pressed", String(language === "es"));
+      document.title = language === "es" ? "Legacy Water USA | Conoce tu agua" : "Legacy Water USA | Know Your Water";
+      document.querySelector('meta[name="description"]').content = language === "es"
+        ? "Conoce el agua de tu hogar con una prueba de agua gratis de Legacy Water USA en Florida Central."
+        : "Understand your home's water with a free in-home water test from Legacy Water USA, serving Central Florida homeowners.";
+      try { localStorage.setItem("legacy-language", language); } catch (_) {}
+    }
+    buttons.en.addEventListener("click", () => setLanguage("en"));
+    buttons.es.addEventListener("click", () => setLanguage("es"));
+    try { setLanguage(localStorage.getItem("legacy-language") === "es" ? "es" : "en"); }
+    catch (_) { setLanguage("en"); }
+  </script>
 </body>
 </html>
