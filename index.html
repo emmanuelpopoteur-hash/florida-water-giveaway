@@ -166,7 +166,12 @@
     }
     buttons.en.addEventListener("click", () => setLanguage("en"));
     buttons.es.addEventListener("click", () => setLanguage("es"));
-    try { setLanguage(localStorage.getItem("legacy-language") === "es" ? "es" : "en"); }
+    try {
+      const requested = new URLSearchParams(window.location.search).get("lang");
+      setLanguage(requested === "es" || requested === "en"
+        ? requested
+        : localStorage.getItem("legacy-language") === "es" ? "es" : "en");
+    }
     catch (_) { setLanguage("en"); }
   </script>
 </body>
