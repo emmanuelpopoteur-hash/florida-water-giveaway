@@ -27,6 +27,8 @@
     .ewg{background:white;padding:65px 0}.ewg h2{font-size:clamp(28px,3.3vw,42px);margin:13px 0}.ewg p{max-width:850px;color:var(--muted);line-height:1.7}.ewg-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:25px 0}.ewg-list a{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:17px 20px;border:1px solid #dce8e6;border-radius:13px;color:#076d70;font-weight:700}.ewg-list a:hover,.ewg-list a:focus-visible{border-color:#0a8582;background:#f2faf8}.ewg-list small{color:#536b75;font-weight:500;text-align:right}.ewg-note{border-left:4px solid #0a8582;padding:2px 0 2px 17px;font-size:14px}
     .zip-form{display:flex;gap:10px;max-width:490px;margin:25px 0 8px}.zip-form input{min-width:0;flex:1;padding:15px 18px;border:1px solid #aacac7;border-radius:12px;font:700 17px "DM Sans",sans-serif;color:var(--ink)}.zip-form button{border:0;border-radius:12px;background:#087b78;color:white;padding:0 23px;cursor:pointer;font-weight:800}.zip-form button:hover,.zip-form button:focus-visible{background:#045b5b}.zip-result{border:1px solid #b8d9d3;background:#f3faf8;border-radius:15px;padding:22px;margin:16px 0 25px;max-width:850px}.zip-result[hidden]{display:none}.zip-result h3{font-size:21px;margin:0 0 9px}.zip-result p{margin:0 0 11px}.zip-result a{color:#076d70;font-weight:800;text-decoration:underline;text-underline-offset:3px}.zip-result .zip-source{display:block;margin-top:12px;font-size:13px}
     .zip-measures{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.zip-measure{background:white;border:1px solid #d2e7e2;border-radius:12px;padding:16px}.zip-measure strong{display:block;margin-bottom:6px}.zip-measure span{display:block;font-size:14px;line-height:1.55}.zip-result .zip-context{font-size:13px;margin-top:12px;color:#536b75}
+    .system-picker{display:block;margin:15px 0 20px;font-size:14px;font-weight:800}.system-picker select{display:block;width:100%;max-width:490px;margin-top:8px;padding:14px 15px;border:1px solid #aacac7;border-radius:10px;background:white;color:var(--ink);font:600 15px "DM Sans",sans-serif}
+    .change-system{display:block;border:0;background:none;color:#076d70;text-decoration:underline;text-underline-offset:3px;font-weight:800;cursor:pointer;padding:4px 0 12px}
     .steps{background:#e3f2ee;padding:70px 0}.steps h2{font-size:clamp(28px,3.3vw,42px);margin:13px 0 30px}.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.step strong{color:#087b78;font:800 13px Manrope,sans-serif}.step h3{font-size:19px;margin:13px 0 9px}.step p{font-size:14px;color:#46636e;line-height:1.7;margin:0}.well{background:#fff;padding:63px 0}.well-inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px;align-items:start}.well h2{font-size:clamp(28px,3vw,39px);line-height:1.2;margin:13px 0}.well p{color:var(--muted);line-height:1.75;margin:0 0 18px}.well a{color:#076d70;font-weight:800;text-decoration:underline;text-underline-offset:4px}
     .cta{background:var(--navy);color:white;text-align:center;padding:76px 0}.cta h2{font-size:clamp(30px,4vw,48px);margin:15px 0}.cta p{color:#bdd3d9;max-width:640px;line-height:1.7;margin:0 auto 25px}.button{display:inline-flex;background:var(--teal);color:#082a34;border-radius:50px;padding:17px 27px;font-size:14px;font-weight:800}.button:hover,.button:focus-visible{background:#91e9df}.related{display:block;margin-top:19px;color:#c5eae7;font-size:13px;font-weight:700;text-decoration:underline;text-underline-offset:4px}
     footer{background:#061723;color:#a6c0c6;padding:28px 0;font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -87,11 +89,20 @@
       "34787":{name:"Orange County Utilities — South",id:"FL3484119",above:12,total:29,year:2024},
       "32712":{name:"Orange County Utilities — South",id:"FL3484119",above:12,total:29,year:2024}
     };
+    const systemCatalog={
+      "FL3491373":{name:"City of St. Cloud",id:"FL3491373",above:5,total:11},
+      "FL3490751":zipSystems["34744"],
+      "FL3480962":zipSystems["32801"],
+      "FL3484132":{name:"Orange County Utilities — East",id:"FL3484132",above:3,total:11,year:2024},
+      "FL3484119":zipSystems["34787"],
+      "FL3481546":{name:"Orange County Utilities — West",id:"FL3481546",above:6,total:19,year:2024}
+    };
+    let selectedSystemId="";
     const zipForm=document.getElementById("zip-form"),zipInput=document.getElementById("zip-input"),zipResult=document.getElementById("zip-result");
     function showZipResult(){
       const zip=zipInput.value.trim(),language=document.documentElement.lang;
       if(!/^[0-9]{5}$/.test(zip))return;
-      const system=zipSystems[zip],ewgSearch="https://www.ewg.org/tapwater/search-results.php?zip5="+zip;
+      const system=zipSystems[zip]||(selectedSystemId?systemCatalog[selectedSystemId]:null),manual=!!system&&!zipSystems[zip],ewgSearch="https://www.ewg.org/tapwater/search-results.php?zip5="+zip;
       zipResult.replaceChildren();
       const heading=document.createElement("h3"),detail=document.createElement("p"),source=document.createElement("a");
       if(system){
@@ -102,15 +113,23 @@
         source.href="https://www.ewg.org/tapwater/system.php?pws="+system.id;
         source.textContent=language==="es"?"Fuente: ficha completa de EWG ↗":"Source: full EWG record ↗";
       }else{
-        heading.textContent=language==="es"?"Aún no tenemos un resumen verificado para "+zip:"No locally verified summary for "+zip+" yet";
-        detail.textContent=language==="es"?"Consulta los sistemas que EWG asocia con este ZIP y confirma el proveedor en tu factura. No mostraremos datos de otro sistema como si fueran los tuyos.":"Check the systems EWG associates with this ZIP and confirm your provider on the bill. We will not substitute another system's data.";
+        heading.textContent=language==="es"?"Identifica el sistema para "+zip:"Identify the system for "+zip;
+        detail.textContent=language==="es"?"No podemos identificar tu proveedor solo con el ZIP. Si aparece en tu factura, selecciónalo abajo y verás sus datos aquí. La lista no indica que todos estos sistemas abastezcan tu ZIP.":"A ZIP alone does not identify your provider. If you see it on your bill, select it below to view its data here. The list does not imply that all these systems serve your ZIP.";
         source.href=ewgSearch;
-        source.textContent=language==="es"?"Buscar este ZIP en EWG ↗":"Search this ZIP on EWG ↗";
+        source.textContent=language==="es"?"Consultar más sistemas en EWG ↗":"Check more systems on EWG ↗";
       }
       source.target="_blank";source.rel="noopener noreferrer";
       const extra=document.createElement("a");extra.href=ewgSearch;extra.target="_blank";extra.rel="noopener noreferrer";extra.className="zip-source";
       extra.textContent=language==="es"?"Ver todos los sistemas asociados al ZIP en EWG ↗":"See all systems associated with this ZIP on EWG ↗";
       zipResult.append(heading,detail);
+      if(!system){
+        const picker=document.createElement("label"),select=document.createElement("select"),placeholder=document.createElement("option");
+        picker.className="system-picker";picker.textContent=language==="es"?"Nombre del sistema en tu factura":"System name on your bill";
+        placeholder.value="";placeholder.textContent=language==="es"?"Selecciona tu proveedor":"Select your provider";select.append(placeholder);
+        Object.values(systemCatalog).forEach(item=>{const option=document.createElement("option");option.value=item.id;option.textContent=item.name;select.append(option)});
+        select.addEventListener("change",()=>{selectedSystemId=select.value;showZipResult()});
+        picker.append(select);zipResult.append(picker);
+      }
       if(system?.measures){
         const measures=document.createElement("div");measures.className="zip-measures";
         system.measures.forEach(item=>{
@@ -124,13 +143,15 @@
       }
       if(system){
         const context=document.createElement("p");context.className="zip-context";
-        context.textContent=language==="es"?"Cifras históricas del sistema, no mediciones de tu grifo. La guía EWG y el límite legal son referencias diferentes. Confirma el sistema de tu vivienda en la factura.":"Historical system figures, not readings from your tap. The EWG guideline and legal limit are different benchmarks. Confirm your home's system on the bill.";
+        context.textContent=manual?(language==="es"?"Mostramos la ficha del proveedor que seleccionaste; no hemos verificado que abastezca este ZIP. Confírmalo en tu factura. Son cifras históricas del sistema, no de tu grifo.":"This is the provider you selected; we have not verified that it serves this ZIP. Confirm it on your bill. These are historical system figures, not readings from your tap."):(language==="es"?"Cifras históricas del sistema, no mediciones de tu grifo. La guía EWG y el límite legal son referencias diferentes. Confirma el sistema de tu vivienda en la factura.":"Historical system figures, not readings from your tap. The EWG guideline and legal limit are different benchmarks. Confirm your home's system on the bill.");
         zipResult.append(context);
+        if(manual){const change=document.createElement("button");change.type="button";change.className="change-system";change.textContent=language==="es"?"Cambiar proveedor":"Change provider";change.addEventListener("click",()=>{selectedSystemId="";showZipResult()});zipResult.append(change)}
       }
       zipResult.append(source);if(system)zipResult.append(extra);
       zipResult.hidden=false;
     }
     zipForm.addEventListener("submit",event=>{event.preventDefault();showZipResult()});
+    zipInput.addEventListener("input",()=>{selectedSystemId="";zipResult.hidden=true});
     buttons.en.addEventListener("click",()=>{if(!zipResult.hidden)showZipResult()});
     buttons.es.addEventListener("click",()=>{if(!zipResult.hidden)showZipResult()});
     try{const requested=new URLSearchParams(window.location.search).get("lang");setLanguage(requested==="es"||requested==="en"?requested:localStorage.getItem("legacy-language")==="es"?"es":"en")}catch(_){setLanguage("en")}
