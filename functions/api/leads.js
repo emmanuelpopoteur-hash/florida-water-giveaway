@@ -36,11 +36,13 @@ export async function onRequestPost({ request, env }) {
   const campaign = String(data.campaign ?? '').trim().replace(/[\x00-\x1f]/g, '').slice(0, 80);
   const rawInterest = String(data.product_interest ?? '').trim().toLowerCase();
   const interest = ['city_water', 'well_water', 'drinking_ro'].includes(rawInterest) ? rawInterest : null;
+  const requestId = String(data.request_id ?? '').trim();
   if (!/^(32|33|34)\d{3}$/.test(zip) ||
       !['Weekday', 'Weekend'].includes(preferredDay) ||
       !['Morning', 'Afternoon', 'Evening'].includes(preferredTime) ||
       fullName.length < 2 || fullName.length > 100 ||
-      phone.length > 24 || phone.replace(/\D/g, '').length < 10) {
+      phone.length > 24 || phone.replace(/\D/g, '').length < 10 ||
+      !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(requestId)) {
     return json({ error: 'Invalid lead details' }, 400);
   }
   if (!env.DB) {
@@ -48,18 +50,22 @@ export async function onRequestPost({ request, env }) {
     return json({ error: 'Unable to save request' }, 503);
   }
   try {
-    const id = crypto.randomUUID();
     const createdAt = new Date().toISOString();
     const write = await env.DB.prepare(
-      `INSERT INTO water_test_leads
+      `INSERT OR IGNORE INTO water_test_leads
        (id, created_at, zip, preferred_day, preferred_time, full_name, phone, source, campaign, product_interest)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    ).bind(id, createdAt, zip, preferredDay, preferredTime, fullName, phone,
+    ).bind(requestId, createdAt, zip, preferredDay, preferredTime, fullName, phone,
       `water-test-${source}`, campaign, interest).run();
-    if (!write.success || write.meta?.changes !== 1) throw new Error('D1 write not confirmed');
-    const saved = await env.DB.prepare('SELECT id FROM water_test_leads WHERE id = ?').bind(id).first();
-    if (saved?.id !== id) throw new Error('D1 readback not confirmed');
-    return json({ id, saved: true }, 201);
+    if (!write.success || ![0, 1].includes(write.meta?.changes)) throw new Error('D1 write not confirmed');
+    const saved = await env.DB.prepare('SELECT * FROM water_test_leads WHERE id = ?').bind(requestId).first();
+    if (!saved) throw new Error('D1 readback not confirmed');
+    if (saved.zip !== zip || saved.preferred_day !== preferredDay || saved.preferred_time !== preferredTime ||
+        saved.full_name !== fullName || saved.phone !== phone || saved.source !== `water-test-${source}` ||
+        saved.campaign !== campaign || saved.product_interest !== interest) {
+      return json({ error: 'Request ID already used' }, 409);
+    }
+    return json({ id: requestId, saved: true }, write.meta.changes === 1 ? 201 : 200);
   } catch (error) {
     console.error('Lead storage failed', error);
     return json({ error: 'Unable to save request' }, 503);
