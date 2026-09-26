@@ -172,7 +172,7 @@
           <button type="button" id="en" aria-label="English" aria-pressed="true">EN</button>
           <button type="button" id="es" aria-label="Español" aria-pressed="false">ES</button>
         </div>
-        <a class="header-cta" href="/water-test" data-en="Free Water Test ↗" data-es="Prueba gratis ↗">Free Water Test ↗</a>
+        <a class="header-cta" href="/check/" data-test data-en="Free Water Test ↗" data-es="Prueba gratis ↗">Free Water Test ↗</a>
       </div>
     </div>
   </header>
@@ -196,7 +196,7 @@
       <h2 data-en="What do the records show?" data-es="¿Qué aparece en los registros?">What do the records show?</h2>
       <p class="intro-text" data-en="Select the provider listed on your bill to see verified historical EWG measurements, contaminants, and potential effects when that data is available. These system records do not measure your own tap." data-es="Selecciona el proveedor de tu factura para ver mediciones históricas verificadas de EWG, contaminantes y efectos potenciales cuando tengamos esos datos. Estos registros del sistema no miden tu grifo.">Select the provider listed on your bill to see verified historical EWG measurements, contaminants, and potential effects when that data is available. These system records do not measure your own tap.</p>
       <div class="zip-result" id="zip-result" role="status" aria-live="polite" hidden></div>
-      <div class="quick-cta"><h3 data-en="Want answers about your home's water?" data-es="¿Quieres saber más sobre el agua de tu casa?">Want answers about your home's water?</h3><p data-en="Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant." data-es="Solicita una visita gratis en casa. Te explicamos los indicadores que realmente medimos y si conviene una prueba de laboratorio para algún contaminante específico.">Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant.</p><a class="button" href="https://check.legacywaterusa.com/water-test" data-test data-en="Request my free test →" data-es="Solicitar prueba gratis →">Request my free test →</a><small data-en="The request form asks for your ZIP again. $0 · No obligation." data-es="El formulario de solicitud vuelve a pedir tu ZIP. $0 · Sin compromiso.">The request form asks for your ZIP again. $0 · No obligation.</small></div>
+      <div class="quick-cta"><h3 data-en="Want answers about your home's water?" data-es="¿Quieres saber más sobre el agua de tu casa?">Want answers about your home's water?</h3><p data-en="Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant." data-es="Solicita una visita gratis en casa. Te explicamos los indicadores que realmente medimos y si conviene una prueba de laboratorio para algún contaminante específico.">Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant.</p><a class="button" href="/check/" data-test data-en="Request my free test →" data-es="Solicitar prueba gratis →">Request my free test →</a><small data-en="Your ZIP will be prefilled. Please confirm it. $0 · No obligation." data-es="Tu ZIP aparecerá en el formulario; confírmalo. $0 · Sin compromiso.">Your ZIP will be prefilled. Please confirm it. $0 · No obligation.</small></div>
     </div></section>
     <section class="section" id="how-it-works"><div class="container">
       <div class="section-title"><span class="eyebrow" style="color:#087e82" data-en="A clear path" data-es="Un camino claro">A clear path</span><h2 data-en="Three simple steps." data-es="Tres pasos sencillos.">Three simple steps.</h2><p data-en="Start with public records, then ask about the water in your own home." data-es="Empieza con registros públicos y luego conoce el agua de tu propio hogar.">Start with public records, then ask about the water in your own home.</p></div>
@@ -224,7 +224,7 @@
         <span class="eyebrow" data-en="Central Florida" data-es="Florida Central">Central Florida</span>
         <h2 data-en="Start with a free in-home water test." data-es="Comienza con una prueba de agua gratis en casa.">Start with a free in-home water test.</h2>
         <p data-en="Serving homeowners in St. Cloud, Kissimmee, Orlando, and surrounding areas. Enter your ZIP code to request a visit." data-es="Atendemos a propietarios en St. Cloud, Kissimmee, Orlando y áreas cercanas. Ingresa tu código postal para solicitar una visita.">Serving homeowners in St. Cloud, Kissimmee, Orlando, and surrounding areas. Enter your ZIP code to request a visit.</p>
-        <a class="button" href="/water-test" data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
+        <a class="button" href="/check/" data-test data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
       </div>
     </section>
   </main>
@@ -248,8 +248,10 @@
       });
       if (typeof zipResult !== "undefined" && !zipResult.hidden) showZipResult();
       document.querySelectorAll("[data-test]").forEach(link => {
-        const target = new URL("https://check.legacywaterusa.com/water-test");
+        const target = new URL("/check/", window.location.origin);
         target.searchParams.set("lang", language);
+        const selectedZip = document.getElementById("zip-input")?.value.trim();
+        if (/^(32|33|34)\d{3}$/.test(selectedZip || "")) target.searchParams.set("zip", selectedZip);
         ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "interest"].forEach(key => { if (campaign.has(key)) target.searchParams.set(key, campaign.get(key).slice(0,100)); });
         link.href = target.href;
       });
@@ -384,7 +386,7 @@
       document.getElementById("water-records").scrollIntoView({behavior:"smooth",block:"start"});
     }
     zipForm.addEventListener("submit",event=>{event.preventDefault();showZipResult()});
-    zipInput.addEventListener("input",()=>{selectedSystemId="";zipResult.hidden=true});
+    zipInput.addEventListener("input",()=>{selectedSystemId="";zipResult.hidden=true;setLanguage(document.documentElement.lang)});
     try {
       const requested = new URLSearchParams(window.location.search).get("lang");
       setLanguage(requested === "es" || requested === "en"
