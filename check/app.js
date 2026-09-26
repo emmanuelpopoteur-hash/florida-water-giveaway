@@ -3,6 +3,6 @@ const t=value=>window.waterTestI18n.t(value);const form=document.getElementById(
 document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{document.getElementById('stepLabel').textContent=`${window.waterTestI18n.getLanguage()==='es'?'PASO':'STEP'} 0${current} / 03`;document.querySelectorAll('.error').forEach(element=>{if(element.dataset.originalError)element.textContent=t(element.dataset.originalError)});if(document.getElementById('submitButton').disabled)document.getElementById('submitButton').firstChild.textContent=t('SENDING…')+' '}));
 
 const homeLink=document.querySelector('a.brand[aria-label="Legacy Water USA home"]');
-const updateHomeLink=()=>{const home=new URL("https://legacywaterusa.com/");home.searchParams.set("lang",window.waterTestI18n.getLanguage());for(const key of ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"]){if(tracking.has(key))home.searchParams.set(key,tracking.get(key).slice(0,100))}homeLink.href=home.href};
+const updateHomeLink=()=>{const home=new URL("/",window.location.origin);home.searchParams.set("lang",window.waterTestI18n.getLanguage());for(const key of ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"]){if(tracking.has(key))home.searchParams.set(key,tracking.get(key).slice(0,100))}homeLink.href=home.href};
 updateHomeLink();
 document.querySelectorAll("[data-language]").forEach(button=>button.addEventListener("click",updateHomeLink));
