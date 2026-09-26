@@ -100,6 +100,60 @@
     @media(max-width:950px){.nav{display:none}.header-inner{justify-content:space-between}.header-actions{margin-left:auto}.hero-inner{gap:25px}.visual{min-height:430px}}
     @media(max-width:700px){.container{width:min(100% - 36px,1160px)}.header-inner{min-height:72px;gap:10px}.brand-mark{width:38px;height:38px;font-size:22px}.brand-name{font-size:12px}.brand-name small{font-size:7px}.header-actions{gap:8px}.header-cta{display:none}.language button{padding:6px 8px}.hero-inner{grid-template-columns:1fr;padding:66px 0 70px;gap:40px;min-height:0}.hero-copy{font-size:16px}.visual{min-height:350px}.visual h2{font-size:25px}.section{padding:70px 0}.grid-3,.band-inner{grid-template-columns:1fr}.band{padding:65px 0}.band-inner{gap:28px}.faq-section{padding:65px 0}.faq-list summary{font-size:16px}.footer-inner{display:block}.footer-inner span{display:block;margin-bottom:12px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.header-cta,.button{transition:none}}
+
+    /* Homepage concept: editorial hero, immediate ZIP lookup, clear conversion path. */
+    :root{--teal:#08a0a6;--navy:#062737;--ink:#102e3d;--paper:#f6f9f8}
+    h1,h2,h3{font-family:Georgia,serif;letter-spacing:-.045em}
+    .brand-mark{background:transparent;color:#5dd9d7;font-size:36px}
+    .brand-name{font-family:Georgia,serif;font-weight:700;letter-spacing:.035em}
+    .brand-name small{font-family:"DM Sans",sans-serif;letter-spacing:.24em}
+    .hero{background:linear-gradient(90deg,#062737 0%,#062737ed 31%,#06273776 68%,#06273724),url('/media/shared/images/fondo-agua.png') center/cover,#062737}
+    .hero-inner{min-height:585px;display:flex;align-items:center;padding:65px 0 112px}
+    .hero-inner>div{max-width:635px}
+    .hero h1{font-size:clamp(48px,6vw,80px);line-height:1.04;max-width:620px;margin:19px 0 23px}
+    .hero h1 em{color:white}
+    .hero-copy{max-width:555px;color:#e4f1f0;line-height:1.55}
+    .hero .button{font-size:16px;padding:17px 29px;background:#07a5a9;color:white}
+    .hero .assurance{color:#d4e6e7}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .lookup{position:relative;z-index:2;margin-top:-65px;padding-bottom:72px;background:linear-gradient(to bottom,transparent 65px,#f4f9f9 65px)}
+    .lookup-card{padding:30px 34px;background:white;border:1px solid #deebe9;border-radius:21px;box-shadow:0 24px 65px #092b3b1c}
+    .lookup-card h2{font-size:clamp(28px,3vw,39px);margin:0 0 9px}
+    .lookup-card>p{color:#526a73;line-height:1.55;margin:0}
+    .zip-form{display:flex;gap:12px;margin:22px 0 0;max-width:750px}
+    .zip-form label{flex:1}
+    .zip-form input{display:block;width:100%;height:58px;padding:14px 18px;background:#f9fbfb;border:1px solid #cddfdd;border-radius:11px;color:#102e3d;font:700 17px "DM Sans",sans-serif}
+    .zip-form button{border:0;border-radius:11px;background:#078e93;color:white;padding:0 29px;font-weight:800;cursor:pointer}
+    .zip-form button:hover,.zip-form button:focus-visible{background:#046c71}
+    .lookup-caption{font-size:12px;color:#60747c;margin-top:13px!important}
+    .lookup-result{background:#f4f9f9;padding:0 0 80px}
+    .lookup-result h2{font-size:clamp(32px,3.6vw,49px);margin:0 0 12px}
+    .lookup-result .intro-text{max-width:750px;line-height:1.65;color:#526a73;margin-bottom:20px}
+    .zip-result{border:1px solid #cfe1dd;background:white;border-radius:19px;padding:26px;margin:24px 0;box-shadow:0 12px 30px #0b35400c}
+    .zip-result[hidden]{display:none}
+    .zip-result h3{font-family:Georgia,serif;font-size:27px;margin:0 0 8px}
+    .zip-result p{line-height:1.6;color:#526a73}
+    .zip-result a{color:#006b70;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+    .zip-result .zip-source{display:block;margin-top:12px;font-size:13px}
+    .zip-measures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:15px 0 20px}
+    .zip-measure{border:1px solid #dae7e5;border-radius:13px;background:#fafffe;padding:19px}
+    .zip-measure strong{display:block;font-size:17px;margin-bottom:8px}
+    .zip-measure span{display:block;font-size:13px;line-height:1.55;margin-top:4px}
+    .zip-group-title{font-size:22px;margin:27px 0 0}
+    .zip-result .zip-context{font-size:13px;margin-top:13px}
+    .system-picker{display:block;font-weight:800;margin:17px 0}
+    .system-picker select{display:block;width:100%;max-width:550px;margin-top:8px;padding:14px 16px;border:1px solid #c6ddda;border-radius:10px;background:white;color:var(--ink);font:600 15px "DM Sans",sans-serif}
+    .change-system{border:0;background:transparent;text-decoration:underline;color:#006b70;cursor:pointer;font-weight:800;padding:7px 0 15px}
+    .quick-cta{margin-top:26px;padding:30px;background:linear-gradient(120deg,#062737,#0a4b55);border-radius:19px;color:white}
+    .quick-cta h3{font-size:clamp(27px,3vw,38px);line-height:1.16;margin:0 0 10px}
+    .quick-cta p{max-width:740px;color:#d2e5e7;line-height:1.65;margin:0 0 18px}
+    .quick-cta small{display:block;margin-top:13px;color:#bcd5d8}
+    .quick-cta .button{background:#09a7ab;color:white}
+    .section{background:white}
+    .section .card h3{margin-top:24px}
+    .faq-section{background:#f4f9f9}
+    .cta-section{background:linear-gradient(90deg,#062737ef,#063c4baa),url('/media/shared/images/fondo-agua.png') center/cover}
+    @media(max-width:700px){.site-header{background:#062737}.hero{background:linear-gradient(90deg,#062737eb,#06273785),url('/media/shared/images/fondo-agua.png') center/cover}.hero-inner{min-height:490px;padding:60px 0 114px}.hero h1{font-size:clamp(45px,12vw,64px)}.hero-copy{font-size:16px}.lookup{margin-top:-62px;padding-bottom:52px}.lookup-card{padding:25px 20px}.zip-form{flex-direction:column}.zip-form button{min-height:55px}.lookup-result{padding-bottom:65px}.zip-measures{grid-template-columns:1fr}.zip-result{padding:21px}.quick-cta{padding:25px}.hero .button,.quick-cta .button{width:100%}}
   </style>
 </head>
 <body>
@@ -124,41 +178,30 @@
   </header>
   <main>
     <section class="hero">
-      <div class="container hero-inner">
-        <div>
-          <span class="eyebrow" data-en="For Florida homeowners" data-es="Para propietarios en Florida">For Florida homeowners</span>
-          <h1><span data-en="Know your water." data-es="Conoce tu agua.">Know your water.</span><br><em data-en="Feel at home." data-es="Cuida tu hogar.">Feel at home.</em></h1>
-          <p class="hero-copy" data-en="Understand the water your family uses every day. We bring a complimentary water test to your home, explain what we find, and help you explore your options." data-es="Entiende el agua que tu familia usa cada día. Llevamos una prueba gratuita a tu hogar, te explicamos los resultados y te ayudamos a conocer tus opciones.">Understand the water your family uses every day. We bring a complimentary water test to your home, explain what we find, and help you explore your options.</p>
-          <div class="hero-actions">
-            <a class="button" href="/water-test" data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
-            <a class="text-link" href="#how-it-works" data-en="See how it works" data-es="Descubre cómo funciona">See how it works</a>
-          </div>
-          <p class="assurance" data-en="$0 test  •  No obligation  •  At your home" data-es="Prueba $0  •  Sin compromiso  •  En tu hogar">$0 test  •  No obligation  •  At your home</p>
-          <p class="hero-guide"><a href="/sistemas/" data-en="Compare water treatment options ↗" data-es="Conoce las opciones para tu agua ↗">Compare water treatment options ↗</a></p>
-        </div>
-        <div class="visual" role="img" aria-label="Water at home">
-          <div class="visual-content">
-            <span class="visual-kicker" data-en="A CLEARER PICTURE" data-es="MÁS CLARIDAD">A CLEARER PICTURE</span>
-            <h2 data-en="Your home's water, explained." data-es="Entiende el agua de tu hogar.">Your home's water, explained.</h2>
-            <p data-en="A local conversation about what matters in your home." data-es="Una conversación cercana sobre lo que importa en tu hogar.">A local conversation about what matters in your home.</p>
-          </div>
-        </div>
-      </div>
+      <div class="container hero-inner"><div>
+        <span class="eyebrow" data-en="Florida homeowners · Free water testing" data-es="Hogares de Florida · Prueba de agua gratis">Florida homeowners · Free water testing</span>
+        <h1 data-en="Know the water in your home." data-es="Conoce el agua de tu hogar.">Know the water in your home.</h1>
+        <p class="hero-copy" data-en="Explore public water records in your area, then request a complimentary visit to learn about the water at your tap." data-es="Consulta los registros públicos de tu zona y solicita una visita gratis para conocer el agua de tu grifo.">Explore public water records in your area, then request a complimentary visit to learn about the water at your tap.</p>
+        <a class="button" href="#find-water" data-en="Look up my ZIP →" data-es="Consultar mi ZIP →">Look up my ZIP →</a>
+        <p class="assurance" data-en="Free visit · No obligation · Central Florida" data-es="Visita gratis · Sin compromiso · Florida Central">Free visit · No obligation · Central Florida</p>
+      </div></div>
     </section>
-    <section class="section" id="how-it-works">
-      <div class="container">
-        <div class="section-title">
-          <span class="eyebrow" data-en="Simple from the start" data-es="Fácil desde el comienzo">Simple from the start</span>
-          <h2 data-en="Three steps to understand your water." data-es="Tres pasos para entender tu agua.">Three steps to understand your water.</h2>
-          <p data-en="No guesswork. Just a convenient visit and a clear explanation." data-es="Una visita conveniente y una explicación clara, sin adivinar.">No guesswork. Just a convenient visit and a clear explanation.</p>
-        </div>
-        <div class="grid-3">
-          <article class="card"><span class="number">01</span><h3 data-en="Request a visit" data-es="Solicita una visita">Request a visit</h3><p data-en="Share your ZIP code and the day and time that work for you." data-es="Indica tu código postal y el día y horario que prefieres.">Share your ZIP code and the day and time that work for you.</p></article>
-          <article class="card"><span class="number">02</span><h3 data-en="See your water" data-es="Conoce tu agua">See your water</h3><p data-en="We test water in your home and walk you through the findings." data-es="Probamos el agua en tu hogar y te explicamos lo que encontramos.">We test water in your home and walk you through the findings.</p></article>
-          <article class="card"><span class="number">03</span><h3 data-en="Choose what's next" data-es="Decide el próximo paso">Choose what's next</h3><p data-en="Ask questions and explore solutions only if they make sense for you." data-es="Haz preguntas y conoce soluciones solo si tienen sentido para ti.">Ask questions and explore solutions only if they make sense for you.</p></article>
-        </div>
-      </div>
-    </section>
+    <section class="lookup" id="find-water"><div class="container"><div class="lookup-card">
+      <h2 data-en="Enter your Florida ZIP" data-es="Ingresa tu ZIP de Florida">Enter your Florida ZIP</h2>
+      <p data-en="See historical water records for a public system. Confirm your provider on your water bill." data-es="Consulta registros históricos de un sistema público. Confirma el proveedor en tu factura de agua.">See historical water records for a public system. Confirm your provider on your water bill.</p>
+      <form class="zip-form" id="zip-form"><label><span class="sr-only" data-en="Florida ZIP code" data-es="Código ZIP de Florida">Florida ZIP code</span><input id="zip-input" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code" placeholder="ZIP code / Código ZIP"></label><button type="submit" data-en="View records →" data-es="Ver registros →">View records →</button></form>
+      <p class="lookup-caption" data-en="Public water systems only. One ZIP may include more than one provider; private wells need separate tests." data-es="Solo sistemas públicos. Un ZIP puede incluir más de un proveedor; los pozos privados requieren pruebas aparte.">Public water systems only. One ZIP may include more than one provider; private wells need separate tests.</p>
+    </div></div></section>
+    <section class="lookup-result" id="water-records"><div class="container">
+      <h2 data-en="What do the records show?" data-es="¿Qué aparece en los registros?">What do the records show?</h2>
+      <p class="intro-text" data-en="Select the provider listed on your bill to see verified historical EWG measurements, contaminants, and potential effects when that data is available. These system records do not measure your own tap." data-es="Selecciona el proveedor de tu factura para ver mediciones históricas verificadas de EWG, contaminantes y efectos potenciales cuando tengamos esos datos. Estos registros del sistema no miden tu grifo.">Select the provider listed on your bill to see verified historical EWG measurements, contaminants, and potential effects when that data is available. These system records do not measure your own tap.</p>
+      <div class="zip-result" id="zip-result" role="status" aria-live="polite" hidden></div>
+      <div class="quick-cta"><h3 data-en="Want answers about your home's water?" data-es="¿Quieres saber más sobre el agua de tu casa?">Want answers about your home's water?</h3><p data-en="Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant." data-es="Solicita una visita gratis en casa. Te explicamos los indicadores que realmente medimos y si conviene una prueba de laboratorio para algún contaminante específico.">Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant.</p><a class="button" href="https://check.legacywaterusa.com/water-test" data-test data-en="Request my free test →" data-es="Solicitar prueba gratis →">Request my free test →</a><small data-en="The request form asks for your ZIP again. $0 · No obligation." data-es="El formulario de solicitud vuelve a pedir tu ZIP. $0 · Sin compromiso.">The request form asks for your ZIP again. $0 · No obligation.</small></div>
+    </div></section>
+    <section class="section" id="how-it-works"><div class="container">
+      <div class="section-title"><span class="eyebrow" style="color:#087e82" data-en="A clear path" data-es="Un camino claro">A clear path</span><h2 data-en="Three simple steps." data-es="Tres pasos sencillos.">Three simple steps.</h2><p data-en="Start with public records, then ask about the water in your own home." data-es="Empieza con registros públicos y luego conoce el agua de tu propio hogar.">Start with public records, then ask about the water in your own home.</p></div>
+      <div class="grid-3"><article class="card"><span class="number">01</span><h3 data-en="Look up your ZIP" data-es="Consulta tu ZIP">Look up your ZIP</h3><p data-en="Find the water system and confirm the provider on your bill." data-es="Encuentra el sistema y confirma el proveedor en tu factura.">Find the water system and confirm the provider on your bill.</p></article><article class="card"><span class="number">02</span><h3 data-en="Read the record" data-es="Revisa el registro">Read the record</h3><p data-en="Explore historical contaminants, potential effects and the record's context." data-es="Explora contaminantes históricos, efectos potenciales y el contexto del registro.">Explore historical contaminants, potential effects and the record's context.</p></article><article class="card"><span class="number">03</span><h3 data-en="Test your water" data-es="Prueba tu agua">Test your water</h3><p data-en="Request a free home visit. A specialist will contact you to confirm a time." data-es="Solicita una visita gratis. Un especialista te contactará para confirmar el horario.">Request a free home visit. A specialist will contact you to confirm a time.</p></article></div>
+    </div></section>
     <section class="band" id="your-water">
       <div class="container band-inner">
         <div><span class="eyebrow" data-en="Everyday water" data-es="El agua de cada día">Everyday water</span><h2 data-en="It touches more of your home than you think." data-es="El agua forma parte de todo tu hogar.">It touches more of your home than you think.</h2><a class="guide-link" href="/sistemas/" data-en="Explore water treatment options ↗" data-es="Conoce las opciones para tu agua ↗">Explore water treatment options ↗</a> <a class="guide-link" href="/agua-local/" data-en="Find your local water report ↗" data-es="Busca el informe de tu zona ↗">Find your local water report ↗</a></div>
@@ -203,6 +246,13 @@
         });
         link.href = target.pathname + target.search;
       });
+      if (typeof zipResult !== "undefined" && !zipResult.hidden) showZipResult();
+      document.querySelectorAll("[data-test]").forEach(link => {
+        const target = new URL("https://check.legacywaterusa.com/water-test");
+        target.searchParams.set("lang", language);
+        ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "interest"].forEach(key => { if (campaign.has(key)) target.searchParams.set(key, campaign.get(key).slice(0,100)); });
+        link.href = target.href;
+      });
       buttons.en.setAttribute("aria-pressed", String(language === "en"));
       buttons.es.setAttribute("aria-pressed", String(language === "es"));
       document.title = language === "es" ? "Legacy Water USA | Conoce tu agua" : "Legacy Water USA | Know Your Water";
@@ -213,6 +263,128 @@
     }
     buttons.en.addEventListener("click", () => setLanguage("en"));
     buttons.es.addEventListener("click", () => setLanguage("es"));
+    const zipSystems={
+      "34744":{name:"Toho Water Authority Eastern",id:"FL3490751",above:3,total:11},
+      "34747":{name:"Toho Water Authority Eastern",id:"FL3490751",above:3,total:11},
+      "32801":{name:"Orlando Utilities Commission",id:"FL3480962",above:7,total:16,year:2023,measures:[{en:"Haloacetic acids (HAA5)",es:"Ácidos haloacéticos (HAA5)",found:"23.8 ppb",guideline:"0.1 ppb",legal:"60 ppb"},{en:"Total trihalomethanes (TTHMs)",es:"Trihalometanos totales (TTHM)",found:"53.4 ppb",guideline:"0.15 ppb",legal:"80 ppb"}]},
+      "32836":{name:"Orlando Utilities Commission",id:"FL3480962",above:7,total:16,year:2023,measures:[{en:"Haloacetic acids (HAA5)",es:"Ácidos haloacéticos (HAA5)",found:"23.8 ppb",guideline:"0.1 ppb",legal:"60 ppb"},{en:"Total trihalomethanes (TTHMs)",es:"Trihalometanos totales (TTHM)",found:"53.4 ppb",guideline:"0.15 ppb",legal:"80 ppb"}]},
+      "34787":{name:"Orange County Utilities — South",id:"FL3484119",above:12,total:29,year:2024},
+      "32712":{name:"Orange County Utilities — South",id:"FL3484119",above:12,total:29,year:2024}
+    };
+    const systemCatalog={
+      "FL3491373":{name:"City of St. Cloud",id:"FL3491373",above:5,total:11},
+      "FL3490751":zipSystems["34744"],
+      "FL3480962":zipSystems["32801"],
+      "FL3484132":{name:"Orange County Utilities — East",id:"FL3484132",above:3,total:11,year:2024},
+      "FL3484119":zipSystems["34787"],
+      "FL3481546":{name:"Orange County Utilities — West",id:"FL3481546",above:6,total:19,year:2024}
+    };
+    // Historical utility averages and benchmarks transcribed from each EWG system record.
+    // A missing value is deliberately omitted rather than inferred from another system.
+    const contaminants={
+      FL3491373:{above:[
+        ["Chlorate","Clorato","556.7 ppb","210 ppb",null],
+        ["Haloacetic acids (HAA5)","Ácidos haloacéticos (HAA5)","32.0 ppb","0.1 ppb","60 ppb"],
+        ["Haloacetic acids (HAA9)","Ácidos haloacéticos (HAA9)","23.6 ppb","0.06 ppb",null],
+        ["Radium, combined (-226 and -228)","Radio combinado (-226 y -228)","0.64 pCi/L","0.05 pCi/L","5 pCi/L"],
+        ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","48.7 ppb","0.15 ppb","80 ppb"]
+      ],other:[
+        ["Barium","Bario","17.3 ppb","700 ppb","2,000 ppb"],
+        ["Cyanide","Cianuro","2.00 ppb",null,"200 ppb"],
+        ["Fluoride","Fluoruro","0.640 ppm",null,"4 ppm"],
+        ["Manganese","Manganeso","1.04 ppb","100 ppb",null],
+        ["Nitrate","Nitrato","0.0331 ppm","0.14 ppm","10 ppm"],
+        ["Strontium","Estroncio","0.603 ppb","1,500 ppb",null]
+      ]},
+      FL3490751:{above:[
+        ["Haloacetic acids (HAA5)","Ácidos haloacéticos (HAA5)","29.3 ppb","0.1 ppb","60 ppb"],
+        ["Haloacetic acids (HAA9)","Ácidos haloacéticos (HAA9)","32.9 ppb","0.06 ppb",null],
+        ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","49.3 ppb","0.15 ppb","80 ppb"]
+      ],other:[]},
+      FL3480962:{above:[
+        ["1,3-Butadiene","1,3-butadieno","0.0229 ppb","0.0103 ppb",null],
+        ["Bromate","Bromato","3.52 ppb","0.1 ppb","10 ppb"],
+        ["Haloacetic acids (HAA5)","Ácidos haloacéticos (HAA5)","23.8 ppb","0.1 ppb","60 ppb"],
+        ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","53.4 ppb","0.15 ppb","80 ppb"]
+      ],other:[]}
+    };
+    const potentialEffects={
+      "Chlorate":{en:"Harm to the thyroid",es:"Daño a la tiroides"},
+      "Haloacetic acids (HAA5)":{en:"Cancer",es:"Cáncer"},
+      "Haloacetic acids (HAA9)":{en:"Cancer",es:"Cáncer"},
+      "Radium, combined (-226 and -228)":{en:"Cancer",es:"Cáncer"},
+      "Total trihalomethanes (TTHMs)":{en:"Cancer",es:"Cáncer"},
+      "1,3-Butadiene":{en:"Cancer",es:"Cáncer"},
+      "Bromate":{en:"Cancer",es:"Cáncer"}
+    };
+    let selectedSystemId="";
+    const zipForm=document.getElementById("zip-form"),zipInput=document.getElementById("zip-input"),zipResult=document.getElementById("zip-result");
+    function showZipResult(){
+      const zip=zipInput.value.trim(),language=document.documentElement.lang;
+      if(!/^[0-9]{5}$/.test(zip))return;
+      const system=zipSystems[zip]||(selectedSystemId?systemCatalog[selectedSystemId]:null),manual=!!system&&!zipSystems[zip],ewgSearch="https://www.ewg.org/tapwater/search-results.php?zip5="+zip;
+      zipResult.replaceChildren();
+      const heading=document.createElement("h3"),detail=document.createElement("p"),source=document.createElement("a");
+      if(system){
+        heading.textContent=system.name;
+        detail.textContent=system.above===undefined
+          ?language==="es"?"EWG incluye este sistema para el ZIP "+zip+". Abre la ficha para consultar sus mediciones y fechas.":"EWG lists this system for ZIP "+zip+". Open the record for measurements and dates."
+          :language==="es"?system.above+" de "+system.total+" contaminantes detectados superan las guías de EWG"+(system.year?"; datos hasta "+system.year:"")+". No equivale a infracciones legales ni describe tu grifo.":system.above+" of "+system.total+" detected contaminants exceed EWG guidelines"+(system.year?"; data through "+system.year:"")+". This is not a count of legal violations or a test of your tap.";
+        source.href="https://www.ewg.org/tapwater/system.php?pws="+system.id;
+        source.textContent=language==="es"?"Fuente: ficha completa de EWG ↗":"Source: full EWG record ↗";
+      }else{
+        heading.textContent=language==="es"?"Identifica el sistema para "+zip:"Identify the system for "+zip;
+        detail.textContent=language==="es"?"No podemos identificar tu proveedor solo con el ZIP. Si aparece en tu factura, selecciónalo abajo y verás sus datos aquí. La lista no indica que todos estos sistemas abastezcan tu ZIP.":"A ZIP alone does not identify your provider. If you see it on your bill, select it below to view its data here. The list does not imply that all these systems serve your ZIP.";
+        source.href=ewgSearch;
+        source.textContent=language==="es"?"Consultar más sistemas en EWG ↗":"Check more systems on EWG ↗";
+      }
+      source.target="_blank";source.rel="noopener noreferrer";
+      const extra=document.createElement("a");extra.href=ewgSearch;extra.target="_blank";extra.rel="noopener noreferrer";extra.className="zip-source";
+      extra.textContent=language==="es"?"Ver todos los sistemas asociados al ZIP en EWG ↗":"See all systems associated with this ZIP on EWG ↗";
+      zipResult.append(heading,detail);
+      if(!system){
+        const picker=document.createElement("label"),select=document.createElement("select"),placeholder=document.createElement("option");
+        picker.className="system-picker";picker.textContent=language==="es"?"Nombre del sistema en tu factura":"System name on your bill";
+        placeholder.value="";placeholder.textContent=language==="es"?"Selecciona tu proveedor":"Select your provider";select.append(placeholder);
+        Object.values(systemCatalog).forEach(item=>{const option=document.createElement("option");option.value=item.id;option.textContent=item.name;select.append(option)});
+        select.addEventListener("change",()=>{selectedSystemId=select.value;showZipResult()});
+        picker.append(select);zipResult.append(picker);
+      }
+      if(system){
+        const data=contaminants[system.id];
+        if(data){
+          [["above",language==="es"?"Por encima de las guías de EWG":"Above EWG guidelines"],["other",language==="es"?"Otros contaminantes detectados":"Other detected contaminants"]].forEach(([group,label])=>{
+            if(!data[group].length)return;
+            const subheading=document.createElement("h4"),measures=document.createElement("div");
+            subheading.className="zip-group-title";subheading.textContent=label+" ("+data[group].length+")";measures.className="zip-measures";
+            data[group].forEach(item=>{
+              const card=document.createElement("div"),title=document.createElement("strong"),found=document.createElement("span"),comparison=document.createElement("span");
+              card.className="zip-measure";title.textContent=item[language==="es"?1:0];
+              found.textContent=(language==="es"?"Promedio del sistema: ":"Utility average: ")+item[2];
+              comparison.textContent=(language==="es"?"Guía EWG: ":"EWG guideline: ")+(item[3]|| (language==="es"?"sin guía":"not set"))+" · "+(language==="es"?"Límite legal: ":"Legal limit: ")+(item[4]|| (language==="es"?"sin límite":"not set"));
+              card.append(title,found,comparison);
+              if(potentialEffects[item[0]]){const effect=document.createElement("span");effect.textContent=(language==="es"?"Efecto potencial: ":"Potential effect: ")+potentialEffects[item[0]][language];card.append(effect)}
+              measures.append(card);
+            });
+            zipResult.append(subheading,measures);
+          });
+          if(data.above.length+data.other.length<system.total){const partial=document.createElement("p");partial.className="zip-context";partial.textContent=language==="es"?"Este resumen aún no incluye todas las mediciones del registro de EWG.":"This summary does not yet include every measurement in the EWG record.";zipResult.append(partial)}
+          const overlap=document.createElement("p");overlap.className="zip-context";overlap.textContent=language==="es"?"HAA5 y HAA9 son grupos de sustancias que se superponen. Los promedios pueden corresponder a distintos periodos de muestreo.":"HAA5 and HAA9 are overlapping groups of chemicals. Averages may cover different sampling periods.";zipResult.append(overlap);
+          const effectNote=document.createElement("p");effectNote.className="zip-context";effectNote.textContent=language==="es"?"«Efecto potencial» describe un riesgo asociado al contaminante según EWG; no significa que el agua de tu casa cause ese efecto. EWG no asigna esa etiqueta a los otros detectados en esta ficha.":"“Potential effect” describes a contaminant hazard in EWG's record; it does not mean your home's water will cause that outcome. EWG does not assign that label to the other detected items in this record.";zipResult.append(effectNote);
+        }else{const pending=document.createElement("p");pending.className="zip-context";pending.textContent=language==="es"?"Estamos incorporando las mediciones individuales de este sistema al buscador.":"We are adding this system's individual measurements to the lookup.";zipResult.append(pending)}
+      }
+      if(system){
+        const context=document.createElement("p");context.className="zip-context";
+        context.textContent=manual?(language==="es"?"Mostramos la ficha del proveedor que seleccionaste; no hemos verificado que abastezca este ZIP. Confírmalo en tu factura. Son cifras históricas del sistema, no de tu grifo.":"This is the provider you selected; we have not verified that it serves this ZIP. Confirm it on your bill. These are historical system figures, not readings from your tap."):(language==="es"?"Cifras históricas del sistema, no mediciones de tu grifo. La guía EWG y el límite legal son referencias diferentes. Confirma el sistema de tu vivienda en la factura.":"Historical system figures, not readings from your tap. The EWG guideline and legal limit are different benchmarks. Confirm your home's system on the bill.");
+        zipResult.append(context);
+        if(manual){const change=document.createElement("button");change.type="button";change.className="change-system";change.textContent=language==="es"?"Cambiar proveedor":"Change provider";change.addEventListener("click",()=>{selectedSystemId="";showZipResult()});zipResult.append(change)}
+      }
+      zipResult.append(source);if(system)zipResult.append(extra);
+      zipResult.hidden=false;
+      document.getElementById("water-records").scrollIntoView({behavior:"smooth",block:"start"});
+    }
+    zipForm.addEventListener("submit",event=>{event.preventDefault();showZipResult()});
+    zipInput.addEventListener("input",()=>{selectedSystemId="";zipResult.hidden=true});
     try {
       const requested = new URLSearchParams(window.location.search).get("lang");
       setLanguage(requested === "es" || requested === "en"
