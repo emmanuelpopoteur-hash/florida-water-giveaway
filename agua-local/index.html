@@ -26,7 +26,7 @@
     .intro{padding:70px 0 25px}.intro h2{font-size:clamp(28px,3.4vw,42px);line-height:1.2;margin:13px 0}.intro p{line-height:1.7;color:var(--muted);max-width:780px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;padding-bottom:65px}.card{background:white;border:1px solid #dce8e6;border-radius:21px;padding:29px;display:flex;flex-direction:column}.card .label{color:#0a8582;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}.card h3{font-size:22px;line-height:1.25;margin:16px 0 12px}.card p{font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 19px;flex:1}.card a{display:inline-block;align-self:flex-start;color:#076d70;font-size:13px;font-weight:800;border-bottom:1px solid;padding-bottom:3px}.card a:hover,.card a:focus-visible{color:#034a4f}
     .ewg{background:white;padding:65px 0}.ewg h2{font-size:clamp(28px,3.3vw,42px);margin:13px 0}.ewg p{max-width:850px;color:var(--muted);line-height:1.7}.ewg-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:25px 0}.ewg-list a{display:flex;justify-content:space-between;gap:15px;align-items:center;padding:17px 20px;border:1px solid #dce8e6;border-radius:13px;color:#076d70;font-weight:700}.ewg-list a:hover,.ewg-list a:focus-visible{border-color:#0a8582;background:#f2faf8}.ewg-list small{color:#536b75;font-weight:500;text-align:right}.ewg-note{border-left:4px solid #0a8582;padding:2px 0 2px 17px;font-size:14px}
     .zip-form{display:flex;gap:10px;max-width:490px;margin:25px 0 8px}.zip-form input{min-width:0;flex:1;padding:15px 18px;border:1px solid #aacac7;border-radius:12px;font:700 17px "DM Sans",sans-serif;color:var(--ink)}.zip-form button{border:0;border-radius:12px;background:#087b78;color:white;padding:0 23px;cursor:pointer;font-weight:800}.zip-form button:hover,.zip-form button:focus-visible{background:#045b5b}.zip-result{border:1px solid #b8d9d3;background:#f3faf8;border-radius:15px;padding:22px;margin:16px 0 25px;max-width:850px}.zip-result[hidden]{display:none}.zip-result h3{font-size:21px;margin:0 0 9px}.zip-result p{margin:0 0 11px}.zip-result a{color:#076d70;font-weight:800;text-decoration:underline;text-underline-offset:3px}.zip-result .zip-source{display:block;margin-top:12px;font-size:13px}
-    .zip-measures{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}.zip-measure{background:white;border:1px solid #d2e7e2;border-radius:12px;padding:16px}.zip-measure strong{display:block;margin-bottom:6px}.zip-measure span{display:block;font-size:14px;line-height:1.55}.zip-result .zip-context{font-size:13px;margin-top:12px;color:#536b75}
+    .zip-measures{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:12px 0 20px}.zip-measure{background:white;border:1px solid #d2e7e2;border-radius:12px;padding:16px}.zip-measure strong{display:block;margin-bottom:6px}.zip-measure span{display:block;font-size:14px;line-height:1.55}.zip-group-title{font-size:19px;margin:22px 0 0}.zip-result .zip-context{font-size:13px;margin-top:12px;color:#536b75}
     .system-picker{display:block;margin:15px 0 20px;font-size:14px;font-weight:800}.system-picker select{display:block;width:100%;max-width:490px;margin-top:8px;padding:14px 15px;border:1px solid #aacac7;border-radius:10px;background:white;color:var(--ink);font:600 15px "DM Sans",sans-serif}
     .change-system{display:block;border:0;background:none;color:#076d70;text-decoration:underline;text-underline-offset:3px;font-weight:800;cursor:pointer;padding:4px 0 12px}
     .steps{background:#e3f2ee;padding:70px 0}.steps h2{font-size:clamp(28px,3.3vw,42px);margin:13px 0 30px}.step-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.step strong{color:#087b78;font:800 13px Manrope,sans-serif}.step h3{font-size:19px;margin:13px 0 9px}.step p{font-size:14px;color:#46636e;line-height:1.7;margin:0}.well{background:#fff;padding:63px 0}.well-inner{display:grid;grid-template-columns:.8fr 1.2fr;gap:55px;align-items:start}.well h2{font-size:clamp(28px,3vw,39px);line-height:1.2;margin:13px 0}.well p{color:var(--muted);line-height:1.75;margin:0 0 18px}.well a{color:#076d70;font-weight:800;text-decoration:underline;text-underline-offset:4px}
@@ -97,6 +97,35 @@
       "FL3484119":zipSystems["34787"],
       "FL3481546":{name:"Orange County Utilities — West",id:"FL3481546",above:6,total:19,year:2024}
     };
+    // Historical utility averages and benchmarks transcribed from each EWG system record.
+    // A missing value is deliberately omitted rather than inferred from another system.
+    const contaminants={
+      FL3491373:{above:[
+        ["Chlorate","Clorato","556.7 ppb","210 ppb",null],
+        ["Haloacetic acids (HAA5)","Ácidos haloacéticos (HAA5)","32.0 ppb","0.1 ppb","60 ppb"],
+        ["Haloacetic acids (HAA9)","Ácidos haloacéticos (HAA9)","23.6 ppb","0.06 ppb",null],
+        ["Radium, combined (-226 and -228)","Radio combinado (-226 y -228)","0.64 pCi/L","0.05 pCi/L","5 pCi/L"],
+        ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","48.7 ppb","0.15 ppb","80 ppb"]
+      ],other:[
+        ["Barium","Bario","17.3 ppb","700 ppb","2,000 ppb"],
+        ["Cyanide","Cianuro","2.00 ppb",null,"200 ppb"],
+        ["Fluoride","Fluoruro","0.640 ppm",null,"4 ppm"],
+        ["Manganese","Manganeso","1.04 ppb","100 ppb",null],
+        ["Nitrate","Nitrato","0.0331 ppm","0.14 ppm","10 ppm"],
+        ["Strontium","Estroncio","0.603 ppb","1,500 ppb",null]
+      ]},
+      FL3490751:{above:[
+        ["Haloacetic acids (HAA5)","Ácidos haloacéticos (HAA5)","29.3 ppb","0.1 ppb","60 ppb"],
+        ["Haloacetic acids (HAA9)","Ácidos haloacéticos (HAA9)","32.9 ppb","0.06 ppb",null],
+        ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","49.3 ppb","0.15 ppb","80 ppb"]
+      ],other:[]},
+      FL3480962:{above:[
+        ["1,3-Butadiene","1,3-butadieno","0.0229 ppb","0.0103 ppb",null],
+        ["Bromate","Bromato","3.52 ppb","0.1 ppb","10 ppb"],
+        ["Haloacetic acids (HAA5)","Ácidos haloacéticos (HAA5)","23.8 ppb","0.1 ppb","60 ppb"],
+        ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","53.4 ppb","0.15 ppb","80 ppb"]
+      ],other:[]}
+    };
     let selectedSystemId="";
     const zipForm=document.getElementById("zip-form"),zipInput=document.getElementById("zip-input"),zipResult=document.getElementById("zip-result");
     function showZipResult(){
@@ -130,16 +159,25 @@
         select.addEventListener("change",()=>{selectedSystemId=select.value;showZipResult()});
         picker.append(select);zipResult.append(picker);
       }
-      if(system?.measures){
-        const measures=document.createElement("div");measures.className="zip-measures";
-        system.measures.forEach(item=>{
-          const card=document.createElement("div"),title=document.createElement("strong"),found=document.createElement("span"),comparison=document.createElement("span");
-          card.className="zip-measure";title.textContent=item[language];
-          found.textContent=(language==="es"?"Promedio de EWG: ":"EWG utility average: ")+item.found;
-          comparison.textContent=(language==="es"?"Guía EWG: ":"EWG guideline: ")+item.guideline+" · "+(language==="es"?"Límite legal: ":"Legal limit: ")+item.legal;
-          card.append(title,found,comparison);measures.append(card);
-        });
-        zipResult.append(measures);
+      if(system){
+        const data=contaminants[system.id];
+        if(data){
+          [["above",language==="es"?"Por encima de las guías de EWG":"Above EWG guidelines"],["other",language==="es"?"Otros contaminantes detectados":"Other detected contaminants"]].forEach(([group,label])=>{
+            if(!data[group].length)return;
+            const subheading=document.createElement("h4"),measures=document.createElement("div");
+            subheading.className="zip-group-title";subheading.textContent=label+" ("+data[group].length+")";measures.className="zip-measures";
+            data[group].forEach(item=>{
+              const card=document.createElement("div"),title=document.createElement("strong"),found=document.createElement("span"),comparison=document.createElement("span");
+              card.className="zip-measure";title.textContent=item[language==="es"?1:0];
+              found.textContent=(language==="es"?"Promedio del sistema: ":"Utility average: ")+item[2];
+              comparison.textContent=(language==="es"?"Guía EWG: ":"EWG guideline: ")+(item[3]|| (language==="es"?"sin guía":"not set"))+" · "+(language==="es"?"Límite legal: ":"Legal limit: ")+(item[4]|| (language==="es"?"sin límite":"not set"));
+              card.append(title,found,comparison);measures.append(card);
+            });
+            zipResult.append(subheading,measures);
+          });
+          if(data.above.length+data.other.length<system.total){const partial=document.createElement("p");partial.className="zip-context";partial.textContent=language==="es"?"Este resumen aún no incluye todas las mediciones del registro de EWG.":"This summary does not yet include every measurement in the EWG record.";zipResult.append(partial)}
+          const overlap=document.createElement("p");overlap.className="zip-context";overlap.textContent=language==="es"?"HAA5 y HAA9 son grupos de sustancias que se superponen. Los promedios pueden corresponder a distintos periodos de muestreo.":"HAA5 and HAA9 are overlapping groups of chemicals. Averages may cover different sampling periods.";zipResult.append(overlap);
+        }else{const pending=document.createElement("p");pending.className="zip-context";pending.textContent=language==="es"?"Estamos incorporando las mediciones individuales de este sistema al buscador.":"We are adding this system's individual measurements to the lookup.";zipResult.append(pending)}
       }
       if(system){
         const context=document.createElement("p");context.className="zip-context";
