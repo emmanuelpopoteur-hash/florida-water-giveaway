@@ -126,6 +126,15 @@
         ["Total trihalomethanes (TTHMs)","Trihalometanos totales (TTHM)","53.4 ppb","0.15 ppb","80 ppb"]
       ],other:[]}
     };
+    const potentialEffects={
+      "Chlorate":{en:"Harm to the thyroid",es:"Daño a la tiroides"},
+      "Haloacetic acids (HAA5)":{en:"Cancer",es:"Cáncer"},
+      "Haloacetic acids (HAA9)":{en:"Cancer",es:"Cáncer"},
+      "Radium, combined (-226 and -228)":{en:"Cancer",es:"Cáncer"},
+      "Total trihalomethanes (TTHMs)":{en:"Cancer",es:"Cáncer"},
+      "1,3-Butadiene":{en:"Cancer",es:"Cáncer"},
+      "Bromate":{en:"Cancer",es:"Cáncer"}
+    };
     let selectedSystemId="";
     const zipForm=document.getElementById("zip-form"),zipInput=document.getElementById("zip-input"),zipResult=document.getElementById("zip-result");
     function showZipResult(){
@@ -171,12 +180,15 @@
               card.className="zip-measure";title.textContent=item[language==="es"?1:0];
               found.textContent=(language==="es"?"Promedio del sistema: ":"Utility average: ")+item[2];
               comparison.textContent=(language==="es"?"Guía EWG: ":"EWG guideline: ")+(item[3]|| (language==="es"?"sin guía":"not set"))+" · "+(language==="es"?"Límite legal: ":"Legal limit: ")+(item[4]|| (language==="es"?"sin límite":"not set"));
-              card.append(title,found,comparison);measures.append(card);
+              card.append(title,found,comparison);
+              if(potentialEffects[item[0]]){const effect=document.createElement("span");effect.textContent=(language==="es"?"Efecto potencial: ":"Potential effect: ")+potentialEffects[item[0]][language];card.append(effect)}
+              measures.append(card);
             });
             zipResult.append(subheading,measures);
           });
           if(data.above.length+data.other.length<system.total){const partial=document.createElement("p");partial.className="zip-context";partial.textContent=language==="es"?"Este resumen aún no incluye todas las mediciones del registro de EWG.":"This summary does not yet include every measurement in the EWG record.";zipResult.append(partial)}
           const overlap=document.createElement("p");overlap.className="zip-context";overlap.textContent=language==="es"?"HAA5 y HAA9 son grupos de sustancias que se superponen. Los promedios pueden corresponder a distintos periodos de muestreo.":"HAA5 and HAA9 are overlapping groups of chemicals. Averages may cover different sampling periods.";zipResult.append(overlap);
+          const effectNote=document.createElement("p");effectNote.className="zip-context";effectNote.textContent=language==="es"?"«Efecto potencial» describe un riesgo asociado al contaminante según EWG; no significa que el agua de tu casa cause ese efecto. EWG no asigna esa etiqueta a los otros detectados en esta ficha.":"“Potential effect” describes a contaminant hazard in EWG's record; it does not mean your home's water will cause that outcome. EWG does not assign that label to the other detected items in this record.";zipResult.append(effectNote);
         }else{const pending=document.createElement("p");pending.className="zip-context";pending.textContent=language==="es"?"Estamos incorporando las mediciones individuales de este sistema al buscador.":"We are adding this system's individual measurements to the lookup.";zipResult.append(pending)}
       }
       if(system){
