@@ -15,7 +15,7 @@ async function load(){
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
-function renderHistorical(system){
+function renderHistorical(system, result){
   const data=historical.contaminants[system.id];
   if(!data){result.append(el('p',t('Measurements for this system have not yet been added here. Open the source record and confirm its system ID and sampling dates.','Todavía no hemos incorporado las mediciones de este sistema. Abre la fuente y confirma su identificador y fechas de muestreo.')));return;}
   result.append(el('h4',t('Historical measurements','Mediciones históricas')));
@@ -39,7 +39,9 @@ function render(){
     if(system.displayName)result.append(el('p',t('Registry name: ','Nombre en el registro: ')+system.name));
     if(system.reportUrl)result.append(link(t('Official water quality reports ↗','Informes oficiales de calidad del agua ↗'),system.reportUrl));
     if(system.serviceMapUrl)result.append(el('p'),link(t('Confirm your address on the official water quality map ↗','Confirma tu dirección en el mapa oficial de calidad del agua ↗'),system.serviceMapUrl));
-    renderHistorical(system);
+    const history=el('details',null,'water-disclosure');
+    history.append(el('summary',t('Historical measurements','Mediciones históricas')));
+    renderHistorical(system,history);result.append(history);
     result.append(link(t('Look up this system in EWG ↗','Consultar este sistema en EWG ↗'),'https://www.ewg.org/tapwater/system.php?pws='+encodeURIComponent(system.id)));
     const back=el('button',t('Change provider','Cambiar proveedor'),'water-secondary');back.type='button';back.addEventListener('click',()=>{selected='';render();});result.append(back);return;
   }
@@ -48,14 +50,20 @@ function render(){
   result.append(el('p',mode==='name'?t('Community water systems listed by Florida DEP. Choose only the provider shown on your bill.','Sistemas comunitarios registrados por Florida DEP. Elige únicamente el proveedor que aparece en tu factura.'):t('Suggestions use treatment-plant locations within 40 km, not service-area boundaries. Your ZIP can have several providers. If yours is missing, search by name or city below.','Las sugerencias usan ubicaciones de plantas a menos de 40 km, no límites de servicio. Un ZIP puede tener varios proveedores. Si falta el tuyo, busca por nombre o ciudad.')));
   if(!list.length)result.append(el('p',t('No matching systems found. Try a provider name, city, or PWS ID. No result does not mean there is no service or that the water is safe.','No encontramos coincidencias. Prueba con el proveedor, ciudad o identificador PWS. Esto no significa que no exista servicio ni que el agua sea segura.')));
   const shown=list.slice(0,40);
-  if(list.length>40)result.append(el('p',t(`Showing 40 of ${list.length}. Narrow your search by provider name or city.`,`Mostrando 40 de ${list.length}. Filtra por nombre o ciudad.`)));
-  const cards=el('div',null,'water-candidates');
+
+  const cards=el('div',null,'water-candidates water-primary');
+  const others=el('details',null,'water-disclosure');
+  others.append(el('summary',t(`Other providers (${list.length-1})`,`Otros proveedores (${list.length-1})`)));
+  const otherCards=el('div',null,'water-candidates');others.append(otherCards);
+  if(list.length>40)others.append(el('p',t(`Showing 40 of ${list.length}. Search by name to narrow results.`,`Mostrando 40 de ${list.length}. Busca por nombre para filtrar.`)));
   for(const system of shown){const card=el('div',null,'water-candidate');card.append(el('strong',system.displayName||system.name),el('span',`${system.city||'Florida'} · ${system.id}`));
     if(Number.isFinite(system.distance))card.append(el('small',t('Plant approx. ','Planta a aprox. ')+Math.round(system.distance)+' km'+(mode==='zip'?t(' from ZIP center',' del centro del ZIP'):'')));
-    const choose=el('button',t('This matches my bill','Coincide con mi factura'));choose.type='button';choose.addEventListener('click',()=>{selected=system.id;render();});card.append(choose);cards.append(card);}
-  result.append(cards,el('p',t('Private well? Public-system reports do not describe your well. It needs its own testing.','¿Pozo privado? Los reportes de sistemas públicos no describen tu pozo. Necesita sus propias pruebas.')));
-  result.append(link(t('Source: Florida DEP facility directory ↗','Fuente: directorio de instalaciones de Florida DEP ↗'),'https://geodata.dep.state.fl.us/datasets/public-water-supply-pws-plants-non-federal/about'));
-  result.append(el('p',t('Directory retrieved: ','Directorio consultado: ')+directory.retrieved+t('. ZIP locations: Census 2025 ZCTA centers; not every postal ZIP has a geographic area.','. Ubicaciones ZIP: centros ZCTA del Censo 2025; no todos los ZIP postales tienen un área geográfica.'),'zip-context'));
+    const choose=el('button',t('This matches my bill','Coincide con mi factura'));choose.type='button';choose.addEventListener('click',()=>{selected=system.id;render();});card.append(choose);(system===shown[0]?cards:otherCards).append(card);}
+  result.append(cards);if(list.length>1)result.append(others);
+  const info=el('details',null,'water-disclosure');info.append(el('summary',t('Sources and search details','Fuentes y detalles de búsqueda')));result.append(info);
+  info.append(el('p',t('Private well? Public-system reports do not describe your well. It needs its own testing.','¿Pozo privado? Los reportes de sistemas públicos no describen tu pozo. Necesita sus propias pruebas.')));
+  info.append(link(t('Source: Florida DEP facility directory ↗','Fuente: directorio de instalaciones de Florida DEP ↗'),'https://geodata.dep.state.fl.us/datasets/public-water-supply-pws-plants-non-federal/about'));
+  info.append(el('p',t('Directory retrieved: ','Directorio consultado: ')+directory.retrieved+t('. ZIP locations: Census 2025 ZCTA centers; not every postal ZIP has a geographic area.','. Ubicaciones ZIP: centros ZCTA del Censo 2025; no todos los ZIP postales tienen un área geográfica.'),'zip-context'));
 }
 async function runSearch(nextMode){
   const request=++sequence;searching=false;gps.disabled=false;selected='';mode='';point=null;result.hidden=true;
