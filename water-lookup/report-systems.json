@@ -118,5 +118,13 @@
       "Toho Water Authority",
       "Hidden Glen"
     ]
+  },
+  "FL3480962": {
+    "displayName": "Orlando Utilities Commission — OUC",
+    "reportUrl": "https://www.ouc.com/wp-content/uploads/2025/04/2024_Water-Quality-Report.pdf",
+    "aliases": [
+      "OUC",
+      "Orlando Utilities Commission"
+    ]
   }
 }

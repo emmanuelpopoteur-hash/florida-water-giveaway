@@ -6,7 +6,7 @@ const directory=JSON.parse(fs.readFileSync(new URL('../water-lookup/directory.js
 test('every published report resolves to a provider and carries dated, sourced measurement rows',()=>{
  for(const [id,report] of Object.entries(data.officialReports)){
   assert.ok(directory.systems.some(s=>s.id===id),id);
-  assert.match(report.url,/^https:\/\/(www\.)?(ocfl\.net|tohowater\.com)\//);
+  assert.match(report.url,/^https:\/\/(www\.)?(ocfl\.net|tohowater\.com|ouc\.com)\//);
   assert.ok(report.rows.length>0);
   for(const r of report.rows){assert.equal(r.length,9);assert.ok(r[0]&&r[1]);assert.ok(r[2].split(',').every(v=>Number.isFinite(Number(v.trim()))));assert.match(r[5],/20\d{2}/);assert.ok(['reported','lraa','raa','p90'].includes(r[7]));assert.ok(Number.isInteger(r[8]));}
  }
@@ -30,4 +30,11 @@ test('Sunbridge retains both sampling periods and the individual lead exceedance
  assert.equal(report.rows.find(r=>r[0]==='Lead (tap water)')[2],'0.5, 0.4');
  assert.match(report.notice[0],/one site/);
  assert.equal(data.officialReports.FL3490751.rows.find(r=>r[0]==='Chlorine')[7],'raa');
+});
+
+test('OUC preserves its 2024 report year and individual copper exceedance',()=>{
+ const report=data.officialReports.FL3480962;
+ assert.equal(report.year,2024);assert.equal(report.sitesAboveAL['Copper (tap water)'],1);
+ assert.equal(report.rows.find(r=>r[0].includes('TTHM'))[2],'66.29');
+ assert.match(report.notice[1],/2024/);
 });
