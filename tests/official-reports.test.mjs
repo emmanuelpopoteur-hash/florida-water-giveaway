@@ -8,7 +8,7 @@ test('every published report resolves to a provider and carries dated, sourced m
   assert.ok(directory.systems.some(s=>s.id===id),id);
   assert.match(report.url,/^https:\/\/(www\.)?(ocfl\.net|tohowater\.com)\//);
   assert.ok(report.rows.length>0);
-  for(const r of report.rows){assert.equal(r.length,9);assert.ok(r[0]&&r[1]);assert.ok(Number.isFinite(Number(r[2])));assert.match(r[5],/20\d{2}/);assert.ok(['reported','lraa','p90'].includes(r[7]));assert.ok(Number.isInteger(r[8]));}
+  for(const r of report.rows){assert.equal(r.length,9);assert.ok(r[0]&&r[1]);assert.ok(r[2].split(',').every(v=>Number.isFinite(Number(v.trim()))));assert.match(r[5],/20\d{2}/);assert.ok(['reported','lraa','raa','p90'].includes(r[7]));assert.ok(Number.isInteger(r[8]));}
  }
 });
 test('Eastern monitoring context and Western ambiguous limit remain visible in source data',()=>{
@@ -22,4 +22,12 @@ test('purchased-water systems preserve their own results and supplier identity',
  assert.match(golden.supplier,/FL3484093/);
  assert.notEqual(golden.rows.find(r=>r[0]==='Chlorine')[2],flamingo.rows.find(r=>r[0]==='Chlorine')[2]);
  assert.equal(flamingo.rows.find(r=>r[0].includes('TTHM'))[7],'reported');
+});
+
+test('Sunbridge retains both sampling periods and the individual lead exceedance',()=>{
+ const report=data.officialReports.FL3494439;
+ assert.equal(report.sitesAboveAL['Lead (tap water)'],1);
+ assert.equal(report.rows.find(r=>r[0]==='Lead (tap water)')[2],'0.5, 0.4');
+ assert.match(report.notice[0],/one site/);
+ assert.equal(data.officialReports.FL3490751.rows.find(r=>r[0]==='Chlorine')[7],'raa');
 });

@@ -41,9 +41,9 @@ function renderOfficial(system){
   const rest=el('div',null,'zip-measures');more.append(rest);
   report.rows.forEach((r,i)=>{
     const card=el('div',null,'zip-measure');
-    const metric=r[7]==='lraa'?t('Locational running annual average','Promedio anual móvil por punto'):r[7]==='p90'?t('90th percentile','Percentil 90'):t('Reported level','Nivel reportado');
+    const metric=r[7]==='raa'?t('Running annual average','Promedio anual móvil'):r[7]==='lraa'?t('Locational running annual average','Promedio anual móvil por punto'):r[7]==='p90'?t('90th percentile','Percentil 90'):t('Reported level','Nivel reportado');
     card.append(el('strong',r[lang()==='es'?1:0]),el('span',metric+': '+r[2]+' '+r[3]),el('span',t('Report limit: ','Límite del informe: ')+(r[6]==='—'?t('Pending verification','Pendiente de verificar'):r[6]+' '+r[3])),el('span',t('Sampled: ','Muestreo: ')+r[5]),el('span',t('Range: ','Rango: ')+r[4]+' '+r[3]));
-    if(r[7]==='p90')card.append(el('span',t('Sites above action level: 0','Sitios por encima del nivel de acción: 0')));
+    if(r[7]==='p90')card.append(el('span',t('Sites above action level: ','Sitios por encima del nivel de acción: ')+(report.sitesAboveAL?.[r[0]]??0)));
     if(!r[3])card.append(el('span',t('Unit not specified in the source row.','La fila de origen no especifica la unidad.')));
     card.append(link(t('Source · page ','Fuente · página ')+r[8],report.url+'#page='+r[8]));
     (i<3?cards:rest).append(card);

@@ -95,6 +95,6 @@
     buttons.es.addEventListener("click",()=>setLanguage("es"));
     try{const requested=new URLSearchParams(window.location.search).get("lang");setLanguage(requested==="es"||requested==="en"?requested:localStorage.getItem("legacy-language")==="es"?"es":"en")}catch(_){setLanguage("en")}
   </script>
-  <script type="module" src="/water-lookup/lookup.mjs?v=official-reports-2025-v3"></script>
+  <script type="module" src="/water-lookup/lookup.mjs?v=official-reports-2025-v4"></script>
 </body>
 </html>

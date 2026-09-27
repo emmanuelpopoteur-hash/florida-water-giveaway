@@ -70,5 +70,53 @@
       "Orange County Utilities",
       "Partlow Acres"
     ]
+  },
+  "FL3490751": {
+    "displayName": "Toho Water Authority — Eastern / Central",
+    "reportUrl": "https://www.tohowater.com/sites/default/files/2026-06/Toho%20CCR%20Central%202025.pdf",
+    "aliases": [
+      "Toho Water Authority",
+      "Eastern / Central"
+    ]
+  },
+  "FL3494427": {
+    "displayName": "Toho Water Authority — Harmony",
+    "reportUrl": "https://www.tohowater.com/sites/default/files/2026-06/Toho%20CCR%20Eastern%202025.pdf",
+    "aliases": [
+      "Toho Water Authority",
+      "Harmony"
+    ]
+  },
+  "FL3494439": {
+    "displayName": "Toho Water Authority — Sunbridge",
+    "reportUrl": "https://www.tohowater.com/sites/default/files/2026-06/Toho%20CCR%20Eastern%202025.pdf",
+    "aliases": [
+      "Toho Water Authority",
+      "Sunbridge"
+    ]
+  },
+  "FL3494429": {
+    "displayName": "Toho Water Authority — Poinciana",
+    "reportUrl": "https://www.tohowater.com/sites/default/files/2026-06/Toho%20CCR%20Southern%202025.pdf",
+    "aliases": [
+      "Toho Water Authority",
+      "Poinciana"
+    ]
+  },
+  "FL3491011": {
+    "displayName": "Toho Water Authority — Western",
+    "reportUrl": "https://www.tohowater.com/sites/default/files/2026-06/Toho%20CCR%20Western%202025.pdf",
+    "aliases": [
+      "Toho Water Authority",
+      "Western"
+    ]
+  },
+  "FL3494416": {
+    "displayName": "Toho Water Authority — Hidden Glen",
+    "reportUrl": "https://www.tohowater.com/sites/default/files/2026-06/Toho%20CCR%20Western%202025.pdf",
+    "aliases": [
+      "Toho Water Authority",
+      "Hidden Glen"
+    ]
   }
 }
