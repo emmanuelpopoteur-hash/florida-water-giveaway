@@ -35,7 +35,10 @@ function render(){
   if(selected){
     const system=directory.systems.find(s=>s.id===selected)||historical.systemCatalog[selected];
     if(!system){selected='';return render();}
-    result.append(el('h3',system.name),el('p',`${system.id}${system.city?' · '+system.city:''}`),el('p',t('You selected this system. Confirm that the ID or name matches your water bill. Location does not establish service to your address.','Seleccionaste este sistema. Confirma que el identificador o nombre coincida con tu factura. La ubicación no confirma el servicio a tu dirección.')));
+    result.append(el('h3',system.displayName||system.name),el('p',`${system.id}${system.city?' · '+system.city:''}`),el('p',t('You selected this system. Confirm that the ID or name matches your water bill. Location does not establish service to your address.','Seleccionaste este sistema. Confirma que el identificador o nombre coincida con tu factura. La ubicación no confirma el servicio a tu dirección.')));
+    if(system.displayName)result.append(el('p',t('Registry name: ','Nombre en el registro: ')+system.name));
+    if(system.reportUrl)result.append(link(t('Official water quality reports ↗','Informes oficiales de calidad del agua ↗'),system.reportUrl));
+    if(system.serviceMapUrl)result.append(el('p'),link(t('Confirm your address on the official water quality map ↗','Confirma tu dirección en el mapa oficial de calidad del agua ↗'),system.serviceMapUrl));
     renderHistorical(system);
     result.append(link(t('Look up this system in EWG ↗','Consultar este sistema en EWG ↗'),'https://www.ewg.org/tapwater/system.php?pws='+encodeURIComponent(system.id)));
     const back=el('button',t('Change provider','Cambiar proveedor'),'water-secondary');back.type='button';back.addEventListener('click',()=>{selected='';render();});result.append(back);return;
@@ -47,7 +50,7 @@ function render(){
   const shown=list.slice(0,40);
   if(list.length>40)result.append(el('p',t(`Showing 40 of ${list.length}. Narrow your search by provider name or city.`,`Mostrando 40 de ${list.length}. Filtra por nombre o ciudad.`)));
   const cards=el('div',null,'water-candidates');
-  for(const system of shown){const card=el('div',null,'water-candidate');card.append(el('strong',system.name),el('span',`${system.city||'Florida'} · ${system.id}`));
+  for(const system of shown){const card=el('div',null,'water-candidate');card.append(el('strong',system.displayName||system.name),el('span',`${system.city||'Florida'} · ${system.id}`));
     if(Number.isFinite(system.distance))card.append(el('small',t('Plant approx. ','Planta a aprox. ')+Math.round(system.distance)+' km'+(mode==='zip'?t(' from ZIP center',' del centro del ZIP'):'')));
     const choose=el('button',t('This matches my bill','Coincide con mi factura'));choose.type='button';choose.addEventListener('click',()=>{selected=system.id;render();});card.append(choose);cards.append(card);}
   result.append(cards,el('p',t('Private well? Public-system reports do not describe your well. It needs its own testing.','¿Pozo privado? Los reportes de sistemas públicos no describen tu pozo. Necesita sus propias pruebas.')));
