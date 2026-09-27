@@ -11,7 +11,7 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url+'?v=reports-v9',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v10',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
@@ -65,6 +65,7 @@ function render(){
     if(system.reportUrl)result.append(link(t('Official water quality reports ↗','Informes oficiales de calidad del agua ↗'),system.reportUrl));
     if(system.serviceMapUrl)result.append(el('p'),link(t('Confirm your address on the official water quality map ↗','Confirma tu dirección en el mapa oficial de calidad del agua ↗'),system.serviceMapUrl));
     const history=el('details',null,'water-disclosure');
+    history.open=true;
     history.append(el('summary',t('EWG — historical data','EWG — datos históricos')));
     renderHistorical(system,history);result.append(history);
     result.append(link(t('Look up this system in EWG ↗','Consultar este sistema en EWG ↗'),'https://www.ewg.org/tapwater/system.php?pws='+encodeURIComponent(system.id)));
