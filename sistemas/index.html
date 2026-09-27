@@ -65,6 +65,9 @@
       document.querySelectorAll('.product').forEach(p=>p.hidden=activeCategory!=='all'&&p.dataset.category!==activeCategory);
       updateCatalogCount();
     }));
+    const requestedCategory=new URLSearchParams(window.location.search).get('category');
+    const initialFilter=[...document.querySelectorAll('[data-filter]')].find(button=>button.dataset.filter===requestedCategory);
+    if(initialFilter)initialFilter.click();
     const buttons={en:document.getElementById("en"),es:document.getElementById("es")};
     function setLanguage(language){
       if(!buttons[language])return;
