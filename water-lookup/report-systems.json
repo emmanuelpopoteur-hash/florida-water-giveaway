@@ -126,5 +126,13 @@
       "OUC",
       "Orlando Utilities Commission"
     ]
+  },
+  "FL6290327": {
+    "displayName": "City of Tampa Water Department",
+    "reportUrl": "https://www.tampa.gov/sites/default/files/document/2026/2025-water-quality-report.pdf",
+    "aliases": [
+      "Tampa Water",
+      "City of Tampa"
+    ]
   }
 }

@@ -6,7 +6,7 @@ const directory=JSON.parse(fs.readFileSync(new URL('../water-lookup/directory.js
 test('every published report resolves to a provider and carries dated, sourced measurement rows',()=>{
  for(const [id,report] of Object.entries(data.officialReports)){
   assert.ok(directory.systems.some(s=>s.id===id),id);
-  assert.match(report.url,/^https:\/\/(www\.)?(ocfl\.net|tohowater\.com|ouc\.com)\//);
+  assert.match(report.url,/^https:\/\/(www\.)?(ocfl\.net|tohowater\.com|ouc\.com|tampa\.gov)\//);
   assert.ok(report.rows.length>0);
   for(const r of report.rows){assert.equal(r.length,9);assert.ok(r[0]&&r[1]);assert.ok(r[2].split(',').every(v=>Number.isFinite(Number(v.trim()))));assert.match(r[5],/20\d{2}/);assert.ok(['reported','lraa','raa','p90'].includes(r[7]));assert.ok(Number.isInteger(r[8]));}
  }
@@ -37,4 +37,11 @@ test('OUC preserves its 2024 report year and individual copper exceedance',()=>{
  assert.equal(report.year,2024);assert.equal(report.sitesAboveAL['Copper (tap water)'],1);
  assert.equal(report.rows.find(r=>r[0].includes('TTHM'))[2],'66.29');
  assert.match(report.notice[1],/2024/);
+});
+
+test('Tampa preserves semiannual lead data and distinguishes PFAS reporting thresholds',()=>{
+ const r=data.officialReports.FL6290327;
+ assert.equal(r.rows.filter(x=>x[0].startsWith('Lead (tap')).length,2);
+ assert.equal(r.sitesAboveAL['Lead (tap water, Jul–Dec)'],1);
+ assert.match(r.additional.find(x=>x.page===15).text[0],/not a legal limit/);
 });

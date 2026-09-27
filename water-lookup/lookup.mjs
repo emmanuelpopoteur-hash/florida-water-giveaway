@@ -11,7 +11,7 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url+'?v=reports-v6',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v7',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
@@ -47,6 +47,7 @@ function renderOfficial(system){
     card.append(link(t('Source · PDF page ','Fuente · página del PDF ')+r[8],report.url+'#page='+r[8]));
     (i<3?cards:rest).append(card);
   });
+  for(const item of report.additional||[]){const block=el('div',null,'zip-measure');block.append(el('strong',item.title[lang()==='es'?1:0]),el('p',item.text[lang()==='es'?1:0]),link(t('Source · PDF page ','Fuente · página del PDF ')+item.page,report.url+'#page='+item.page));more.append(block);}
   section.append(cards,more);
   more.append(el('p',t('MCL: maximum contaminant level. MRDL: maximum residual disinfectant level. AL: action level. ND: not detected. ppm = mg/L; ppb = µg/L; pCi/L measures radioactivity; MFL means million fibers per liter. NA: not applicable. Limits are reproduced from the cited report.','MCL: nivel máximo de contaminante. MRDL: nivel máximo residual de desinfectante. AL: nivel de acción. ND: no detectado. ppm = mg/L; ppb = µg/L; pCi/L mide radiactividad; MFL significa millones de fibras por litro. NA: no aplica. Los límites se reproducen del informe citado.')));
   if(system.id==='FL3491373')more.append(el('p',t('Toho reports that it stopped adding fluoride on July 1, 2025; the fluoride sample here is from April 2023.','Toho informa que dejó de añadir fluoruro el 1 de julio de 2025; la muestra de fluoruro aquí es de abril de 2023.')));
