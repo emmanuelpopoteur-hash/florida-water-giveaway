@@ -1,4 +1,4 @@
-import {nearbySystems, searchSystems, zipSystems} from './core.mjs?v=typo-search-v1';
+import {nearbySystems, searchSystems, zipSystems} from './core.mjs?v=typo-search-v2';
 import {locate, locationError} from './geolocation.mjs';
 const form=document.getElementById('zip-form'), zip=document.getElementById('zip-input'), result=document.getElementById('zip-result');
 const gps=document.getElementById('water-gps'), status=document.getElementById('water-status'), search=document.getElementById('water-provider');
@@ -11,7 +11,7 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url+'?v=reports-v20',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v21',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }

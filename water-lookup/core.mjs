@@ -9,7 +9,7 @@ export function nearbySystems(systems, point, radius = 40) {
     .filter(s => s.distance <= radius).sort((a,b) => a.distance-b.distance || a.name.localeCompare(b.name));
 }
 const normalizeSearch = text => String(text || '').normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  .replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim().replace(/\bsaint\b/g, 'st');
 
 // Edit distance with adjacent transpositions: "thoo" is one typo from "toho".
 function typoDistance(a, b) {

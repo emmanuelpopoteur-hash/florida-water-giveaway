@@ -49,3 +49,11 @@ test('exact matches rank first and fuzzy search does not guess IDs or empty quer
  assert.deepEqual(searchSystems(systems,'tojo zzzzzzz'),[]);
  assert.equal(searchSystems([{id:'FL1234567',name:'Registry',displayName:'Toho',city:''}],'tojo').length,1);
 });
+
+test('Saint and St abbreviations return the same providers',()=>{
+ const ids=q=>searchSystems(d.systems,q).map(s=>s.id);
+ assert.deepEqual(ids('Saint Cloud'),ids('St. Cloud'));
+ assert.deepEqual(ids('saint cloud'),ids('st cloud'));
+ assert.ok(ids('Saint Cloud').includes('FL3491373'));
+ assert.deepEqual(ids('Saint Petersburg'),ids('St. Petersburg'));
+});
