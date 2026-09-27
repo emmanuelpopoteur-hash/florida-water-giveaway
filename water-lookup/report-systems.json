@@ -134,5 +134,54 @@
       "Tampa Water",
       "City of Tampa"
     ]
+  },
+  "FL2161328": {
+    "displayName": "JEA — Major Grid",
+    "reportUrl": "https://www.jea.com/uploadedFiles/jea.com/About/Water_Supply/Water_Quality_Reports/WQR%20_read-version-v5_5.26.pdf",
+    "aliases": [
+      "JEA",
+      "Major Grid",
+      "Jacksonville"
+    ]
+  },
+  "FL2160735": {
+    "displayName": "JEA — Mayport",
+    "reportUrl": "https://www.jea.com/uploadedFiles/jea.com/About/Water_Supply/Water_Quality_Reports/WQR%20_read-version-v5_5.26.pdf",
+    "aliases": [
+      "JEA",
+      "Mayport"
+    ]
+  },
+  "FL2454338": {
+    "displayName": "JEA — Lofton Oaks Grid",
+    "reportUrl": "https://www.jea.com/uploadedFiles/jea.com/About/Water_Supply/Water_Quality_Reports/WQR%20_read-version-v5_5.26.pdf",
+    "aliases": [
+      "JEA",
+      "Lofton Oaks Grid"
+    ]
+  },
+  "FL2554334": {
+    "displayName": "JEA — Ponce de Leon Grid",
+    "reportUrl": "https://www.jea.com/uploadedFiles/jea.com/About/Water_Supply/Water_Quality_Reports/WQR%20_read-version-v5_5.26.pdf",
+    "aliases": [
+      "JEA",
+      "Ponce de Leon Grid"
+    ]
+  },
+  "FL2550908": {
+    "displayName": "JEA — Ponte Vedra Grid",
+    "reportUrl": "https://www.jea.com/uploadedFiles/jea.com/About/Water_Supply/Water_Quality_Reports/WQR%20_read-version-v5_5.26.pdf",
+    "aliases": [
+      "JEA",
+      "Ponte Vedra Grid"
+    ]
+  },
+  "FL2550866": {
+    "displayName": "JEA — Palm Valley",
+    "reportUrl": "https://www.jea.com/uploadedFiles/jea.com/About/Water_Supply/Water_Quality_Reports/WQR%20_read-version-v5_5.26.pdf",
+    "aliases": [
+      "JEA",
+      "Palm Valley"
+    ]
   }
 }

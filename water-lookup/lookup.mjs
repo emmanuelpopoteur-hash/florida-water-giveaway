@@ -11,7 +11,7 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url+'?v=reports-v7',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v8',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
@@ -32,7 +32,7 @@ function renderOfficial(system){
   const report=historical.officialReports?.[system.id];if(!report){result.append(el('p',t('Official report results have not yet been verified for this system.','Los resultados del informe oficial de este sistema aún no se han verificado.')));return;}
   const section=el('section',null,'water-official');section.append(el('h3',t('Official water report · ','Informe oficial del agua · ')+report.year));
   section.append(el('p',t('System-wide results, not a test of your home. Sampling dates vary by substance.','Resultados del sistema, no un análisis de tu casa. Las fechas de muestreo varían por sustancia.')));
-  section.append(el('p',t('The report marks no violations or action-level exceedances in these tables.','El informe no marca incumplimientos ni superaciones del nivel de acción en estas tablas.')));
+  section.append(el('p',report.status?report.status[lang()==='es'?1:0]:t('The report marks no violations or action-level exceedances in these tables.','El informe no marca incumplimientos ni superaciones del nivel de acción en estas tablas.')));
   if(report.notice)section.append(el('p',report.notice[lang()==='es'?1:0],'water-report-notice'));
   if(report.supplier)section.append(el('p',t('Water purchased from: ','Agua comprada a: ')+report.supplier));
   const cards=el('div',null,'zip-measures');
