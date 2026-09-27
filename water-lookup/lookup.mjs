@@ -11,14 +11,13 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url);if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v6',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
 function renderHistorical(system, result){
   const data=historical.contaminants[system.id];
   if(!data){result.append(el('p',t('Measurements for this system have not yet been added here. Open the source record and confirm its system ID and sampling dates.','Todavía no hemos incorporado las mediciones de este sistema. Abre la fuente y confirma su identificador y fechas de muestreo.')));return;}
-  result.append(el('h4',t('Historical measurements','Mediciones históricas')));
   result.append(el('p',t('Previously transcribed EWG utility averages. These are not current tap readings; check the source for sampling periods and updates. EWG guidelines and legal limits are different benchmarks.','Promedios históricos de EWG transcritos previamente. No son mediciones actuales de tu grifo; consulta los periodos y actualizaciones en la fuente. Las guías EWG y los límites legales son referencias diferentes.')));
   for(const [key,en,es] of [['above','Above EWG guidelines','Por encima de las guías EWG'],['other','Other detected contaminants','Otros contaminantes detectados']]){
     if(!data[key]?.length)continue;
