@@ -1,4 +1,4 @@
-import {nearbySystems, searchSystems, zipSystems} from './core.mjs';
+import {nearbySystems, searchSystems, zipSystems} from './core.mjs?v=typo-search-v1';
 import {locate, locationError} from './geolocation.mjs';
 const form=document.getElementById('zip-form'), zip=document.getElementById('zip-input'), result=document.getElementById('zip-result');
 const gps=document.getElementById('water-gps'), status=document.getElementById('water-status'), search=document.getElementById('water-provider');
@@ -11,7 +11,7 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url+'?v=reports-v19',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v20',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
@@ -75,7 +75,7 @@ function render(){
   }
   const list=mode==='name'?searchSystems(directory.systems,search.value):mode==='zip'?zipSystems(directory.systems,directory.zips,zip.value.trim()):nearbySystems(directory.systems,point);
   result.append(el('h3',mode==='name'?t('Find the name on your bill','Busca el nombre de tu factura'):mode==='gps'?t('Systems near your location','Sistemas cerca de tu ubicación'):t('Systems near ZIP ','Sistemas cerca del ZIP ')+zip.value));
-  result.append(el('p',mode==='name'?t('Public water systems from Florida DEP and verified utility reports. Choose the provider on your bill.','Sistemas públicos de Florida DEP e informes oficiales verificados. Elige el proveedor de tu factura.'):t('Suggestions use treatment-plant locations within 40 km, not service-area boundaries. Your ZIP can have several providers. If yours is missing, search by name or city below.','Las sugerencias usan ubicaciones de plantas a menos de 40 km, no límites de servicio. Un ZIP puede tener varios proveedores. Si falta el tuyo, busca por nombre o ciudad.')));
+  result.append(el('p',mode==='name'?t('Public water systems from Florida DEP and verified utility reports. Results may include similar spellings. Choose the provider on your bill.','Sistemas públicos de Florida DEP e informes oficiales verificados. Los resultados pueden incluir nombres con escritura parecida. Elige el proveedor de tu factura.'):t('Suggestions use treatment-plant locations within 40 km, not service-area boundaries. Your ZIP can have several providers. If yours is missing, search by name or city below.','Las sugerencias usan ubicaciones de plantas a menos de 40 km, no límites de servicio. Un ZIP puede tener varios proveedores. Si falta el tuyo, busca por nombre o ciudad.')));
   if(!list.length)result.append(el('p',t('No matching systems found. Try a provider name, city, or PWS ID. No result does not mean there is no service or that the water is safe.','No encontramos coincidencias. Prueba con el proveedor, ciudad o identificador PWS. Esto no significa que no exista servicio ni que el agua sea segura.')));
   const shown=list.slice(0,40);
 

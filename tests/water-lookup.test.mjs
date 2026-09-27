@@ -33,3 +33,19 @@ test('34771 suggests St Cloud and excludes Frostproof without losing alternative
  assert.equal(list.length,nearbySystems(d.systems,d.zips['34771']).length);
  assert.deepEqual(zipSystems(d.systems,d.zips,'99999'),[]);
 });
+
+test('provider search tolerates typos, swapped letters, missing letters and accents',()=>{
+ for(const query of ['tojo eastern','thoo eastern','toh eastern','tóho eastern','toho eastren']){
+  assert.ok(searchSystems(d.systems,query).some(s=>s.id==='FL3490751'),query);
+ }
+ for(const query of ['orlnado','kissimee','poincana'])assert.ok(searchSystems(d.systems,query).length,query);
+});
+test('exact matches rank first and fuzzy search does not guess IDs or empty queries',()=>{
+ const systems=[{id:'FL1234567',name:'Toho Western',city:''},{id:'FL7654321',name:'Tojo Water',city:''}];
+ assert.equal(searchSystems(systems,'tojo')[0].id,'FL7654321');
+ assert.deepEqual(searchSystems(systems,'FL1234568'),[]);
+ assert.deepEqual(searchSystems(systems,'   '),[]);
+ assert.deepEqual(searchSystems(systems,'xx'),[]);
+ assert.deepEqual(searchSystems(systems,'tojo zzzzzzz'),[]);
+ assert.equal(searchSystems([{id:'FL1234567',name:'Registry',displayName:'Toho',city:''}],'tojo').length,1);
+});
