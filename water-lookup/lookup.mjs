@@ -11,7 +11,7 @@ function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
-    const r=await fetch(url+'?v=reports-v10',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
+    const r=await fetch(url+'?v=reports-v11',{cache:'no-cache'});if(!r.ok)throw Error('Data unavailable');return r.json();
   })).then(([d,h])=>{directory=d;historical=h;}).catch(error=>{loading=null;throw error;});
   await loading;
 }
@@ -19,11 +19,12 @@ function renderHistorical(system, result){
   const data=historical.contaminants[system.id];
   if(!data){result.append(el('p',t('Measurements for this system have not yet been added here. Open the source record and confirm its system ID and sampling dates.','Todavía no hemos incorporado las mediciones de este sistema. Abre la fuente y confirma su identificador y fechas de muestreo.')));return;}
   result.append(el('p',t('Previously transcribed EWG utility averages. These are not current tap readings; check the source for sampling periods and updates. EWG guidelines and legal limits are different benchmarks.','Promedios históricos de EWG transcritos previamente. No son mediciones actuales de tu grifo; consulta los periodos y actualizaciones en la fuente. Las guías EWG y los límites legales son referencias diferentes.')));
+  if(data.source)result.append(el('p',t('EWG record period: ','Periodo del registro EWG: ')+data.source.period+t(' · Checked: ',' · Consultado: ')+data.source.checked),el('p',data.note[lang()==='es'?1:0],'zip-context'));
   for(const [key,en,es] of [['above','Above EWG guidelines','Por encima de las guías EWG'],['other','Other detected contaminants','Otros contaminantes detectados']]){
     if(!data[key]?.length)continue;
     result.append(el('h4',`${t(en,es)} (${data[key].length})`));const cards=el('div',null,'zip-measures');
-    for(const row of data[key]){const card=el('div',null,'zip-measure');card.append(el('strong',row[lang()==='es'?1:0]),el('span',t('Utility average: ','Promedio del sistema: ')+row[2]),el('span',t('EWG guideline: ','Guía EWG: ')+(row[3]||t('not set','sin guía'))+' · '+t('Legal limit: ','Límite legal: ')+(row[4]||t('not set','sin límite'))));
-      const effect=historical.potentialEffects[row[0]];if(effect)card.append(el('span',t('Potential effect: ','Efecto potencial: ')+effect[lang()]));cards.append(card);}
+    for(const row of data[key]){const card=el('div',null,'zip-measure');card.append(el('strong',row[lang()==='es'?1:0]),el('span',t('Utility average: ','Promedio del sistema: ')+row[2]),el('span',t('EWG guideline: ','Guía EWG: ')+(row[3]||t('not set','sin guía'))+' · '+(data.source?(data.proposedLimits?.includes(row[0])?t('Proposed limit shown by EWG: ','Límite propuesto mostrado por EWG: '):t('Limit shown by EWG: ','Límite mostrado por EWG: ')):t('Legal limit: ','Límite legal: '))+(row[4]||t('not set','sin límite'))));
+      const effect=data.potentialEffects?.[row[0]]||historical.potentialEffects[row[0]];if(effect)card.append(el('span',t('Potential effect: ','Efecto potencial: ')+effect[lang()]));cards.append(card);}
     result.append(cards);
   }
   result.append(el('p',t('This summary may be incomplete. HAA5 and HAA9 overlap. A potential effect describes a contaminant hazard, not a diagnosis or a prediction about your home.','Este resumen puede estar incompleto. HAA5 y HAA9 se superponen. Un efecto potencial describe un peligro del contaminante, no un diagnóstico ni una predicción sobre tu hogar.'),'zip-context'));
