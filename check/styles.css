@@ -32,3 +32,5 @@ footer{border-top:1px solid #2b515d}
 .local-water-item{display:grid;gap:4px;background:white;border:1px solid #d8e9e5;border-radius:7px;padding:11px 12px;font-size:13px;line-height:1.4}.local-water-item strong{font-size:14px}.local-water-effect{font-weight:700;color:#8d4040}.local-water-item small{color:#506b70;font-size:12px}
 .local-water details{margin:14px 0;font-size:13px}.local-water summary{cursor:pointer;font-weight:700;color:#0b6a70}.local-water details p{margin:7px 0}.local-water a{font-size:12px;color:#0b6a70;text-decoration:underline;text-underline-offset:2px}
 @media(max-width:760px){.local-water{max-height:390px;padding:15px}.local-water h4{font-size:18px}}
+
+.selected-system{background:#edf5f0;border:1px solid #d3e5dc;border-radius:12px;padding:20px;margin-bottom:24px;color:#123c43}.selected-system[hidden]{display:none}.selected-system small{display:block;font-size:10px;font-weight:700;letter-spacing:.14em;margin-bottom:8px}.selected-system strong{display:block;font-size:17px;line-height:1.4}.selected-system p{font-size:13px;line-height:1.5;margin:10px 0}.selected-system a{font-size:13px;color:#08777b;text-underline-offset:3px}
