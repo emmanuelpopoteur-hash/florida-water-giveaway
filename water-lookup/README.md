@@ -28,3 +28,13 @@ GPS is requested only after clicking Use my location. Coordinates are held in pa
 - Local Chrome walkthrough: ZIP 34771 produces candidate systems and preserves ZIP handoff to the lead form.
 
 Service-area promises and the lead database schema are unchanged by this lookup expansion.
+
+## Official report expansion (2026-09-26)
+
+The statewide directory and verified report coverage are different datasets. Eleven systems currently have transcribed official 2025 report tables: St. Cloud and all ten systems in Orange County Utilities' 2025 report. Do not describe the statewide report work as complete. The plant directory contains 1,541 systems, supplemented by two report-backed purchased-water systems without plant coordinates; those two can be found by name or PWS ID, not by guessed location.
+
+Official results live in `historical.json.officialReports`, keyed by the exact PWS ID. Every row records English/Spanish names, reported value, units, range, sampling date, report limit, metric type and PDF page. The report year is not a substitute for the sampling year. Source documents: Toho St. Cloud 2025 English PDF pages 6–8 and Orange County Utilities 2025 PDF pages 11–20. All relevant pages were visually reviewed against the extracted tables. `report-systems.json` retains CCR-backed labels and supplemental systems across directory refreshes.
+
+Eastern's monitoring issue, individual TTHM results, and printed February 2026 nitrate date are disclosed. Western's printed combined-radium limit of 15 is held as pending verification instead of promoted as a valid comparison. Magnolia Woods' nondetected tap lead is explained without fabricating a numeric value. Purchased-water suppliers do not inherit another retailer's distribution measurements. Monthly/annual, locational-average and percentile metrics are kept distinct. Source report pages remain linked.
+
+Next acquisition areas: other Toho systems, OUC, remaining Central Florida utilities, then statewide municipal and smaller community systems. Each requires verified PWS identity, dated official report, table/footnote review and source-specific exceptions before publication. No background job is configured. Run `node --test tests/*.test.mjs` and the build before publishing changes.

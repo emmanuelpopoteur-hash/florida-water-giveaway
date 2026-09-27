@@ -30,26 +30,28 @@ function renderHistorical(system, result){
   result.append(el('p',t('This summary may be incomplete. HAA5 and HAA9 overlap. A potential effect describes a contaminant hazard, not a diagnosis or a prediction about your home.','Este resumen puede estar incompleto. HAA5 y HAA9 se superponen. Un efecto potencial describe un peligro del contaminante, no un diagnóstico ni una predicción sobre tu hogar.'),'zip-context'));
 }
 function renderOfficial(system){
-  const report=historical.officialReports?.[system.id];if(!report)return;
+  const report=historical.officialReports?.[system.id];if(!report){result.append(el('p',t('Official report results have not yet been verified for this system.','Los resultados del informe oficial de este sistema aún no se han verificado.')));return;}
   const section=el('section',null,'water-official');section.append(el('h3',t('Official water report · ','Informe oficial del agua · ')+report.year));
   section.append(el('p',t('System-wide results, not a test of your home. Sampling dates vary by substance.','Resultados del sistema, no un análisis de tu casa. Las fechas de muestreo varían por sustancia.')));
   section.append(el('p',t('The report marks no violations or action-level exceedances in these tables.','El informe no marca incumplimientos ni superaciones del nivel de acción en estas tablas.')));
+  if(report.notice)section.append(el('p',report.notice[lang()==='es'?1:0],'water-report-notice'));
+  if(report.supplier)section.append(el('p',t('Water purchased from: ','Agua comprada a: ')+report.supplier));
   const cards=el('div',null,'zip-measures');
   const more=el('details',null,'water-disclosure');more.append(el('summary',t('All results and sampling details','Todos los resultados y detalles de muestreo')));
   const rest=el('div',null,'zip-measures');more.append(rest);
   report.rows.forEach((r,i)=>{
     const card=el('div',null,'zip-measure');
     const metric=r[7]==='lraa'?t('Locational running annual average','Promedio anual móvil por punto'):r[7]==='p90'?t('90th percentile','Percentil 90'):t('Reported level','Nivel reportado');
-    card.append(el('strong',r[lang()==='es'?1:0]),el('span',metric+': '+r[2]+' '+r[3]),el('span',t('Report limit: ','Límite del informe: ')+r[6]+' '+r[3]),el('span',t('Sampled: ','Muestreo: ')+r[5]),el('span',t('Range: ','Rango: ')+r[4]+' '+r[3]));
+    card.append(el('strong',r[lang()==='es'?1:0]),el('span',metric+': '+r[2]+' '+r[3]),el('span',t('Report limit: ','Límite del informe: ')+(r[6]==='—'?t('Pending verification','Pendiente de verificar'):r[6]+' '+r[3])),el('span',t('Sampled: ','Muestreo: ')+r[5]),el('span',t('Range: ','Rango: ')+r[4]+' '+r[3]));
     if(r[7]==='p90')card.append(el('span',t('Sites above action level: 0','Sitios por encima del nivel de acción: 0')));
     if(!r[3])card.append(el('span',t('Unit not specified in the source row.','La fila de origen no especifica la unidad.')));
     card.append(link(t('Source · page ','Fuente · página ')+r[8],report.url+'#page='+r[8]));
     (i<3?cards:rest).append(card);
   });
   section.append(cards,more);
-  more.append(el('p',t('MCL: maximum contaminant level. MRDL: maximum residual disinfectant level. AL: action level. ND: not detected. ppm = mg/L; ppb = µg/L; pCi/L measures radioactivity. Limits are reproduced from the 2025 report.','MCL: nivel máximo de contaminante. MRDL: nivel máximo residual de desinfectante. AL: nivel de acción. ND: no detectado. ppm = mg/L; ppb = µg/L; pCi/L mide radiactividad. Los límites se reproducen del informe 2025.')));
+  more.append(el('p',t('MCL: maximum contaminant level. MRDL: maximum residual disinfectant level. AL: action level. ND: not detected. ppm = mg/L; ppb = µg/L; pCi/L measures radioactivity; MFL means million fibers per liter. NA: not applicable. Limits are reproduced from the 2025 report.','MCL: nivel máximo de contaminante. MRDL: nivel máximo residual de desinfectante. AL: nivel de acción. ND: no detectado. ppm = mg/L; ppb = µg/L; pCi/L mide radiactividad; MFL significa millones de fibras por litro. NA: no aplica. Los límites se reproducen del informe 2025.')));
   if(system.id==='FL3491373')more.append(el('p',t('Toho reports that it stopped adding fluoride on July 1, 2025; the fluoride sample here is from April 2023.','Toho informa que dejó de añadir fluoruro el 1 de julio de 2025; la muestra de fluoruro aquí es de abril de 2023.')));
-  section.append(el('p',system.id==='FL3491373'?t('Source: English report, pages 6–8. The Spanish PDF has conflicting labels and limits; this summary translates the English tables.','Fuente: informe en inglés, páginas 6–8. El PDF en español presenta diferencias en nombres y límites; este resumen traduce las tablas en inglés.'):t('Source: Orange County Utilities 2025 report, page 12. Spanish labels translated by Legacy.','Fuente: informe 2025 de Orange County Utilities, página 12. Etiquetas traducidas al español por Legacy.'),'zip-context'),link(t('Open full official report ↗','Abrir informe oficial completo ↗'),report.url));
+  section.append(el('p',system.id==='FL3491373'?t('Source: English report, pages 6–8. The Spanish PDF has conflicting labels and limits; this summary translates the English tables.','Fuente: informe en inglés, páginas 6–8. El PDF en español presenta diferencias en nombres y límites; este resumen traduce las tablas en inglés.'):(report.sourceNote?.[lang()==='es'?1:0]||t('Source: official report linked below.','Fuente: informe oficial enlazado abajo.')),'zip-context'),link(t('Open full official report ↗','Abrir informe oficial completo ↗'),report.url));
   result.append(section);
 }
 function render(){
@@ -71,7 +73,7 @@ function render(){
   }
   const list=mode==='name'?searchSystems(directory.systems,search.value):mode==='zip'?zipSystems(directory.systems,directory.zips,zip.value.trim()):nearbySystems(directory.systems,point);
   result.append(el('h3',mode==='name'?t('Find the name on your bill','Busca el nombre de tu factura'):mode==='gps'?t('Systems near your location','Sistemas cerca de tu ubicación'):t('Systems near ZIP ','Sistemas cerca del ZIP ')+zip.value));
-  result.append(el('p',mode==='name'?t('Community water systems listed by Florida DEP. Choose only the provider shown on your bill.','Sistemas comunitarios registrados por Florida DEP. Elige únicamente el proveedor que aparece en tu factura.'):t('Suggestions use treatment-plant locations within 40 km, not service-area boundaries. Your ZIP can have several providers. If yours is missing, search by name or city below.','Las sugerencias usan ubicaciones de plantas a menos de 40 km, no límites de servicio. Un ZIP puede tener varios proveedores. Si falta el tuyo, busca por nombre o ciudad.')));
+  result.append(el('p',mode==='name'?t('Public water systems from Florida DEP and verified utility reports. Choose the provider on your bill.','Sistemas públicos de Florida DEP e informes oficiales verificados. Elige el proveedor de tu factura.'):t('Suggestions use treatment-plant locations within 40 km, not service-area boundaries. Your ZIP can have several providers. If yours is missing, search by name or city below.','Las sugerencias usan ubicaciones de plantas a menos de 40 km, no límites de servicio. Un ZIP puede tener varios proveedores. Si falta el tuyo, busca por nombre o ciudad.')));
   if(!list.length)result.append(el('p',t('No matching systems found. Try a provider name, city, or PWS ID. No result does not mean there is no service or that the water is safe.','No encontramos coincidencias. Prueba con el proveedor, ciudad o identificador PWS. Esto no significa que no exista servicio ni que el agua sea segura.')));
   const shown=list.slice(0,40);
 
