@@ -57,3 +57,13 @@ test('Saint and St abbreviations return the same providers',()=>{
  assert.ok(ids('Saint Cloud').includes('FL3491373'));
  assert.deepEqual(ids('Saint Petersburg'),ids('St. Petersburg'));
 });
+
+test('St Cloud city search suggests Toho first while preserving specific provider searches',()=>{
+ for(const query of ['St Cloud','St. Cloud','Saint Cloud']){
+  const result=searchSystems(d.systems,query);
+  assert.equal(result[0].id,'FL3491373');
+  assert.ok(result.some(s=>s.id==='FL3490265'));
+ }
+ assert.equal(searchSystems(d.systems,'FL3490265')[0].id,'FL3490265');
+ assert.ok(searchSystems(d.systems,'colonial st cloud').some(s=>s.id==='FL3490265'));
+});

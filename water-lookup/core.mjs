@@ -23,7 +23,9 @@ function typoDistance(a, b) {
   return grid[a.length][b.length];
 }
 export function searchSystems(systems, query) {
-  const words=normalizeSearch(query).split(' ').filter(Boolean);
+  const normalizedQuery=normalizeSearch(query);
+  const words=normalizedQuery.split(' ').filter(Boolean);
+  const preferred=normalizedQuery==='st cloud'?'FL3491373':null;
   if(!words.length)return [];
   return systems.map((system,index)=>{
     const text=normalizeSearch(`${system.name} ${system.displayName||''} ${system.city||''} ${system.id} ${(system.aliases||[]).join(' ')}`);
@@ -43,7 +45,7 @@ export function searchSystems(systems, query) {
       score+=best;
     }
     return {system,score,index};
-  }).filter(Boolean).sort((a,b)=>a.score-b.score||a.index-b.index).map(item=>item.system);
+  }).filter(Boolean).sort((a,b)=>a.score-b.score||(a.system.id===preferred?-1:b.system.id===preferred?1:0)||a.index-b.index).map(item=>item.system);
 }
 
 // A ZIP suggestion is not an address-level service assignment.
