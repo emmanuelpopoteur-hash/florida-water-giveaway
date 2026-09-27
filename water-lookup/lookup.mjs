@@ -1,12 +1,13 @@
 import {nearbySystems, searchSystems} from './core.mjs';
+import {locate, locationError} from './geolocation.mjs';
 const form=document.getElementById('zip-form'), zip=document.getElementById('zip-input'), result=document.getElementById('zip-result');
 const gps=document.getElementById('water-gps'), status=document.getElementById('water-status'), search=document.getElementById('water-provider');
 const lang=()=>document.documentElement.lang==='es'?'es':'en';
 const t=(en,es)=>lang()==='es'?es:en;
-let directory, historical, loading, mode='', point=null, selected='', sequence=0, searching=false;
+let directory, historical, loading, mode='', point=null, selected='', sequence=0, searching=false,notice=null;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
 function link(text,url){const a=el('a',text);a.href=url;a.target='_blank';a.rel='noopener noreferrer';return a;}
-function announce(en,es){status.textContent=lang()==='es'?es:en;}
+function announce(en,es){notice=[en,es];status.textContent=lang()==='es'?es:en;}
 async function load(){
   if(directory)return;
   if(!loading)loading=Promise.all(['/water-lookup/directory.json','/water-lookup/historical.json'].map(async url=>{
@@ -67,13 +68,15 @@ async function runSearch(nextMode){
 }
 form.addEventListener('submit',e=>{e.preventDefault();runSearch('zip');});
 document.getElementById('water-provider-form').addEventListener('submit',e=>{e.preventDefault();runSearch('name');});
-zip.addEventListener('input',()=>{++sequence;selected='';mode='';point=null;result.hidden=true;gps.disabled=false;searching=false;status.textContent='';window.setLanguage?.(lang());});
-search.addEventListener('input',()=>{++sequence;selected='';mode='';point=null;result.hidden=true;gps.disabled=false;searching=false;status.textContent='';});
+zip.addEventListener('input',()=>{++sequence;selected='';mode='';point=null;result.hidden=true;gps.disabled=false;searching=false;notice=null;status.textContent='';window.setLanguage?.(lang());});
+search.addEventListener('input',()=>{++sequence;selected='';mode='';point=null;result.hidden=true;gps.disabled=false;searching=false;notice=null;status.textContent='';});
 gps.addEventListener('click',async()=>{
   if(!navigator.geolocation){announce('Location is unavailable. Enter your ZIP instead.','La ubicación no está disponible. Ingresa tu ZIP.');return;}
   const request=++sequence;selected='';mode='';point=null;result.hidden=true;gps.disabled=true;searching=true;
   announce('Waiting for location permission…','Esperando permiso de ubicación…');
-  navigator.geolocation.getCurrentPosition(async position=>{
+  locate(navigator.geolocation,{isCurrent:()=>request===sequence,
+    onRetry:()=>announce('Location is taking longer. Retrying…','La ubicación está tardando. Reintentando…'),
+    onSuccess:async position=>{
     if(request!==sequence)return;
     try{await load();if(request!==sequence)return;
       if(position.coords.accuracy>10000){announce('Location is too imprecise. Use your ZIP or provider name.','La ubicación es demasiado imprecisa. Usa tu ZIP o proveedor.');return;}
@@ -82,6 +85,6 @@ gps.addEventListener('click',async()=>{
       announce('Location is used only on this device. Confirm your provider below.','La ubicación se usa solo en este dispositivo. Confirma tu proveedor abajo.');render();
     }catch(_){if(request===sequence)announce('The directory could not load. Please try again.','No se pudo cargar el directorio. Inténtalo de nuevo.');}
     finally{if(request===sequence){gps.disabled=false;searching=false;}}
-  },error=>{if(request!==sequence)return;gps.disabled=false;searching=false;announce(error.code===1?'Location permission was denied. You can still search by ZIP.':'Could not get your location. Try ZIP search.',error.code===1?'Se denegó el permiso de ubicación. Puedes buscar por ZIP.':'No pudimos obtener tu ubicación. Busca por ZIP.');},{enableHighAccuracy:false,timeout:12000,maximumAge:60000});
+  },onError:error=>{gps.disabled=false;searching=false;announce(...locationError(error.code));}});
 });
-window.refreshWaterLookup=()=>{if(mode)render();else if(!searching)status.textContent='';};
+window.refreshWaterLookup=()=>{if(mode)render();if(notice)status.textContent=notice[lang()==='es'?1:0];};
