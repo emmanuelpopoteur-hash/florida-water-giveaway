@@ -48,8 +48,8 @@ function renderOfficial(system){
   });
   section.append(cards,more);
   more.append(el('p',t('MCL: maximum contaminant level. MRDL: maximum residual disinfectant level. AL: action level. ND: not detected. ppm = mg/L; ppb = µg/L; pCi/L measures radioactivity. Limits are reproduced from the 2025 report.','MCL: nivel máximo de contaminante. MRDL: nivel máximo residual de desinfectante. AL: nivel de acción. ND: no detectado. ppm = mg/L; ppb = µg/L; pCi/L mide radiactividad. Los límites se reproducen del informe 2025.')));
-  more.append(el('p',t('Toho reports that it stopped adding fluoride on July 1, 2025; the fluoride sample here is from April 2023.','Toho informa que dejó de añadir fluoruro el 1 de julio de 2025; la muestra de fluoruro aquí es de abril de 2023.')));
-  section.append(el('p',t('Source: English report, pages 6–8. The Spanish PDF has conflicting labels and limits; this summary translates the English tables.','Fuente: informe en inglés, páginas 6–8. El PDF en español presenta diferencias en nombres y límites; este resumen traduce las tablas en inglés.'),'zip-context'),link(t('Open full official report ↗','Abrir informe oficial completo ↗'),report.url));
+  if(system.id==='FL3491373')more.append(el('p',t('Toho reports that it stopped adding fluoride on July 1, 2025; the fluoride sample here is from April 2023.','Toho informa que dejó de añadir fluoruro el 1 de julio de 2025; la muestra de fluoruro aquí es de abril de 2023.')));
+  section.append(el('p',system.id==='FL3491373'?t('Source: English report, pages 6–8. The Spanish PDF has conflicting labels and limits; this summary translates the English tables.','Fuente: informe en inglés, páginas 6–8. El PDF en español presenta diferencias en nombres y límites; este resumen traduce las tablas en inglés.'):t('Source: Orange County Utilities 2025 report, page 12. Spanish labels translated by Legacy.','Fuente: informe 2025 de Orange County Utilities, página 12. Etiquetas traducidas al español por Legacy.'),'zip-context'),link(t('Open full official report ↗','Abrir informe oficial completo ↗'),report.url));
   result.append(section);
 }
 function render(){
