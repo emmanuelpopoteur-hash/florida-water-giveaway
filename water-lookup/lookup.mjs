@@ -29,6 +29,29 @@ function renderHistorical(system, result){
   }
   result.append(el('p',t('This summary may be incomplete. HAA5 and HAA9 overlap. A potential effect describes a contaminant hazard, not a diagnosis or a prediction about your home.','Este resumen puede estar incompleto. HAA5 y HAA9 se superponen. Un efecto potencial describe un peligro del contaminante, no un diagnóstico ni una predicción sobre tu hogar.'),'zip-context'));
 }
+function renderOfficial(system){
+  const report=historical.officialReports?.[system.id];if(!report)return;
+  const section=el('section',null,'water-official');section.append(el('h3',t('Official water report · ','Informe oficial del agua · ')+report.year));
+  section.append(el('p',t('System-wide results, not a test of your home. Sampling dates vary by substance.','Resultados del sistema, no un análisis de tu casa. Las fechas de muestreo varían por sustancia.')));
+  section.append(el('p',t('The report marks no violations or action-level exceedances in these tables.','El informe no marca incumplimientos ni superaciones del nivel de acción en estas tablas.')));
+  const cards=el('div',null,'zip-measures');
+  const more=el('details',null,'water-disclosure');more.append(el('summary',t('All results and sampling details','Todos los resultados y detalles de muestreo')));
+  const rest=el('div',null,'zip-measures');more.append(rest);
+  report.rows.forEach((r,i)=>{
+    const card=el('div',null,'zip-measure');
+    const metric=r[7]==='lraa'?t('Locational running annual average','Promedio anual móvil por punto'):r[7]==='p90'?t('90th percentile','Percentil 90'):t('Reported level','Nivel reportado');
+    card.append(el('strong',r[lang()==='es'?1:0]),el('span',metric+': '+r[2]+' '+r[3]),el('span',t('Report limit: ','Límite del informe: ')+r[6]+' '+r[3]),el('span',t('Sampled: ','Muestreo: ')+r[5]),el('span',t('Range: ','Rango: ')+r[4]+' '+r[3]));
+    if(r[7]==='p90')card.append(el('span',t('Sites above action level: 0','Sitios por encima del nivel de acción: 0')));
+    if(!r[3])card.append(el('span',t('Unit not specified in the source row.','La fila de origen no especifica la unidad.')));
+    card.append(link(t('Source · page ','Fuente · página ')+r[8],report.url+'#page='+r[8]));
+    (i<3?cards:rest).append(card);
+  });
+  section.append(cards,more);
+  more.append(el('p',t('MCL: maximum contaminant level. MRDL: maximum residual disinfectant level. AL: action level. ND: not detected. ppm = mg/L; ppb = µg/L; pCi/L measures radioactivity. Limits are reproduced from the 2025 report.','MCL: nivel máximo de contaminante. MRDL: nivel máximo residual de desinfectante. AL: nivel de acción. ND: no detectado. ppm = mg/L; ppb = µg/L; pCi/L mide radiactividad. Los límites se reproducen del informe 2025.')));
+  more.append(el('p',t('Toho reports that it stopped adding fluoride on July 1, 2025; the fluoride sample here is from April 2023.','Toho informa que dejó de añadir fluoruro el 1 de julio de 2025; la muestra de fluoruro aquí es de abril de 2023.')));
+  section.append(el('p',t('Source: English report, pages 6–8. The Spanish PDF has conflicting labels and limits; this summary translates the English tables.','Fuente: informe en inglés, páginas 6–8. El PDF en español presenta diferencias en nombres y límites; este resumen traduce las tablas en inglés.'),'zip-context'),link(t('Open full official report ↗','Abrir informe oficial completo ↗'),report.url));
+  result.append(section);
+}
 function render(){
   if(!directory||!mode)return;
   result.hidden=false;result.replaceChildren();
@@ -39,6 +62,7 @@ function render(){
     if(system.displayName)result.append(el('p',t('Registry name: ','Nombre en el registro: ')+system.name));
     if(system.reportUrl)result.append(link(t('Official water quality reports ↗','Informes oficiales de calidad del agua ↗'),system.reportUrl));
     if(system.serviceMapUrl)result.append(el('p'),link(t('Confirm your address on the official water quality map ↗','Confirma tu dirección en el mapa oficial de calidad del agua ↗'),system.serviceMapUrl));
+    renderOfficial(system);
     const history=el('details',null,'water-disclosure');
     history.append(el('summary',t('Historical measurements','Mediciones históricas')));
     renderHistorical(system,history);result.append(history);
