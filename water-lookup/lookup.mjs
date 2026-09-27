@@ -1,4 +1,4 @@
-import {nearbySystems, searchSystems} from './core.mjs';
+import {nearbySystems, searchSystems, zipSystems} from './core.mjs';
 import {locate, locationError} from './geolocation.mjs';
 const form=document.getElementById('zip-form'), zip=document.getElementById('zip-input'), result=document.getElementById('zip-result');
 const gps=document.getElementById('water-gps'), status=document.getElementById('water-status'), search=document.getElementById('water-provider');
@@ -45,7 +45,7 @@ function render(){
     result.append(link(t('Look up this system in EWG ↗','Consultar este sistema en EWG ↗'),'https://www.ewg.org/tapwater/system.php?pws='+encodeURIComponent(system.id)));
     const back=el('button',t('Change provider','Cambiar proveedor'),'water-secondary');back.type='button';back.addEventListener('click',()=>{selected='';render();});result.append(back);return;
   }
-  const list=mode==='name'?searchSystems(directory.systems,search.value):nearbySystems(directory.systems,point);
+  const list=mode==='name'?searchSystems(directory.systems,search.value):mode==='zip'?zipSystems(directory.systems,directory.zips,zip.value.trim()):nearbySystems(directory.systems,point);
   result.append(el('h3',mode==='name'?t('Find the name on your bill','Busca el nombre de tu factura'):mode==='gps'?t('Systems near your location','Sistemas cerca de tu ubicación'):t('Systems near ZIP ','Sistemas cerca del ZIP ')+zip.value));
   result.append(el('p',mode==='name'?t('Community water systems listed by Florida DEP. Choose only the provider shown on your bill.','Sistemas comunitarios registrados por Florida DEP. Elige únicamente el proveedor que aparece en tu factura.'):t('Suggestions use treatment-plant locations within 40 km, not service-area boundaries. Your ZIP can have several providers. If yours is missing, search by name or city below.','Las sugerencias usan ubicaciones de plantas a menos de 40 km, no límites de servicio. Un ZIP puede tener varios proveedores. Si falta el tuyo, busca por nombre o ciudad.')));
   if(!list.length)result.append(el('p',t('No matching systems found. Try a provider name, city, or PWS ID. No result does not mean there is no service or that the water is safe.','No encontramos coincidencias. Prueba con el proveedor, ciudad o identificador PWS. Esto no significa que no exista servicio ni que el agua sea segura.')));

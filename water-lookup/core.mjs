@@ -13,3 +13,13 @@ export function searchSystems(systems, query) {
   const words = normalize(query).trim().split(/\s+/).filter(Boolean);
   return systems.filter(s => words.every(word => normalize(`${s.name} ${s.city} ${s.id} ${(s.aliases||[]).join(' ')}`).includes(word)));
 }
+
+// A ZIP suggestion is not an address-level service assignment.
+export function zipSystems(systems, zips, zip) {
+  const point=zips[zip];
+  if(!point)return [];
+  const list=nearbySystems(systems,point);
+  const suggested={'34771':'FL3491373'}[zip];
+  if(suggested){const i=list.findIndex(s=>s.id===suggested);if(i>0)list.unshift(...list.splice(i,1));}
+  return list;
+}

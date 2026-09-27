@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {distanceKm,nearbySystems,searchSystems} from '../water-lookup/core.mjs';
+import {distanceKm,nearbySystems,searchSystems,zipSystems} from '../water-lookup/core.mjs';
 const d=JSON.parse(fs.readFileSync(new URL('../water-lookup/directory.json',import.meta.url)));
 test('directory has unique public system IDs and valid geographic points',()=>{
  assert.equal(new Set(d.systems.map(s=>s.id)).size,d.systems.length);
@@ -24,4 +24,12 @@ test('name, city and exact ID search cover directory',()=>{
  assert.ok(searchSystems(d.systems,'Orlando').length>0);
  assert.ok(searchSystems(d.systems,'toho eastern').some(s=>s.id==='FL3490751'));
  assert.deepEqual(searchSystems(d.systems,'no-such-water-system'),[]);
+});
+
+test('34771 suggests St Cloud and excludes Frostproof without losing alternatives',()=>{
+ const list=zipSystems(d.systems,d.zips,'34771');
+ assert.equal(list[0].id,'FL3491373');
+ assert.ok(!list.some(s=>s.id==='FL6534771'));
+ assert.equal(list.length,nearbySystems(d.systems,d.zips['34771']).length);
+ assert.deepEqual(zipSystems(d.systems,d.zips,'99999'),[]);
 });
