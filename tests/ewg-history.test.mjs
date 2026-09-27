@@ -23,3 +23,12 @@ test('JEA Major Grid history preserves the chlorate source category and is not c
  assert.match(jea.note[1],/solo a JEA Major Grid/);
  assert.equal(data.contaminants.FL2160735,undefined);
 });
+test('Orange County Southern keeps its own EWG measurements and source context',()=>{
+ const south=data.contaminants.FL3484119;
+ assert.equal(south.above.length,12);assert.equal(south.other.length,17);
+ assert.equal(south.source.period,'2014–2024');
+ assert.equal(south.above.find(r=>r[0]==='Total trihalomethanes (TTHMs)')[2],'54.7 ppb');
+ assert.deepEqual(south.other.find(r=>r[0]==='Chlorate').slice(2),['300.3 ppb','210 ppb',null]);
+ assert.deepEqual(south.other.find(r=>r[0]==='Mercury (inorganic)').slice(2),['0.00250 ppb','1.2 ppb','2 ppb']);
+ assert.match(south.note[1],/únicamente a Orange County Southern/);
+});
