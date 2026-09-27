@@ -156,6 +156,7 @@
     @media(max-width:700px){.site-header{background:#062737}.hero{background:linear-gradient(90deg,#062737eb,#06273785),url('/media/shared/images/fondo-agua.png') center/cover}.hero-inner{min-height:490px;padding:60px 0 114px}.hero h1{font-size:clamp(45px,12vw,64px)}.hero-copy{font-size:16px}.lookup{margin-top:-62px;padding-bottom:52px}.lookup-card{padding:25px 20px}.zip-form{flex-direction:column}.zip-form button{min-height:55px}.lookup-result{padding-bottom:65px}.zip-measures{grid-template-columns:1fr}.zip-result{padding:21px}.quick-cta{padding:25px}.hero .button,.quick-cta .button{width:100%}}
   </style>
   <link rel="stylesheet" href="/water-lookup/lookup.css">
+  <link rel="stylesheet" href="/media/homepage.css?v=warm-home-v1">
 </head>
 <body>
   <header class="site-header">
@@ -180,29 +181,34 @@
   <main>
     <section class="hero">
       <div class="container hero-inner"><div>
-        <span class="eyebrow" data-en="Florida homeowners · Free water testing" data-es="Hogares de Florida · Prueba de agua gratis">Florida homeowners · Free water testing</span>
-        <h1 data-en="Know the water in your home." data-es="Conoce el agua de tu hogar.">Know the water in your home.</h1>
-        <p class="hero-copy" data-en="Explore public water records in your area, then request a complimentary visit to learn about the water at your tap." data-es="Consulta los registros públicos de tu zona y solicita una visita gratis para conocer el agua de tu grifo.">Explore public water records in your area, then request a complimentary visit to learn about the water at your tap.</p>
-        <a class="button" href="#find-water" data-en="Look up my ZIP →" data-es="Consultar mi ZIP →">Look up my ZIP →</a>
-        <p class="assurance" data-en="Free visit · No obligation · Central Florida" data-es="Visita gratis · Sin compromiso · Florida Central">Free visit · No obligation · Central Florida</p>
-      </div></div>
-    </section>
-    <section class="lookup" id="find-water"><div class="container"><div class="lookup-card">
-      <h2 data-en="Enter your Florida ZIP" data-es="Ingresa tu ZIP de Florida">Enter your Florida ZIP</h2>
+        <span class="eyebrow" data-en="KNOW YOUR HOME’S WATER" data-es="CONOCE EL AGUA DE TU HOGAR">KNOW YOUR HOME’S WATER</span>
+        <h1 data-en="Your water deserves clear answers." data-es="Tu agua merece respuestas claras.">Your water deserves clear answers.</h1>
+        <p class="hero-copy" data-en="Explore public records in your area and discover the next step for your home." data-es="Consulta los registros públicos de tu zona y descubre el siguiente paso para tu hogar.">Explore public records in your area and discover the next step for your home.</p>
+    <div class="lookup" id="find-water"><div class="container"><div class="lookup-card">
+      <h2 data-en="Find your water provider" data-es="Encuentra tu proveedor de agua">Find your water provider</h2>
       <p data-en="See historical water records for a public system. Confirm your provider on your water bill." data-es="Consulta registros históricos de un sistema público. Confirma el proveedor en tu factura de agua.">See historical water records for a public system. Confirm your provider on your water bill.</p>
-      <form class="zip-form" id="zip-form"><label><span class="sr-only" data-en="Florida ZIP code" data-es="Código ZIP de Florida">Florida ZIP code</span><input id="zip-input" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code" placeholder="ZIP code / Código ZIP"></label><button type="submit" data-en="View records →" data-es="Ver registros →">View records →</button></form>
+      <form class="zip-form" id="zip-form"><label><span class="sr-only" data-en="Florida ZIP code" data-es="Código ZIP de Florida">Florida ZIP code</span><input id="zip-input" type="text" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" required autocomplete="postal-code" placeholder="ZIP code / Código ZIP"></label><button type="submit" data-en="Check my water →" data-es="Consultar mi agua →">Check my water →</button></form>
       <div class="water-location-controls">
         <button id="water-gps" type="button" class="water-secondary" data-en="Use my location" data-es="Usar mi ubicación">Use my location</button>
         <p class="lookup-caption" data-en="Optional: your browser asks permission. Coordinates stay on your device and are not saved with a request." data-es="Opcional: tu navegador pedirá permiso. Las coordenadas se quedan en tu dispositivo y no se guardan con una solicitud.">Optional: your browser asks permission. Coordinates stay on your device and are not saved with a request.</p>
-        <form id="water-provider-form" class="water-provider-form">
+        <details class="provider-options"><summary data-en="Search by city or provider" data-es="Buscar por ciudad o proveedor">Search by city or provider</summary><form id="water-provider-form" class="water-provider-form">
           <label for="water-provider" data-en="Or search all Florida by provider, city, or PWS ID" data-es="O busca en toda Florida por proveedor, ciudad o identificador PWS">Or search all Florida by provider, city, or PWS ID</label>
           <div><input id="water-provider" type="search" minlength="2" maxlength="100" required placeholder="Orlando, Toho, FL3491373…"><button type="submit" data-en="Find provider" data-es="Buscar proveedor">Find provider</button></div>
-        </form>
+        </form></details>
         <p id="water-status" role="status" aria-live="polite"></p>
         <a class="water-source" href="https://geodata.dep.state.fl.us/datasets/public-water-supply-pws-plants-non-federal/about" target="_blank" rel="noopener noreferrer" data-en="Browse the Florida DEP source directory ↗" data-es="Consultar el directorio de Florida DEP ↗">Browse the Florida DEP source directory ↗</a>
       </div>
       <p class="lookup-caption" data-en="Public water systems only. One ZIP may include more than one provider; private wells need separate tests." data-es="Solo sistemas públicos. Un ZIP puede incluir más de un proveedor; los pozos privados requieren pruebas aparte.">Public water systems only. One ZIP may include more than one provider; private wells need separate tests.</p>
-    </div></div></section>
+    </div></div></div>
+
+        <p class="assurance" data-en="Free visit · No obligation · Central Florida" data-es="Visita gratis · Sin compromiso · Florida Central">Free visit · No obligation · Central Florida</p>
+      </div></div>
+    </section>
+<section class="trust-strip" aria-label="Legacy Water"><div class="container trust-grid">
+<div><span class="trust-icon" aria-hidden="true">↗</span><div><strong data-en="Identified sources" data-es="Fuentes identificadas">Identified sources</strong><p data-en="Public records, together in one place." data-es="Registros públicos en un solo lugar.">Public records, together in one place.</p></div></div>
+<div><span class="trust-icon" aria-hidden="true">≋</span><div><strong data-en="Easy to understand" data-es="Información clara">Easy to understand</strong><p data-en="Sources, dates and context for each report." data-es="Fuentes, fechas y contexto para cada reporte.">Sources, dates and context for each report.</p></div></div>
+<div><span class="trust-icon" aria-hidden="true">♡</span><div><strong data-en="No obligation" data-es="Sin compromiso">No obligation</strong><p data-en="Explore your water information at your pace." data-es="Explora la información de tu agua a tu ritmo.">Explore your water information at your pace.</p></div></div>
+</div></section>
     <section class="lookup-result" id="water-records"><div class="container">
       <h2 data-en="What do the records show?" data-es="¿Qué aparece en los registros?">What do the records show?</h2>
       <p class="intro-text" data-en="Select the provider listed on your bill to see historical EWG measurements, contaminants, and potential effects when that data is available. These system records do not measure your own tap." data-es="Selecciona el proveedor de tu factura para ver mediciones históricas de EWG, contaminantes y efectos potenciales cuando tengamos esos datos. Estos registros del sistema no miden tu grifo.">Select the provider listed on your bill to see historical EWG measurements, contaminants, and potential effects when that data is available. These system records do not measure your own tap.</p>
@@ -210,15 +216,13 @@
       <div class="quick-cta"><h3 data-en="Want answers about your home's water?" data-es="¿Quieres saber más sobre el agua de tu casa?">Want answers about your home's water?</h3><p data-en="Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant." data-es="Solicita una visita gratis en casa. Te explicamos los indicadores que realmente medimos y si conviene una prueba de laboratorio para algún contaminante específico.">Request a free in-home visit. We explain the indicators we actually measure and whether targeted laboratory testing may be appropriate for a specific contaminant.</p><a class="button" href="/check/" data-test data-en="Request my free test →" data-es="Solicitar prueba gratis →">Request my free test →</a><small data-en="Your ZIP will be prefilled. Please confirm it. $0 · No obligation." data-es="Si ingresaste un ZIP, confírmalo en el formulario. $0 · Sin compromiso.">Your ZIP will be prefilled. Please confirm it. $0 · No obligation.</small></div>
     </div></section>
     <section class="section" id="how-it-works"><div class="container">
-      <div class="section-title"><span class="eyebrow" style="color:#087e82" data-en="A clear path" data-es="Un camino claro">A clear path</span><h2 data-en="Three simple steps." data-es="Tres pasos sencillos.">Three simple steps.</h2><p data-en="Start with public records, then ask about the water in your own home." data-es="Empieza con registros públicos y luego conoce el agua de tu propio hogar.">Start with public records, then ask about the water in your own home.</p></div>
+      <div class="section-title"><span class="eyebrow" style="color:#087e82" data-en="A clear path" data-es="Un camino claro">A clear path</span><h2 data-en="From public records to your home, in three steps." data-es="De los registros a tu hogar, en tres pasos.">From public records to your home, in three steps.</h2><p data-en="Start with public records, then ask about the water in your own home." data-es="Empieza con registros públicos y luego conoce el agua de tu propio hogar.">Start with public records, then ask about the water in your own home.</p></div>
       <div class="grid-3"><article class="card"><span class="number">01</span><h3 data-en="Look up your ZIP" data-es="Consulta tu ZIP">Look up your ZIP</h3><p data-en="Find the water system and confirm the provider on your bill." data-es="Encuentra el sistema y confirma el proveedor en tu factura.">Find the water system and confirm the provider on your bill.</p></article><article class="card"><span class="number">02</span><h3 data-en="Read the record" data-es="Revisa el registro">Read the record</h3><p data-en="Explore historical contaminants, potential effects and the record's context." data-es="Explora contaminantes históricos, efectos potenciales y el contexto del registro.">Explore historical contaminants, potential effects and the record's context.</p></article><article class="card"><span class="number">03</span><h3 data-en="Test your water" data-es="Prueba tu agua">Test your water</h3><p data-en="Request a free home visit. A specialist will contact you to confirm a time." data-es="Solicita una visita gratis. Un especialista te contactará para confirmar el horario.">Request a free home visit. A specialist will contact you to confirm a time.</p></article></div>
     </div></section>
-    <section class="band" id="your-water">
-      <div class="container band-inner">
-        <div><span class="eyebrow" data-en="Everyday water" data-es="El agua de cada día">Everyday water</span><h2 data-en="It touches more of your home than you think." data-es="El agua forma parte de todo tu hogar.">It touches more of your home than you think.</h2><a class="guide-link" href="/sistemas/" data-en="Explore water treatment options ↗" data-es="Conoce las opciones para tu agua ↗">Explore water treatment options ↗</a> <a class="guide-link" href="/agua-local/" data-en="Find your local water report ↗" data-es="Busca el informe de tu zona ↗">Find your local water report ↗</a></div>
-        <div class="uses"><span data-en="Drinking & cooking" data-es="Beber y cocinar">Drinking & cooking</span><span data-en="Bathing & showering" data-es="Baño y ducha">Bathing & showering</span><span data-en="Laundry & cleaning" data-es="Lavado y limpieza">Laundry & cleaning</span><span data-en="Fixtures & appliances" data-es="Grifos y electrodomésticos">Fixtures & appliances</span></div>
-      </div>
-    </section>
+    <section class="band" id="your-water"><div class="container band-inner">
+<div><span class="eyebrow" data-en="KNOW WHAT YOU ARE READING" data-es="ENTIENDE TU REPORTE">KNOW WHAT YOU ARE READING</span><h2 data-en="What can your report show?" data-es="¿Qué puede mostrar tu reporte?">What can your report show?</h2><p class="report-copy" data-en="Your provider’s public records, with the context you need to understand them." data-es="Los registros públicos de tu proveedor, con el contexto que necesitas para entenderlos.">Your provider’s public records, with the context you need to understand them.</p><ul class="report-benefits"><li data-en="Reported substances and levels" data-es="Sustancias y niveles reportados">Reported substances and levels</li><li data-en="Official reports and historical EWG data, where available" data-es="Informes oficiales y datos históricos de EWG, cuando estén disponibles">Official reports and historical EWG data, where available</li><li data-en="Sources and sampling dates" data-es="Fuentes y fechas de muestreo">Sources and sampling dates</li></ul><a class="guide-link" href="/sistemas/" data-en="Explore water treatment options ↗" data-es="Conoce las opciones para tu agua ↗">Explore water treatment options ↗</a></div>
+<div class="report-preview"><span class="example-label" data-en="Illustrative preview" data-es="Vista de ejemplo">Illustrative preview</span><h3>Toho Water Authority — St. Cloud</h3><p data-en="Public water system · Florida" data-es="Sistema público de agua · Florida">Public water system · Florida</p><div class="report-tabs"><span data-en="Official report" data-es="Informe oficial">Official report</span><span data-en="Historical EWG data" data-es="Datos históricos EWG">Historical EWG data</span></div><div class="preview-row"><strong data-en="Substance" data-es="Sustancia">Substance</strong><strong data-en="Reported level" data-es="Nivel reportado">Reported level</strong><strong data-en="Source and date" data-es="Fuente y fecha">Source and date</strong></div><div class="preview-row preview-placeholder" aria-hidden="true"><span></span><span></span><span></span></div><div class="preview-row preview-placeholder" aria-hidden="true"><span></span><span></span><span></span></div><p class="preview-note" data-en="System records are not a measurement of your tap water." data-es="Los registros del sistema no son una medición de tu grifo.">System records are not a measurement of your tap water.</p><a class="guide-link" href="#find-water" data-en="Find my report →" data-es="Buscar mi reporte →">Find my report →</a></div>
+</div></section>
     <section class="faq-section" id="questions">
       <div class="container">
         <span class="eyebrow" style="color:#0c8584" data-en="Before you request" data-es="Antes de solicitar">Before you request</span>
@@ -233,7 +237,7 @@
     <section class="cta-section" id="service-area">
       <div class="container">
         <span class="eyebrow" data-en="Central Florida" data-es="Florida Central">Central Florida</span>
-        <h2 data-en="Start with a free in-home water test." data-es="Comienza con una prueba de agua gratis en casa.">Start with a free in-home water test.</h2>
+        <h2 data-en="Know the water you use every day." data-es="Conoce el agua que usas todos los días.">Know the water you use every day.</h2>
         <p data-en="Serving homeowners in St. Cloud, Kissimmee, Orlando, and surrounding areas. Enter your ZIP code to request a visit." data-es="Atendemos a propietarios en St. Cloud, Kissimmee, Orlando y áreas cercanas. Ingresa tu código postal para solicitar una visita.">Serving homeowners in St. Cloud, Kissimmee, Orlando, and surrounding areas. Enter your ZIP code to request a visit.</p>
         <a class="button" href="/check/" data-test data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
       </div>
