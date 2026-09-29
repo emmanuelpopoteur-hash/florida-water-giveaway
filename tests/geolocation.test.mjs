@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {locate,locationError} from '../water-lookup/geolocation.mjs';
+function harness(){let active=true,retries=0,success,error;const calls=[];locate({getCurrentPosition:(ok,fail,options)=>calls.push({ok,fail,options})},{isCurrent:()=>active,onRetry:()=>retries++,onSuccess:p=>success=p,onError:e=>error=e});return {calls,cancel:()=>active=false,get retries(){return retries},get success(){return success},get error(){return error}};}
+test('unavailable position retries once, with fresh high-accuracy position',()=>{const h=harness();h.calls[0].fail({code:2});assert.equal(h.calls.length,2);assert.equal(h.retries,1);assert.equal(h.calls[1].options.enableHighAccuracy,true);assert.equal(h.calls[1].options.maximumAge,0);h.calls[1].ok({coords:{latitude:28}});assert.equal(h.success.coords.latitude,28);});
+test('permission denied is never retried',()=>{const h=harness();h.calls[0].fail({code:1});assert.equal(h.calls.length,1);assert.equal(h.error.code,1);});
+test('timeout stops after bounded second attempt and stays distinct from unavailable',()=>{const h=harness();h.calls[0].fail({code:3});h.calls[1].fail({code:3});assert.equal(h.calls.length,2);assert.equal(h.error.code,3);assert.notDeepEqual(locationError(2),locationError(3));});
+test('changing search suppresses retry and stale location callback',()=>{const h=harness();h.cancel();h.calls[0].fail({code:2});h.calls[0].ok({coords:{latitude:28}});assert.equal(h.calls.length,1);assert.equal(h.success,undefined);assert.equal(h.error,undefined);});
+test('synchronous security errors release pending state through error callback',()=>{let result;locate({getCurrentPosition(){throw Object.assign(new Error('blocked'),{name:'SecurityError'})}},{isCurrent:()=>true,onRetry(){},onSuccess(){},onError:e=>result=e});assert.equal(result.code,1);});
