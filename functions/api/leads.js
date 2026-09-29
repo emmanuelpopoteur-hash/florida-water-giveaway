@@ -3,6 +3,39 @@ const json = (body, status) => Response.json(body, {
   headers: { 'cache-control': 'no-store', 'content-type': 'application/json; charset=utf-8' },
 });
 
+async function notifyOwner(env, lead) {
+  if (!env.RESEND_API_KEY || !env.LEAD_ALERT_TO) return;
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'content-type': 'application/json',
+        'idempotency-key': `water-test-${lead.id}`,
+      },
+      body: JSON.stringify({
+        from: 'Legacy Water USA <leads@legacywaterusa.com>',
+        to: env.LEAD_ALERT_TO,
+        subject: `New water test request — ${lead.zip}`,
+        text: [
+          'A new request was saved in Legacy Water USA.',
+          `Name: ${lead.full_name}`,
+          `Phone: ${lead.phone}`,
+          `ZIP: ${lead.zip}`,
+          `Preferred day: ${lead.preferred_day}`,
+          `Preferred time: ${lead.preferred_time}`,
+          `Source: ${lead.source}`,
+          `Lead ID: ${lead.id}`,
+        ].join('\n'),
+      }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!response.ok) console.error('Lead alert failed', response.status);
+  } catch (error) {
+    console.error('Lead alert failed', error?.name || 'network error');
+  }
+}
+
 export async function onRequestPost({ request, env }) {
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) {
@@ -65,6 +98,7 @@ export async function onRequestPost({ request, env }) {
         saved.campaign !== campaign || saved.product_interest !== interest) {
       return json({ error: 'Request ID already used' }, 409);
     }
+    if (write.meta.changes === 1) await notifyOwner(env, saved);
     return json({ id: requestId, saved: true }, write.meta.changes === 1 ? 201 : 200);
   } catch (error) {
     console.error('Lead storage failed', error);
