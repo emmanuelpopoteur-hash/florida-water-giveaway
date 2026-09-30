@@ -65,6 +65,7 @@
         target.searchParams.set("lang",language);
         if(link.hasAttribute("data-test")){const selectedZip=document.getElementById("zip-input")?.value.trim();if(/^(32|33|34)\d{3}$/.test(selectedZip||""))target.searchParams.set("zip",selectedZip)}
         ["utm_source","utm_medium","utm_campaign","utm_content","utm_term","interest"].forEach(key=>{if(current.has(key))target.searchParams.set(key,current.get(key).slice(0,100))});
+        if(link.hasAttribute("data-test")&&!target.searchParams.has("utm_campaign"))target.searchParams.set("utm_campaign","water_test_page");
         link.href=target.href;
       });
       buttons.en.setAttribute("aria-pressed",String(language==="en"));
