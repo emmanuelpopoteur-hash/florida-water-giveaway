@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Water Quality Update | Legacy Water USA</title>
+  <script>
+    (function () {
+      const incoming = new URLSearchParams(window.location.search);
+      const target = new URL("/water-test/", window.location.origin);
+      const defaults = {
+        utm_source: "door_hanger",
+        utm_medium: "offline",
+        utm_campaign: "water_quality_update",
+        utm_content: "wqu01"
+      };
+      Object.entries(defaults).forEach(([key,value]) => target.searchParams.set(key, incoming.get(key) || value));
+      ["utm_term","lang","rep"].forEach(key => {
+        if (incoming.has(key)) target.searchParams.set(key, incoming.get(key).slice(0,100));
+      });
+      window.location.replace(target.href);
+    })();
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0;url=/water-test/?utm_source=door_hanger&utm_medium=offline&utm_campaign=water_quality_update&utm_content=wqu01">
+  </noscript>
+</head>
+<body>
+  <p>Opening your local water information…</p>
+</body>
+</html>
