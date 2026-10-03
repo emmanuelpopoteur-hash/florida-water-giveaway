@@ -25,6 +25,7 @@ async function notifyOwner(env, lead) {
           `Preferred day: ${lead.preferred_day}`,
           `Preferred time: ${lead.preferred_time}`,
           `Source: ${lead.source}`,
+          `Campaign: ${lead.campaign || '—'}`,
           `Lead ID: ${lead.id}`,
         ].join('\n'),
       }),
