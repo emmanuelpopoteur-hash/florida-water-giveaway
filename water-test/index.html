@@ -196,7 +196,7 @@
       zipResult.append(source);if(system)zipResult.append(extra);
       zipResult.hidden=false;
     }
-    zipForm.addEventListener("submit",event=>{event.preventDefault();showZipResult();if(!zipResult.hidden){requestAnimationFrame(()=>{zipResult.scrollIntoView({behavior:"smooth",block:"start"})})}});
+    zipForm.addEventListener("submit",event=>{event.preventDefault();showZipResult();if(!zipResult.hidden){setTimeout(()=>{const header=document.querySelector("header");const offset=(header?.offsetHeight||0)+12;const top=zipResult.getBoundingClientRect().top+window.scrollY-offset;window.scrollTo({top,behavior:"smooth"})},120)}});
     zipInput.addEventListener("input",()=>{selectedSystemId="";zipResult.hidden=true;setLanguage(document.documentElement.lang)});
     buttons.en.addEventListener("click",()=>{if(!zipResult.hidden)showZipResult()});
     buttons.es.addEventListener("click",()=>{if(!zipResult.hidden)showZipResult()});
