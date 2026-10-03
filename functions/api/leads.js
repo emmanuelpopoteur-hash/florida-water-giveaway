@@ -64,7 +64,7 @@ export async function onRequestPost({ request, env }) {
   const fullName = String(data.full_name ?? '').trim();
   const phone = String(data.phone ?? '').trim();
   const rawSource = String(data.source ?? '').trim().toLowerCase();
-  const source = ['tiktok', 'instagram', 'facebook', 'qr', 'flyer', 'card', 'google'].includes(rawSource)
+  const source = ['tiktok', 'instagram', 'facebook', 'qr', 'flyer', 'card', 'door_hanger', 'google'].includes(rawSource)
     ? rawSource : 'direct';
   const campaign = String(data.campaign ?? '').trim().replace(/[\x00-\x1f]/g, '').slice(0, 80);
   const rawInterest = String(data.product_interest ?? '').trim().toLowerCase();
