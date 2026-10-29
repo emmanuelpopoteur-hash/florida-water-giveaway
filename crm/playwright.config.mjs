@@ -2,6 +2,7 @@ import {defineConfig,devices} from '@playwright/test';
 
 export default defineConfig({
  testDir:'../tests/crm-e2e',
+ outputDir:'../test-results/crm',
  timeout:20000,
  expect:{timeout:7000},
  retries:process.env.CI?1:0,
@@ -12,7 +13,7 @@ export default defineConfig({
   {name:'mobile-safari',use:{...devices['iPhone 13']}}
  ],
  webServer:{
-  command:'node crm/dev/preview-server.mjs',
+  command:'node dev/preview-server.mjs',
   url:'http://127.0.0.1:4188/',
   reuseExistingServer:!process.env.CI,
   timeout:15000,
