@@ -32,3 +32,19 @@
 .lw-chat-typing{font-size:12px;color:#55777d;margin-bottom:12px}
 @media(max-width:550px){.lw-chat-button{right:13px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:9px 14px 9px 9px}.lw-chat{right:0;left:0;bottom:0;width:100%;height:min(88dvh,730px);max-height:calc(100dvh - 8px);border-radius:20px 20px 0 0;border-bottom:0}.lw-chat-header{padding:12px 15px}.lw-chat-messages{padding:14px 11px}.lw-chat-composer{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
 @media(prefers-reduced-motion:reduce){.lw-chat,.lw-chat-button{animation:none;transition:none}}
+
+/* v2 — mobile Safari keyboard and launcher overlay fixes */
+.lw-chat-button{z-index:2147483400}
+.lw-chat-dim{z-index:2147483401}
+.lw-chat{z-index:2147483402}
+.lw-chat-button[hidden],.lw-chat[hidden],.lw-chat-dim[hidden]{display:none!important}
+body.lw-chat-open{overflow:hidden!important}
+.lw-chat-messages{min-height:0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.lw-chat-composer input{font-size:16px}
+@media(max-width:550px){
+  .lw-chat{top:var(--lw-chat-top,0px);bottom:auto;height:var(--lw-chat-height,100dvh);max-height:var(--lw-chat-height,100dvh);min-height:0;right:0;left:0;width:100%;border-radius:14px 14px 0 0}
+  .lw-chat-header{flex-shrink:0}
+  .lw-chat-composer{padding-bottom:max(10px,env(safe-area-inset-bottom,0px))}
+  .lw-chat-messages{flex:1;min-height:0}
+  .lw-chat-form{max-width:100%}
+}
