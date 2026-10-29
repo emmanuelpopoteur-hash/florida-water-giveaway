@@ -1,0 +1,34 @@
+
+/* Legacy Water USA — Virtual Advisor v1. Scopes are prefixed to avoid site styles. */
+.lw-chat-button{position:fixed;right:19px;bottom:calc(18px + env(safe-area-inset-bottom, 0px));z-index:2147483000;display:flex;align-items:center;gap:10px;background:#0c5961;color:#fff;border:1px solid #8ad9d080;border-radius:40px;padding:11px 18px 11px 11px;box-shadow:0 10px 35px #052e3690;font:800 13px/1.3 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer;min-height:55px}
+.lw-chat-button:hover{background:#07454e}.lw-chat-button:focus-visible,.lw-chat button:focus-visible,.lw-chat a:focus-visible{outline:3px solid #38bcb5;outline-offset:3px}
+.lw-chat-button .lw-avatar{width:34px;height:34px;display:grid;place-items:center;background:#c8fff4;color:#0b5158;border-radius:50%;font-size:22px}
+.lw-chat-button .lw-online{width:8px;height:8px;display:inline-block;border-radius:50%;background:#82f3b0;margin-left:1px}
+.lw-chat[hidden],.lw-chat-dim[hidden]{display:none!important}
+.lw-chat-dim{position:fixed;inset:0;background:#001e2b7d;z-index:2147482998}
+.lw-chat{position:fixed;right:17px;bottom:calc(87px + env(safe-area-inset-bottom,0px));z-index:2147482999;width:min(395px,calc(100vw - 28px));height:min(640px,calc(100dvh - 110px));min-height:370px;display:flex;flex-direction:column;background:#fff;color:#193d48;border:1px solid #bfddda;border-radius:20px;box-shadow:0 24px 80px #001e327a;overflow:hidden;font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.lw-chat *, .lw-chat *:before,.lw-chat *:after{box-sizing:border-box}
+.lw-chat-header{padding:13px 14px;display:flex;align-items:center;gap:9px;background:linear-gradient(120deg,#08283b,#0b6264);color:#fff;flex-shrink:0}
+.lw-chat-mark{width:37px;height:37px;border-radius:12px;background:#dcfff7;color:#0a626a;display:grid;place-items:center;font-size:24px}
+.lw-chat-heading{flex:1;min-width:0}.lw-chat-heading strong{display:block;font-size:15px}.lw-chat-heading small{display:block;opacity:.84;font-size:11px}
+.lw-chat-close{font:600 24px/1 system-ui;border:0;color:white;background:#ffffff18;border-radius:10px;width:38px;height:38px;cursor:pointer}
+.lw-chat-messages{padding:16px 13px;flex:1;overflow:auto;background:linear-gradient(180deg,#f0f9f7,#fcfefe);overscroll-behavior:contain}
+.lw-chat-line{margin-bottom:12px;display:flex;justify-content:flex-start}.lw-chat-line.user{justify-content:flex-end}
+.lw-chat-bubble{max-width:91%;white-space:pre-line;overflow-wrap:anywhere;padding:11px 13px;border-radius:14px 14px 14px 4px;background:#fff;color:#234957;border:1px solid #dce9e8;box-shadow:0 3px 9px #113e4309;font-size:13px}
+.lw-chat-line.user .lw-chat-bubble{background:#0c6268;border-color:#0c6268;color:#fff;border-radius:14px 14px 4px 14px}
+.lw-chat-quick{display:flex;flex-wrap:wrap;gap:7px;margin:1px 0 13px}.lw-chat-quick button,.lw-chat-actions a,.lw-chat-actions button{font:700 12px/1.35 system-ui;border-radius:18px;padding:9px 11px;background:#e3f7f2;color:#0e6669;border:1px solid #b2dad2;cursor:pointer;text-decoration:none;min-height:35px}
+.lw-chat-quick button:hover,.lw-chat-actions a:hover,.lw-chat-actions button:hover{background:#d0eee7}
+.lw-chat-actions{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 12px}
+.lw-chat-composer{padding:10px 11px;background:white;border-top:1px solid #dce9e8;display:flex;gap:8px;flex-shrink:0;align-items:center}
+.lw-chat-composer input{flex:1;min-width:0;border:1px solid #cbdedb;border-radius:12px;padding:11px 12px;font-size:14px;color:#163c43;background:#fff;min-height:43px}
+.lw-chat-composer button,.lw-chat-form button[type=submit]{border:0;background:#0b676e;color:#fff;border-radius:11px;padding:11px 14px;min-height:43px;font-weight:800;cursor:pointer}
+.lw-chat-composer button:disabled,.lw-chat-form button:disabled{opacity:.5;cursor:wait}
+.lw-chat-foot{padding:5px 12px 8px;font-size:10px;color:#597d83;background:#fff;text-align:center;flex-shrink:0}
+.lw-chat-form{padding:14px;background:#fff;border:1px solid #c6e5df;border-radius:14px;margin:0 0 14px;display:grid;gap:8px}
+.lw-chat-form strong{font-size:14px}.lw-chat-form label{display:grid;gap:3px;font-size:12px;font-weight:700}
+.lw-chat-form input,.lw-chat-form select{border:1px solid #b9d9d5;border-radius:8px;padding:9px;min-height:38px;font-size:13px;background:white;color:#193b43;width:100%;min-width:0}
+.lw-chat-form .lw-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}.lw-chat-form .lw-consent{display:flex;align-items:start;gap:8px;font-size:11px;line-height:1.4;font-weight:500}.lw-chat-form .lw-consent input{margin-top:3px;width:16px;height:16px;min-height:auto;flex:none}
+.lw-chat-form .lw-form-error{color:#a53b30;font-size:12px;min-height:15px}.lw-chat-form button[type=submit]{width:100%}
+.lw-chat-typing{font-size:12px;color:#55777d;margin-bottom:12px}
+@media(max-width:550px){.lw-chat-button{right:13px;bottom:calc(12px + env(safe-area-inset-bottom,0px));padding:9px 14px 9px 9px}.lw-chat{right:0;left:0;bottom:0;width:100%;height:min(88dvh,730px);max-height:calc(100dvh - 8px);border-radius:20px 20px 0 0;border-bottom:0}.lw-chat-header{padding:12px 15px}.lw-chat-messages{padding:14px 11px}.lw-chat-composer{padding-bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
+@media(prefers-reduced-motion:reduce){.lw-chat,.lw-chat-button{animation:none;transition:none}}
