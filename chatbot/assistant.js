@@ -22,10 +22,11 @@ shipping:colombia?"La importación y el transporte a Cali siguen en evaluación;
 warranty:"La garantía depende del equipo y fabricante finalmente seleccionados. Se entregarán condiciones por escrito antes de cualquier pago.",
 bottled:"Aunque compres agua embotellada para beber, el agua del hogar también se utiliza para ducharse, cocinar, lavar y cuidar electrodomésticos. Podemos evaluar RO, toda la casa o ambos.",
 human:"Este es un chat automatizado. Para atención humana puedes escribir a info@legacywaterusa.com o solicitar que te llamemos.",
-email:"Puedo ayudarte a solicitar información por correo. Toca «Preparar correo» para abrir tu aplicación de email con un mensaje dirigido a Legacy Water USA. Tú decides si lo envías; el chat todavía no envía mensajes a tu dirección automáticamente.",
+email:"Puedes solicitar por correo información sobre Essential, Advanced o Premium H₂. Si el servicio está disponible, te pediré tu email y autorización para enviarte una única respuesta; de lo contrario, puedes preparar un correo para Legacy Water USA.",
 fallback:"Puedo orientarte sobre RO para beber, toda la casa, agua de pozo, UV, precios, garantía y mantenimiento. ¿Qué te interesa?"
 },
-links:{quote:"Solicitar cotización",test:"Prueba gratis en Florida",catalog:"Ver opciones",callback:"Solicitar llamada",mail:"Escribir un correo",compose:"Preparar correo",col:"Ver opciones Cali"},
+links:{quote:"Solicitar cotización",test:"Prueba gratis en Florida",catalog:"Ver opciones",callback:"Solicitar llamada",mail:"Escribir un correo",compose:"Preparar correo",receive:"Recibir información por email",col:"Ver opciones Cali"},
+emailForm:{title:"Información por correo",email:"Tu correo electrónico",product:"Sistema de interés",consent:"Autorizo a Legacy Water USA a enviarme un único correo con información del sistema seleccionado. No me suscribo a promociones automáticas.",send:"Enviar información",sending:"Enviando…",success:"¡Solicitud enviada! Revisa tu bandeja de entrada y spam. El servicio de correo aceptó el mensaje, pero la entrega no está garantizada.",error:"No pudimos enviar el correo. Intenta nuevamente o escribe a info@legacywaterusa.com.",invalid:"Indica un correo válido, selecciona el sistema y autoriza este envío."},
 form:{title:"Deja tus datos",name:"Nombre completo",phone:"Teléfono",zip:"ZIP de EE. UU.",day:"Día",time:"Horario",choose:"Selecciona",week:"Entre semana",weekend:"Fin de semana",morning:"Mañana",afternoon:"Tarde",evening:"Noche",consent:"Autorizo que Legacy Water USA me contacte sobre esta solicitud. No acepto publicidad automática.",send:"Enviar solicitud",sending:"Enviando…",invalid:"Revisa nombre, teléfono, ZIP, horario y autorización.",onlyFL:"La prueba gratis a domicilio está limitada a los ZIP habilitados de Florida.",error:"No pudimos confirmar el registro. Intenta otra vez o escribe a info@legacywaterusa.com.",success:"¡Solicitud registrada! Referencia: ",note:"No es una compra ni una cita confirmada."}
 },
 en:{
@@ -46,10 +47,11 @@ shipping:colombia?"Importation and delivery to Cali are still under review. Ther
 warranty:"Warranty coverage depends on the final product and manufacturer. Terms will be provided in writing before payment.",
 bottled:"Even if you buy bottled water for drinking, your home uses water for showers, cooking, cleaning and appliances. We can explore RO, whole-home treatment or both.",
 human:"This is an automated chat. Email info@legacywaterusa.com for personal assistance or request a callback.",
-email:"I can help you request information by email. Tap «Compose email» to open your mail app with a message addressed to Legacy Water USA. You decide whether to send it; this chat does not automatically email information to you.",
+email:"You can request information about Essential, Advanced, or Premium H₂ by email. If this service is available, I’ll ask for your address and permission to send one message; otherwise, you can compose an email to Legacy Water USA.",
 fallback:"I can help with drinking-water RO, whole-home treatment, well water, UV, pricing, warranty and maintenance. What interests you?"
 },
-links:{quote:"Request quote",test:"Free Florida water test",catalog:"Explore options",callback:"Request callback",mail:"Email Legacy",compose:"Compose email",col:"View Cali options"},
+links:{quote:"Request quote",test:"Free Florida water test",catalog:"Explore options",callback:"Request callback",mail:"Email Legacy",compose:"Compose email",receive:"Email me product information",col:"View Cali options"},
+emailForm:{title:"Product information by email",email:"Your email address",product:"Product of interest",consent:"I authorize Legacy Water USA to send one email about the selected system. I am not subscribing to automated promotions.",send:"Email me the details",sending:"Sending…",success:"Request sent! Please check your inbox and spam folder. The email service accepted the message, but delivery is not guaranteed.",error:"We could not send the email. Please retry or contact info@legacywaterusa.com.",invalid:"Enter a valid email, choose a system and authorize this one-time message."},
 form:{title:"Request a callback",name:"Full name",phone:"Phone number",zip:"U.S. ZIP code",day:"Preferred day",time:"Preferred time",choose:"Choose",week:"Weekdays",weekend:"Weekends",morning:"Morning",afternoon:"Afternoon",evening:"Evening",consent:"I authorize Legacy Water USA to contact me about this request. I do not consent to automated marketing.",send:"Send request",sending:"Sending…",invalid:"Please check name, phone, ZIP, timing and authorization.",onlyFL:"Free in-home water tests are limited to eligible Florida ZIP codes.",error:"We couldn't confirm your request. Retry or email info@legacywaterusa.com.",success:"Request received! Reference: ",note:"This is not a purchase or confirmed appointment."}
 }
 };
@@ -84,7 +86,7 @@ root.innerHTML='<div class="lw-chat-dim" id="lw-chat-dim" hidden></div>'+
 '<div id="lw-chat-foot" class="lw-chat-foot"></div></section>';
 document.body.appendChild(root);
 const $=id=>document.getElementById(id),log=$("lw-chat-log"),panel=$("lw-chat-panel"),launcher=$("lw-chat-launcher"),input=$("lw-chat-input"),send=$("lw-chat-send");
-let started=false,busy=false,AI=false,last="ro",messages=[];
+let started=false,busy=false,AI=false,emailReady=false,last="ro",lastPlan="essential",messages=[];
 function locale(){const d=t();$("lw-chat-label").textContent=d.title;$("lw-chat-title").textContent=d.title;$("lw-chat-status").textContent=d.status;$("lw-chat-foot").textContent=d.foot;input.placeholder=d.placeholder;input.setAttribute("aria-label",d.placeholder);$("lw-chat-close").setAttribute("aria-label",d.close);send.setAttribute("aria-label",d.send)}
 locale();new MutationObserver(locale).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
 const scroll=()=>{log.scrollTop=log.scrollHeight};
@@ -108,11 +110,11 @@ const L=t().links;
 if(colombia){choices([{label:L.col,href:"/colombia/opciones-ro/"},{label:L.mail,href:"mailto:info@legacywaterusa.com?subject=Cali%20RO%20inquiry"}]);return}
 if(topic==="whole"||topic==="well"||topic==="city"||topic==="uv"||topic==="bottled")
 choices([{label:L.test,href:path("/check/",{interest:topic==="well"?"well_water":"city_water"})},{label:L.callback,click:()=>showForm("test")},{label:L.catalog,href:path("/sistemas/")}]);
-else if(topic==="email")choices([{label:L.compose,href:"mailto:info@legacywaterusa.com?subject=Water%20system%20information%20request&body=Hello%20Legacy%20Water%20USA%2C%0AI%20would%20like%20information%20about%20your%20water%20systems.%0A"},{label:L.callback,click:()=>showForm("ro")}]);
+else if(topic==="email")choices([emailReady?{label:L.receive,click:showEmailForm}:{label:L.compose,href:"mailto:info@legacywaterusa.com?subject=Water%20system%20information%20request&body=Hello%20Legacy%20Water%20USA%2C%0AI%20would%20like%20information%20about%20your%20water%20systems.%0A"},{label:L.callback,click:()=>showForm("ro")}]);
 else if(topic==="human")choices([{label:L.callback,click:()=>showForm("ro")},{label:L.mail,href:"mailto:info@legacywaterusa.com?subject=Customer%20request"}]);
-else choices([{label:L.quote,href:path("/ro/",{plan:topic==="hydrogen"?"premium":"essential"})+"#request"},{label:L.callback,click:()=>showForm("ro")},{label:L.catalog,href:path("/sistemas/")}]);
+else {const actions=[{label:L.quote,href:path("/ro/",{plan:topic==="hydrogen"?"premium":"essential"})+"#request"},{label:L.callback,click:()=>showForm("ro")},{label:L.catalog,href:path("/sistemas/")}];if(emailReady)actions.splice(1,0,{label:L.receive,click:showEmailForm});choices(actions);}
 }
-function respond(topic){last=topic||last;bubble(t().answers[topic]||t().answers.fallback);nextActions(topic)}
+function respond(topic){last=topic||last;if(topic==="hydrogen")lastPlan="premium";else if(topic==="ro")lastPlan="essential";bubble(t().answers[topic]||t().answers.fallback);nextActions(topic)}
 let originalOverflow="";
 function isMobile(){return matchMedia("(max-width: 550px)").matches}
 function updateViewport(){
@@ -145,7 +147,7 @@ function close(){
  launcher.setAttribute("aria-expanded","false");launcher.focus();
 }
 launcher.addEventListener("click",open);$("lw-chat-close").addEventListener("click",close);$("lw-chat-dim").addEventListener("click",close);document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!panel.hidden)close()});
-async function discover(){try{const r=await fetch("/api/sales-chat",{cache:"no-store"});if(r.ok)AI=(await r.json()).enabled===true}catch(_){}}
+async function discover(){const checks=await Promise.allSettled([fetch("/api/sales-chat",{cache:"no-store"}),fetch("/api/ro-info",{cache:"no-store"})]);if(checks[0].status==="fulfilled"&&checks[0].value.ok)try{AI=(await checks[0].value.json()).enabled===true}catch(_){}if(checks[1].status==="fulfilled"&&checks[1].value.ok)try{emailReady=(await checks[1].value.json()).enabled===true}catch(_){}}
 discover();
 async function question(text){
 if(busy)return;busy=true;input.disabled=send.disabled=true;
@@ -162,6 +164,32 @@ wait.remove();bubble(obj.reply.slice(0,850));messages.push({role:"assistant",con
 busy=false;input.disabled=send.disabled=false;if(!isMobile())input.focus();
 }
 $("lw-chat-composer").addEventListener("submit",e=>{e.preventDefault();const msg=input.value.trim();if(!msg||busy)return;input.value="";bubble(msg,"user");question(msg)});
+function showEmailForm(){
+if(colombia||!emailReady)return;
+const d=t().emailForm,f=elt("form","lw-chat-form"),email=elt("input"),product=elt("select"),consent=elt("input"),error=elt("div","lw-form-error"),sendBtn=elt("button","",d.send);
+f.appendChild(elt("strong","",d.title));
+const emailLabel=elt("label","",d.email);email.type="email";email.required=true;email.maxLength=254;email.autocomplete="email";email.inputMode="email";email.placeholder="name@example.com";emailLabel.appendChild(email);f.appendChild(emailLabel);
+const productLabel=elt("label","",d.product);
+for(const [value,label] of [["essential","Essential — RO + UV + Alkaline"],["advanced","Advanced — quote needed"],["premium","Premium H₂ — interest only"]]){const option=elt("option","",label);option.value=value;product.appendChild(option)}
+product.value=lastPlan;productLabel.appendChild(product);f.appendChild(productLabel);
+const consentLabel=elt("label","lw-consent");consent.type="checkbox";consent.required=true;consentLabel.appendChild(consent);consentLabel.appendChild(elt("span","",d.consent));f.appendChild(consentLabel);
+const trap=elt("input","lw-chat-honeypot");trap.type="text";trap.tabIndex=-1;trap.autocomplete="off";trap.setAttribute("aria-hidden","true");f.appendChild(trap);
+error.setAttribute("role","alert");f.appendChild(error);sendBtn.type="submit";f.appendChild(sendBtn);log.appendChild(f);scroll();if(!isMobile())email.focus();
+let id=null;
+f.addEventListener("submit",async ev=>{
+ ev.preventDefault();error.textContent="";
+ const address=email.value.trim();
+ if(!/^[^\s@<>]+@[^\s@<>]+\.[A-Za-z]{2,}$/.test(address)||!consent.checked){error.textContent=d.invalid;return}
+ if(!crypto||!crypto.randomUUID){error.textContent=d.error;return}
+ id=id||crypto.randomUUID();sendBtn.disabled=true;sendBtn.textContent=d.sending;
+ try{
+ const res=await fetch("/api/ro-info",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({request_id:id,email:address,product:product.value,language:language(),consent:consent.checked,website:trap.value})});
+ const data=await res.json().catch(()=>({}));
+ if(!res.ok||data.sent!==true)throw Error("Not accepted");
+ lastPlan=product.value;f.remove();bubble(d.success);choices([{label:t().links.quote,href:path("/ro/",{plan:lastPlan})+"#request"}]);
+ }catch(_){error.textContent=d.error;sendBtn.disabled=false;sendBtn.textContent=d.send}
+});
+}
 function showForm(kind){
 if(colombia){choices([{label:t().links.mail,href:"mailto:info@legacywaterusa.com"}]);return}
 const d=t().form,f=elt("form","lw-chat-form"),fields={};f.appendChild(elt("strong","",d.title));

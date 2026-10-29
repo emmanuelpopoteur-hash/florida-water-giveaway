@@ -1,0 +1,27 @@
+name: RO info email tests
+on:
+  pull_request:
+    paths:
+      - "functions/api/ro-info.js"
+      - "chatbot/assistant.js"
+      - "tests/ro-info.test.mjs"
+      - ".github/workflows/ro-info-tests.yml"
+  push:
+    branches:
+      - "feature/ro-advisor-requested-email"
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Syntax check backend
+        run: node --check functions/api/ro-info.js
+      - name: Syntax check advisor
+        run: node --check chatbot/assistant.js
+      - name: Test one-time email flow
+        run: node --test tests/ro-info.test.mjs
