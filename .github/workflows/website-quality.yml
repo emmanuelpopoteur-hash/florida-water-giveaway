@@ -1,0 +1,58 @@
+name: Legacy Water website quality and campaign QR
+on:
+  workflow_dispatch:
+  push:
+    branches: [feature/legacy-github-toolkit]
+  pull_request:
+    paths:
+      - 'chatbot/**'
+      - 'check/**'
+      - 'colombia/**'
+      - 'ro/**'
+      - 'index.html'
+      - 'campaigns/**'
+      - 'scripts/**'
+      - 'tests/e2e/**'
+      - 'tests/campaign-links.test.mjs'
+      - 'playwright.config.mjs'
+      - '.github/workflows/website-quality.yml'
+permissions:
+  contents: read
+jobs:
+  browser-and-qr:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Install test and QR dependencies (CI only)
+        run: npm install --no-save --no-package-lock --ignore-scripts @playwright/test@1.56.1 qrcode@1.5.4
+      - name: Test tracked campaign URL safety
+        run: node --test tests/campaign-links.test.mjs
+      - name: Generate printable campaign QR codes
+        run: node scripts/generate-campaign-qrs.mjs campaign-assets/qr
+      - name: Archive QR codes for download
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-water-tracked-qr
+          path: campaign-assets/qr/
+          retention-days: 30
+      - name: Build the Cloudflare static website
+        run: node scripts/build-cloudflare.mjs
+      - name: Install Chromium and WebKit
+        run: npx playwright install --with-deps chromium webkit
+      - name: Test desktop and mobile Safari
+        run: npx playwright test
+      - name: Archive screenshots and traces if a test fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-water-browser-test-results
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
