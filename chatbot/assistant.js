@@ -161,7 +161,7 @@ uuid=uuid||crypto.randomUUID();submit.disabled=true;submit.textContent=d.sending
 const payload={request_id:uuid,zip,full_name:name,phone,preferred_day:fields.day.value,preferred_time:fields.time.value,website:""};
 let endpoint="/api/ro-inquiries";
 if(kind==="test"){endpoint="/api/leads";payload.source="direct";payload.campaign="virtual-assistant";payload.product_interest=last==="well"?"well_water":last==="whole"?"city_water":"drinking_ro"}
-else{payload.model=last==="hydrogen"?"premium":"essential";payload.delivery=/^(32|33|34)\d{3}$/.test(zip)?"florida-install":"other-us-quote"}
+else{payload.model=last==="hydrogen"?"premium":"essential";payload.delivery=/^(32|33|34)\d{3}$/.test(zip)?"florida-install":"other-us-quote";payload.channel="virtual_advisor"}
 try{const res=await fetch(endpoint,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(payload)});const data=await res.json().catch(()=>({}));if(!res.ok||data.saved!==true||!data.id)throw Error("failed");
 f.remove();bubble(d.success+String(data.id).slice(0,8).toUpperCase()+"\n"+d.note);choices([{label:t().links.catalog,href:path("/sistemas/")}]);
 }catch(_){err.textContent=d.error;submit.disabled=false;submit.textContent=d.send}
