@@ -1,5 +1,10 @@
 import {test,expect} from '@playwright/test';
 
+test.beforeEach(async({request})=>{
+ const res=await request.post('/__reset');
+ expect(res.ok()).toBeTruthy();
+});
+
 test('dashboard displays safe demo leads and KPIs',async({page},info)=>{
  await page.goto('/');
  await expect(page.getByRole('heading',{name:'Mis oportunidades'})).toBeVisible();
