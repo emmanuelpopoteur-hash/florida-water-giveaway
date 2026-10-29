@@ -45,36 +45,6 @@ async function authorized(request,env,ctx){
   return email&&allowed.includes(email)?email:null;
  }catch(_){return null;}
 }
-async function secretMatches(given,expected) {
- if(typeof given!=='string'||typeof expected!=='string'||expected.length<32||!given)return false;
- const encode=v=>new TextEncoder().encode(v);
- const [a,b]=await Promise.all([crypto.subtle.digest('SHA-256',encode(given)),crypto.subtle.digest('SHA-256',encode(expected))]);
- const x=new Uint8Array(a),y=new Uint8Array(b);let different=0;
- for(let i=0;i<x.length;i++)different|=x[i]^y[i];
- return different===0;
-}
-async function ingest(request,env) {
- // This endpoint is ONLY for a trusted Pages service binding + shared server-only secret.
- if(!env.DB||!await secretMatches(request.headers.get('x-crm-ingest-token'),env.CRM_INGEST_TOKEN))
-  return asJson({error:'Forbidden'},403);
- let d;try{d=await bodyJson(request)}catch(_){return asJson({error:'Invalid request'},400)}
- const id=text(d.id,50),name=text(d.full_name,100),phone=text(d.phone,24),zip=text(d.zip,5),
- source=text(d.source,80),campaign=text(d.campaign,80),
- interest=d.product_interest==null?null:text(d.product_interest,32);
- if(!uuidRule.test(id)||name.length<2||phone.replace(/\D/g,'').length<10||!/^\d{5}$/.test(zip)
- ||!['ro-product-website'].includes(source)&&!source.startsWith('water-test-')
- ||source.length>80||!['city_water','well_water','drinking_ro',null].includes(interest))
- return asJson({error:'Invalid lead data'},400);
- if(!/^\d{4}-\d{2}-\d{2}T/.test(text(d.created_at,40)))return asJson({error:'Invalid timestamp'},400);
- try{
-  const now=new Date().toISOString();
-  const write=await env.DB.prepare(`INSERT OR IGNORE INTO crm_leads
-  (id,created_at,updated_at,full_name,phone,zip,source,campaign,product_interest,preferred_day,preferred_time,status)
-  VALUES (?,?,?,?,?,?,?,?,?,?,?,'new')`).bind(id,text(d.created_at,40),now,name,phone,zip,source,campaign,interest,text(d.preferred_day,20),text(d.preferred_time,20)).run();
-  if(!write.success)throw Error('insert failed');
-  return asJson({saved:true,id,created:write.meta?.changes===1},write.meta?.changes===1?201:200);
- }catch(_){return asJson({error:'CRM storage unavailable'},503)}
-}
 async function summary(env){
  const today=todayNY();
  const [rows,due,total]=await Promise.all([
@@ -169,10 +139,6 @@ export default {
  async fetch(request,env,ctx) {
   const url=new URL(request.url),pathname=url.pathname;
   try{
-   if(pathname==='/internal/ingest') {
-    if(request.method!=='POST')return asJson({error:'Method not allowed'},405);
-    return await ingest(request,env);
-   }
    const email=await authorized(request,env,ctx);
    if(!email)return asJson({error:'Private CRM: Cloudflare Access required'},403);
    if(['POST','PATCH','PUT','DELETE'].includes(request.method)) {
