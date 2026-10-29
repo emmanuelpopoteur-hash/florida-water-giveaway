@@ -103,6 +103,15 @@
         }
         link.href=target.pathname+target.search;
       });
+      const roLink=document.getElementById("ro-program-link");
+      if(roLink){
+        const target=new URL("/ro/",window.location.origin);
+        target.searchParams.set("lang",language);
+        ["utm_source","utm_medium","utm_campaign","utm_content","utm_term"].forEach(key=>{
+          if(current.has(key))target.searchParams.set(key,current.get(key).slice(0,100));
+        });
+        roLink.href=target.pathname+target.search;
+      }
       buttons.en.setAttribute("aria-pressed",String(language==="en"));
       buttons.es.setAttribute("aria-pressed",String(language==="es"));
       document.title=language==="es"?"Opciones para tratar el agua | Legacy Water USA":"Water Treatment Options | Legacy Water USA";
