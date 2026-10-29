@@ -4,7 +4,7 @@
 .lw-chat-button:hover{background:#07454e}.lw-chat-button:focus-visible,.lw-chat button:focus-visible,.lw-chat a:focus-visible{outline:3px solid #38bcb5;outline-offset:3px}
 .lw-chat-button .lw-avatar{width:34px;height:34px;display:grid;place-items:center;background:#c8fff4;color:#0b5158;border-radius:50%;font-size:22px}
 .lw-chat-button .lw-online{width:8px;height:8px;display:inline-block;border-radius:50%;background:#82f3b0;margin-left:1px}
-.lw-chat[hidden],.lw-chat-dim[hidden]{display:none!important}
+.lw-chat[hidden],.lw-chat-dim[hidden],.lw-chat-button[hidden]{display:none!important}
 .lw-chat-dim{position:fixed;inset:0;background:#001e2b7d;z-index:2147482998}
 .lw-chat{position:fixed;right:17px;bottom:calc(87px + env(safe-area-inset-bottom,0px));z-index:2147482999;width:min(395px,calc(100vw - 28px));height:min(640px,calc(100dvh - 110px));min-height:370px;display:flex;flex-direction:column;background:#fff;color:#193d48;border:1px solid #bfddda;border-radius:20px;box-shadow:0 24px 80px #001e327a;overflow:hidden;font:14px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .lw-chat *, .lw-chat *:before,.lw-chat *:after{box-sizing:border-box}
