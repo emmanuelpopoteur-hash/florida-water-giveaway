@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker from '../crm/src/worker.js';
+import ingestWorker from '../crm/src/ingest.js';
 
 const URL='https://crm.legacywaterusa.com';
 const token='crm-internal-'.padEnd(44,'A');
@@ -65,22 +66,22 @@ test('authorized staff can load the private mobile interface',async()=>{
 });
 test('internal service binding refuses absent or wrong secret',async()=>{
  const e=env();
- const noToken=await worker.fetch(req('/internal/ingest','POST',lead),e,{});
- const badToken=await worker.fetch(req('/internal/ingest','POST',lead,{'x-crm-ingest-token':'wrong'}),e,{});
+ const noToken=await ingestWorker.fetch(req('/internal/ingest','POST',lead),e,{});
+ const badToken=await ingestWorker.fetch(req('/internal/ingest','POST',lead,{'x-crm-ingest-token':'wrong'}),e,{});
  assert.equal(noToken.status,403);assert.equal(badToken.status,403);
  assert.equal(e.DB.leads.size,0);
 });
 test('authorized ingest stores lead once without overwriting subsequent status',async()=>{
  const e=env();
- const call=()=>worker.fetch(req('/internal/ingest','POST',lead,{'x-crm-ingest-token':token}),e,{});
+ const call=()=>ingestWorker.fetch(req('/internal/ingest','POST',lead,{'x-crm-ingest-token':token}),e,{});
  const a=await call(),b=await call();
  assert.equal(a.status,201);assert.equal(b.status,200);assert.equal(e.DB.leads.size,1);
  assert.equal(e.DB.leads.get(lead.id).source,'water-test-direct');
 });
 test('internal mirror rejects malformed IDs and other product sources',async()=>{
  const e=env();
- const a=await worker.fetch(req('/internal/ingest','POST',{...lead,id:'bad-id'},{'x-crm-ingest-token':token}),e,{});
- const b=await worker.fetch(req('/internal/ingest','POST',{...lead,source:'unapproved'},{'x-crm-ingest-token':token}),e,{});
+ const a=await ingestWorker.fetch(req('/internal/ingest','POST',{...lead,id:'bad-id'},{'x-crm-ingest-token':token}),e,{});
+ const b=await ingestWorker.fetch(req('/internal/ingest','POST',{...lead,source:'unapproved'},{'x-crm-ingest-token':token}),e,{});
  assert.equal(a.status,400);assert.equal(b.status,400);
 });
 test('manual lead creation requires Access and same-origin writes',async()=>{
@@ -95,4 +96,18 @@ test('no lead is created from invalid manual contact details',async()=>{
  const e=env();
  const res=await worker.fetch(req('/api/leads','POST',{full_name:'X',phone:'123',zip:'34769'},{'origin':URL}),e,context());
  assert.equal(res.status,400);assert.equal(e.DB.leads.size,0);
+});
+
+test('dashboard rejects internal ingestion even when Access is valid',async()=>{
+ const e=env();
+ const res=await worker.fetch(req('/internal/ingest','POST',lead,{
+  origin:URL,'x-crm-ingest-token':token
+ }),e,context());
+ assert.equal(res.status,404);
+ assert.equal(e.DB.leads.size,0);
+});
+test('internal ingestion Worker does not expose dashboard routes',async()=>{
+ const e=env();
+ const res=await ingestWorker.fetch(req('/api/leads'),e);
+ assert.equal(res.status,404);
 });
