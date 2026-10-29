@@ -1,0 +1,29 @@
+{
+  "base": "https://legacywaterusa.com",
+  "campaigns": [
+    {
+      "id": "water-test-direct",
+      "path": "/check/",
+      "source": "qr",
+      "medium": "print",
+      "campaign": "water-test-direct",
+      "description": "Business cards: direct three-step free water test"
+    },
+    {
+      "id": "door-hanger-water-entry",
+      "path": "/water-test/",
+      "source": "qr",
+      "medium": "print",
+      "campaign": "door-hanger-water-entry",
+      "description": "Door hangers: ZIP-level water education then the free-test form"
+    },
+    {
+      "id": "ro-information-card",
+      "path": "/ro/",
+      "source": "qr",
+      "medium": "print",
+      "campaign": "ro-information-card",
+      "description": "RO product information and quote requests (US market only)"
+    }
+  ]
+}
