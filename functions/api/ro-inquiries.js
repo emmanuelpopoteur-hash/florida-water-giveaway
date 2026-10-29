@@ -1,3 +1,4 @@
+import { mirrorLeadToCrm } from '../_shared/crm-sync.js';
 // Separate RO product inquiry intake; reuses the existing D1 lead table and alert credentials.
 // This endpoint does not create an order, charge a card, or reserve inventory.
 const reply = (body, status) => Response.json(body, {
@@ -34,7 +35,7 @@ async function notify(env, lead, model, delivery) {
   }
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, context }) {
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) return reply({error:'Origin not allowed'}, 403);
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json'))
@@ -82,7 +83,10 @@ export async function onRequestPost({ request, env }) {
       saved.preferred_day !== day || saved.preferred_time !== time ||
       saved.source !== source || saved.campaign !== campaign || saved.product_interest !== 'drinking_ro')
       return reply({error:'Request identifier already used'},409);
-    if (write.meta.changes===1) await notify(env,saved,model,delivery);
+    if (write.meta.changes===1) {
+      if (context?.waitUntil) context.waitUntil(mirrorLeadToCrm(env,saved));
+      await notify(env,saved,model,delivery);
+    }
     return reply({saved:true,id},write.meta.changes===1?201:200);
   } catch(e) {
     console.error('RO inquiry storage failed',e?.name||'error');
