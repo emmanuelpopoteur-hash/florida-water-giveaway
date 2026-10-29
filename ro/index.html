@@ -131,6 +131,8 @@ function setLanguage(l){
 document.getElementById('lang-en').addEventListener('click',function(){setLanguage('en');});
 document.getElementById('lang-es').addEventListener('click',function(){setLanguage('es');});
 setLanguage(language);
+var selectedPlan=new URLSearchParams(location.search).get('plan');
+if(['essential','advanced','premium'].includes(selectedPlan))document.getElementById('model').value=selectedPlan;
 document.querySelectorAll('.plan-select').forEach(function(link){
  link.addEventListener('click',function(){document.getElementById('model').value=link.dataset.plan;});
 });
@@ -151,7 +153,7 @@ form.addEventListener('submit',async function(e){
  try{
   var response=await fetch('/api/ro-inquiries',{
    method:'POST',headers:{'content-type':'application/json'},
-   body:JSON.stringify({request_id:requestId,website:document.getElementById('website').value,model:model,delivery:delivery,zip:zip,full_name:name,phone:phone,preferred_day:day,preferred_time:time})
+   body:JSON.stringify({request_id:requestId,website:document.getElementById('website').value,model:model,delivery:delivery,zip:zip,full_name:name,phone:phone,preferred_day:day,preferred_time:time,channel:new URLSearchParams(location.search).get('utm_source')==='virtual_advisor'?'virtual_advisor':'website'})
   });
   var data=await response.json().catch(function(){return {};});
   if(!response.ok||data.saved!==true)throw new Error('Not saved');
