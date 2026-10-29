@@ -46,7 +46,7 @@ test('Colombia guided chat never quotes the proposed US Essential price', async 
 });
 
 test('QR landing page preserves the campaign and starts the water test flow', async ({page}) => {
-  await page.goto('/check/?utm_source=qr&utm_medium=print&utm_campaign=water-test-direct&interest=city_water',{waitUntil:'domcontentloaded'});
+  await page.goto('/check/?utm_source=qr&utm_medium=print&utm_campaign=water-test-direct',{waitUntil:'domcontentloaded'});
   await expect(page.locator('#zip')).toBeVisible();
   await expect(page.locator('#zipNext')).toBeVisible();
 });
