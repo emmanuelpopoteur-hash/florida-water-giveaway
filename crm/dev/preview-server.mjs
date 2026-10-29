@@ -10,13 +10,14 @@ if (process.env.CI !== 'true' && process.env.CRM_ENABLE_LOCAL_DEMO !== '1') {
 }
 const port=Number(process.env.PORT||4188);
 const iso='2026-10-29T12:00:00.000Z';
-let leads=[
+const demoSeed=[
  {id:'11111111-1111-4111-8111-111111111111',created_at:iso,updated_at:iso,full_name:'María Ejemplo',phone:'407-555-0101',zip:'34769',source:'water-test-qr',campaign:'water-test-direct',product_interest:'city_water',preferred_day:'Weekday',preferred_time:'Morning',status:'new',next_followup_date:'2026-10-29',assigned_to:'',estimated_value_cents:null,closed_value_cents:null,notes:[]},
  {id:'22222222-2222-4222-8222-222222222222',created_at:'2026-10-27T15:00:00Z',updated_at:iso,full_name:'Luis Demostración',phone:'407-555-0102',zip:'34771',source:'ro-product-website',campaign:'ro-information-card',product_interest:'drinking_ro',preferred_day:'Weekend',preferred_time:'Afternoon',status:'contacted',next_followup_date:'2026-11-02',assigned_to:'',estimated_value_cents:119900,closed_value_cents:null,notes:[{id:'a',created_at:iso,author:'demo@legacywaterusa.test',body:'Solicitó detalles del sistema RO y mantenimiento.'}]},
  {id:'33333333-3333-4333-8333-333333333333',created_at:'2026-10-25T14:00:00Z',updated_at:iso,full_name:'Ana Prueba',phone:'407-555-0103',zip:'34772',source:'water-test-card',campaign:'door-hanger-water-entry',product_interest:'well_water',preferred_day:'Weekday',preferred_time:'Evening',status:'qualified',next_followup_date:'2026-10-28',assigned_to:'',estimated_value_cents:null,closed_value_cents:null,notes:[]},
  {id:'44444444-4444-4444-8444-444444444444',created_at:'2026-10-23T14:00:00Z',updated_at:iso,full_name:'Pedro Ficticio',phone:'407-555-0104',zip:'34744',source:'manual',campaign:'referido-demo',product_interest:'city_water',preferred_day:'',preferred_time:'',status:'proposal',next_followup_date:null,assigned_to:'',estimated_value_cents:829000,closed_value_cents:null,notes:[]},
  {id:'55555555-5555-4555-8555-555555555555',created_at:'2026-10-20T14:00:00Z',updated_at:iso,full_name:'Cliente de Muestra',phone:'407-555-0105',zip:'34746',source:'manual',campaign:'visita-demo',product_interest:'city_water',preferred_day:'',preferred_time:'',status:'won',next_followup_date:null,assigned_to:'',estimated_value_cents:899000,closed_value_cents:899000,notes:[]}
-];
+]; 
+let leads=structuredClone(demoSeed);
 function respond(res,obj,status=200,kind='application/json; charset=utf-8'){
  res.writeHead(status,{'content-type':kind,'cache-control':'no-store','x-robots-tag':'noindex,nofollow'});res.end(kind.startsWith('application/json')?JSON.stringify(obj):obj);
 }
@@ -27,6 +28,9 @@ async function parse(req){
 const server=createServer(async(req,res)=>{
  const u=new URL(req.url,'http://127.0.0.1:'+port);
  try {
+  if(req.method==='POST'&&u.pathname==='/__reset'){
+   leads=structuredClone(demoSeed);return respond(res,{reset:true});
+  }
   if(req.method==='GET'&&u.pathname==='/')return respond(res,pageHtml,200,'text/html; charset=utf-8');
   if(req.method==='GET'&&u.pathname==='/assets/app.css')return respond(res,pageCss,200,'text/css; charset=utf-8');
   if(req.method==='GET'&&u.pathname==='/assets/app.js')return respond(res,pageScript,200,'application/javascript; charset=utf-8');
