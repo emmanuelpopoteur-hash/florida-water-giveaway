@@ -27,6 +27,7 @@ jobs:
           node-version: 24
           package-manager-cache: false
       - run: node --check crm/src/worker.js
+      - run: node --check crm/src/ingest.js
       - run: node --check crm/src/ui.js
       - run: node --check functions/_shared/crm-sync.js
       - run: node --check functions/api/leads.js
