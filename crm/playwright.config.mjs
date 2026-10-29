@@ -1,7 +1,7 @@
 import {defineConfig,devices} from '@playwright/test';
 
 export default defineConfig({
- testDir:'./tests/crm-e2e',
+ testDir:'../tests/crm-e2e',
  timeout:20000,
  expect:{timeout:7000},
  retries:process.env.CI?1:0,
