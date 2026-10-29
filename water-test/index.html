@@ -35,7 +35,7 @@
     footer{background:#061723;color:#a6c0c6;padding:28px 0;font-size:12px}.footer-inner{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
     @media(max-width:850px){.grid,.step-grid,.well-inner{grid-template-columns:1fr}.well-inner{gap:3px}}@media(max-width:600px){.container{width:min(100% - 36px,1120px)}.header-inner{min-height:72px;gap:11px}.brand-mark{width:36px;height:36px;font-size:22px}.brand-name{font-size:11px}.brand-name small{font-size:7px}.back{font-size:12px}.language button{padding:6px 8px}.hero{padding:64px 0 72px}.hero p{font-size:16px}.intro{padding:56px 0 18px}.grid{padding-bottom:60px}.card{padding:26px}.ewg,.steps,.well{padding:60px 0}.ewg-list,.zip-measures{grid-template-columns:1fr}.ewg-list a{align-items:flex-start;flex-direction:column;gap:4px}.zip-form{flex-direction:column}.zip-form button{padding:14px}.cta{padding:68px 0}}
   </style>
-<link rel="stylesheet" href="/chatbot/assistant.css?v=1"></head>
+<link rel="stylesheet" href="/chatbot/assistant.css?v=2"></head>
 <body>
   <header><div class="container header-inner"><a class="brand" href="/" data-home aria-label="Legacy Water USA home"><span class="brand-mark" aria-hidden="true">≈</span><span class="brand-name">LEGACY<small>WATER USA</small></span></a><a class="back" href="/" data-home data-en="← Home" data-es="← Inicio">← Home</a><div class="language" role="group" aria-label="Language / Idioma"><button type="button" id="en" aria-label="English" aria-pressed="true">EN</button><button type="button" id="es" aria-label="Español" aria-pressed="false">ES</button></div></div></header>
   <main>
@@ -202,5 +202,5 @@
     buttons.es.addEventListener("click",()=>{if(!zipResult.hidden)showZipResult()});
     try{const requested=new URLSearchParams(window.location.search).get("lang");setLanguage(requested==="es"||requested==="en"?requested:localStorage.getItem("legacy-language")==="es"?"es":"en")}catch(_){setLanguage("en")}
   </script>
-<script src="/chatbot/assistant.js?v=1" defer></script></body>
+<script src="/chatbot/assistant.js?v=2" defer></script></body>
 </html>
