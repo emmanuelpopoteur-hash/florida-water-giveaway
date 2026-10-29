@@ -179,7 +179,7 @@ let id=null;
 f.addEventListener("submit",async ev=>{
  ev.preventDefault();error.textContent="";
  const address=email.value.trim();
- if(!/^[^\\s@<>]+@[^\\s@<>]+\\.[A-Za-z]{2,}$/.test(address)||!consent.checked){error.textContent=d.invalid;return}
+ if(!/^[^\s@<>]+@[^\s@<>]+\.[A-Za-z]{2,}$/.test(address)||!consent.checked){error.textContent=d.invalid;return}
  if(!crypto||!crypto.randomUUID){error.textContent=d.error;return}
  id=id||crypto.randomUUID();sendBtn.disabled=true;sendBtn.textContent=d.sending;
  try{
