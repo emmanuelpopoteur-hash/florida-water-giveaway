@@ -14,6 +14,9 @@ on:
     branches:
       - feature/legacy-private-crm-mvp
   workflow_dispatch:
+concurrency:
+  group: crm-safety-${{ github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
