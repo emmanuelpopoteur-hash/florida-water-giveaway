@@ -1,6 +1,6 @@
 import { cp, mkdir, rm, stat } from 'node:fs/promises';
 
-const source = ['index.html', 'en', 'es', 'sistemas', 'ro', 'agua-local', 'colombia', 'water-lookup', 'water-test', 'check', 'media', 'robots.txt', 'sitemap.xml'];
+const source = ['index.html', 'en', 'es', 'sistemas', 'ro', 'chatbot', 'agua-local', 'colombia', 'water-lookup', 'water-test', 'check', 'media', 'robots.txt', 'sitemap.xml'];
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 for (const path of source) {
@@ -9,6 +9,6 @@ for (const path of source) {
     await cp(path, `dist/${path}`, { recursive: true });
   } catch (error) {
     if (error.code !== 'ENOENT') throw error;
-    if (['index.html', 'check', 'media'].includes(path)) throw new Error(`Required site path missing: ${path}`);
+    if (['index.html', 'check', 'media', 'chatbot'].includes(path)) throw new Error(`Required site path missing: ${path}`);
   }
 }
