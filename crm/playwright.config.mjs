@@ -6,6 +6,7 @@ export default defineConfig({
  timeout:20000,
  expect:{timeout:7000},
  retries:process.env.CI?1:0,
+ workers:1,
  reporter:'list',
  use:{baseURL:'http://127.0.0.1:4188',screenshot:'only-on-failure',trace:'retain-on-failure'},
  projects:[
