@@ -111,7 +111,7 @@ footer{background:#071b2a;color:#b5d1d5;padding:31px 0;font-size:12px}.footer-in
 <p class="errors" id="form-error" role="alert" aria-live="polite"></p><button type="submit" class="btn submit" id="submit" data-en="SEND MY REQUEST ↗" data-es="ENVIAR SOLICITUD ↗">SEND MY REQUEST ↗</button>
 <p class="fine" data-en="By submitting, you agree to be contacted about this specific request. This does not place an order, reserve inventory, or schedule a confirmed visit. No payment information is collected." data-es="Al enviar, aceptas que te contactemos sobre esta solicitud. No realiza una compra, reserva inventario ni confirma una visita. No se recopilan datos de pago.">By submitting, you agree to be contacted about this specific request. This does not place an order, reserve inventory, or schedule a confirmed visit. No payment information is collected.</p></form>
 <noscript><p>Please enable JavaScript to submit, or email info@legacywaterusa.com.</p></noscript></div>
-<div id="success" class="success" hidden aria-live="polite"><div class="success-mark">✓</div><h3 data-en="Request received!" data-es="¡Solicitud recibida!">Request received!</h3><p data-en="Your inquiry was saved. We will contact you to discuss availability and a written quote. No purchase has been made." data-es="Guardamos tu solicitud. Te contactaremos para hablar de disponibilidad y una cotización escrita. No se ha realizado ninguna compra.">Your inquiry was saved. We will contact you to discuss availability and a written quote. No purchase has been made.</p><a class="btn" href="/" data-en="Back to Legacy Water USA" data-es="Volver a Legacy Water USA">Back to Legacy Water USA</a></div>
+<div id="success" class="success" hidden aria-live="polite"><div class="success-mark">✓</div><h3 data-en="Request received!" data-es="¡Solicitud recibida!">Request received!</h3><p data-en="Your inquiry was saved. We will contact you to discuss availability and a written quote. No purchase has been made." data-es="Guardamos tu solicitud. Te contactaremos para hablar de disponibilidad y una cotización escrita. No se ha realizado ninguna compra.">Your inquiry was saved. We will contact you to discuss availability and a written quote. No purchase has been made.</p><p id="request-reference" class="fine" hidden></p><a class="btn" href="/" data-en="Back to Legacy Water USA" data-es="Volver a Legacy Water USA">Back to Legacy Water USA</a></div>
 </div></div></section>
 <footer><div class="wrap footer-inner"><span>© 2026 Legacy Water USA · United States</span><span data-en="Unbranded system images are illustrative. Product, installer, warranty and availability require confirmation." data-es="Las imágenes de sistemas sin marca son ilustrativas. Deben confirmarse producto, instalador, garantía y disponibilidad.">Unbranded system images are illustrative. Product, installer, warranty and availability require confirmation.</span><a href="mailto:info@legacywaterusa.com">info@legacywaterusa.com</a></div></footer>
 <script>
@@ -155,6 +155,11 @@ form.addEventListener('submit',async function(e){
   });
   var data=await response.json().catch(function(){return {};});
   if(!response.ok||data.saved!==true)throw new Error('Not saved');
+  var ref=document.getElementById('request-reference');
+  if(data.id && /^[0-9a-f-]{36}$/i.test(String(data.id))){
+    ref.textContent=(language==='es'?'Referencia de solicitud: ':'Request reference: ')+String(data.id).slice(0,8).toUpperCase();
+    ref.hidden=false;
+  }
   document.getElementById('form-holder').hidden=true;
   document.getElementById('success').hidden=false;
   document.getElementById('success').scrollIntoView({behavior:'smooth',block:'center'});
