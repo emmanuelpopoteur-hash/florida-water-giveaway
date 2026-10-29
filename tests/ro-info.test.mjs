@@ -80,7 +80,7 @@ test('sends static selected-system information once and records consent',async()
     assert.equal(env.rows.get(requestId).language,'es');
     assert.equal(deliveries.length,2);
     assert.equal(deliveries[0].to[0],'owner-approved@example.com');
-    assert.match(deliveries[0].text,/US\\$1,199/);
+    assert.ok(deliveries[0].text.includes('US$1,199'));
     assert.match(deliveries[0].text,/propuesto/i);
     assert.equal(deliveries[1].to[0],'info@legacywaterusa.com');
     const again=await onRequestPost({request:request(payload()),env});
