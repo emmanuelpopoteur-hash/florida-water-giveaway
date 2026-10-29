@@ -37,7 +37,7 @@
     @media(max-width:600px){.container{width:min(100% - 36px,1120px)}.header-inner{min-height:72px;gap:11px}.brand-mark{width:36px;height:36px;font-size:22px}.brand-name{font-size:11px}.brand-name small{font-size:7px}.back{font-size:12px}.language button{padding:6px 8px}.hero{padding:66px 0 72px}.hero p{font-size:16px}.intro{padding:60px 0 25px}.cards{padding-bottom:60px}.card{padding:27px}.catalog{padding:60px 0}.product{padding:24px}.note{padding:55px 0}.cta{padding:70px 0}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
   </style>
-</head>
+<link rel="stylesheet" href="/chatbot/assistant.css?v=1"></head>
 <body>
   <header><div class="container header-inner">
     <a class="brand" href="/" data-home aria-label="Legacy Water USA home"><span class="brand-mark" aria-hidden="true">≈</span><span class="brand-name">LEGACY<small>WATER USA</small></span></a>
@@ -105,5 +105,5 @@
     buttons.es.addEventListener("click",()=>setLanguage("es"));
     try{const requested=new URLSearchParams(window.location.search).get("lang");setLanguage(requested==="es"||requested==="en"?requested:localStorage.getItem("legacy-language")==="es"?"es":"en")}catch(_){setLanguage("en")}
   </script>
-</body>
+<script src="/chatbot/assistant.js?v=1" defer></script></body>
 </html>
