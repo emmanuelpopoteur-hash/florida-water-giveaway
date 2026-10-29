@@ -153,7 +153,7 @@ form.addEventListener('submit',async function(e){
  try{
   var response=await fetch('/api/ro-inquiries',{
    method:'POST',headers:{'content-type':'application/json'},
-   body:JSON.stringify({request_id:requestId,website:document.getElementById('website').value,model:model,delivery:delivery,zip:zip,full_name:name,phone:phone,preferred_day:day,preferred_time:time,channel:new URLSearchParams(location.search).get('utm_source')==='virtual_advisor'?'virtual_advisor':'website'})
+   body:JSON.stringify({request_id:requestId,website:document.getElementById('website').value,model:model,delivery:delivery,zip:zip,full_name:name,phone:phone,preferred_day:day,preferred_time:time,channel:new URLSearchParams(location.search).get('utm_source')==='virtual_advisor'?'virtual_advisor':'website',utm_campaign:(new URLSearchParams(location.search).get('utm_campaign')||'').slice(0,60)})
   });
   var data=await response.json().catch(function(){return {};});
   if(!response.ok||data.saved!==true)throw new Error('Not saved');
