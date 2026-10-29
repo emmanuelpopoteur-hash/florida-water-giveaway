@@ -19,7 +19,7 @@ async function notify(env, lead, model, delivery) {
         subject: `New RO product inquiry — ${model.toUpperCase()} — ${lead.zip}`,
         text: [
           'A customer submitted a request for a US reverse osmosis system. This is not a paid order.',
-          `Package: ${model}`, `Service requested: ${delivery}`,
+          `Package: ${model}`, `Service requested: ${delivery}`, `Channel: ${lead.campaign}`,
           `Name: ${lead.full_name}`, `Phone: ${lead.phone}`, `US ZIP: ${lead.zip}`,
           `Preferred contact day: ${lead.preferred_day}`,
           `Preferred contact time: ${lead.preferred_time}`,
@@ -57,6 +57,7 @@ export async function onRequestPost({ request, env }) {
   const model = safeText(data.model).toLowerCase();
   const delivery = safeText(data.delivery).toLowerCase();
   const id = safeText(data.request_id);
+  const channel = safeText(data.channel).toLowerCase() === 'virtual_advisor' ? 'virtual-advisor' : 'website';
   if (!/^\d{5}$/.test(zip) || name.length < 2 || name.length > 100 ||
       phone.length > 24 || phone.replace(/\D/g,'').length < 10 ||
       !['Weekday','Weekend'].includes(day) ||
@@ -66,7 +67,7 @@ export async function onRequestPost({ request, env }) {
       !validUuid.test(id)) return reply({error:'Invalid request details'}, 400);
 
   if (!env.DB) return reply({error:'Request service temporarily unavailable'}, 503);
-  const campaign = `us-ro-${model}-${delivery}`;
+  const campaign = `us-ro-${model}-${delivery}-${channel}`;
   const source = 'ro-product-website';
   try {
     const write = await env.DB.prepare(
