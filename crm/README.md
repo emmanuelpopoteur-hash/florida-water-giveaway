@@ -9,6 +9,7 @@
 - Update status, assign responsibility, estimate/closed values and next-followup date.
 - Notes and audit history in private D1, independent of the public website DB.
 - Create an in-person/manual prospect for door knocking or customer referrals.
+- The RO inquiry form now forwards a validated `utm_campaign` label into the existing D1 `campaign` field, so a QR printed for `ro-information-card` remains attributable through the CRM. The regular water-test form already supports UTM campaign tags.
 - Receives **newly confirmed** submissions from Pages endpoints `/api/leads` and `/api/ro-inquiries` over a Cloudflare Service binding. Once a lead is written into the existing public D1, its details are **best-effort mirrored**; CRM failure must not break the original registration. Existing Resend alerts are preserved.
 - No new vendor subscription, no checkout, no AI access to PII, no automatic marketing, no imports to third-party CRMs.
 
