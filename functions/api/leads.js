@@ -1,3 +1,4 @@
+import { mirrorLeadToCrm } from '../_shared/crm-sync.js';
 const json = (body, status) => Response.json(body, {
   status,
   headers: { 'cache-control': 'no-store', 'content-type': 'application/json; charset=utf-8' },
@@ -36,7 +37,7 @@ async function notifyOwner(env, lead) {
   }
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, context }) {
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) {
     return json({ error: 'Origin not allowed' }, 403);
@@ -98,7 +99,10 @@ export async function onRequestPost({ request, env }) {
         saved.campaign !== campaign || saved.product_interest !== interest) {
       return json({ error: 'Request ID already used' }, 409);
     }
-    if (write.meta.changes === 1) await notifyOwner(env, saved);
+    if (write.meta.changes === 1) {
+      if (context?.waitUntil) context.waitUntil(mirrorLeadToCrm(env, saved));
+      await notifyOwner(env, saved);
+    }
     return json({ id: requestId, saved: true }, write.meta.changes === 1 ? 201 : 200);
   } catch (error) {
     console.error('Lead storage failed', error);
