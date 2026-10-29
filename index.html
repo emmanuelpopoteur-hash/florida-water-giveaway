@@ -166,6 +166,7 @@
         <a href="#your-water" data-en="Your Water" data-es="Tu agua">Your Water</a>
         <a href="#how-it-works" data-en="How It Works" data-es="Cómo funciona">How It Works</a>
         <a href="/sistemas/" data-en="Water Options" data-es="Opciones de agua">Water Options</a>
+        <a href="/ro/" data-en="RO Systems" data-es="Sistemas RO">RO Systems</a>
         <a href="/agua-local/" data-en="Water by ZIP" data-es="Agua por ZIP">Water by ZIP</a>
         <a href="#service-area" data-en="Service Area" data-es="Área de servicio">Service Area</a>
       </nav>
@@ -244,7 +245,7 @@
       </div>
     </section>
   </main>
-  <footer><div class="container footer-inner"><span>© 2026 Legacy Water USA</span><span data-en="Helping Florida homeowners understand their water." data-es="Ayudando a familias en Florida a conocer su agua.">Helping Florida homeowners understand their water.</span></div></footer>
+  <footer><div class="container footer-inner"><span>© 2026 Legacy Water USA · <a href="/ro/" data-en="RO systems" data-es="Sistemas RO">RO systems</a></span><span data-en="Helping Florida homeowners understand their water." data-es="Ayudando a familias en Florida a conocer su agua.">Helping Florida homeowners understand their water.</span></div></footer>
   <script>
     const buttons = {en: document.getElementById("en"), es: document.getElementById("es")};
     function setLanguage(language) {
@@ -254,7 +255,7 @@
         element.textContent = element.dataset[language];
       });
       const campaign = new URLSearchParams(window.location.search);
-      document.querySelectorAll('a[href^="/water-test"], a[href^="/sistemas/"], a[href^="/agua-local/"]').forEach(link => {
+      document.querySelectorAll('a[href^="/water-test"], a[href^="/sistemas/"], a[href^="/ro/"], a[href^="/agua-local/"]').forEach(link => {
         const target = new URL(link.getAttribute("href"), window.location.origin);
         target.searchParams.set('lang', language);
         ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(key => {
