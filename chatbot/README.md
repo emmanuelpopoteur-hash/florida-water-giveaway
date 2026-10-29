@@ -31,3 +31,22 @@ Before enabling AI:
 
 ## Limitations
 The guided mode recognizes common keywords and fixed sales topics, not arbitrary questions with general AI reasoning. Configuring the optional server-side AI service is required for open-ended generative conversations. Never advertise live human agents 24/7.
+
+## Requested one-time RO information email — configuration required
+
+This optional feature lets U.S. visitors select Essential, Advanced, or Premium H2, enter their own email, and explicitly authorize **one informational message**. It is not a marketing mailing-list opt-in. The browser never sends email or contains Resend credentials. Colombia pages do not expose U.S. prices or this U.S. email flow.
+
+Required **before merging and enabling**:
+1. In the existing Cloudflare D1 database bound as `DB`, run `migrations/2026-10-29-ro-email-requests.sql` for production. Run the same migration in preview/staging D1 if you will test there first. Back up the database beforehand.
+2. Create a Cloudflare KV namespace, bind it as `RO_EMAIL_RATE_LIMIT` in the relevant Pages environments (Production and separately Preview for testing).
+3. Confirm the existing encrypted `RESEND_API_KEY` and `LEAD_ALERT_TO=info@legacywaterusa.com` remain available in that Pages environment. The verified sender remains `leads@legacywaterusa.com`. Never commit secrets to GitHub.
+4. Set a Cloudflare WAF/rate-limiting rule for POST `/api/ro-info` to supplement non-atomic KV limits; consider a challenge for suspicious repeated attempts.
+5. Deploy the new branch in preview. GET `/api/ro-info` should show `{"enabled":true}` only when D1, KV and Resend are configured. Otherwise the chat falls back to a manual mailto and the POST fails closed.
+6. Test with a mailbox you own or have permission to use: ask the advisor “Envíame información de los sistemas RO a mi email”, select each product in turn, check opt-in/validation, confirm the provider **accepted** the email (not necessarily delivered), check inbox, D1 record and owner's separate notification. Test rate limiting, honeypot, Colombia exclusions and iPhone keyboard.
+
+Behavior and privacy:
+- One predefined, bilingual, product-specific text email with accurate **proposed** Essential pricing. No free-form user text is relayed, no attachment, no mass send and no financial/medical claims.
+- Email, selected product, language, consent timestamp and send-accepted status are stored in `ro_email_requests` (separate from `water_test_leads`). No automated marketing permission is inferred.
+- KV allows up to 3 requests/IP/hour, 10/IP/day and 2/recipient/day (best-effort, not atomic). WAF is required for stronger protection. Requests fail closed when Cloudflare client IP/rate-limiter is unavailable.
+- Failed Resend acceptance leaves a pending row for a retry with the same request identifier. The UI should not claim confirmed mailbox delivery.
+- Define a data-retention/deletion policy and purge stale email addresses from D1 appropriately before general launch.
