@@ -46,7 +46,7 @@ footer{background:#071b2a;color:#b5d1d5;padding:31px 0;font-size:12px}.footer-in
 .faq details p{font-size:14px;line-height:1.7;color:#536d76;max-width:790px;margin:11px 0 0}
 .faq details p a{color:#087782;text-decoration:underline}
 @media(max-width:740px){.offer-grid{grid-template-columns:1fr}.faq{padding:50px 0}.offer-block{padding:42px 0}}
-</style></head>
+</style><link rel="stylesheet" href="/chatbot/assistant.css?v=1"></head>
 <body>
 <header class="nav"><div class="wrap nav-inner"><a class="brand" href="/" aria-label="Legacy Water USA home"><span class="mark" aria-hidden="true">≋</span><span>LEGACY <small>WATER USA</small></span></a><div class="nav-right"><a class="nav-back" href="/" data-en="Back to main website" data-es="Volver al sitio principal">Back to main website</a><div class="langs" role="group" aria-label="Language / Idioma"><button type="button" id="lang-en" aria-pressed="true">EN</button><button type="button" id="lang-es" aria-pressed="false">ES</button></div></div></div></header>
 <section class="hero"><div class="wrap hero-inner">
@@ -131,6 +131,8 @@ function setLanguage(l){
 document.getElementById('lang-en').addEventListener('click',function(){setLanguage('en');});
 document.getElementById('lang-es').addEventListener('click',function(){setLanguage('es');});
 setLanguage(language);
+var selectedPlan=new URLSearchParams(location.search).get('plan');
+if(['essential','advanced','premium'].includes(selectedPlan))document.getElementById('model').value=selectedPlan;
 document.querySelectorAll('.plan-select').forEach(function(link){
  link.addEventListener('click',function(){document.getElementById('model').value=link.dataset.plan;});
 });
@@ -151,7 +153,7 @@ form.addEventListener('submit',async function(e){
  try{
   var response=await fetch('/api/ro-inquiries',{
    method:'POST',headers:{'content-type':'application/json'},
-   body:JSON.stringify({request_id:requestId,website:document.getElementById('website').value,model:model,delivery:delivery,zip:zip,full_name:name,phone:phone,preferred_day:day,preferred_time:time})
+   body:JSON.stringify({request_id:requestId,website:document.getElementById('website').value,model:model,delivery:delivery,zip:zip,full_name:name,phone:phone,preferred_day:day,preferred_time:time,channel:new URLSearchParams(location.search).get('utm_source')==='virtual_advisor'?'virtual_advisor':'website'})
   });
   var data=await response.json().catch(function(){return {};});
   if(!response.ok||data.saved!==true)throw new Error('Not saved');
@@ -169,4 +171,4 @@ form.addEventListener('submit',async function(e){
  }
 });
 })();
-</script></body></html>
+</script><script src="/chatbot/assistant.js?v=1" defer></script></body></html>
