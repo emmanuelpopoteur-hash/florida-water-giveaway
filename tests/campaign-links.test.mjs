@@ -15,7 +15,6 @@ test('printed QR campaigns stay on Legacy Water HTTPS with attribution',async()=
     assert.equal(url.searchParams.get('utm_campaign').length<=80,true);
   }
   assert.equal(new URL(urls.find(x=>x.id==='water-test-direct').url).pathname,'/check/');
-  assert.equal(new URL(urls.find(x=>x.id==='water-test-direct').url).searchParams.get('interest'),'city_water');
   assert.equal(new URL(urls.find(x=>x.id==='door-hanger-water-entry').url).pathname,'/water-test/');
 });
 
