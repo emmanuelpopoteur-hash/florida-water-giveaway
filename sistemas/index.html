@@ -49,7 +49,7 @@
 @media(max-width:630px){.ro-pilot{padding:43px 0}.ro-pilot-grid{grid-template-columns:1fr;gap:18px}.ro-pilot-image{max-width:390px}}
 </style>
 <link rel="stylesheet" href="/sistemas/catalog.css?v=ecoverse-v1">
-<link rel="stylesheet" href="/chatbot/assistant.css?v=1"></head>
+<link rel="stylesheet" href="/chatbot/assistant.css?v=2"></head>
 <body>
   <header><div class="container header-inner">
     <a class="brand" href="/" data-home aria-label="Legacy Water USA home"><span class="brand-mark" aria-hidden="true">≈</span><span class="brand-name">LEGACY<small>WATER USA</small></span></a>
@@ -125,5 +125,5 @@
     buttons.es.addEventListener("click",()=>setLanguage("es"));
     try{const requested=new URLSearchParams(window.location.search).get("lang");setLanguage(requested==="es"||requested==="en"?requested:localStorage.getItem("legacy-language")==="es"?"es":"en")}catch(_){setLanguage("en")}
   </script>
-<script src="/chatbot/assistant.js?v=1" defer></script></body>
+<script src="/chatbot/assistant.js?v=2" defer></script></body>
 </html>
