@@ -1,3 +1,4 @@
+import { mirrorLeadToCrm } from '../_shared/crm-sync.js';
 const json = (body, status) => Response.json(body, {
   status,
   headers: { 'cache-control': 'no-store', 'content-type': 'application/json; charset=utf-8' },
@@ -36,7 +37,7 @@ async function notifyOwner(env, lead) {
   }
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, context }) {
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) {
     return json({ error: 'Origin not allowed' }, 403);
@@ -97,6 +98,18 @@ export async function onRequestPost({ request, env }) {
         saved.full_name !== fullName || saved.phone !== phone || saved.source !== `water-test-${source}` ||
         saved.campaign !== campaign || saved.product_interest !== interest) {
       return json({ error: 'Request ID already used' }, 409);
+    }
+    // Best-effort internal CRM mirror: never block or change the public form response.
+    // Retrying an existing verified request ID safely repairs a missed CRM mirror,
+    // while the CRM endpoint's INSERT OR IGNORE prevents duplicate prospects.
+    try {
+      if (typeof context?.waitUntil === 'function') {
+        context.waitUntil(mirrorLeadToCrm(env, saved));
+      } else {
+        console.warn('CRM mirror skipped: no background execution context');
+      }
+    } catch (_) {
+      console.warn('CRM mirror could not be scheduled');
     }
     if (write.meta.changes === 1) await notifyOwner(env, saved);
     return json({ id: requestId, saved: true }, write.meta.changes === 1 ? 201 : 200);
