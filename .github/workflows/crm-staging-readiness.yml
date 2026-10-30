@@ -35,6 +35,19 @@ jobs:
         run: node crm/deploy/prepare-staging.mjs
       - name: Install temporary Cloudflare CLI without credentials
         run: npm install --no-save --no-package-lock --ignore-scripts wrangler@4
+      - name: Validate public-route-disabled GitHub bootstrap
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s=Path('crm/wrangler.stage-bootstrap.toml').read_text()
+          assert 'name = "legacy-water-crm-stage"' in s
+          assert 'main = "src/worker.js"' in s
+          assert 'workers_dev = false' in s and 'preview_urls = false' in s
+          assert 'd1_databases' not in s and 'routes' not in s
+          print('Bootstrap is isolated, route-free and has no customer D1 binding.')
+          PY
+      - name: Bundle safe GitHub staging bootstrap without deploying
+        run: npx wrangler deploy --dry-run --config crm/wrangler.stage-bootstrap.toml --outdir .tmp/crm-stage-bootstrap
       - name: Bundle dashboard Worker without deploying
         run: npx wrangler deploy --dry-run --config crm/wrangler-stage-dashboard.toml --outdir .tmp/crm-stage-dashboard
       - name: Bundle internal-only lead receiver without deploying
