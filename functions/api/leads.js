@@ -37,7 +37,10 @@ async function notifyOwner(env, lead) {
   }
 }
 
-export async function onRequestPost({ request, env, context }) {
+export async function onRequestPost(event) {
+  // Cloudflare Pages passes the EventContext directly: waitUntil is on event,
+  // NOT on a nested event.context. Call it as a method to keep its this binding.
+  const { request, env } = event;
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) {
     return json({ error: 'Origin not allowed' }, 403);
@@ -103,8 +106,8 @@ export async function onRequestPost({ request, env, context }) {
     // Retrying an existing verified request ID safely repairs a missed CRM mirror,
     // while the CRM endpoint's INSERT OR IGNORE prevents duplicate prospects.
     try {
-      if (typeof context?.waitUntil === 'function') {
-        context.waitUntil(mirrorLeadToCrm(env, saved, { recordDiagnostics: true }));
+      if (typeof event.waitUntil === 'function') {
+        event.waitUntil(mirrorLeadToCrm(env, saved, { recordDiagnostics: true }));
       } else {
         console.warn('CRM mirror skipped: no background execution context');
       }
