@@ -1,0 +1,16 @@
+# INTERNAL ONLY: production CRM ingestion via Cloudflare Service Binding.
+# No public route, custom domain, workers.dev or preview URL.
+# Configure CRM_INGEST_TOKEN as an encrypted runtime secret (32+ random characters)
+# separately from the staging token. Do not paste secrets into GitHub or chat.
+# This file alone does not deploy or expose the Worker.
+name = "legacy-water-crm-ingest"
+main = "src/ingest.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
+keep_vars = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-crm-production"
+database_id = "1b4537d3-81f3-49f3-8607-89c820b1d4b5"

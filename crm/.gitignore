@@ -1,0 +1,10 @@
+wrangler.toml
+.dev.vars
+.env
+.env.*
+.wrangler/
+node_modules/
+*.sqlite
+*.sqlite3
+*.db
+wrangler-*.toml

@@ -1,0 +1,73 @@
+name: CRM staging readiness (no deployment)
+on:
+  push:
+    branches: [feature/legacy-private-crm-mvp]
+  pull_request:
+    paths:
+      - 'crm/**'
+      - '.github/workflows/crm-staging-readiness.yml'
+  workflow_dispatch:
+concurrency:
+  group: crm-staging-readiness-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  dry-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Validate D1 schema in local SQLite (no user data)
+        run: python3 crm/deploy/verify-schema.py
+      - name: Verify both Worker entry points
+        run: |
+          node --check crm/src/worker.js
+          node --check crm/src/ingest.js
+          node --check crm/deploy/prepare-staging.mjs
+      - name: Generate staging-only config with synthetic test D1 identifier
+        env:
+          CRM_STAGING_D1_ID: '11111111-1111-4111-8111-111111111111'
+        run: node crm/deploy/prepare-staging.mjs
+      - name: Install temporary Cloudflare CLI without credentials
+        run: npm install --no-save --no-package-lock --ignore-scripts wrangler@4
+      - name: Validate connected staging dashboard config (no public routes)
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import tomllib
+          cfg=tomllib.loads(Path('crm/wrangler.stage-bootstrap.toml').read_text())
+          assert cfg['name']=='legacy-water-crm-stage'
+          assert cfg['main']=='src/worker.js'
+          assert cfg['workers_dev'] is False and cfg['preview_urls'] is False
+          assert cfg.get('keep_vars') is True
+          assert not any(k in cfg for k in ('routes','route','custom_domain','vars'))
+          assert cfg['d1_databases']==[{
+            'binding':'DB',
+            'database_name':'legacy-water-crm-staging',
+            'database_id':'2b9db4b8-bdcc-4919-9e96-5f7a3355252f'
+          }]
+          print('Staging dashboard D1 ID verified; no public routes, previews or allowlist in source.')
+          PY
+      - name: Bundle safe GitHub staging bootstrap without deploying
+        run: npx wrangler deploy --dry-run --config crm/wrangler.stage-bootstrap.toml --outdir .tmp/crm-stage-bootstrap
+      - name: Bundle dashboard Worker without deploying
+        run: npx wrangler deploy --dry-run --config crm/wrangler-stage-dashboard.toml --outdir .tmp/crm-stage-dashboard
+      - name: Bundle internal-only lead receiver without deploying
+        run: npx wrangler deploy --dry-run --config crm/wrangler-stage-ingest.toml --outdir .tmp/crm-stage-ingest
+      - name: Verify both configurations keep routes disabled
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          for name in ('wrangler-stage-dashboard.toml','wrangler-stage-ingest.toml'):
+              content=(Path('crm')/name).read_text()
+              assert 'workers_dev = false' in content
+              assert 'preview_urls = false' in content
+              assert 'routes' not in content and 'custom_domain' not in content
+              assert 'legacy-water-crm-staging' in content
+          print('Both staging Workers have no public routes, previews, or workers.dev hostname.')
+          PY

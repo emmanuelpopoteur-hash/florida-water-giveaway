@@ -1,0 +1,17 @@
+# PRIVATE STAGING CRM dashboard Worker, deployed from the CRM feature branch.
+# Database ID is a resource identifier (not a secret), obtained from the new staging D1.
+# No workers.dev hostname, preview URL or external route may be enabled here.
+# Cloudflare Access policy "Legacy CRM - Owner Only" must remain attached to ALL traffic.
+# App also fails closed unless CRM_ALLOWED_EMAILS is set as a Worker secret.
+# keep_vars preserves this dashboard-configured secret across Git deployments.
+name = "legacy-water-crm-stage"
+main = "src/worker.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
+keep_vars = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-crm-staging"
+database_id = "2b9db4b8-bdcc-4919-9e96-5f7a3355252f"

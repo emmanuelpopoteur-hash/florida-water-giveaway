@@ -1,0 +1,25 @@
+# INTERNAL-ONLY staging intake Worker for Legacy Water USA CRM.
+# Build probe: explicit feature-branch commit; no runtime configuration changed.
+# This is NOT the staff dashboard or the public Pages application.
+# Only Cloudflare Service Bindings should call it. No public routes/URLs.
+# The same strong CRM_INGEST_TOKEN must be added as a runtime secret
+# to this Worker and to the staging Pages project (never in Git).
+name = "legacy-water-crm-ingest-stage"
+main = "src/ingest.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
+keep_vars = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-crm-staging"
+database_id = "2b9db4b8-bdcc-4919-9e96-5f7a3355252f"
+
+# Store sanitized Worker execution and invocation logs for staging diagnosis.
+[observability]
+enabled = true
+
+[observability.logs]
+invocation_logs = true
+head_sampling_rate = 1

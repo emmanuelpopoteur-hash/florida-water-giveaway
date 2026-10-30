@@ -1,0 +1,12 @@
+# INTERNAL-ONLY Worker for receiving a subset of leads by Cloudflare service binding.
+# Deploy separately and DO NOT add any public route, custom domain, workers.dev URL, or preview URL.
+name = "legacy-water-crm-ingest"
+main = "src/ingest.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-crm-private"
+database_id = "REPLACE_WITH_PRIVATE_CRM_DATABASE_ID"

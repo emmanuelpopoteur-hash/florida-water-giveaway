@@ -1,0 +1,12 @@
+# Copy to crm/wrangler.toml only after creating a SEPARATE CRM D1 database.
+# DO NOT copy any customer data or CRM secrets into GitHub.
+name = "legacy-water-crm-private"
+main = "src/worker.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-crm-private"
+database_id = "REPLACE_WITH_PRIVATE_CRM_DATABASE_ID"

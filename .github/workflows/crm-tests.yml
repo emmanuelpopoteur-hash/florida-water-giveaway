@@ -1,0 +1,40 @@
+name: Private CRM safety tests
+on:
+  pull_request:
+    paths:
+      - 'crm/**'
+      - 'functions/_shared/crm-sync.js'
+      - 'functions/api/leads.js'
+      - 'functions/api/ro-inquiries.js'
+      - 'tests/crm-worker.test.mjs'
+      - 'tests/crm-attribution.test.mjs'
+      - 'tests/crm-mirror-integration.test.mjs'
+      - 'tests/crm-pages-mirror.test.mjs'
+      - 'ro/index.html'
+      - '.github/workflows/crm-tests.yml'
+  push:
+    branches:
+      - feature/legacy-private-crm-mvp
+  workflow_dispatch:
+concurrency:
+  group: crm-safety-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  crm:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - run: node --check crm/src/worker.js
+      - run: node --check crm/src/ingest.js
+      - run: node --check crm/src/ui.js
+      - run: node --check functions/_shared/crm-sync.js
+      - run: node --check functions/api/leads.js
+      - run: node --check functions/api/ro-inquiries.js
+      - run: node --test tests/crm-worker.test.mjs tests/crm-attribution.test.mjs tests/crm-mirror-integration.test.mjs tests/crm-pages-mirror.test.mjs

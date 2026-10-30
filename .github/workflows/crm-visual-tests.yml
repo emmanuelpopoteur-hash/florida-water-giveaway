@@ -1,0 +1,42 @@
+name: Private CRM visual and UI tests
+on:
+  push:
+    branches: [feature/legacy-private-crm-mvp]
+  pull_request:
+    paths:
+      - 'crm/**'
+      - 'tests/crm-e2e/**'
+      - '.github/workflows/crm-visual-tests.yml'
+  workflow_dispatch:
+concurrency:
+  group: crm-visual-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      CI: 'true'
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          package-manager-cache: false
+      - name: Install only browser test dependency
+        run: npm install --no-save --no-package-lock --ignore-scripts @playwright/test@1.64.1
+      - name: Install Chromium and Safari-like WebKit
+        run: npx playwright install --with-deps chromium webkit
+      - name: Validate CRM with fabricated records
+        run: npx playwright test -c crm/playwright.config.mjs
+      - name: Publish private-CRM UI demonstration screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: legacy-crm-demo-screenshots
+          path: |
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14
