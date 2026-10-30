@@ -4,13 +4,16 @@ on:
   push:
     branches:
       - fix/pages-eventcontext-crm-mirror
+      - feature/ro-inquiry-crm-mirror
   pull_request:
     branches:
       - cloudflare-migration
     paths:
       - 'functions/api/leads.js'
+      - 'functions/api/ro-inquiries.js'
       - 'functions/_shared/crm-sync.js'
       - 'tests/pages-eventcontext-crm-mirror.test.mjs'
+      - 'tests/pages-ro-inquiry-crm-mirror.test.mjs'
       - '.github/workflows/pages-crm-mirror-tests.yml'
 
 permissions:
@@ -26,5 +29,6 @@ jobs:
         with:
           node-version: 22
       - run: node --check functions/api/leads.js
+      - run: node --check functions/api/ro-inquiries.js
       - run: node --check functions/_shared/crm-sync.js
-      - run: node --test tests/pages-eventcontext-crm-mirror.test.mjs
+      - run: node --test tests/pages-eventcontext-crm-mirror.test.mjs tests/pages-ro-inquiry-crm-mirror.test.mjs
