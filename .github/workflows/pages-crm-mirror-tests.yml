@@ -1,0 +1,30 @@
+name: Public Pages CRM mirror regression
+
+on:
+  push:
+    branches:
+      - fix/pages-eventcontext-crm-mirror
+  pull_request:
+    branches:
+      - cloudflare-migration
+    paths:
+      - 'functions/api/leads.js'
+      - 'functions/_shared/crm-sync.js'
+      - 'tests/pages-eventcontext-crm-mirror.test.mjs'
+      - '.github/workflows/pages-crm-mirror-tests.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  eventcontext:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check functions/api/leads.js
+      - run: node --check functions/_shared/crm-sync.js
+      - run: node --test tests/pages-eventcontext-crm-mirror.test.mjs
