@@ -23,6 +23,8 @@ jobs:
             "https://legacywaterusa.com/insights/es/"
             "https://legacywaterusa.com/insights/st-cloud-water-quality-2025/"
             "https://legacywaterusa.com/insights/toho-water-rates-2026/"
+            "https://legacywaterusa.com/insights/es/calidad-agua-st-cloud-2025/"
+            "https://legacywaterusa.com/insights/es/tarifas-toho-2026/"
           )
           for url in "${urls[@]}"; do
             echo "Checking: ${url}"
@@ -34,3 +36,14 @@ jobs:
             fi
             echo "PASS: ${url}"
           done
+          echo "Checking sitemap, robots and the lead-form landing page"
+          sitemap=$(curl --fail --silent --show-error --location --max-time 25 https://legacywaterusa.com/sitemap.xml)
+          grep -Fq '<urlset' <<< "${sitemap}"
+          grep -Fq 'https://legacywaterusa.com/insights/es/tarifas-toho-2026/' <<< "${sitemap}"
+          echo 'PASS: sitemap lists bilingual articles'
+          robots=$(curl --fail --silent --show-error --location --max-time 25 https://legacywaterusa.com/robots.txt)
+          grep -Fq 'Sitemap: https://legacywaterusa.com/sitemap.xml' <<< "${robots}"
+          echo 'PASS: robots.txt advertises sitemap'
+          lead=$(curl --fail --silent --show-error --location --max-time 25 'https://legacywaterusa.com/check/?lang=en&utm_source=legacy_insights&utm_campaign=water_education__stcloud_ccr_2025')
+          grep -Fq 'id="leadForm"' <<< "${lead}"
+          echo 'PASS: existing lead form loads with article attribution (no form submission)'
