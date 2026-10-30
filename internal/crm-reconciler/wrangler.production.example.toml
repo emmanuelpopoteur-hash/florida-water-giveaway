@@ -1,8 +1,9 @@
 # Copy to internal/crm-reconciler/wrangler.production.toml AFTER replacing the D1 ID.
 # Deploy as an independent Worker, not in the Pages build.
+# The entrypoint is relative to this config file; do not repeat the directory prefix.
 # Keep secret CRM_INGEST_TOKEN encrypted in Cloudflare runtime, not in this file.
 name = "legacy-water-crm-reconciler"
-main = "internal/crm-reconciler/worker.js"
+main = "./worker.js"
 compatibility_date = "2026-10-30"
 workers_dev = false
 preview_urls = false
