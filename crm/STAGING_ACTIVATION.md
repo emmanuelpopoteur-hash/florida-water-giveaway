@@ -4,7 +4,7 @@
 
 If the initial Worker build shows `main` + root directory `/` + `npx wrangler deploy` and fails because the repository contains a `functions/` directory, **do not retry unchanged**. That command tried to autoconfigure the entire public Pages site as a Worker; it did not target the CRM.
 
-A **safe, deliberately nonfunctional bootstrap** is versioned at `crm/wrangler.stage-bootstrap.toml`. It builds only `crm/src/worker.js` under the exact name `legacy-water-crm-stage`, disables workers.dev and previews, does not declare public routes or attach any D1 binding, and rejects dashboard access because `DB` and the Access identity allowlist have not yet been configured.
+The **GitHub-managed staging dashboard** is configured in `crm/wrangler.stage-bootstrap.toml`. It builds only `crm/src/worker.js` under `legacy-water-crm-stage`, disables workers.dev and preview URLs, binds **only** the separate `legacy-water-crm-staging` D1, and fails closed if the Worker secret `CRM_ALLOWED_EMAILS` is missing. Despite its historic filename, this file now contains the staging database binding.
 
 In the **existing** Cloudflare Worker project `legacy-water-crm-stage`, change:
 1. `Settings → Build → Branch control`: production branch to `feature/legacy-private-crm-mvp`; leave preview builds disabled.
@@ -12,10 +12,20 @@ In the **existing** Cloudflare Worker project `legacy-water-crm-stage`, change:
 3. Confirm `Protect with Cloudflare Access` for this Worker only (and NOT the account-wide switch), or keep it without any route/hostname as defined by the config. Do not grant public Access.
 4. Retry the failed build **only after** verifying the selected Git branch and command, or push a change to trigger a new build. Confirm its log references the feature branch and the bootstrap config; stop if it still references `main` or the root auto-configuration.
 
-**Important:** Bootstrap does **not** connect to `legacy-water-crm-staging` and cannot show leads. Do not expose a custom domain during bootstrap. Cloudflare Workers Builds uses the checked-in Wrangler file as deployment configuration. The next phase must replace the bootstrap with a correctly generated staging config that binds the **existing staging** D1 UUID, then configure Access and the staff allowlist before assigning a route. Do not deploy the production CRM config in staging.
+**Important:** The staging Worker now binds `legacy-water-crm-staging`, but **remains inaccessible** without the separately configured `CRM_ALLOWED_EMAILS` secret and approved Cloudflare Access identity. Do not expose a custom domain before end-to-end access checks.
 
 
-**Status: ready for account-owner setup. Not deployed.** The staging environment must never use the existing lead D1 databases, production contacts, or keys.
+**Status (29 Oct 2026):** Staging D1 created and its three tables verified; dashboard Worker originally deployed with route-free bootstrap, and Cloudflare Access `Legacy CRM - Owner Only` applied to all traffic. GitHub now has the D1 binding, but the NEW remote build must still be verified and Worker secret `CRM_ALLOWED_EMAILS` configured before any browser testing. No production customers, database or hostname should be changed.
+
+## Immediate next steps after D1 UUID was supplied
+
+1. Check **Workers & Pages → legacy-water-crm-stage → Deployments**. Confirm a **new** successful deployment from branch `feature/legacy-private-crm-mvp` after the D1-config commit, not just the earlier route-free deployment. In that build, the bindings section should include `DB` mapped to `legacy-water-crm-staging`. Do not infer this from GitHub CI alone.
+2. In **Worker → Settings → Variables and Secrets**, add `CRM_ALLOWED_EMAILS` as a **Secret**, with exactly the individually authorized owner email from the Access policy. No tokens should be copied into a chat or committed. Deploy the secret in the dashboard. The Wrangler config includes `keep_vars = true`, and Cloudflare retains existing secrets on subsequent code deployments.
+3. Reopen **Worker → Access** and verify `All traffic` and only the named `Legacy CRM - Owner Only` allow policy. Then check **Domains/Triggers** for no unintended publicly reachable route, preview, or `workers.dev` hostname. A Worker-level Access policy is not a substitute for checking alternate hostnames and more specific hostname rules.
+4. After verifying both conditions, choose a **staging-only** custom hostname if desired. Test unauthenticated access in a private browser session, then the authorized account, and verify `/api/me`, `/api/summary`, and an empty `/api/leads` response. If a test fails, disable the hostname and diagnose before any lead import.
+5. Do **not** connect staging Pages form mirroring or real customer records during this stage; the internal ingest Worker needs its own service binding and an encrypted `CRM_INGEST_TOKEN` first.
+
+The D1 UUID is a Cloudflare resource ID, **not a password or authorization secret**. It is deliberately recorded for staging binding reproducibility. Protect the Cloudflare account and Access policies separately.
 
 ## Current verified architecture
 
@@ -26,13 +36,13 @@ In the **existing** Cloudflare Worker project `legacy-water-crm-stage`, change:
 | Intake Worker | `legacy-water-crm-ingest-stage` | Never a public route |
 | Pages source | Existing staging Pages site only | Already public, form remains source of truth |
 
-The production CRM names in `wrangler.example.toml` are not to be used for this first test. Configurations are generated by `crm/deploy/prepare-staging.mjs`.
+The production CRM names in `wrangler.example.toml` are not to be used for this first test. The dashboard's GitHub build uses `crm/wrangler.stage-bootstrap.toml` with the existing stage D1 ID. Separate generation using `crm/deploy/prepare-staging.mjs` remains available for a future internal ingestion Worker deployment.
 
 ## Step 1 — Account owner, Cloudflare dashboard
 
 1. Open **Cloudflare → Storage & databases → D1 → Create database**.
 2. Name the new database `legacy-water-crm-staging`. Confirm it is **not** `legacy-water-leads` or `legacy-water-leads-staging`.
-3. Copy its database ID (UUID) to a **trusted local environment**, not ChatGPT, GitHub or public documentation.
+3. Confirm its UUID is the existing staging database ID recorded in `crm/wrangler.stage-bootstrap.toml` (resource identifier, not a secret). Never replace it with the customer lead database ID.
 4. Take note of its account and the existing staging Pages project. Do not change production.
 
 ## Step 2 — On a trusted terminal with an authorized Wrangler login
