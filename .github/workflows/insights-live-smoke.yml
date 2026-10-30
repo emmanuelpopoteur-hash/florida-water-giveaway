@@ -47,3 +47,30 @@ jobs:
           lead=$(curl --fail --silent --show-error --location --max-time 25 'https://legacywaterusa.com/check/?lang=en&utm_source=legacy_insights&utm_campaign=water_education__stcloud_ccr_2025')
           grep -Fq 'id="leadForm"' <<< "${lead}"
           echo 'PASS: existing lead form loads with article attribution (no form submission)'
+      - name: Confirm consent-aware GA4 is live without submitting leads
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in {1..15}; do
+            home=$(curl --fail --silent --show-error --location --max-time 20 --header 'Cache-Control: no-cache' 'https://legacywaterusa.com/') || true
+            if grep -Fq '/media/ga4-consent.js' <<< "${home:-}"; then
+              echo "GA4 loader found on production homepage."
+              break
+            fi
+            echo "Production GA4 deployment not visible yet; check ${attempt}/15"
+            sleep 8
+          done
+          grep -Fq '<script src="/media/ga4-consent.js" defer></script>' <<< "${home:-}"
+          for uri in /insights/ /insights/es/ /check/ /privacy/ /privacy/es/; do
+            html=$(curl --fail --silent --show-error --location --max-time 20 --header 'Cache-Control: no-cache' "https://legacywaterusa.com${uri}")
+            grep -Fq '<script src="/media/ga4-consent.js" defer></script>' <<< "${html}"
+            echo "PASS analytics loader: ${uri}"
+          done
+          tag=$(curl --fail --silent --show-error --location --max-time 20 --header 'Cache-Control: no-cache' 'https://legacywaterusa.com/media/ga4-consent.js')
+          grep -Fq "MEASUREMENT_ID = 'G-QGPB6TBYGF'" <<< "${tag}"
+          grep -Fq "choice !== 'granted'" <<< "${tag}"
+          grep -Fq "'generate_lead'" <<< "${tag}"
+          app=$(curl --fail --silent --show-error --location --max-time 20 --header 'Cache-Control: no-cache' 'https://legacywaterusa.com/check/app.js')
+          grep -Fq 'response.status===201' <<< "${app}"
+          grep -Fq 'trackLeadSaved' <<< "${app}"
+          echo 'PASS: measurement ID, consent gate, and D1-confirmed generate_lead code deployed.'
