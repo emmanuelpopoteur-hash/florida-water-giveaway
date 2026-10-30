@@ -1,6 +1,6 @@
 import { cp, mkdir, rm, stat } from 'node:fs/promises';
 
-const source = ['index.html', 'en', 'es', 'sistemas', 'ro', 'chatbot', 'agua-local', 'colombia', 'water-lookup', 'water-test', 'check', 'media', 'robots.txt', 'sitemap.xml'];
+const source = ['index.html', 'en', 'es', 'sistemas', 'ro', 'chatbot', 'agua-local', 'colombia', 'water-lookup', 'water-test', 'check', 'insights', 'media', 'robots.txt', 'sitemap.xml'];
 await rm('dist', { recursive: true, force: true });
 await mkdir('dist', { recursive: true });
 for (const path of source) {
