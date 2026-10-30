@@ -11,6 +11,11 @@ on:
       - 'scripts/build-cloudflare.mjs'
       - 'scripts/verify-insights.mjs'
       - 'scripts/qa-insights-browser.mjs'
+      - 'scripts/verify-ga4.mjs'
+      - 'scripts/qa-ga4-browser.mjs'
+      - 'media/ga4-consent.js'
+      - 'privacy/**'
+      - 'check/app.js'
       - '.github/workflows/insights-qa.yml'
 permissions:
   contents: read
@@ -27,16 +32,24 @@ jobs:
         run: |
           node --check scripts/build-cloudflare.mjs
           node --check scripts/verify-insights.mjs
+          node --check scripts/verify-ga4.mjs
+          node --check scripts/qa-ga4-browser.mjs
+          node --check media/ga4-consent.js
+          node --check check/app.js
       - name: Build Cloudflare static assets
         run: node scripts/build-cloudflare.mjs
       - name: Verify bilingual content, links, metadata and tracked CTAs
         run: node scripts/verify-insights.mjs
+      - name: Verify GA4 consent and confirmed conversions
+        run: node scripts/verify-ga4.mjs
       - name: Install Playwright for responsive QA
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
       - name: Check mobile/desktop layouts and language switching
         run: node scripts/qa-insights-browser.mjs
+      - name: Browser-test analytics privacy and fake lead success/failure (no live submissions)
+        run: node scripts/qa-ga4-browser.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
