@@ -1,5 +1,20 @@
 # CRM Legacy Water USA — staging activation checklist
 
+## Recovery from first Cloudflare Git deployment error (29 Oct 2026)
+
+If the initial Worker build shows `main` + root directory `/` + `npx wrangler deploy` and fails because the repository contains a `functions/` directory, **do not retry unchanged**. That command tried to autoconfigure the entire public Pages site as a Worker; it did not target the CRM.
+
+A **safe, deliberately nonfunctional bootstrap** is versioned at `crm/wrangler.stage-bootstrap.toml`. It builds only `crm/src/worker.js` under the exact name `legacy-water-crm-stage`, disables workers.dev and previews, does not declare public routes or attach any D1 binding, and rejects dashboard access because `DB` and the Access identity allowlist have not yet been configured.
+
+In the **existing** Cloudflare Worker project `legacy-water-crm-stage`, change:
+1. `Settings → Build → Branch control`: production branch to `feature/legacy-private-crm-mvp`; leave preview builds disabled.
+2. `Settings → Build → Build configurations` (exact label may vary): deploy command to `npx wrangler deploy --config crm/wrangler.stage-bootstrap.toml`. The root directory may remain `/` because the explicit config path handles the monorepo. Build command can be empty.
+3. Confirm `Protect with Cloudflare Access` for this Worker only (and NOT the account-wide switch), or keep it without any route/hostname as defined by the config. Do not grant public Access.
+4. Retry the failed build **only after** verifying the selected Git branch and command, or push a change to trigger a new build. Confirm its log references the feature branch and the bootstrap config; stop if it still references `main` or the root auto-configuration.
+
+**Important:** Bootstrap does **not** connect to `legacy-water-crm-staging` and cannot show leads. Do not expose a custom domain during bootstrap. Cloudflare Workers Builds uses the checked-in Wrangler file as deployment configuration. The next phase must replace the bootstrap with a correctly generated staging config that binds the **existing staging** D1 UUID, then configure Access and the staff allowlist before assigning a route. Do not deploy the production CRM config in staging.
+
+
 **Status: ready for account-owner setup. Not deployed.** The staging environment must never use the existing lead D1 databases, production contacts, or keys.
 
 ## Current verified architecture
