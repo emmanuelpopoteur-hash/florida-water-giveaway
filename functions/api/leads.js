@@ -104,7 +104,7 @@ export async function onRequestPost({ request, env, context }) {
     // while the CRM endpoint's INSERT OR IGNORE prevents duplicate prospects.
     try {
       if (typeof context?.waitUntil === 'function') {
-        context.waitUntil(mirrorLeadToCrm(env, saved));
+        context.waitUntil(mirrorLeadToCrm(env, saved, { recordDiagnostics: true }));
       } else {
         console.warn('CRM mirror skipped: no background execution context');
       }
