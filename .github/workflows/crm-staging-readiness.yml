@@ -35,16 +35,23 @@ jobs:
         run: node crm/deploy/prepare-staging.mjs
       - name: Install temporary Cloudflare CLI without credentials
         run: npm install --no-save --no-package-lock --ignore-scripts wrangler@4
-      - name: Validate public-route-disabled GitHub bootstrap
+      - name: Validate connected staging dashboard config (no public routes)
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          s=Path('crm/wrangler.stage-bootstrap.toml').read_text()
-          assert 'name = "legacy-water-crm-stage"' in s
-          assert 'main = "src/worker.js"' in s
-          assert 'workers_dev = false' in s and 'preview_urls = false' in s
-          assert 'd1_databases' not in s and 'routes' not in s
-          print('Bootstrap is isolated, route-free and has no customer D1 binding.')
+          import tomllib
+          cfg=tomllib.loads(Path('crm/wrangler.stage-bootstrap.toml').read_text())
+          assert cfg['name']=='legacy-water-crm-stage'
+          assert cfg['main']=='src/worker.js'
+          assert cfg['workers_dev'] is False and cfg['preview_urls'] is False
+          assert cfg.get('keep_vars') is True
+          assert not any(k in cfg for k in ('routes','route','custom_domain','vars'))
+          assert cfg['d1_databases']==[{
+            'binding':'DB',
+            'database_name':'legacy-water-crm-staging',
+            'database_id':'2b9db4b8-bdcc-4919-9e96-5f7a3355252f'
+          }]
+          print('Staging dashboard D1 ID verified; no public routes, previews or allowlist in source.')
           PY
       - name: Bundle safe GitHub staging bootstrap without deploying
         run: npx wrangler deploy --dry-run --config crm/wrangler.stage-bootstrap.toml --outdir .tmp/crm-stage-bootstrap
