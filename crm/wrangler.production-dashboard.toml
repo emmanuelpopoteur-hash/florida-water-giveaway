@@ -1,0 +1,15 @@
+# PRIVATE Legacy Water CRM production dashboard; isolated from staging and public Pages.
+# DO NOT attach custom domain/route until Cloudflare Access ALL-traffic protection
+# and the encrypted CRM_ALLOWED_EMAILS allowlist have been configured and verified.
+# This file alone does not deploy or expose the Worker.
+name = "legacy-water-crm"
+main = "src/worker.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
+keep_vars = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-crm-production"
+database_id = "1b4537d3-81f3-49f3-8607-89c820b1d4b5"
