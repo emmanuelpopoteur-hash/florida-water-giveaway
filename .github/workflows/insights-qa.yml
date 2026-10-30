@@ -1,0 +1,32 @@
+name: Legacy Water Insights build and content QA
+on:
+  pull_request:
+    branches:
+      - cloudflare-migration
+    paths:
+      - 'insights/**'
+      - 'index.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'scripts/build-cloudflare.mjs'
+      - 'scripts/verify-insights.mjs'
+      - '.github/workflows/insights-qa.yml'
+permissions:
+  contents: read
+jobs:
+  site-build-and-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check scripts
+        run: |
+          node --check scripts/build-cloudflare.mjs
+          node --check scripts/verify-insights.mjs
+      - name: Build Cloudflare static assets
+        run: node scripts/build-cloudflare.mjs
+      - name: Verify bilingual content, links, metadata and tracked CTAs
+        run: node scripts/verify-insights.mjs
