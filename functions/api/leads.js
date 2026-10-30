@@ -100,7 +100,14 @@ export async function onRequestPost({ request, env, context }) {
       return json({ error: 'Request ID already used' }, 409);
     }
     if (write.meta.changes === 1) {
-      if (context?.waitUntil) context.waitUntil(mirrorLeadToCrm(env, saved));
+      // During staging diagnosis, await the mirror so its D1 outcome is persisted
+      // before the success response. Public production keeps best-effort background behavior.
+      const host = new URL(request.url).hostname.toLowerCase();
+      if (host === 'legacy-water-staging.pages.dev') {
+        await mirrorLeadToCrm(env, saved);
+      } else if (context?.waitUntil) {
+        context.waitUntil(mirrorLeadToCrm(env, saved));
+      }
       await notifyOwner(env, saved);
     }
     return json({ id: requestId, saved: true }, write.meta.changes === 1 ? 201 : 200);
