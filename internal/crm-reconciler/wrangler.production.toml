@@ -1,0 +1,22 @@
+# PRODUCTION: standalone PRIVATE scheduled Worker; not a Pages Function.
+# Do not attach public routes, custom domains, workers.dev or preview URLs.
+# Set CRM_INGEST_TOKEN only as an encrypted Cloudflare runtime secret,
+# with the exact SAME value as Worker legacy-water-crm-ingest.
+name = "legacy-water-crm-reconciler"
+main = "./worker.js"
+compatibility_date = "2026-10-30"
+workers_dev = false
+preview_urls = false
+keep_vars = true
+
+[triggers]
+crons = ["*/5 * * * *"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "legacy-water-leads"
+database_id = "69369065-5057-402e-a35c-a2733f62e075"
+
+[[services]]
+binding = "CRM_SERVICE"
+service = "legacy-water-crm-ingest"
