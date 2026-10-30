@@ -2,6 +2,7 @@
 # WARNING: Deliberately NO D1 binding, public route, workers.dev hostname, or preview URL.
 # The CRM dashboard denies access until Access and its D1/allowlist are separately configured.
 # Do not use this bootstrap for customer information or production.
+# Staging build validation: do not create a public route until Access is configured.
 name = "legacy-water-crm-stage"
 main = "src/worker.js"
 compatibility_date = "2026-10-29"
