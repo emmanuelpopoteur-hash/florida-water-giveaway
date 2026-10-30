@@ -75,6 +75,12 @@ test('duplicate RO request ID is still eligible for safe, idempotent CRM repair'
  const f=fixture();
  await onRequestPost(f.event);
  await Promise.all(f.pending);
+ // Each HTTP request has its own readable body stream; model a fresh retry.
+ f.event.request = new Request('https://legacywaterusa.com/api/ro-inquiries', {
+  method: 'POST',
+  headers: { origin: 'https://legacywaterusa.com', 'content-type': 'application/json' },
+  body: JSON.stringify(payload),
+ });
  const response=await onRequestPost(f.event);
  await Promise.all(f.pending);
  assert.equal(response.status,200);
