@@ -1,0 +1,25 @@
+name: CRM D1 scheduled reconciler tests
+on:
+  push:
+    branches:
+      - feature/crm-d1-reconciler
+  pull_request:
+    branches:
+      - cloudflare-migration
+    paths:
+      - 'internal/crm-reconciler/**'
+      - 'tests/crm-reconciler.test.mjs'
+      - '.github/workflows/crm-reconciler-tests.yml'
+permissions:
+  contents: read
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --check internal/crm-reconciler/worker.js
+      - run: node --test tests/crm-reconciler.test.mjs
