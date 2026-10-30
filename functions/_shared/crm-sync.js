@@ -1,14 +1,27 @@
 // Best-effort, internal Cloudflare Service Binding mirror.
-// The PUBLIC Pages D1 database remains authoritative for submissions.
-// Never send lead PII to public third-party URLs.
+// Public/staging Pages D1 remains the source of truth for form submissions.
+// STAGING DIAGNOSTIC ONLY: write a fixed outcome and HTTP status, NEVER lead PII or secrets.
+// Diagnostics are optional: a missing table must never interrupt the original form flow.
+async function mirrorDiagnostic(env, outcome, httpStatus = null) {
+ try {
+  if (!env.DB || typeof env.DB.prepare !== 'function') return;
+  await env.DB.prepare(
+   'INSERT INTO crm_mirror_diagnostics (created_at, outcome, http_status) VALUES (?, ?, ?)'
+  ).bind(new Date().toISOString(), outcome, httpStatus).run();
+ } catch (_) {
+  console.warn('CRM mirror diagnostics storage unavailable');
+ }
+}
+
 export async function mirrorLeadToCrm(env, lead) {
- // Log configuration failures without exposing customer data or secret values.
  if(!env.CRM_SERVICE || typeof env.CRM_SERVICE.fetch!=='function'){
   console.error('CRM mirror skipped: service binding unavailable');
+  await mirrorDiagnostic(env, 'service_binding_unavailable');
   return;
  }
  if(typeof env.CRM_INGEST_TOKEN!=='string'||env.CRM_INGEST_TOKEN.length<32){
   console.error('CRM mirror skipped: ingest secret missing or shorter than 32 characters');
+  await mirrorDiagnostic(env, 'secret_missing_or_short');
   return;
  }
  const payload={
@@ -25,5 +38,9 @@ export async function mirrorLeadToCrm(env, lead) {
   });
   if(!res.ok)console.error('CRM mirror not accepted',res.status);
   else console.info('CRM mirror accepted',res.status);
- }catch(error){console.error('CRM mirror unavailable',error?.name||'error')}
+  await mirrorDiagnostic(env, res.ok?'accepted':'rejected', res.status);
+ }catch(_){
+  console.error('CRM mirror unavailable');
+  await mirrorDiagnostic(env, 'service_call_failed');
+ }
 }
