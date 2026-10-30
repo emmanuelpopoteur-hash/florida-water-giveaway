@@ -1,0 +1,36 @@
+name: Insights public website availability check
+on:
+  push:
+    branches:
+      - cloudflare-migration
+    paths:
+      - '.github/workflows/insights-live-smoke.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-live-insights:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 4
+    steps:
+      - name: Verify the public homepage and bilingual articles
+        shell: bash
+        run: |
+          set -euo pipefail
+          urls=(
+            "https://legacywaterusa.com/"
+            "https://legacywaterusa.com/insights/"
+            "https://legacywaterusa.com/insights/es/"
+            "https://legacywaterusa.com/insights/st-cloud-water-quality-2025/"
+            "https://legacywaterusa.com/insights/toho-water-rates-2026/"
+          )
+          for url in "${urls[@]}"; do
+            echo "Checking: ${url}"
+            html=$(curl --fail --silent --show-error --location --max-time 25 --header 'Cache-Control: no-cache' "${url}") || { echo "::error::URL failed: ${url}"; exit 1; }
+            if [[ "${url}" == "https://legacywaterusa.com/" ]]; then
+              grep -Fq 'data-insights' <<< "${html}" || { echo "::error::Homepage is not serving the merged Insights navigation"; exit 1; }
+            else
+              grep -Fq 'utm_campaign=water_education__' <<< "${html}" || { echo "::error::Article or hub not available with tracking: ${url}"; exit 1; }
+            fi
+            echo "PASS: ${url}"
+          done
