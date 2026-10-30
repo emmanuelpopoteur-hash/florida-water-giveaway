@@ -8,6 +8,7 @@ on:
       - 'functions/api/ro-inquiries.js'
       - 'tests/crm-worker.test.mjs'
       - 'tests/crm-attribution.test.mjs'
+      - 'tests/crm-pages-mirror.test.mjs'
       - 'ro/index.html'
       - '.github/workflows/crm-tests.yml'
   push:
@@ -35,4 +36,4 @@ jobs:
       - run: node --check functions/_shared/crm-sync.js
       - run: node --check functions/api/leads.js
       - run: node --check functions/api/ro-inquiries.js
-      - run: node --test tests/crm-worker.test.mjs tests/crm-attribution.test.mjs
+      - run: node --test tests/crm-worker.test.mjs tests/crm-attribution.test.mjs tests/crm-pages-mirror.test.mjs
