@@ -104,7 +104,7 @@ export async function onRequestPost({ request, env, context }) {
       // before the success response. Public production keeps best-effort background behavior.
       const host = new URL(request.url).hostname.toLowerCase();
       if (host === 'legacy-water-staging.pages.dev') {
-        await mirrorLeadToCrm(env, saved);
+        await mirrorLeadToCrm(env, saved, {recordDiagnostics:true});
       } else if (context?.waitUntil) {
         context.waitUntil(mirrorLeadToCrm(env, saved));
       }
