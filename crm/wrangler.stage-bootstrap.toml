@@ -1,0 +1,9 @@
+# Temporary staging bootstrap for Workers Builds connected to GitHub.
+# WARNING: Deliberately NO D1 binding, public route, workers.dev hostname, or preview URL.
+# The CRM dashboard denies access until Access and its D1/allowlist are separately configured.
+# Do not use this bootstrap for customer information or production.
+name = "legacy-water-crm-stage"
+main = "src/worker.js"
+compatibility_date = "2026-10-29"
+workers_dev = false
+preview_urls = false
