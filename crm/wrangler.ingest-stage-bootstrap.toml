@@ -1,4 +1,5 @@
 # INTERNAL-ONLY staging intake Worker for Legacy Water USA CRM.
+# Build probe: explicit feature-branch commit; no runtime configuration changed.
 # This is NOT the staff dashboard or the public Pages application.
 # Only Cloudflare Service Bindings should call it. No public routes/URLs.
 # The same strong CRM_INGEST_TOKEN must be added as a runtime secret
