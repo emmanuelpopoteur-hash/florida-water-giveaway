@@ -1,13 +1,29 @@
-// INTERNAL ONLY: best-effort mirror of verified Pages leads to private CRM.
-// The public D1 database remains authoritative and form/email success is independent of CRM.
-// Never log personally identifiable data or the service token.
-export async function mirrorLeadToCrm(env, lead) {
+// INTERNAL ONLY: best-effort mirror of verified public Pages leads to private CRM.
+// Keep D1 storage and Resend alerts independent of the CRM service.
+// Privacy-safe diagnostics store only fixed outcome codes and HTTP status (no PII or secrets).
+async function recordMirrorDiagnostic(env, outcome, httpStatus = null) {
+  try {
+    if (!env.DB || typeof env.DB.prepare !== 'function') return;
+    await env.DB.prepare(
+      'INSERT INTO crm_mirror_diagnostics (created_at, outcome, http_status) VALUES (?, ?, ?)'
+    ).bind(new Date().toISOString(), outcome, httpStatus).run();
+  } catch (_) {
+    console.warn('CRM mirror diagnostics unavailable');
+  }
+}
+
+export async function mirrorLeadToCrm(env, lead, { recordDiagnostics = false } = {}) {
+  const diagnostic = async (outcome, status = null) => {
+    if (recordDiagnostics) await recordMirrorDiagnostic(env, outcome, status);
+  };
   if (!env.CRM_SERVICE || typeof env.CRM_SERVICE.fetch !== 'function') {
     console.warn('CRM mirror skipped: missing internal service binding');
+    await diagnostic('service_binding_unavailable');
     return;
   }
   if (typeof env.CRM_INGEST_TOKEN !== 'string' || env.CRM_INGEST_TOKEN.length < 32) {
     console.warn('CRM mirror skipped: invalid server-only credential');
+    await diagnostic('secret_missing_or_short');
     return;
   }
 
@@ -39,7 +55,9 @@ export async function mirrorLeadToCrm(env, lead) {
     );
     if (response.ok) console.info('CRM mirror accepted', response.status);
     else console.warn('CRM mirror not accepted', response.status);
+    await diagnostic(response.ok ? 'accepted' : 'rejected', response.status);
   } catch (_) {
     console.warn('CRM mirror unavailable');
+    await diagnostic('service_call_failed');
   }
 }
