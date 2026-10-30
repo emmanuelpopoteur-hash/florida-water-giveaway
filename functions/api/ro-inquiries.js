@@ -1,3 +1,4 @@
+import { mirrorLeadToCrm } from '../_shared/crm-sync.js';
 // Separate RO product inquiry intake; reuses the existing D1 lead table and alert credentials.
 // This endpoint does not create an order, charge a card, or reserve inventory.
 const reply = (body, status) => Response.json(body, {
@@ -34,7 +35,8 @@ async function notify(env, lead, model, delivery) {
   }
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost(event) {
+  const { request, env } = event;
   const origin = request.headers.get('origin');
   if (origin && origin !== new URL(request.url).origin) return reply({error:'Origin not allowed'}, 403);
   if (!request.headers.get('content-type')?.toLowerCase().startsWith('application/json'))
@@ -82,6 +84,18 @@ export async function onRequestPost({ request, env }) {
       saved.preferred_day !== day || saved.preferred_time !== time ||
       saved.source !== source || saved.campaign !== campaign || saved.product_interest !== 'drinking_ro')
       return reply({error:'Request identifier already used'},409);
+    // Mirror verified RO inquiries to the existing private CRM via an internal service binding.
+    // Retrying the same request ID can repair a missed mirror without duplicating the lead.
+    // The existing public D1 write and Resend alert remain authoritative and independent.
+    try {
+      if (typeof event.waitUntil === 'function') {
+        event.waitUntil(mirrorLeadToCrm(env, saved, { recordDiagnostics: true }));
+      } else {
+        console.warn('RO CRM mirror skipped: no Pages background execution context');
+      }
+    } catch (_) {
+      console.warn('RO CRM mirror could not be scheduled');
+    }
     if (write.meta.changes===1) await notify(env,saved,model,delivery);
     return reply({saved:true,id},write.meta.changes===1?201:200);
   } catch(e) {
