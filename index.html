@@ -168,6 +168,7 @@
         <a href="/sistemas/" data-en="Water Options" data-es="Opciones de agua">Water Options</a>
         <a href="/ro/" data-en="RO Systems" data-es="Sistemas RO">RO Systems</a>
         <a href="/agua-local/" data-en="Water by ZIP" data-es="Agua por ZIP">Water by ZIP</a>
+        <a data-insights href="/insights/" data-en="Water Insights" data-es="Informes del agua">Water Insights</a>
         <a href="#service-area" data-en="Service Area" data-es="Área de servicio">Service Area</a>
       </nav>
       <div class="header-actions">
@@ -244,8 +245,9 @@
         <a class="button" href="/check/" data-test data-en="Check My Water for Free ↗" data-es="Solicitar prueba gratis ↗">Check My Water for Free ↗</a>
       </div>
     </section>
-  </main>
-  <footer><div class="container footer-inner"><span>© 2026 Legacy Water USA · <a href="/ro/" data-en="RO systems" data-es="Sistemas RO">RO systems</a></span><span data-en="Helping Florida homeowners understand their water." data-es="Ayudando a familias en Florida a conocer su agua.">Helping Florida homeowners understand their water.</span></div></footer>
+  <section aria-label="Local water reports" style="background:#e7f4f0;padding:34px 0"><div class="container" style="text-align:center"><p style="margin:0 0 9px;font-size:12px;font-weight:800;letter-spacing:.12em;color:#0b6f75" data-en="NEW · LOCAL WATER RESEARCH" data-es="NUEVO · INFORMES LOCALES DEL AGUA">NEW · LOCAL WATER RESEARCH</p><p style="margin:0 0 16px;font:700 clamp(23px,3vw,31px)/1.25 Georgia,serif;color:#082e3d" data-en="What's happening with St. Cloud's water?" data-es="¿Qué está pasando con el agua de St. Cloud?">What's happening with St. Cloud's water?</p><a data-insights style="display:inline-block;border-radius:999px;padding:12px 22px;background:#087e85;color:white;text-decoration:none;font-weight:800" href="/insights/" data-en="Read the local reports →" data-es="Leer los informes locales →">Read the local reports →</a></div></section>
+</main>
+  <footer><div class="container footer-inner"><span>© 2026 Legacy Water USA · <a data-insights href="/insights/" data-en="Water Insights" data-es="Informes del agua">Water Insights</a> · <a href="/ro/" data-en="RO systems" data-es="Sistemas RO">RO systems</a></span><span data-en="Helping Florida homeowners understand their water." data-es="Ayudando a familias en Florida a conocer su agua.">Helping Florida homeowners understand their water.</span></div></footer>
   <script>
     const buttons = {en: document.getElementById("en"), es: document.getElementById("es")};
     function setLanguage(language) {
@@ -262,6 +264,9 @@
           if (campaign.has(key)) target.searchParams.set(key, campaign.get(key).slice(0, 100));
         });
         link.href = target.pathname + target.search + target.hash;
+      });
+      document.querySelectorAll('a[data-insights]').forEach(link => {
+        link.href = language === 'es' ? '/insights/es/' : '/insights/';
       });
       window.refreshWaterLookup?.();
       document.querySelectorAll("[data-test]").forEach(link => {

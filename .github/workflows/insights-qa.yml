@@ -1,0 +1,45 @@
+name: Legacy Water Insights build and content QA
+on:
+  pull_request:
+    branches:
+      - cloudflare-migration
+    paths:
+      - 'insights/**'
+      - 'index.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - 'scripts/build-cloudflare.mjs'
+      - 'scripts/verify-insights.mjs'
+      - 'scripts/qa-insights-browser.mjs'
+      - '.github/workflows/insights-qa.yml'
+permissions:
+  contents: read
+jobs:
+  site-build-and-links:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check scripts
+        run: |
+          node --check scripts/build-cloudflare.mjs
+          node --check scripts/verify-insights.mjs
+      - name: Build Cloudflare static assets
+        run: node scripts/build-cloudflare.mjs
+      - name: Verify bilingual content, links, metadata and tracked CTAs
+        run: node scripts/verify-insights.mjs
+      - name: Install Playwright for responsive QA
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Check mobile/desktop layouts and language switching
+        run: node scripts/qa-insights-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: legacy-insights-screenshots
+          path: qa-screenshots/
+          if-no-files-found: ignore
