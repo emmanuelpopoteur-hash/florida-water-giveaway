@@ -34,7 +34,8 @@ export async function mirrorLeadToCrm(env, lead) {
   const res=await env.CRM_SERVICE.fetch('https://internal.crm.legacywaterusa.invalid/internal/ingest',{
    method:'POST',
    headers:{'content-type':'application/json','x-crm-ingest-token':env.CRM_INGEST_TOKEN},
-   body:JSON.stringify(payload)
+   body:JSON.stringify(payload),
+   signal:AbortSignal.timeout(5000)
   });
   if(!res.ok)console.error('CRM mirror not accepted',res.status);
   else console.info('CRM mirror accepted',res.status);
