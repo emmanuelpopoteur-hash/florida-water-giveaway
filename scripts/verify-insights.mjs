@@ -25,7 +25,9 @@ const checkRoute = route => {
   assert.ok(html.includes('og:title'), `Social title missing: ${file}`);
   assert.ok(html.includes('/insights/styles.css'), `Stylesheet missing: ${file}`);
   assert.ok(html.includes('/check/?lang=' + route.lang + '&utm_source=legacy_insights'), `Trackable CTA missing: ${file}`);
-  assert.ok(html.includes('utm_campaign=water_education'), `Campaign parameter missing: ${file}`);
+  const campaignParam = html.match(/utm_campaign=([^&"]+)&amp;utm_content=([^&"]+)/) || html.match(/utm_campaign=([^&"]+)&utm_content=([^&"]+)/);
+  assert.ok(campaignParam, `Campaign/content attribution missing: ${file}`);
+  assert.equal(campaignParam[1], 'water_education__' + campaignParam[2], `Campaign must persist article ID in existing D1 column: ${file}`);
   assert.ok(html.includes('not affiliated with Toho Water Authority') || html.includes('No estamos afiliados con Toho Water Authority') || html.includes('No estamos afiliados a Toho Water Authority'), `Disclosure missing: ${file}`);
   assert.ok(html.includes('Toho') && html.includes('Water'), `Sources missing: ${file}`);
   for (const href of html.matchAll(/href="(\/[A-Za-z0-9_\-./]+)(?:\?[^"]*)?"/g)) {
@@ -40,6 +42,7 @@ for (const route of routes) checkRoute(route);
 const map = read('sitemap.xml');
 for (const r of routes) assert.ok(map.includes(origin + r.path), `Missing sitemap entry: ${r.path}`);
 assert.ok(read('robots.txt').includes('Sitemap: ' + origin + '/sitemap.xml'));
+assert.ok(read('check/app.js').includes("tracking.get('utm_campaign')"), 'Lead form does not receive UTM campaign');
 assert.ok(read('index.html').includes('data-insights'), 'Homepage navigation missing Insights');
 assert.ok(read('index.html').includes("language === 'es' ? '/insights/es/' : '/insights/'"), 'Homepage Spanish routing missing');
 console.log('PASS: sitemap, internal links, homepage language selection and tracked CTAs.');
