@@ -152,3 +152,10 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - Consequently, the staging seven-day cleanup currently applies to active D1 rows only. It must not be presented as seven-day deletion across Resend or all copies. Resolve this exception or arrange provider deletion before claiming full policy enforcement.
 - Cloudflare documents D1 Time Travel recovery windows of seven days on Workers Free and thirty on Workers Paid. Source: https://developers.cloudflare.com/d1/reference/time-travel/ . The zone's Free plan does not independently establish the Workers subscription. Verify the account's actual recovery window before finalizing retention claims.
 - Controlled owner mailboxes/forwarded copies still need an enforced cleanup procedure. No mailbox deletion, provider support message, account-plan change, production change or campaign was performed.
+
+### Owner-approved staging provider-retention exception — 2026-11-03
+- The owner explicitly approved retaining the seven-day cutoff for active staging D1 rows while accepting Resend's own email/log and backup retention windows for these staging tests.
+- The published standard Resend windows verified above are thirty days for email/log data and seven days for backups. This is a documented provider exception, not a claim of universal seven-day erasure or confirmation of custom account terms.
+- Resend usage currently reports six emails sent today, zero contacts and zero broadcasts. Usage limits alone do not independently establish a contractual retention plan.
+- Cloudflare account subscription lookup was denied because the OAuth connector lacks billing permissions. The actual Workers Time Travel window remains unverified; do not infer it from the zone plan.
+- This approval does not cover owner-mailbox retention, forwarded copies, a production rollout, new campaigns, paid plan changes or support messages. Controlled mailbox cleanup and observation of the first scheduled staging D1 cleanup remain outstanding. The thirty-day production policy and separate rollout requirements are unchanged.
