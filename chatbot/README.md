@@ -116,3 +116,13 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - Real delivery coverage now includes Essential/Spanish, Advanced/English and Premium/English. This does not establish all six product/language combinations or remaining validation/replay/Colombia/mobile checks.
 - No additional successful sends should be attempted from the same IP in the current UTC hour; the 3/IP/hour allowance has been used by the three successful requests. Do not clear counters or relax limits.
 - Automated retention enforcement, real replay validation, remaining UI checks and production rollout remain outstanding. PR remains a draft.
+
+### Staging retention enforcement — 2026-11-03
+- Source: `scripts/ro-retention-staging.js`. Deployed as the separate Worker `legacy-ro-retention-staging`, bound only to the staging D1 database.
+- Cron configured at 08:00 UTC daily (`0 8 * * *`). It removes pending or accepted RO request rows strictly older than 7 days; actual removal occurs on the first daily run after the cutoff.
+- No HTTP cleanup trigger: the Worker fetch handler always returns 404. Cleanup defaults to dry run when invoked as an exported function; its scheduled handler explicitly enables deletion.
+- The code rejects a non-staging environment or a different configured database ID. The deployed D1 binding was independently verified as staging. These guards do not replace correct binding configuration.
+- Local SQLite fixtures verified deletion of old pending/accepted rows and preservation of recent rows, exact-boundary rows, malformed dates (left for review), and unrelated `water_test_leads`.
+- Local runtime checks verified dry-run behavior, guard failures and the HTTP 404. No scheduled production cleanup exists.
+- Configuration is active, but a real scheduled execution has not yet been observed. Verify its aggregate deletion counts after its first run; logs contain no email addresses.
+- D1 still contains all three recent test records. Production cleanup (30 days), controlled mailbox copies, provider-log retention and backup windows remain release gates.
