@@ -31,3 +31,156 @@ Before enabling AI:
 
 ## Limitations
 The guided mode recognizes common keywords and fixed sales topics, not arbitrary questions with general AI reasoning. Configuring the optional server-side AI service is required for open-ended generative conversations. Never advertise live human agents 24/7.
+
+## Requested one-time RO information email — configuration required
+
+This optional feature lets U.S. visitors select Essential, Advanced, or Premium H2, enter their own email, and explicitly authorize **one informational message**. It is not a marketing mailing-list opt-in. The browser never sends email or contains Resend credentials. Colombia pages do not expose U.S. prices or this U.S. email flow.
+
+Configuration checklist (apply to staging first; production changes belong to a separate rollout):
+1. In the existing Cloudflare D1 database bound as `DB`, run `migrations/2026-10-29-ro-email-requests.sql` for production. Run the same migration in preview/staging D1 if you will test there first. Back up the database beforehand.
+2. Create a Cloudflare KV namespace, bind it as `RO_EMAIL_RATE_LIMIT` in the relevant Pages environments (Production and separately Preview for testing).
+3. Confirm the existing encrypted `RESEND_API_KEY` and `LEAD_ALERT_TO=info@legacywaterusa.com` remain available in that Pages environment. The verified sender remains `leads@legacywaterusa.com`. Never commit secrets to GitHub.
+4. Set a Cloudflare WAF/rate-limiting rule for POST `/api/ro-info` to supplement non-atomic KV limits; consider a challenge for suspicious repeated attempts.
+5. Deploy the new branch in preview. GET `/api/ro-info` should show `{"enabled":true}` only when D1, KV and Resend are configured. Otherwise the chat falls back to a manual mailto and the POST fails closed.
+6. Test with a mailbox you own or have permission to use: ask the advisor “Envíame información de los sistemas RO a mi email”, select each product in turn, check opt-in/validation, confirm the provider **accepted** the email (not necessarily delivered), check inbox, D1 record and owner's separate notification. Test rate limiting, honeypot, Colombia exclusions and iPhone keyboard.
+
+Behavior and privacy:
+- One predefined, bilingual, product-specific text email with accurate **proposed** Essential pricing. No free-form user text is relayed, no attachment, no mass send and no financial/medical claims.
+- Email, selected product, language, consent timestamp and send-accepted status are stored in `ro_email_requests` (separate from `water_test_leads`). No automated marketing permission is inferred.
+- KV allows up to 3 requests/IP/hour, 10/IP/day and 2/recipient/day (best-effort, not atomic). WAF is required for stronger protection. Requests fail closed when Cloudflare client IP/rate-limiter is unavailable.
+- Failed Resend acceptance leaves a pending row for a retry with the same request identifier. The UI should not claim confirmed mailbox delivery.
+- Define a data-retention/deletion policy and purge stale email addresses from D1 appropriately before general launch.
+
+## Staging verification — 2026-11-03
+
+Scope: PR #5 only, isolated from the customer-facing production deployment. The PR remains a draft; no marketing campaign or subscription is enabled.
+
+Confirmed:
+- Backed up `legacy-water-leads-staging` before applying the RO email migration. The table and both explicit indexes exist.
+- Preview `DB` uses the staging database; the customer-facing production project uses a different database.
+- Created staging KV and bound `RO_EMAIL_RATE_LIMIT` only to the staging project's Preview environment.
+- Staging Preview has the encrypted Resend key and owner-alert recipient configured. A real send confirmed the credentials work for this flow.
+- `ro-staging.legacywaterusa.com` points to the PR's staging branch alias. Access policies restrict that hostname and staging preview aliases to the owner.
+- A new WAF rate-limit rule matches only that staging hostname, POST, and `/api/ro-info`: 3 requests per 10 seconds per IP/colo, with a 10-second block. Existing managed rules were preserved.
+- Six authorized empty-body test submissions returned three HTTP 429 and three HTTP 403 responses. D1 still contained zero requests after that test. This demonstrates edge blocking; it does not independently attribute each 403 or prove exact global threshold/concurrency behavior.
+- The owner completed one Essential/Spanish request on a real iPhone. The UI displayed provider acceptance; the product email and separate owner alert both reached Inbox.
+- D1 contained exactly one request, product `essential`, language `es`, consent timestamp, status `accepted`, and acceptance timestamp matching that test.
+- `node --test tests/ro-info.test.mjs`: 15 tests passed using mocked D1/KV/Resend. Coverage includes invalid consent/fields, honeypot, absent migration/bindings/IP, KV failure, all three limits, accepted replay, request-ID conflict, provider rejection/retry, independent owner-alert failure, and fixed content for all products in both languages.
+- Syntax check passed for the advisor after translating Spanish product dropdown labels.
+
+Important distinctions:
+- `enabled:true` checks binding/variable presence and a readable table, not Resend credential validity, KV health, WAF coverage, or delivery.
+- One-time means one accepted email per request ID, not one email per address forever. A new ID may send another requested email within the limits.
+- The owner alert is a separate message. A failed owner alert does not fail the customer request, and an accepted replay does not retry that alert.
+- KV counters are best-effort and non-atomic. WAF covers the custom staging hostname; direct preview aliases are restricted by Access, not covered by that zone WAF rule.
+- Existing chat messages/actions retain the language in which they were created after a language switch. New replies use the selected page language. Do not mark seamless live language switching as passed.
+- The backend does not establish a visitor's geographic location; the Colombia exclusion is in the advisor UI.
+
+Still required before considering release:
+- Remaining real iPhone checks: verify consent starts unchecked on a fresh form, complete keyboard/scroll/close behavior. Colombia email-flow exclusion and corrected copy are confirmed below. Product delivery and native invalid-email/no-consent blockers have evidence below.
+- Accepted-request replay has live evidence below. A real pending-provider-failure retry has not been exercised; rejection/retry behavior remains covered by mocked tests.
+- Decide whether retained earlier-language actions are acceptable or require a UI fix. Recheck the translated dropdown in Spanish on iPhone.
+- Implement and verify the owner-approved retention policy below, including D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. Staging D1 cleanup is configured as described below; its first scheduled execution has not been observed.
+- Owner selected a 30-day personal-data retention period on 2026-11-03, with staging test records limited to 7 days. Implementation and verification remain release gates.
+- Record the remaining evidence before marking the PR ready. Production migration, KV binding, WAF, deployment and smoke test remain a separate authorized rollout; do not perform those steps as part of staging verification.
+- No customer-facing production configuration has been changed and the PR has not been merged.
+
+Test planning: the recipient limit is 2/day and the IP limit is 3/hour. Do not try all three products with the same mailbox in one day or remove limits to make tests pass; use authorized mailboxes and separate windows.
+
+
+### Additional verified evidence — 2026-11-03
+- Real iPhone Advanced/English request succeeded. Product email and owner notification reached Inbox; D1 records `advanced`, `en`, consent timestamp and `accepted` status. Exactly two RO request rows now exist in staging.
+- Resend delivery records independently show exactly four matching messages for the two tests: two customer messages and two separate owner notifications, all marked `delivered`. This is not a live replay/idempotency test.
+- The personal test mailbox has reached the 2/recipient/day limit. Premium testing must use a different owner-controlled mailbox or a later UTC day; retain the IP/hour limit as well.
+
+### Retention decision and implementation requirements
+Owner decision: retain personal data associated with one-time product email requests for 30 days from creation; staging test records for 7 days. This consent does not authorize marketing, contact-list enrollment or further promotional messages.
+
+Implementation scope:
+1. D1: remove expired `ro_email_requests` rows; include both pending and accepted rows. Operate only on this table, never on `water_test_leads`, CRM or evaluation records.
+2. Owner mailboxes: remove expired owner alerts and controlled forwarded copies under the same window. The business does not control a customer's copy of the requested message.
+3. Provider records and backups: verify actual configurable retention, document any provider-controlled recovery/log windows, and reapply deletion after a restore before re-enabling service. Do not promise immediate erasure from provider backups.
+4. Keep deletion evidence limited to aggregate counts and timestamps, without recording deleted email addresses.
+5. Add and test a cleanup mechanism, with a dry run and an environment-specific cutoff, before general release. This policy has been defined; staging D1 enforcement is configured below. Other retention scopes remain outstanding.
+
+Read-only staging dry run (no deletion):
+```sql
+SELECT COUNT(*) AS expired_rows
+FROM ro_email_requests
+WHERE julianday(created_at) < julianday('now', '-7 days');
+```
+
+### Premium live test — 2026-11-03
+- Owner completed Premium H2/English on iPhone using the business mailbox. Both the product message and separate owner notification reached Inbox, as shown in owner-provided screenshots.
+- D1 confirms one additional `premium`/`en` request with consent timestamp and `accepted` status. There are exactly three staging request rows in total, one per product.
+- Real delivery coverage now includes Essential/Spanish, Advanced/English and Premium/English. This does not establish all six product/language combinations or remaining validation/replay/Colombia/mobile checks.
+- No additional successful sends should be attempted from the same IP in the current UTC hour; the 3/IP/hour allowance has been used by the three successful requests. Do not clear counters or relax limits.
+- Observation of the first staging cleanup run, other retention scopes, real replay validation, remaining UI checks and production rollout remain outstanding. PR remains a draft.
+
+### Staging retention enforcement — 2026-11-03
+- Source: `scripts/ro-retention-staging.js`. Deployed as the separate Worker `legacy-ro-retention-staging`, bound only to the staging D1 database.
+- Cron configured at 08:00 UTC daily (`0 8 * * *`). It removes pending or accepted RO request rows strictly older than 7 days; actual removal occurs on the first daily run after the cutoff.
+- No HTTP cleanup trigger: the Worker fetch handler always returns 404. Cleanup defaults to dry run when invoked as an exported function; its scheduled handler explicitly enables deletion.
+- The code rejects a non-staging environment or a different configured database ID. The deployed D1 binding was independently verified as staging. These guards do not replace correct binding configuration.
+- Local SQLite fixtures verified deletion of old pending/accepted rows and preservation of recent rows, exact-boundary rows, malformed dates (left for review), and unrelated `water_test_leads`.
+- Local runtime checks verified dry-run behavior, guard failures and the HTTP 404. No scheduled production cleanup exists.
+- Configuration is active, but a real scheduled execution has not yet been observed. Verify its aggregate deletion counts after its first run; logs contain no email addresses.
+- D1 still contains all three recent test records. Production cleanup (30 days), controlled mailbox copies, provider-log retention and backup windows remain release gates.
+
+### iPhone form validation evidence — 2026-11-03
+- With an owner-controlled valid email and consent unchecked, submitting displayed the browser's checkbox validation message ("Select this check..."). No success state was shown.
+- With the literal invalid address `abc`, submitting displayed "Enter an email address". Consent was also unchecked in that screenshot, so this establishes the email field's native validation priority, not an isolated consent-checked submission.
+- These are native browser validation observations, not independent proof that a backend request was absent. Server-side invalid-email and consent rejection are covered by automated tests.
+- Do not use an arbitrary valid-looking address such as `abc@gmail.com` for send testing; use only a mailbox controlled or explicitly authorized by the owner.
+- The combined local suite for requested emails and staging retention has 20 passing tests. The retention tests are included in the PR workflow.
+
+### Colombia iPhone evidence and copy correction — 2026-11-03
+- Owner screenshots on the Cali staging page show Spanish guidance, Cali/manual-email actions and no U.S. automated email form. The Pricing action explicitly states Colombian prices have not been set; no U.S. price is displayed.
+- The email-intent answer still mentioned U.S. product tiers and offering an automated email. Corrected both dictionary entries to describe Cali options and manual contact only, consistent with the existing Colombia form exclusion.
+- JavaScript syntax check passed. The Cali page now references a versioned advisor asset (`v=20261103-cali-email`) to avoid reusing the previous cached script.
+- Cloudflare reported successful deployment of commit `f007aaa0ab2df648496c07b6ee12d3751950d776`. The owner's subsequent 11:48 iPhone screenshot confirms the corrected Cali/manual-contact answer, no U.S. product-tier offer and no automated email form. This closes the observed Colombia email-intent copy issue; it does not establish backend geographic enforcement.
+
+### Accepted replay and mobile confirmation — 2026-11-03
+- Owner confirmed closing/reopening the advisor, page scrolling and typing with the input visible above the iPhone keyboard. This is owner-reported evidence, not an independently reviewed screen recording.
+- At approximately 12:43 America/New_York, the owner repeated the original Essential/Spanish request from authenticated staging using the same request ID and matching fields. The console screenshot shows HTTP 200, `sent: true`, and the original ID.
+- A subsequent read-only Resend listing returned 17 total messages, with exactly six RO-information-flow messages today: three customer messages and three separate owner alerts. All six were delivered. The latest was the original Premium owner alert at 11:19 local time; no new send appeared for the replay.
+- This establishes one observed accepted-request replay without an additional provider message. It does not prove concurrent replay behavior or a real retry after provider failure. Production remains unchanged and the PR remains a draft.
+
+### Retention scope verification — 2026-11-03
+- Read-only Cloudflare verification confirms the staging cleanup cron remains `0 8 * * *`. D1 contains exactly three RO request rows and zero older than seven days; no data was changed by this verification. The first scheduled execution is still pending observation (08:00 UTC, 03:00 America/New_York on November 4).
+- Resend's published policy states email/log retention is 30 days on Free, Pro and Scale, with seven-day backups; Enterprise retention is flexible. Early removal requires contacting Resend. Source: https://resend.com/security/gdpr/ (checked 2026-11-03). The connected account's plan/custom terms have not been independently verified.
+- Consequently, the staging seven-day cleanup currently applies to active D1 rows only. It must not be presented as seven-day deletion across Resend or all copies. Resolve this exception or arrange provider deletion before claiming full policy enforcement.
+- Cloudflare documents D1 Time Travel recovery windows of seven days on Workers Free and thirty on Workers Paid. Source: https://developers.cloudflare.com/d1/reference/time-travel/ . The zone's Free plan does not independently establish the Workers subscription. Verify the account's actual recovery window before finalizing retention claims.
+- Controlled owner mailboxes/forwarded copies still need an enforced cleanup procedure. No mailbox deletion, provider support message, account-plan change, production change or campaign was performed.
+
+### Owner-approved staging provider-retention exception — 2026-11-03
+- The owner explicitly approved retaining the seven-day cutoff for active staging D1 rows while accepting Resend's own email/log and backup retention windows for these staging tests.
+- The published standard Resend windows verified above are thirty days for email/log data and seven days for backups. This is a documented provider exception, not a claim of universal seven-day erasure or confirmation of custom account terms.
+- Resend usage currently reports six emails sent today, zero contacts and zero broadcasts. Usage limits alone do not independently establish a contractual retention plan.
+- Cloudflare account subscription lookup was denied because the OAuth connector lacks billing permissions. The actual Workers Time Travel window remains unverified; do not infer it from the zone plan.
+- This approval does not cover owner-mailbox retention, forwarded copies, a production rollout, new campaigns, paid plan changes or support messages. Controlled mailbox cleanup and observation of the first scheduled staging D1 cleanup remain outstanding. The thirty-day production policy and separate rollout requirements are unchanged.
+
+### Controlled mailbox cleanup procedure — prepared, not executed
+For the three staging tests created November 3, review controlled owner-alert copies after their seven-day cutoff on November 10 (after 11:20 America/New_York covers all three). Match each message's request reference, not only its generic subject:
+- Essential: `60eb8277-1243-459c-ac91-2eb3764ac5f3`
+- Advanced: `331f2367-b58e-434f-b1c0-461294c41d31`
+- Premium: `b675ae14-1cfe-4800-9f2b-a670f8773185`
+
+Procedure:
+1. In the controlled owner mailbox and known forwarding destinations, locate the three alerts using the exact references. Inspect matching messages before removal; do not select unrelated water-test, CRM, RO inquiry or evaluation notifications.
+2. Remove expired controlled alert copies, including controlled sent/forwarded copies if present. Moving to Trash alone is not immediate permanent deletion; account for the mailbox's Trash, recovery and any administrative retention windows. Do not purge unrelated Trash.
+3. The Premium test customer message went to a business-controlled address as well; separately locate that specific November 3 test message by recipient, subject, timestamp and product content. Its subject is shared with other requested emails, so a subject-only deletion rule is unsuitable.
+4. Record only the cleanup date, number of removed copies and any unresolved provider/admin recovery windows. Do not copy message bodies or addresses into cleanup logs.
+5. A restored mailbox or database backup must be checked for expired test data before the flow is re-enabled. Customer-controlled copies are outside business control.
+
+This is an operational runbook only. No mailbox deletion, mail filter, recurring mailbox job or future reminder has been configured. Full mailbox enforcement remains a release gate.
+
+### Remaining verification summary
+- Confirmed: staging migration and separation, bindings and working send credentials, Access and staging-host WAF configuration, three product deliveries, native form blockers, corrected Colombia UI, owner-reported mobile behavior, accepted replay without an additional provider message, and automated email/retention tests.
+- Pending: first scheduled cleanup execution and its aggregate result; controlled mailbox cleanup/enforcement; actual Workers recovery window; Spanish dropdown recheck and decision on old-language chat actions. A real provider-failure retry is not claimed as tested.
+- Provider retention exception for staging is approved above. Production rollout, thirty-day production cleanup and production verification remain outside this staging task. Keep the PR in draft until remaining release gates are resolved.
+
+### Spanish form and dropdown — desktop evidence, 2026-11-03
+- Owner-provided desktop screenshots at 12:53–12:54 America/New_York show a newly opened Spanish email form with an empty email field and unchecked consent.
+- The expanded selector shows all three translated labels: `Essential — RO + UV + alcalino`, `Advanced — requiere cotización`, and `Premium H₂ — solo interés`.
+- These screenshots verify desktop rendering and the observed fresh-form consent state. They do not independently close the specifically requested iPhone dropdown check. No additional send was requested for this UI check.

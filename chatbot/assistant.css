@@ -48,3 +48,6 @@ body.lw-chat-open{overflow:hidden!important}
   .lw-chat-messages{flex:1;min-height:0}
   .lw-chat-form{max-width:100%}
 }
+
+/* Hidden spam-trap for one-time email request form. Never shown to human visitors. */
+.lw-chat-form .lw-chat-honeypot{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;clip-path:inset(50%);pointer-events:none!important;overflow:hidden!important}
