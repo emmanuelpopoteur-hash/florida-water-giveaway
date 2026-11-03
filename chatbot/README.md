@@ -80,9 +80,32 @@ Still required before considering release:
 - Real iPhone validation of English and remaining product selections; verify consent starts unchecked, invalid email/no consent cannot submit, keyboard/scroll/close behavior, and Colombia email-flow exclusion.
 - Real staging retry/replay validation with the original request ID, checking provider logs for duplicates; current replay evidence is mocked.
 - Decide whether retained earlier-language actions are acceptable or require a UI fix. Recheck the translated dropdown in Spanish on iPhone.
-- Approve and implement a retention/deletion policy covering D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. No automatic deletion has been configured or run.
-- Suggested staging policy for owner decision: purge test addresses within 7 days of completing verification. This is a proposal, not an approved retention policy. No production retention duration has been selected.
+- Implement and verify the owner-approved retention policy below, including D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. No automatic deletion has been configured or run.
+- Owner selected a 30-day personal-data retention period on 2026-11-03, with staging test records limited to 7 days. Implementation and verification remain release gates.
 - Record the remaining evidence before marking the PR ready. Production migration, KV binding, WAF, deployment and smoke test remain a separate authorized rollout; do not perform those steps as part of staging verification.
 - No customer-facing production configuration has been changed and the PR has not been merged.
 
 Test planning: the recipient limit is 2/day and the IP limit is 3/hour. Do not try all three products with the same mailbox in one day or remove limits to make tests pass; use authorized mailboxes and separate windows.
+
+
+### Additional verified evidence — 2026-11-03
+- Real iPhone Advanced/English request succeeded. Product email and owner notification reached Inbox; D1 records `advanced`, `en`, consent timestamp and `accepted` status. Exactly two RO request rows now exist in staging.
+- Resend delivery records independently show exactly four matching messages for the two tests: two customer messages and two separate owner notifications, all marked `delivered`. This is not a live replay/idempotency test.
+- The personal test mailbox has reached the 2/recipient/day limit. Premium testing must use a different owner-controlled mailbox or a later UTC day; retain the IP/hour limit as well.
+
+### Retention decision and implementation requirements
+Owner decision: retain personal data associated with one-time product email requests for 30 days from creation; staging test records for 7 days. This consent does not authorize marketing, contact-list enrollment or further promotional messages.
+
+Implementation scope:
+1. D1: remove expired `ro_email_requests` rows; include both pending and accepted rows. Operate only on this table, never on `water_test_leads`, CRM or evaluation records.
+2. Owner mailboxes: remove expired owner alerts and controlled forwarded copies under the same window. The business does not control a customer's copy of the requested message.
+3. Provider records and backups: verify actual configurable retention, document any provider-controlled recovery/log windows, and reapply deletion after a restore before re-enabling service. Do not promise immediate erasure from provider backups.
+4. Keep deletion evidence limited to aggregate counts and timestamps, without recording deleted email addresses.
+5. Add and test a cleanup mechanism, with a dry run and an environment-specific cutoff, before general release. This policy has been defined; automated enforcement has not been implemented.
+
+Read-only staging dry run (no deletion):
+```sql
+SELECT COUNT(*) AS expired_rows
+FROM ro_email_requests
+WHERE julianday(created_at) < julianday('now', '-7 days');
+```
