@@ -170,7 +170,7 @@ const d=t().emailForm,f=elt("form","lw-chat-form"),email=elt("input"),product=el
 f.appendChild(elt("strong","",d.title));
 const emailLabel=elt("label","",d.email);email.type="email";email.required=true;email.maxLength=254;email.autocomplete="email";email.inputMode="email";email.placeholder="name@example.com";emailLabel.appendChild(email);f.appendChild(emailLabel);
 const productLabel=elt("label","",d.product);
-for(const [value,label] of [["essential","Essential — RO + UV + Alkaline"],["advanced","Advanced — quote needed"],["premium","Premium H₂ — interest only"]]){const option=elt("option","",label);option.value=value;product.appendChild(option)}
+for(const [value,label] of (language()==="es"?[["essential","Essential — RO + UV + alcalino"],["advanced","Advanced — requiere cotización"],["premium","Premium H₂ — solo interés"]]:[["essential","Essential — RO + UV + Alkaline"],["advanced","Advanced — quote needed"],["premium","Premium H₂ — interest only"]])){const option=elt("option","",label);option.value=value;product.appendChild(option)}
 product.value=lastPlan;productLabel.appendChild(product);f.appendChild(productLabel);
 const consentLabel=elt("label","lw-consent");consent.type="checkbox";consent.required=true;consentLabel.appendChild(consent);consentLabel.appendChild(elt("span","",d.consent));f.appendChild(consentLabel);
 const trap=elt("input","lw-chat-honeypot");trap.type="text";trap.tabIndex=-1;trap.autocomplete="off";trap.setAttribute("aria-hidden","true");f.appendChild(trap);
