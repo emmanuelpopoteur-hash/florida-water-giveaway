@@ -109,3 +109,10 @@ SELECT COUNT(*) AS expired_rows
 FROM ro_email_requests
 WHERE julianday(created_at) < julianday('now', '-7 days');
 ```
+
+### Premium live test — 2026-11-03
+- Owner completed Premium H2/English on iPhone using the business mailbox. Both the product message and separate owner notification reached Inbox, as shown in owner-provided screenshots.
+- D1 confirms one additional `premium`/`en` request with consent timestamp and `accepted` status. There are exactly three staging request rows in total, one per product.
+- Real delivery coverage now includes Essential/Spanish, Advanced/English and Premium/English. This does not establish all six product/language combinations or remaining validation/replay/Colombia/mobile checks.
+- No additional successful sends should be attempted from the same IP in the current UTC hour; the 3/IP/hour allowance has been used by the three successful requests. Do not clear counters or relax limits.
+- Automated retention enforcement, real replay validation, remaining UI checks and production rollout remain outstanding. PR remains a draft.
