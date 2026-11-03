@@ -78,7 +78,7 @@ Important distinctions:
 
 Still required before considering release:
 - Remaining real iPhone checks: verify consent starts unchecked on a fresh form, complete keyboard/scroll/close behavior. Colombia email-flow exclusion and corrected copy are confirmed below. Product delivery and native invalid-email/no-consent blockers have evidence below.
-- Real staging retry/replay validation with the original request ID, checking provider logs for duplicates; current replay evidence is mocked.
+- Accepted-request replay has live evidence below. A real pending-provider-failure retry has not been exercised; rejection/retry behavior remains covered by mocked tests.
 - Decide whether retained earlier-language actions are acceptable or require a UI fix. Recheck the translated dropdown in Spanish on iPhone.
 - Implement and verify the owner-approved retention policy below, including D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. Staging D1 cleanup is configured as described below; its first scheduled execution has not been observed.
 - Owner selected a 30-day personal-data retention period on 2026-11-03, with staging test records limited to 7 days. Implementation and verification remain release gates.
@@ -139,3 +139,9 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - The email-intent answer still mentioned U.S. product tiers and offering an automated email. Corrected both dictionary entries to describe Cali options and manual contact only, consistent with the existing Colombia form exclusion.
 - JavaScript syntax check passed. The Cali page now references a versioned advisor asset (`v=20261103-cali-email`) to avoid reusing the previous cached script.
 - Cloudflare reported successful deployment of commit `f007aaa0ab2df648496c07b6ee12d3751950d776`. The owner's subsequent 11:48 iPhone screenshot confirms the corrected Cali/manual-contact answer, no U.S. product-tier offer and no automated email form. This closes the observed Colombia email-intent copy issue; it does not establish backend geographic enforcement.
+
+### Accepted replay and mobile confirmation — 2026-11-03
+- Owner confirmed closing/reopening the advisor, page scrolling and typing with the input visible above the iPhone keyboard. This is owner-reported evidence, not an independently reviewed screen recording.
+- At approximately 12:43 America/New_York, the owner repeated the original Essential/Spanish request from authenticated staging using the same request ID and matching fields. The console screenshot shows HTTP 200, `sent: true`, and the original ID.
+- A subsequent read-only Resend listing returned 17 total messages, with exactly six RO-information-flow messages today: three customer messages and three separate owner alerts. All six were delivered. The latest was the original Premium owner alert at 11:19 local time; no new send appeared for the replay.
+- This establishes one observed accepted-request replay without an additional provider message. It does not prove concurrent replay behavior or a real retry after provider failure. Production remains unchanged and the PR remains a draft.
