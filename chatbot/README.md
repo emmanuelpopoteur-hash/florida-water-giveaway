@@ -36,7 +36,7 @@ The guided mode recognizes common keywords and fixed sales topics, not arbitrary
 
 This optional feature lets U.S. visitors select Essential, Advanced, or Premium H2, enter their own email, and explicitly authorize **one informational message**. It is not a marketing mailing-list opt-in. The browser never sends email or contains Resend credentials. Colombia pages do not expose U.S. prices or this U.S. email flow.
 
-Required **before merging and enabling**:
+Configuration checklist (apply to staging first; production changes belong to a separate rollout):
 1. In the existing Cloudflare D1 database bound as `DB`, run `migrations/2026-10-29-ro-email-requests.sql` for production. Run the same migration in preview/staging D1 if you will test there first. Back up the database beforehand.
 2. Create a Cloudflare KV namespace, bind it as `RO_EMAIL_RATE_LIMIT` in the relevant Pages environments (Production and separately Preview for testing).
 3. Confirm the existing encrypted `RESEND_API_KEY` and `LEAD_ALERT_TO=info@legacywaterusa.com` remain available in that Pages environment. The verified sender remains `leads@legacywaterusa.com`. Never commit secrets to GitHub.
@@ -50,3 +50,39 @@ Behavior and privacy:
 - KV allows up to 3 requests/IP/hour, 10/IP/day and 2/recipient/day (best-effort, not atomic). WAF is required for stronger protection. Requests fail closed when Cloudflare client IP/rate-limiter is unavailable.
 - Failed Resend acceptance leaves a pending row for a retry with the same request identifier. The UI should not claim confirmed mailbox delivery.
 - Define a data-retention/deletion policy and purge stale email addresses from D1 appropriately before general launch.
+
+## Staging verification — 2026-11-03
+
+Scope: PR #5 only, isolated from the customer-facing production deployment. The PR remains a draft; no marketing campaign or subscription is enabled.
+
+Confirmed:
+- Backed up `legacy-water-leads-staging` before applying the RO email migration. The table and both explicit indexes exist.
+- Preview `DB` uses the staging database; the customer-facing production project uses a different database.
+- Created staging KV and bound `RO_EMAIL_RATE_LIMIT` only to the staging project's Preview environment.
+- Staging Preview has the encrypted Resend key and owner-alert recipient configured. A real send confirmed the credentials work for this flow.
+- `ro-staging.legacywaterusa.com` points to the PR's staging branch alias. Access policies restrict that hostname and staging preview aliases to the owner.
+- A new WAF rate-limit rule matches only that staging hostname, POST, and `/api/ro-info`: 3 requests per 10 seconds per IP/colo, with a 10-second block. Existing managed rules were preserved.
+- Six authorized empty-body test submissions returned three HTTP 429 and three HTTP 403 responses. D1 still contained zero requests after that test. This demonstrates edge blocking; it does not independently attribute each 403 or prove exact global threshold/concurrency behavior.
+- The owner completed one Essential/Spanish request on a real iPhone. The UI displayed provider acceptance; the product email and separate owner alert both reached Inbox.
+- D1 contained exactly one request, product `essential`, language `es`, consent timestamp, status `accepted`, and acceptance timestamp matching that test.
+- `node --test tests/ro-info.test.mjs`: 15 tests passed using mocked D1/KV/Resend. Coverage includes invalid consent/fields, honeypot, absent migration/bindings/IP, KV failure, all three limits, accepted replay, request-ID conflict, provider rejection/retry, independent owner-alert failure, and fixed content for all products in both languages.
+- Syntax check passed for the advisor after translating Spanish product dropdown labels.
+
+Important distinctions:
+- `enabled:true` checks binding/variable presence and a readable table, not Resend credential validity, KV health, WAF coverage, or delivery.
+- One-time means one accepted email per request ID, not one email per address forever. A new ID may send another requested email within the limits.
+- The owner alert is a separate message. A failed owner alert does not fail the customer request, and an accepted replay does not retry that alert.
+- KV counters are best-effort and non-atomic. WAF covers the custom staging hostname; direct preview aliases are restricted by Access, not covered by that zone WAF rule.
+- Existing chat messages/actions retain the language in which they were created after a language switch. New replies use the selected page language. Do not mark seamless live language switching as passed.
+- The backend does not establish a visitor's geographic location; the Colombia exclusion is in the advisor UI.
+
+Still required before considering release:
+- Real iPhone validation of English and remaining product selections; verify consent starts unchecked, invalid email/no consent cannot submit, keyboard/scroll/close behavior, and Colombia email-flow exclusion.
+- Real staging retry/replay validation with the original request ID, checking provider logs for duplicates; current replay evidence is mocked.
+- Decide whether retained earlier-language actions are acceptable or require a UI fix. Recheck the translated dropdown in Spanish on iPhone.
+- Approve and implement a retention/deletion policy covering D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. No automatic deletion has been configured or run.
+- Suggested staging policy for owner decision: purge test addresses within 7 days of completing verification. This is a proposal, not an approved retention policy. No production retention duration has been selected.
+- Record the remaining evidence before marking the PR ready. Production migration, KV binding, WAF, deployment and smoke test remain a separate authorized rollout; do not perform those steps as part of staging verification.
+- No customer-facing production configuration has been changed and the PR has not been merged.
+
+Test planning: the recipient limit is 2/day and the IP limit is 3/hour. Do not try all three products with the same mailbox in one day or remove limits to make tests pass; use authorized mailboxes and separate windows.
