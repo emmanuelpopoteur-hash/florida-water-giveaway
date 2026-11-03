@@ -2,6 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { onRequestGet, onRequestPost } from '../functions/api/ro-info.js';
 
+async function withProvider(handler, run) {
+  const original = globalThis.fetch;
+  globalThis.fetch = handler;
+  try { await run(); } finally { globalThis.fetch = original; }
+}
+
 const endpoint = 'https://legacywaterusa.com/api/ro-info';
 const requestId = 'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee';
 const payload = (rest={}) => ({
@@ -88,3 +94,102 @@ test('sends static selected-system information once and records consent',async()
     assert.equal(deliveries.length,2);
   } finally { globalThis.fetch=original; }
 });
+
+test('rejects honeypot and malformed fields before storing or sending',async()=>{
+  const env=mockEnv();
+  await withProvider(async()=>{throw Error('Provider must not be called')},async()=>{
+    for(const bad of [{website:'bot'},{consent:'true'},{consent:undefined},{email:'invalid'},{product:'unknown'},{language:'fr'},{request_id:'bad'}]) {
+      assert.equal((await onRequestPost({request:request(payload(bad)),env})).status,400);
+    }
+    assert.equal(env.rows.size,0);
+  });
+});
+test('missing migration hides the feature and rejects submission',async()=>{
+  const env=mockEnv();env.DB.prepare=()=>{throw Error('no such table')};
+  assert.equal((await (await onRequestGet({env})).json()).enabled,false);
+  assert.equal((await onRequestPost({request:request(payload()),env})).status,503);
+});
+test('missing edge IP and broken KV never send or store',async()=>{
+  for(const brokenKV of [false,true]) {
+    const env=mockEnv(),req=request(payload());
+    if(brokenKV)env.RO_EMAIL_RATE_LIMIT.get=async()=>{throw Error('KV unavailable')};
+    else req.headers.delete('CF-Connecting-IP');
+    await withProvider(async()=>{throw Error('Provider must not be called')},async()=>{
+      assert.equal((await onRequestPost({request:req,env})).status,brokenKV?503:429);
+      assert.equal(env.rows.size,0);
+    });
+  }
+});
+test('third request to the same recipient in a day is blocked',async()=>{
+  const env=mockEnv();let calls=0;
+  await withProvider(async()=>{calls++;return Response.json({id:'mock'})},async()=>{
+    for(let i=1;i<=3;i++) {
+      const res=await onRequestPost({request:request(payload({request_id:`aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeee${i}`})),env});
+      assert.equal(res.status,i<3?201:429);
+    }
+    assert.equal(env.rows.size,2);assert.equal(calls,4);
+  });
+});
+test('fourth request from an IP in an hour is blocked across recipients',async()=>{
+  const env=mockEnv();
+  await withProvider(async()=>Response.json({id:'mock'}),async()=>{
+    for(let i=1;i<=4;i++)assert.equal((await onRequestPost({request:request(payload({request_id:`aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeee${i}`,email:`owned${i}@example.com`})),env})).status,i<4?201:429);
+    assert.equal(env.rows.size,3);
+  });
+});
+test('daily IP counter blocks even when hourly counter is empty',async()=>{
+  const env=mockEnv();
+  await withProvider(async()=>Response.json({id:'mock'}),async()=>{
+    assert.equal((await onRequestPost({request:request(payload()),env})).status,201);
+    for(const key of env.kvItems.keys()) {
+      if(key.startsWith('ro-d:'))env.kvItems.set(key,'10');
+      if(key.startsWith('ro-h:'))env.kvItems.delete(key);
+    }
+    assert.equal((await onRequestPost({request:request(payload({request_id:'aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeee2',email:'second@example.com'})),env})).status,429);
+  });
+});
+test('provider rejection keeps pending row and retry uses the same idempotency key',async()=>{
+  const env=mockEnv(),keys=[];let reject=true;
+  await withProvider(async(_url,opts)=>{
+    keys.push(opts.headers['idempotency-key']);
+    return reject?new Response('rejected',{status:500}):Response.json({id:'mock'});
+  },async()=>{
+    assert.equal((await onRequestPost({request:request(payload()),env})).status,503);
+    assert.equal(env.rows.get(requestId).status,'pending');assert.equal(keys.length,1);
+    reject=false;
+    assert.equal((await onRequestPost({request:request(payload()),env})).status,201);
+    assert.equal(env.rows.size,1);assert.equal(env.rows.get(requestId).status,'accepted');
+    assert.equal(keys[0],keys[1]);assert.equal(keys[2],'ro-email-owner-'+requestId);
+  });
+});
+test('accepted request replay skips both provider calls even if rate limits are full',async()=>{
+  const env=mockEnv();let calls=0;
+  await withProvider(async()=>{calls++;return Response.json({id:'mock'})},async()=>{
+    await onRequestPost({request:request(payload()),env});
+    for(const key of env.kvItems.keys())env.kvItems.set(key,'99');
+    assert.equal((await onRequestPost({request:request(payload()),env})).status,200);
+    assert.equal(calls,2);assert.equal(env.rows.size,1);
+    assert.equal((await onRequestPost({request:request(payload({product:'advanced'})),env})).status,409);
+    assert.equal(calls,2);
+  });
+});
+test('owner notification failure does not turn accepted customer email into failure',async()=>{
+  const env=mockEnv();let calls=0;
+  await withProvider(async()=>{calls++;if(calls===2)throw Error('owner timeout');return Response.json({id:'mock'})},async()=>{
+    assert.equal((await onRequestPost({request:request(payload()),env})).status,201);
+    assert.equal(env.rows.get(requestId).status,'accepted');
+  });
+});
+test('all products and both languages send fixed content and do not relay user text',async()=>{
+  for(const product of ['essential','advanced','premium'])for(const language of ['en','es']) {
+    const env=mockEnv(),bodies=[];
+    await withProvider(async(_url,opts)=>{bodies.push(JSON.parse(opts.body));return Response.json({id:'mock'})},async()=>{
+      assert.equal((await onRequestPost({request:request(payload({product,language,message:'UNTRUSTED_TEXT_MUST_NOT_APPEAR'})),env})).status,201);
+      assert.equal(bodies.length,2);assert.ok(!bodies[0].text.includes('UNTRUSTED_TEXT'));
+      assert.ok(bodies[0].text.includes(language==='es'?'Gracias por solicitar':'Thank you for requesting'));
+      if(product!=='essential')assert.ok(!bodies[0].text.includes('1,199'));
+      if(product==='premium')assert.match(bodies[0].text,language==='es'?/todavía no está a la venta/:/not currently offered for sale/);
+    });
+  }
+});
+
