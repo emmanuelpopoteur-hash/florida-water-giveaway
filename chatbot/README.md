@@ -133,3 +133,8 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - These are native browser validation observations, not independent proof that a backend request was absent. Server-side invalid-email and consent rejection are covered by automated tests.
 - Do not use an arbitrary valid-looking address such as `abc@gmail.com` for send testing; use only a mailbox controlled or explicitly authorized by the owner.
 - The combined local suite for requested emails and staging retention has 20 passing tests. The retention tests are included in the PR workflow.
+
+### Colombia iPhone evidence and copy correction — 2026-11-03
+- Owner screenshots on the Cali staging page show Spanish guidance, Cali/manual-email actions and no U.S. automated email form. The Pricing action explicitly states Colombian prices have not been set; no U.S. price is displayed.
+- The email-intent answer still mentioned U.S. product tiers and offering an automated email. Corrected both dictionary entries to describe Cali options and manual contact only, consistent with the existing Colombia form exclusion.
+- JavaScript syntax check passed. The corrected text still requires a refreshed staging/iPhone check after deployment; screenshots above establish the behavior before this copy correction.
