@@ -30,3 +30,19 @@ Request from the official Osceola County Property Appraiser a list of deeded res
 
 Official custom-request form: https://datarequest.property-appraiser.org/
 Official data page: https://www.property-appraiser.org/data/
+
+
+## QA verification — Nov 3, 2026
+- The Welcome Home landing page rendered on an iPhone in both EN and ES.
+- On the **staging preview**, the real form submitted `PRUEBA WELCOME HOME` with `source=water-test-qr` and `campaign=welcome_home_2026_sc01`. The row was verified in staging leads D1 and the owner received an alert. The exact test lead was then deleted. A mirror diagnostic reported `service_binding_unavailable`, consistent with the preview environment not having CRM binding or secret.
+- On the **staging project production environment** (`legacy-water-staging.pages.dev`), a synthetic request `QA WELCOME HOME CRM` was posted via the actual `/api/leads` HTTP handler, with `source=qr` and `campaign=welcome_home_2026_crmqa`. Response was **201 saved=true**. Independently verified one matching row in `legacy-water-leads-staging` and one in `legacy-water-crm-staging`, both retaining `source=water-test-qr` and the campaign. Mirror diagnostic recorded **accepted HTTP 201**.
+- The exact synthetic record was removed from **both** staging D1 databases with four-field safeguards; both databases were checked and returned 0 remaining records for the test ID. Operational diagnostic remains for audit.
+- This proves the **form -> staging leads D1 -> stage CRM** path in the staging project production environment. It does **not** mean the welcome-home preview has a CRM binding or that the public Legacy Water site has been deployed.
+- Staging Cloudflare deployments for the updated PR (which adds `Campaign:` to owner email notices) report success; the new notification field has not been independently checked via a new preview message.
+- **No changes** to `legacy-water-production` project production configuration, its D1 lead data, production CRM, production branch, or mailed postcards.
+
+### Remaining gates before production merge and printing
+1. Final legal, food-production and gift-offer review: exact mini cake, permitted recipe/packaging, size, pickup area, redemption restrictions and expiration; update landing terms to remove placeholders.
+2. Validate the 50 selected properties and USPS-deliverable mailing addresses. Do not use protected or confidential owner information.
+3. Test and approve final public URL and QR, verify analytics consent and campaign attribution in deployed site, then generate print artwork.
+4. Decide responsible operational owner for booking confirmation, completed-test verification, voucher issuance and redemption.
