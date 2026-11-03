@@ -77,7 +77,7 @@ Important distinctions:
 - The backend does not establish a visitor's geographic location; the Colombia exclusion is in the advisor UI.
 
 Still required before considering release:
-- Remaining real iPhone checks: verify consent starts unchecked on a fresh form, complete keyboard/scroll/close behavior and Colombia email-flow exclusion. Product delivery and native invalid-email/no-consent blockers have evidence below.
+- Remaining real iPhone checks: verify consent starts unchecked on a fresh form, complete keyboard/scroll/close behavior. Colombia email-flow exclusion and corrected copy are confirmed below. Product delivery and native invalid-email/no-consent blockers have evidence below.
 - Real staging retry/replay validation with the original request ID, checking provider logs for duplicates; current replay evidence is mocked.
 - Decide whether retained earlier-language actions are acceptable or require a UI fix. Recheck the translated dropdown in Spanish on iPhone.
 - Implement and verify the owner-approved retention policy below, including D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. Staging D1 cleanup is configured as described below; its first scheduled execution has not been observed.
@@ -137,4 +137,5 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 ### Colombia iPhone evidence and copy correction — 2026-11-03
 - Owner screenshots on the Cali staging page show Spanish guidance, Cali/manual-email actions and no U.S. automated email form. The Pricing action explicitly states Colombian prices have not been set; no U.S. price is displayed.
 - The email-intent answer still mentioned U.S. product tiers and offering an automated email. Corrected both dictionary entries to describe Cali options and manual contact only, consistent with the existing Colombia form exclusion.
-- JavaScript syntax check passed. The corrected text still requires a refreshed staging/iPhone check after deployment; screenshots above establish the behavior before this copy correction.
+- JavaScript syntax check passed. The Cali page now references a versioned advisor asset (`v=20261103-cali-email`) to avoid reusing the previous cached script.
+- Cloudflare reported successful deployment of commit `f007aaa0ab2df648496c07b6ee12d3751950d776`. The owner's subsequent 11:48 iPhone screenshot confirms the corrected Cali/manual-contact answer, no U.S. product-tier offer and no automated email form. This closes the observed Colombia email-intent copy issue; it does not establish backend geographic enforcement.
