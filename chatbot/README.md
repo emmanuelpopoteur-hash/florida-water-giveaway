@@ -77,10 +77,10 @@ Important distinctions:
 - The backend does not establish a visitor's geographic location; the Colombia exclusion is in the advisor UI.
 
 Still required before considering release:
-- Real iPhone validation of English and remaining product selections; verify consent starts unchecked, invalid email/no consent cannot submit, keyboard/scroll/close behavior, and Colombia email-flow exclusion.
+- Remaining real iPhone checks: verify consent starts unchecked on a fresh form, complete keyboard/scroll/close behavior and Colombia email-flow exclusion. Product delivery and native invalid-email/no-consent blockers have evidence below.
 - Real staging retry/replay validation with the original request ID, checking provider logs for duplicates; current replay evidence is mocked.
 - Decide whether retained earlier-language actions are acceptable or require a UI fix. Recheck the translated dropdown in Spanish on iPhone.
-- Implement and verify the owner-approved retention policy below, including D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. No automatic deletion has been configured or run.
+- Implement and verify the owner-approved retention policy below, including D1, owner-alert mailboxes/forwarding, provider logs, and backup recovery windows. Staging D1 cleanup is configured as described below; its first scheduled execution has not been observed.
 - Owner selected a 30-day personal-data retention period on 2026-11-03, with staging test records limited to 7 days. Implementation and verification remain release gates.
 - Record the remaining evidence before marking the PR ready. Production migration, KV binding, WAF, deployment and smoke test remain a separate authorized rollout; do not perform those steps as part of staging verification.
 - No customer-facing production configuration has been changed and the PR has not been merged.
@@ -101,7 +101,7 @@ Implementation scope:
 2. Owner mailboxes: remove expired owner alerts and controlled forwarded copies under the same window. The business does not control a customer's copy of the requested message.
 3. Provider records and backups: verify actual configurable retention, document any provider-controlled recovery/log windows, and reapply deletion after a restore before re-enabling service. Do not promise immediate erasure from provider backups.
 4. Keep deletion evidence limited to aggregate counts and timestamps, without recording deleted email addresses.
-5. Add and test a cleanup mechanism, with a dry run and an environment-specific cutoff, before general release. This policy has been defined; automated enforcement has not been implemented.
+5. Add and test a cleanup mechanism, with a dry run and an environment-specific cutoff, before general release. This policy has been defined; staging D1 enforcement is configured below. Other retention scopes remain outstanding.
 
 Read-only staging dry run (no deletion):
 ```sql
@@ -115,7 +115,7 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - D1 confirms one additional `premium`/`en` request with consent timestamp and `accepted` status. There are exactly three staging request rows in total, one per product.
 - Real delivery coverage now includes Essential/Spanish, Advanced/English and Premium/English. This does not establish all six product/language combinations or remaining validation/replay/Colombia/mobile checks.
 - No additional successful sends should be attempted from the same IP in the current UTC hour; the 3/IP/hour allowance has been used by the three successful requests. Do not clear counters or relax limits.
-- Automated retention enforcement, real replay validation, remaining UI checks and production rollout remain outstanding. PR remains a draft.
+- Observation of the first staging cleanup run, other retention scopes, real replay validation, remaining UI checks and production rollout remain outstanding. PR remains a draft.
 
 ### Staging retention enforcement — 2026-11-03
 - Source: `scripts/ro-retention-staging.js`. Deployed as the separate Worker `legacy-ro-retention-staging`, bound only to the staging D1 database.
@@ -126,3 +126,10 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - Local runtime checks verified dry-run behavior, guard failures and the HTTP 404. No scheduled production cleanup exists.
 - Configuration is active, but a real scheduled execution has not yet been observed. Verify its aggregate deletion counts after its first run; logs contain no email addresses.
 - D1 still contains all three recent test records. Production cleanup (30 days), controlled mailbox copies, provider-log retention and backup windows remain release gates.
+
+### iPhone form validation evidence — 2026-11-03
+- With an owner-controlled valid email and consent unchecked, submitting displayed the browser's checkbox validation message ("Select this check..."). No success state was shown.
+- With the literal invalid address `abc`, submitting displayed "Enter an email address". Consent was also unchecked in that screenshot, so this establishes the email field's native validation priority, not an isolated consent-checked submission.
+- These are native browser validation observations, not independent proof that a backend request was absent. Server-side invalid-email and consent rejection are covered by automated tests.
+- Do not use an arbitrary valid-looking address such as `abc@gmail.com` for send testing; use only a mailbox controlled or explicitly authorized by the owner.
+- The combined local suite for requested emails and staging retention has 20 passing tests. The retention tests are included in the PR workflow.
