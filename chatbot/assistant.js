@@ -22,7 +22,7 @@ shipping:colombia?"La importación y el transporte a Cali siguen en evaluación;
 warranty:"La garantía depende del equipo y fabricante finalmente seleccionados. Se entregarán condiciones por escrito antes de cualquier pago.",
 bottled:"Aunque compres agua embotellada para beber, el agua del hogar también se utiliza para ducharse, cocinar, lavar y cuidar electrodomésticos. Podemos evaluar RO, toda la casa o ambos.",
 human:"Este es un chat automatizado. Para atención humana puedes escribir a info@legacywaterusa.com o solicitar que te llamemos.",
-email:"Puedes solicitar por correo información sobre Essential, Advanced o Premium H₂. Si el servicio está disponible, te pediré tu email y autorización para enviarte una única respuesta; de lo contrario, puedes preparar un correo para Legacy Water USA.",
+email:colombia?"Para conocer las opciones RO en evaluación para Cali, puedes ver la página de Cali o escribir a info@legacywaterusa.com. El envío automático de información de sistemas de EE. UU. no está disponible en esta página.":"Puedes solicitar por correo información sobre Essential, Advanced o Premium H₂. Si el servicio está disponible, te pediré tu email y autorización para enviarte una única respuesta; de lo contrario, puedes preparar un correo para Legacy Water USA.",
 fallback:"Puedo orientarte sobre RO para beber, toda la casa, agua de pozo, UV, precios, garantía y mantenimiento. ¿Qué te interesa?"
 },
 links:{quote:"Solicitar cotización",test:"Prueba gratis en Florida",catalog:"Ver opciones",callback:"Solicitar llamada",mail:"Escribir un correo",compose:"Preparar correo",receive:"Recibir información por email",col:"Ver opciones Cali"},
@@ -47,7 +47,7 @@ shipping:colombia?"Importation and delivery to Cali are still under review. Ther
 warranty:"Warranty coverage depends on the final product and manufacturer. Terms will be provided in writing before payment.",
 bottled:"Even if you buy bottled water for drinking, your home uses water for showers, cooking, cleaning and appliances. We can explore RO, whole-home treatment or both.",
 human:"This is an automated chat. Email info@legacywaterusa.com for personal assistance or request a callback.",
-email:"You can request information about Essential, Advanced, or Premium H₂ by email. If this service is available, I’ll ask for your address and permission to send one message; otherwise, you can compose an email to Legacy Water USA.",
+email:colombia?"For RO options under evaluation in Cali, view the Cali page or email info@legacywaterusa.com. Automated information emails about U.S. systems are not available on this page.":"You can request information about Essential, Advanced, or Premium H₂ by email. If this service is available, I’ll ask for your address and permission to send one message; otherwise, you can compose an email to Legacy Water USA.",
 fallback:"I can help with drinking-water RO, whole-home treatment, well water, UV, pricing, warranty and maintenance. What interests you?"
 },
 links:{quote:"Request quote",test:"Free Florida water test",catalog:"Explore options",callback:"Request callback",mail:"Email Legacy",compose:"Compose email",receive:"Email me product information",col:"View Cali options"},
