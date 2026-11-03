@@ -179,3 +179,8 @@ This is an operational runbook only. No mailbox deletion, mail filter, recurring
 - Confirmed: staging migration and separation, bindings and working send credentials, Access and staging-host WAF configuration, three product deliveries, native form blockers, corrected Colombia UI, owner-reported mobile behavior, accepted replay without an additional provider message, and automated email/retention tests.
 - Pending: first scheduled cleanup execution and its aggregate result; controlled mailbox cleanup/enforcement; actual Workers recovery window; Spanish dropdown recheck and decision on old-language chat actions. A real provider-failure retry is not claimed as tested.
 - Provider retention exception for staging is approved above. Production rollout, thirty-day production cleanup and production verification remain outside this staging task. Keep the PR in draft until remaining release gates are resolved.
+
+### Spanish form and dropdown — desktop evidence, 2026-11-03
+- Owner-provided desktop screenshots at 12:53–12:54 America/New_York show a newly opened Spanish email form with an empty email field and unchecked consent.
+- The expanded selector shows all three translated labels: `Essential — RO + UV + alcalino`, `Advanced — requiere cotización`, and `Premium H₂ — solo interés`.
+- These screenshots verify desktop rendering and the observed fresh-form consent state. They do not independently close the specifically requested iPhone dropdown check. No additional send was requested for this UI check.
