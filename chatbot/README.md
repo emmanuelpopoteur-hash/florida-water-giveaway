@@ -159,3 +159,23 @@ WHERE julianday(created_at) < julianday('now', '-7 days');
 - Resend usage currently reports six emails sent today, zero contacts and zero broadcasts. Usage limits alone do not independently establish a contractual retention plan.
 - Cloudflare account subscription lookup was denied because the OAuth connector lacks billing permissions. The actual Workers Time Travel window remains unverified; do not infer it from the zone plan.
 - This approval does not cover owner-mailbox retention, forwarded copies, a production rollout, new campaigns, paid plan changes or support messages. Controlled mailbox cleanup and observation of the first scheduled staging D1 cleanup remain outstanding. The thirty-day production policy and separate rollout requirements are unchanged.
+
+### Controlled mailbox cleanup procedure — prepared, not executed
+For the three staging tests created November 3, review controlled owner-alert copies after their seven-day cutoff on November 10 (after 11:20 America/New_York covers all three). Match each message's request reference, not only its generic subject:
+- Essential: `60eb8277-1243-459c-ac91-2eb3764ac5f3`
+- Advanced: `331f2367-b58e-434f-b1c0-461294c41d31`
+- Premium: `b675ae14-1cfe-4800-9f2b-a670f8773185`
+
+Procedure:
+1. In the controlled owner mailbox and known forwarding destinations, locate the three alerts using the exact references. Inspect matching messages before removal; do not select unrelated water-test, CRM, RO inquiry or evaluation notifications.
+2. Remove expired controlled alert copies, including controlled sent/forwarded copies if present. Moving to Trash alone is not immediate permanent deletion; account for the mailbox's Trash, recovery and any administrative retention windows. Do not purge unrelated Trash.
+3. The Premium test customer message went to a business-controlled address as well; separately locate that specific November 3 test message by recipient, subject, timestamp and product content. Its subject is shared with other requested emails, so a subject-only deletion rule is unsuitable.
+4. Record only the cleanup date, number of removed copies and any unresolved provider/admin recovery windows. Do not copy message bodies or addresses into cleanup logs.
+5. A restored mailbox or database backup must be checked for expired test data before the flow is re-enabled. Customer-controlled copies are outside business control.
+
+This is an operational runbook only. No mailbox deletion, mail filter, recurring mailbox job or future reminder has been configured. Full mailbox enforcement remains a release gate.
+
+### Remaining verification summary
+- Confirmed: staging migration and separation, bindings and working send credentials, Access and staging-host WAF configuration, three product deliveries, native form blockers, corrected Colombia UI, owner-reported mobile behavior, accepted replay without an additional provider message, and automated email/retention tests.
+- Pending: first scheduled cleanup execution and its aggregate result; controlled mailbox cleanup/enforcement; actual Workers recovery window; Spanish dropdown recheck and decision on old-language chat actions. A real provider-failure retry is not claimed as tested.
+- Provider retention exception for staging is approved above. Production rollout, thirty-day production cleanup and production verification remain outside this staging task. Keep the PR in draft until remaining release gates are resolved.
