@@ -46,3 +46,10 @@ Official data page: https://www.property-appraiser.org/data/
 2. Validate the 50 selected properties and USPS-deliverable mailing addresses. Do not use protected or confidential owner information.
 3. Test and approve final public URL and QR, verify analytics consent and campaign attribution in deployed site, then generate print artwork.
 4. Decide responsible operational owner for booking confirmation, completed-test verification, voucher issuance and redemption.
+
+## Tasting kit — decision (Nov 3, 2026)
+- Confirmed: **one unfilled Dominican mini cake** (no filling inside) plus **three traditional fillings in separate, individually sealed food-safe containers**. This is a tasting experience for La Casita Celebrations, not a generic cake gift.
+- Flavor candidates previously discussed: guava, pineapple and dulce de leche. **The specific three flavors are not yet approved**; final options depend on recipe, production licensing, safe storage, allergen labeling and whether refrigeration is required.
+- Tasting-kit voucher continues to be delivered after the complimentary in-home water evaluation; no water system purchase is required. Local bakery pickup arrangement remains to be finalized.
+- Confirm mini cake size, filling container sizes, ingredient/allergen labels, temperature control, permitted food production and distribution, total cost, voucher expiration and fulfillment capacity for up to 50 kits *before* printing or public launch.
+- The customer should be invited through an optional, separate QR to browse La Casita Celebrations' cake catalog and place future orders (no automatic marketing consent).
