@@ -110,3 +110,11 @@
   .water-story__stage-caption{display:none!important}
   .water-story__progress::after{transform:scaleX(1)!important}
 }
+/* Cross-browser timing: give scroll-linked animations a non-zero duration. */
+@supports (animation-timeline:view()){
+  .water-story__step,.water-story__drop,
+  .water-story__stage:before,.water-story__stage:after,
+  .water-story__stage-caption,.water-story__progress::after{
+    animation-duration:1ms;
+  }
+}
