@@ -118,3 +118,31 @@
     animation-duration:1ms;
   }
 }
+
+/* Review fix: solid mobile stage, less obstruction, and phase labels tied to visible cards. */
+.water-story__stage{
+  background:radial-gradient(circle at 50% 42%,#236c7c 0%,#104457 48%,#061c2c 100%);
+}
+.water-story.story-ready .water-story__stage-label{display:none!important}
+.water-story.story-ready .water-story__stage-caption{animation:none!important;opacity:0;translate:none;display:none!important}
+.water-story.story-ready .water-story__stage-caption.is-active{
+  display:block!important;opacity:1!important;translate:none!important;
+}
+.water-story.story-ready .water-story__progress::after{
+  animation:none!important;
+  transform:scaleX(var(--story-progress,.333))!important;
+  transition:transform .3s ease;
+}
+@media(max-width:760px){
+  .water-story__stage{
+    height:176px;min-height:176px;
+    background:radial-gradient(circle at 50% 39%,#277889 0%,#114f5f 48%,#061c2c 100%);
+  }
+  .water-story__drop{width:76px;height:76px}
+  .water-story__stage-label,.water-story__stage-caption{bottom:27px}
+  .water-story__steps{gap:24px}
+  .water-story__step{scroll-margin-top:196px}
+}
+@media(prefers-reduced-motion:reduce){
+  .water-story.story-ready .water-story__progress::after{transition:none!important}
+}
