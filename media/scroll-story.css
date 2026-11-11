@@ -1,0 +1,181 @@
+/* Bilingual, accessible native scroll animation experiment — staging only. */
+.water-story{position:relative;overflow:clip;padding:105px 0 115px;background:radial-gradient(circle at 15% 46%,#256e7770,transparent 39%),linear-gradient(145deg,#051925,#083343 65%,#0b5158);color:#f2fcfc;view-timeline-name:--water-story;view-timeline-axis:block}
+.water-story .container{position:relative}
+.water-story__intro{max-width:790px;margin-bottom:52px}
+.water-story__kicker{font:800 11px Manrope,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:#95ebe1}
+.water-story__intro h2{font:800 clamp(37px,5vw,66px)/1.07 Manrope,sans-serif;letter-spacing:-.055em;color:white;margin:18px 0}
+.water-story__intro p{font-size:17px;line-height:1.65;color:#c9e5e3;max-width:650px}
+.water-story__shell{display:grid;grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);gap:clamp(28px,5vw,75px);align-items:start}
+.water-story__stage{position:sticky;top:26px;min-height:510px;display:grid;place-items:center;isolation:isolate;overflow:hidden;border:1px solid #b2e9e13d;border-radius:30px;background:radial-gradient(circle,#287b87a6,#0e43557f 40%,#062431 76%);box-shadow:0 25px 70px #00131c66}
+.water-story__stage:before,.water-story__stage:after{content:"";position:absolute;inset:13%;border:1px solid #a7ebe350;border-radius:50%}
+.water-story__stage:after{inset:24%;border-color:#a7ebe373}
+.water-story__drop{z-index:1;width:135px;height:135px;transform:rotate(45deg);border-radius:0 60% 60% 60%;background:linear-gradient(135deg,#f5ffff,#6de3de 45%,#0097aa);box-shadow:inset -18px -16px 30px #00628c88,0 12px 60px #62edeb44}
+.water-story__drop:after{content:"";position:absolute;left:24%;top:18%;width:22px;height:45px;border-radius:50%;background:#fff8;filter:blur(7px);transform:rotate(-30deg)}
+.water-story__stage-label{position:absolute;bottom:31px;left:14px;right:14px;text-align:center;text-transform:uppercase;letter-spacing:.2em;font:800 10px/1.5 Manrope,sans-serif;color:#a9e8e0}
+.water-story__steps{display:grid;gap:30px;padding:8px 0}
+.water-story__step{min-height:235px;border-radius:24px;padding:30px;border:1px solid #b7e5e136;background:#ffffff0b;backdrop-filter:blur(5px)}
+.water-story__step-number{display:inline-grid;place-items:center;width:43px;height:43px;border-radius:13px;border:1px solid #77e5d5a3;color:#a2f5e7;font:800 13px Manrope,sans-serif}
+.water-story__step h3{font:800 clamp(24px,2.5vw,31px)/1.2 Manrope,sans-serif;letter-spacing:-.03em;color:white;margin:19px 0 11px}
+.water-story__step p{color:#c9e0e0;font-size:15px;line-height:1.7;max-width:480px;margin:0}
+.water-story__cta{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:25px}
+.water-story__cta .button{background:#68ded3;color:#062e38}
+.water-story__cta small{font-size:12px;color:#c9e0e0}
+@keyframes water-story-reveal{from{opacity:.48;translate:0 40px}to{opacity:1;translate:0 0}}
+@keyframes water-story-brighten{from{scale:.85;filter:brightness(.8)}to{scale:1.1;filter:brightness(1.2)}}
+@supports (animation-timeline:view()){
+ .water-story__step{animation:water-story-reveal linear both;animation-timeline:view(block);animation-range:entry 5% cover 43%}
+ .water-story__drop{animation:water-story-brighten linear both;animation-timeline:--water-story;animation-range:entry 5% exit 70%}
+}
+@media(max-width:760px){
+ .water-story{padding:75px 0 85px}
+ .water-story__intro{margin-bottom:32px}
+ .water-story__intro p{font-size:15px}
+ .water-story__shell{grid-template-columns:1fr;gap:26px}
+ .water-story__stage{position:relative;top:auto;min-height:290px;border-radius:23px}
+ .water-story__drop{width:106px;height:106px}
+ .water-story__stage-label{bottom:17px}
+ .water-story__steps{gap:16px}
+ .water-story__step{min-height:0;padding:26px}
+ .water-story__step h3{font-size:24px}
+ .water-story__cta .button{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.water-story__step,.water-story__drop{animation:none!important;opacity:1!important;translate:none!important;scale:1!important;filter:none!important}}
+
+/* Keep the assistant available without covering the story on narrow screens. */
+@media(max-width:760px){
+  body:has(#water-story) .lw-chat-button{
+    right:12px;
+    bottom:calc(12px + env(safe-area-inset-bottom,0px));
+    min-height:46px;
+    padding:7px 12px 7px 8px;
+    gap:5px;
+    border-radius:24px;
+    box-shadow:0 6px 18px #052e3690;
+  }
+  body:has(#water-story) .lw-chat-button .lw-avatar{
+    width:27px;
+    height:27px;
+    font-size:18px;
+  }
+  body:has(#water-story) .lw-chat-button .lw-online{display:none}
+  body:has(#water-story) #lw-chat-label{font-size:0}
+  body:has(#water-story) #lw-chat-label::after{content:"Help";font-size:12px}
+  html[lang="es"] body:has(#water-story) #lw-chat-label::after{content:"Ayuda"}
+}
+
+/* Scroll story v3 — a visible narrative progression on iPhone and desktop. */
+.water-story__stage-caption{display:none}
+.water-story__progress{position:absolute;z-index:4;left:26px;right:26px;bottom:13px;height:3px;border-radius:99px;overflow:hidden;background:#d2fbf72b}
+.water-story__progress::after{content:"";display:block;width:100%;height:100%;background:linear-gradient(90deg,#a4fff1,#48d9df);transform:scaleX(.28);transform-origin:left center;border-radius:inherit}
+@keyframes water-story-journey{
+  0%{translate:0 18px;scale:.76;filter:saturate(.85) brightness(.92)}
+  30%{translate:0 -11px;scale:1.07;filter:saturate(1.3) brightness(1.16)}
+  65%{translate:0 8px;scale:.93;filter:hue-rotate(22deg) brightness(1.05)}
+  100%{translate:0 -13px;scale:1.17;filter:hue-rotate(-12deg) brightness(1.28)}
+}
+@keyframes water-story-ring{
+  0%{opacity:.27;scale:.72}
+  60%{opacity:.8;scale:1.03}
+  100%{opacity:.45;scale:1.2}
+}
+@keyframes water-story-meter{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes water-story-source{0%,26%{opacity:1;translate:0 0}39%,100%{opacity:0;translate:0 -12px}}
+@keyframes water-story-home{0%,26%{opacity:0;translate:0 12px}40%,59%{opacity:1;translate:0 0}72%,100%{opacity:0;translate:0 -12px}}
+@keyframes water-story-choice{0%,60%{opacity:0;translate:0 12px}76%,100%{opacity:1;translate:0 0}}
+@supports (animation-timeline:view()){
+  .water-story__drop{animation:water-story-journey linear both;animation-timeline:--water-story;animation-range:entry 5% exit 75%}
+  .water-story__stage:before,.water-story__stage:after{animation:water-story-ring linear both;animation-timeline:--water-story;animation-range:entry 5% exit 75%}
+  .water-story__progress::after{animation:water-story-meter linear both;animation-timeline:--water-story;animation-range:entry 5% exit 75%}
+  .water-story__stage-label{display:none}
+  .water-story__stage-caption{display:block;position:absolute;z-index:4;bottom:29px;left:8px;right:8px;text-align:center;color:#c9fff3;letter-spacing:.16em;text-transform:uppercase;font:800 10px/1.5 Manrope,sans-serif;opacity:0}
+  .water-story__stage-caption--source{animation:water-story-source linear both;animation-timeline:--water-story;animation-range:entry 5% exit 75%}
+  .water-story__stage-caption--home{animation:water-story-home linear both;animation-timeline:--water-story;animation-range:entry 5% exit 75%}
+  .water-story__stage-caption--choice{animation:water-story-choice linear both;animation-timeline:--water-story;animation-range:entry 5% exit 75%}
+}
+@media(max-width:760px){
+  /* A sticky compact stage creates an actual evolving visual while cards pass below it. */
+  .water-story__shell{display:block}
+  .water-story__stage{position:sticky;top:8px;z-index:3;min-height:208px;height:208px;margin-bottom:20px;border-radius:22px;box-shadow:0 12px 48px #00131bc2}
+  .water-story__stage:before{inset:10% 30%}
+  .water-story__stage:after{inset:22% 36%}
+  .water-story__drop{width:86px;height:86px}
+  .water-story__stage-label{bottom:28px}
+  .water-story__stage-caption{bottom:28px}
+  .water-story__steps{position:relative;z-index:1}
+  .water-story__progress{left:18px;right:18px;bottom:13px}
+}
+@media(prefers-reduced-motion:reduce){
+  .water-story__stage:before,.water-story__stage:after,.water-story__progress::after,.water-story__stage-caption{animation:none!important}
+  .water-story__stage-label{display:block!important}
+  .water-story__stage-caption{display:none!important}
+  .water-story__progress::after{transform:scaleX(1)!important}
+}
+/* Cross-browser timing: give scroll-linked animations a non-zero duration. */
+@supports (animation-timeline:view()){
+  .water-story__step,.water-story__drop,
+  .water-story__stage:before,.water-story__stage:after,
+  .water-story__stage-caption,.water-story__progress::after{
+    animation-duration:1ms;
+  }
+}
+
+/* Review fix: solid mobile stage, less obstruction, and phase labels tied to visible cards. */
+.water-story__stage{
+  background:radial-gradient(circle at 50% 42%,#236c7c 0%,#104457 48%,#061c2c 100%);
+}
+.water-story.story-ready .water-story__stage-label{display:none!important}
+.water-story.story-ready .water-story__stage-caption{animation:none!important;opacity:0;translate:none;display:none!important}
+.water-story.story-ready .water-story__stage-caption.is-active{
+  display:block!important;opacity:1!important;translate:none!important;
+}
+.water-story.story-ready .water-story__progress::after{
+  animation:none!important;
+  transform:scaleX(var(--story-progress,.333))!important;
+  transition:transform .3s ease;
+}
+@media(max-width:760px){
+  .water-story__stage{
+    height:176px;min-height:176px;
+    background:radial-gradient(circle at 50% 39%,#277889 0%,#114f5f 48%,#061c2c 100%);
+  }
+  .water-story__drop{width:76px;height:76px}
+  .water-story__stage-label,.water-story__stage-caption{bottom:27px}
+  .water-story__steps{gap:24px}
+  .water-story__step{scroll-margin-top:196px}
+}
+@media(prefers-reduced-motion:reduce){
+  .water-story.story-ready .water-story__progress::after{transition:none!important}
+}
+
+/* Keep the conversion action after the sticky illustration, never underneath it. */
+.water-story__footer{
+  position:relative;
+  z-index:5;
+  margin-top:40px;
+  padding:24px 28px;
+  border:1px solid #a7e8dc59;
+  border-radius:22px;
+  background:#0d4856;
+  box-shadow:0 14px 32px #00161e25;
+}
+.water-story__footer .water-story__cta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  gap:20px;
+}
+.water-story__footer .water-story__cta .button{min-height:52px}
+.water-story__footer .water-story__cta small{font-size:13px}
+@media(max-width:760px){
+  .water-story__footer{
+    margin-top:36px;
+    padding:22px;
+  }
+  .water-story__footer .water-story__cta{
+    display:grid;
+    gap:13px;
+    text-align:center;
+  }
+  .water-story__footer .water-story__cta .button{width:100%}
+}
