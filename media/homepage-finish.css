@@ -148,6 +148,14 @@
   color:#103e45;
   letter-spacing:-.045em;
 }
+.faq-section__intro{
+  margin:-25px auto 38px;
+  max-width:620px;
+  text-align:center;
+  color:#58767b;
+  font-size:16px;
+  line-height:1.6;
+}
 .faq-section .faq-list{
   display:grid;
   gap:14px;
@@ -319,6 +327,7 @@
   .home-systems .catalog-all{font-size:14px;margin-top:28px}
   .faq-section{padding:70px 0 77px}
   .faq-section h2{margin-bottom:29px}
+  .faq-section__intro{margin:-16px auto 26px;font-size:14px}
   .faq-section .faq-list{gap:11px}
   .faq-section .faq-list summary{padding:18px;font-size:15px;gap:10px}
   .faq-section .faq-list summary::after{width:32px;height:32px}
