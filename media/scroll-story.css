@@ -146,3 +146,36 @@
 @media(prefers-reduced-motion:reduce){
   .water-story.story-ready .water-story__progress::after{transition:none!important}
 }
+
+/* Keep the conversion action after the sticky illustration, never underneath it. */
+.water-story__footer{
+  position:relative;
+  z-index:5;
+  margin-top:40px;
+  padding:24px 28px;
+  border:1px solid #a7e8dc59;
+  border-radius:22px;
+  background:#0d4856;
+  box-shadow:0 14px 32px #00161e25;
+}
+.water-story__footer .water-story__cta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0;
+  gap:20px;
+}
+.water-story__footer .water-story__cta .button{min-height:52px}
+.water-story__footer .water-story__cta small{font-size:13px}
+@media(max-width:760px){
+  .water-story__footer{
+    margin-top:36px;
+    padding:22px;
+  }
+  .water-story__footer .water-story__cta{
+    display:grid;
+    gap:13px;
+    text-align:center;
+  }
+  .water-story__footer .water-story__cta .button{width:100%}
+}
