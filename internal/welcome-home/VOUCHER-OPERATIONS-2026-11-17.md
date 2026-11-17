@@ -7,8 +7,8 @@
 - **La Casita Celebrations:** fulfills the tasting kit and optionally invites families to view its Dominican cake catalog. Do **not** transfer water-lead contact information to the bakery for marketing without a separate affirmative opt-in. A separate bakery QR is not an automatic subscription.
 
 ## Physical tasting kit
-- **1 unfilled Dominican mini cake**, and **3 traditional fillings** in three individual food-safe, prepackaged cups.
-- All recipes, cake frosting/suspiro, specific fillings, allergens, temperature requirements, food labels, weight and packaging require approval. Serving fillings separately does **not** solve food refrigeration or licensing requirements.
+- **1 traditional ¼-pound Dominican mini cake without filling**, and **3 traditional fillings** in three individual food-safe, prepackaged cups.
+- The ¼-pound designation is the traditional bakery size, not a claim that the finished packaged cake weighs exactly 4 oz. Confirm dimensions and finished weight. All recipes, cake frosting/suspiro, specific fillings, allergens, temperature requirements, food labels, weight and packaging require approval. Serving fillings separately does **not** solve food refrigeration or licensing requirements.
 - No flavor is promised yet; no product voucher can be redeemed until specific terms, pickup location, and expiry are disclosed and approved.
 
 ## Manual lifecycle
