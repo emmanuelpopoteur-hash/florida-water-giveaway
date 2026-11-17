@@ -38,3 +38,18 @@ Private file `Legacy_Water_Welcome_Home_Control_Vouchers_y_Costos_17nov2026.xlsx
 - Florida free gift disclosure law: https://www.flsenate.gov/Laws/Statutes/2026/817.415
 
 **No-Go until:** food and offer legal/operational conditions resolved, each recipient verified, working approved public URL/QR/UTM flow, bakery fulfillment capacity and pricing, voucher redemption method and manual publication/print release.
+
+
+## Physical sample kit — ¼-lb, three separate 1-fl-oz cups
+- **Confirmed by user:** 1 traditional-size **¼-lb Dominican mini cake**, without internal filling; 3 separate traditional fillings. Suspiro as the usual bakery finish (exact formula to verify). The size designation is not an independently measured net packaged weight.
+- **Proposal for one real physical prototype:** 3 food-safe prepackaged cups with lids, *1 US fluid ounce each* (~29.6mL nominal volume); NOT a confirmed production quantity or fluid-ounce weight. Flavor selection remains open.
+- Bakery to test one sample, record finished diameter, height with suspiro, actual weight, cup fill, leak resistance, presentation/taste, recipe yield, ingredient/allergen labels, temperature/food safety, and pickup.
+- **Indicative online price references (Nov 17, 2026)**, not ordered or guaranteed and excluding tax/shipping:
+  - 100 × 1-fl-oz cups with lids: $7.99 (https://business.walmart.com/ip/GUSTO-1-oz-Jello-Shot-Cups-Lids-Plastic-Portion-Cups-Lids-Disposable-Condiment-Cups-Sauce-Containers-Dressings-Dips-Samples-100-Sets/3275378788)
+  - 10 × small 5.5 × 5.5 × 4 in bakery boxes: $4.39 reference (https://catalog.webstaurantstore.com/5-1-2-x-5-1-2-x-4-white-cake-bakery-box-bundle/245554CB.html)
+  - 50 × 4 in mini cake boards: $10.99 (https://business.walmart.com/ip/LELE-LIFE-50-Pack-Gold-Foil-Mini-Cake-Boards-4in-Cardboard-Dessert-Plates-Circle-Cake-Base-Tray-Mousse-Cupcake-Chocoflan-Baking-Party-Wedding-Round/17476624532)
+- These three items yield **~$0.90 consumed packaging cost / kit**, but buying whole starter packs would require **$23.37**; for up to 50 kits, purchase 2 cup packs + 5 box packs + 1 board pack = **$48.92**, before tax/shipping. The 5.5 in box and 4 in board are only *candidates*; do not order until the baked/decorated cake is measured.
+- **Cost of complete cake, each filling, stickers and labor remains unquoted**; never present $0.90 as the entire cost.
+- Offline deliverables generated for bakery: `La_Casita_Ficha_Muestra_1_4lb_3_Rellenos.pdf` and `Legacy_Water_Welcome_Home_Kit_1_4lb_Costeo_y_Prueba.xlsx` (additional tabs added to existing voucher/cost tracker). No sensitive homeowner details uploaded to GitHub.
+- Food safety: prepackaged sampling is possible under qualifying Florida cottage-food rules, but products requiring refrigeration do not qualify for the exemption; check each filling and suspiro with FDACS / appropriate licensed food-production process. See https://www.fdacs.gov/Business-Services/Food/Food-Establishments/Cottage-Foods and https://www.flsenate.gov/Laws/Statutes/2026/500.80.
+- **All materials remain drafts; mailing and voucher release remain blocked** until owner/address checks, approved recipes/labels, commercial terms and production QR are complete.
