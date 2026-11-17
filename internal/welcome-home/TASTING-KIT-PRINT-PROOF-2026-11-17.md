@@ -27,3 +27,10 @@ Completa una evaluación gratuita del agua en tu hogar con cita confirmada de Le
 
 ### Still blocked
 All 10 addresses remain unverified for mailing. Cake production and flavors, legal terms, final QR, redemption controls and any real commercial send remain unapproved.
+
+
+## Revised proof artifacts — quarter-pound traditional size (Nov 17)
+- Newly regenerated offline draft PDFs: `Legacy_Water_La_Casita_Voucher_Cuarto_Libra_3_Rellenos_BORRADOR.pdf` (4 pages) and `Legacy_Water_Welcome_Home_10_Cartas_Cuarto_Libra_BORRADOR.pdf` (20 pages, 10 household candidates × EN/ES). Both clearly show **traditional ¼-lb Dominican mini cake, no interior filling, with 3 separate traditional filling cups**.
+- Both PDFs passed visual rendering review and page-count checks. The traditional **¼-lb designation is a size label, not a verified net weight**; confirm actual finished size/weight and any legally required labels with the bakery before publication.
+- All 10 recipients remain unverified and **NO ENVIAR**. The letters contain homeowner information; PDFs are held offline and **not** committed to public GitHub. No production URL/QR, redeemed coupon code, or mail dispatch has been activated.
+- Specific flavors, individual filling-cup portion, allergen/temperature compliance, kit cost, redemption/pickup and expiry remain open.
