@@ -9,6 +9,14 @@
   let choice = null;
   let initialized = false;
   let banner;
+  let privacyControl;
+  const isWelcomeHome = (() => {
+    const path = location.pathname;
+    if (path.startsWith('/welcome-home/')) return true;
+    if (!path.startsWith('/check/')) return false;
+    const campaign = new URLSearchParams(location.search).get('utm_campaign') || '';
+    return /^welcome_home_2026_[a-z0-9_-]{1,24}$/.test(campaign);
+  })();
 
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
@@ -34,7 +42,8 @@
       accept: 'Allow analytics',
       decline: 'No thanks',
       settings: 'Privacy choices',
-      policy: 'Privacy notice'
+      policy: 'Privacy notice',
+      shortDetail: 'May we use optional analytics to improve this site? Form contact details are not sent to Google Analytics.'
     },
     es: {
       title: 'Análisis opcional del sitio',
@@ -42,7 +51,8 @@
       accept: 'Permitir análisis',
       decline: 'No, gracias',
       settings: 'Preferencias de privacidad',
-      policy: 'Aviso de privacidad'
+      policy: 'Aviso de privacidad',
+      shortDetail: '¿Nos permites usar análisis opcionales para mejorar este sitio? No enviamos tus datos de contacto a Google Analytics.'
     }
   };
 
@@ -88,6 +98,7 @@
     try { localStorage.setItem(STORAGE_KEY, next); } catch (_) {}
     banner?.remove();
     banner = null;
+    if (privacyControl) privacyControl.hidden = false;
     if (revoked) {
       try { window.gtag?.('consent', 'update', {analytics_storage: 'denied'}); } catch (_) {}
       location.reload(); // stop the previously loaded analytics script in this tab
@@ -103,20 +114,23 @@
     banner = document.createElement('section');
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', t.title);
-    banner.style.cssText = 'position:fixed;left:12px;bottom:55px;z-index:2147480000;width:min(410px,calc(100vw - 24px));background:#fff;color:#123242;border:1px solid #bed5d3;box-shadow:0 12px 40px #061b2940;border-radius:16px;padding:18px;font:14px/1.5 system-ui,-apple-system,sans-serif;';
+    if (isWelcomeHome) banner.className = 'lw-welcome-analytics-banner';
+    banner.style.cssText = isWelcomeHome
+      ? 'position:fixed;left:10px;bottom:42px;z-index:2147480000;width:min(360px,calc(100vw - 20px));background:#fff;color:#123242;border:1px solid #bed5d3;box-shadow:0 8px 24px #061b2936;border-radius:13px;padding:11px 13px;font:12px/1.42 system-ui,-apple-system,sans-serif;'
+      : 'position:fixed;left:12px;bottom:55px;z-index:2147480000;width:min(410px,calc(100vw - 24px));background:#fff;color:#123242;border:1px solid #bed5d3;box-shadow:0 12px 40px #061b2940;border-radius:16px;padding:18px;font:14px/1.5 system-ui,-apple-system,sans-serif;';
     const title = document.createElement('strong');
     title.textContent = t.title;
-    title.style.cssText = 'display:block;font-size:16px;margin-bottom:5px;';
+    title.style.cssText = isWelcomeHome ? 'display:block;font-size:13px;margin-bottom:4px;' : 'display:block;font-size:16px;margin-bottom:5px;';
     const detail = document.createElement('p');
-    detail.textContent = t.detail;
-    detail.style.cssText = 'margin:0 0 12px;';
+    detail.textContent = isWelcomeHome ? t.shortDetail : t.detail;
+    detail.style.cssText = isWelcomeHome ? 'margin:0 0 7px;' : 'margin:0 0 12px;';
     const actions = document.createElement('div');
-    actions.style.cssText = 'display:flex;flex-wrap:wrap;gap:9px;align-items:center;';
+    actions.style.cssText = isWelcomeHome ? 'display:flex;flex-wrap:wrap;gap:6px;align-items:center;' : 'display:flex;flex-wrap:wrap;gap:9px;align-items:center;';
     function button(label, value, primary) {
       const b = document.createElement('button');
       b.type = 'button';
       b.textContent = label;
-      b.style.cssText = 'border:1px solid #087c82;border-radius:7px;padding:9px 12px;cursor:pointer;font:600 13px system-ui;background:' + (primary ? '#087c82;color:#fff;' : '#fff;color:#087c82;');
+      b.style.cssText = 'border:1px solid #087c82;border-radius:7px;padding:' + (isWelcomeHome ? '6px 9px' : '9px 12px') + ';cursor:pointer;font:600 ' + (isWelcomeHome ? '12px' : '13px') + ' system-ui;background:' + (primary ? '#087c82;color:#fff;' : '#fff;color:#087c82;');
       b.addEventListener('click', () => setChoice(value));
       return b;
     }
@@ -124,9 +138,10 @@
     const link = document.createElement('a');
     link.href = policy;
     link.textContent = t.policy;
-    link.style.cssText = 'font-size:12px;margin-top:10px;display:inline-block;color:#087c82;';
+    link.style.cssText = isWelcomeHome ? 'font-size:11px;margin-top:6px;display:inline-block;color:#087c82;' : 'font-size:12px;margin-top:10px;display:inline-block;color:#087c82;';
     banner.append(title, detail, actions, link);
     document.body.appendChild(banner);
+    if (isWelcomeHome && privacyControl) privacyControl.hidden = true;
   }
 
   function setupUI() {
@@ -137,6 +152,7 @@
     control.style.cssText = 'position:fixed;left:12px;bottom:10px;z-index:2147479999;border:1px solid #9cb6ba;border-radius:999px;padding:5px 9px;background:#fff;color:#244653;font:11px/1.4 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 2px 7px #061b2920;';
     control.addEventListener('click', showBanner);
     document.body.appendChild(control);
+    privacyControl = control;
     if (!choice) showBanner();
   }
 
