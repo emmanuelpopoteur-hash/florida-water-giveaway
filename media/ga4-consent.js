@@ -149,9 +149,12 @@
     const control = document.createElement('button');
     control.type = 'button';
     control.textContent = t.settings;
-    control.style.cssText = 'position:fixed;left:12px;bottom:10px;z-index:2147479999;border:1px solid #9cb6ba;border-radius:999px;padding:5px 9px;background:#fff;color:#244653;font:11px/1.4 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 2px 7px #061b2920;';
+    control.style.cssText = isWelcomeHome
+      ? 'position:static;display:inline-flex;align-items:center;border:1px solid #9cb6ba;border-radius:999px;padding:6px 10px;margin:12px 0 0;background:#fff;color:#244653;font:11px/1.4 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 2px 7px #061b2920;'
+      : 'position:fixed;left:12px;bottom:10px;z-index:2147479999;border:1px solid #9cb6ba;border-radius:999px;padding:5px 9px;background:#fff;color:#244653;font:11px/1.4 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 2px 7px #061b2920;';
     control.addEventListener('click', showBanner);
-    document.body.appendChild(control);
+    const destination = isWelcomeHome ? document.querySelector('footer') : null;
+    (destination || document.body).appendChild(control);
     privacyControl = control;
     if (!choice) showBanner();
   }
