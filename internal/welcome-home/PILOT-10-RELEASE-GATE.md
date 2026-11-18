@@ -78,3 +78,9 @@ Confirmed customer-facing terms were updated in EN/ES landing and form on 2026-1
 - Produced an **offline, two-up US Letter voucher print proof**, `Welcome_Home_Voucher_2up_PRUEBA_NO_ENTREGAR.pdf`, with fields for unique voucher ID, issuance date, expiration date, and issuing representative; banner `PROOF - DO NOT ISSUE`. This is a conversation artifact, not committed or an issued voucher. Pickup remains explicitly **TO BE CONFIRMED**.
 - Voucher remains valid **30 calendar days from handoff only after a completed eligible free home water evaluation**; the 30 days refers to voucher redemption, not food shelf life. No purchase required; not included in postal envelope.
 - **Release remains NO GO**: physical voucher must be finalized after pickup details, lawful safe production/packaging/allergen terms, funding/capacity, postal verification, written lender/RO/price approval and public QR checks. No production change or mailing.
+
+## Commercial/photo audit checkpoint — 2026-11-18
+- See `internal/welcome-home/COMMERCIAL-PHOTO-GATE-2026-11-18.md` for independent current-source review, safe interim copy, approvals and offline authentic installation-photo extraction.
+- Existing printed B proof embeds an unaltered crop of the original owner-provided Ecoverse installation photo. A 672×909 PNG and ≈43 KB WebP derivative were recovered locally, **not uploaded into the website, not public**, and do not replace the original landscape photo. Public usage permission remains pending.
+- No current, signed SKU/installed-price terms, exact lender six-month promotion or RO-bundle authorization was established. $3,990, six months without payments and RO inclusion **must not be released** based on the draft alone.
+- **No authorization for mailing or merge; keep NO GO.**
