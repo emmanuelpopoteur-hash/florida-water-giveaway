@@ -1,0 +1,113 @@
+/* Welcome Home approved mobile look — 2026-11-18.
+   Preserves the existing EN/ES interactions, attribution and form routes. */
+:root {--approved-navy:#082c63;--approved-sky:#e9f8ff;--approved-yellow:#ffd011;--approved-pink:#e86a96}
+.site-header{box-shadow:0 3px 12px #16324c0b}
+.site-header-inner{min-height:88px}
+.brands{gap:13px}
+.legacy-brand{font-size:19px}
+.brand-separator{height:45px;background:#adc9d7}
+.campaign-identity{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:171px}
+.welcome-script{font:700 35px/.98 "Dancing Script",cursive;letter-spacing:-.04em;color:#092d64;white-space:nowrap;position:relative;transform:rotate(-4deg)}
+.welcome-script::after{content:"";width:80%;height:3px;background:var(--approved-yellow);display:block;margin:3px auto 0;border-radius:50%;transform:rotate(-4deg)}
+.casita-brand{font:800 11px/1.2 "DM Sans",sans-serif;color:#9b1745;text-align:center;white-space:nowrap;transform:none}
+.casita-brand span{display:initial}
+.hero{background:linear-gradient(97deg,#fff 0%,#fcfeff 34%,#e5f7ff 70%,#c7ecff 100%)}
+.hero::before{background:linear-gradient(90deg,#fff9 0%,transparent 68%);opacity:1}
+.hero-grid{grid-template-columns:1.06fr 1fr;min-height:535px;gap:2.5%;padding:40px 0 74px}
+.hero-copy{align-self:center}
+.hero h1{font:800 clamp(39px,4vw,66px)/1.03 "DM Sans",sans-serif;white-space:normal;letter-spacing:-.045em;max-width:580px;color:var(--approved-navy);margin:13px 0 17px}
+.hero h1::after{width:135px;height:5px;margin:12px 0 0 22px;transform:rotate(-3deg)}
+html[lang="es"] .hero h1{font:800 clamp(39px,3.9vw,63px)/1.06 "DM Sans",sans-serif;white-space:normal}
+.hero-subtitle{font:800 11px/1.4 "DM Sans",sans-serif;letter-spacing:.16em;color:#367a9a;margin:0 0 13px}
+.hero-description{font:500 clamp(15px,1.5vw,17px)/1.7 "DM Sans",sans-serif;color:#2a4a65;max-width:520px}
+.hero-visual img{width:100%;max-width:620px;max-height:430px;margin-right:-30px;object-fit:cover;border-radius:27px 6px 6px 27px;filter:drop-shadow(0 18px 22px #1d638022)}
+.hero-buttons .button{border-radius:999px;box-shadow:0 5px 15px #143f661c}
+.hero-buttons .button-yellow{background:linear-gradient(110deg,#ffdf32,#ffc204);color:#083065}
+.hero-buttons .button-white{background:#ffffffd9;border:1.8px solid #0b3f70}
+.hero-buttons .button{font-size:13px}
+.hero .palm{opacity:.37;pointer-events:none}
+.wave-hero{height:43px}
+.cake-section.shell{width:100%;max-width:none;min-height:0;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(0,0.98fr);gap:28px;padding:38px max(32px,calc((100vw - 1120px)/2)) 45px;background:linear-gradient(102deg,#f7fdff 0%,#e5f8ff 48%,#d3f1ff 100%)}
+.cake-visual{max-width:none;align-self:center}
+.cake-visual img{height:auto;width:100%;max-height:410px;object-fit:contain;border-radius:26px;filter:drop-shadow(0 10px 18px #47698819)}
+.cake-copy{padding:0 4px}
+.cake-gift-label{display:flex;align-items:center;gap:10px;color:#bd1860;font-size:11px;font-weight:800;letter-spacing:.14em;margin-bottom:10px}
+.cake-gift-label::before{content:"";width:36px;height:3px;border-radius:3px;background:#f8bb1d}
+.cake-copy h2{font:800 clamp(33px,3.5vw,51px)/1.11 "DM Sans",sans-serif;font-style:normal;letter-spacing:-.04em;color:#0d2f68;margin-bottom:14px}
+.cake-copy p{font-size:15px;line-height:1.65;color:#30526f}
+.cake-ribbon{clip-path:none;background:#fff1bd;border-radius:22px;padding:16px 22px;color:#0b3466;text-align:left}
+.cake-ribbon strong{font-size:17px;line-height:1.2}
+.cake-ribbon span{font-size:13px;font-weight:800;line-height:1.45}
+.cake-copy .photo-note{font-size:12px;margin:15px 0 0;color:#4f6777}
+.quick-benefits.shell{max-width:1120px;margin-top:35px;margin-bottom:45px;border-radius:21px;background:#fff;box-shadow:0 7px 20px #1d567a10}
+.benefit{padding:23px 16px}
+.benefit-icon{font-size:48px;color:#0f4a7c}
+.benefit h2{font-size:19px}
+.how-section{padding-top:35px}
+.section-heading{font-size:clamp(30px,3vw,46px)}
+.closing-section{background:linear-gradient(180deg,#f7fcff,#e0f6ff)}
+.site-footer{background:#f9fcfe}
+@media(max-width:1100px) {
+ .campaign-identity{min-width:135px}
+ .welcome-script{font-size:29px}
+ .casita-brand{font-size:10px}
+ .header-nav{gap:13px}
+ .hero-grid{grid-template-columns:1fr 1fr;gap:3%}
+ .hero h1{font-size:clamp(37px,5vw,60px)}
+ .hero-visual img{margin-right:0}
+}
+@media(max-width:940px){
+ .site-header-inner{min-height:75px}
+ .hero-grid{min-height:0}
+ .cake-section.shell{padding:40px 24px}
+ .cake-copy h2{font-size:clamp(31px,3.8vw,43px)}
+}
+@media(max-width:720px){
+ .site-header-inner{gap:10px}
+ .brands{gap:7px}
+ .campaign-identity{min-width:0}
+ .welcome-script{font-size:25px}
+ .casita-brand{font-size:9px}
+ .brand-separator{height:32px}
+ .hero{background:linear-gradient(180deg,#fff 0%,#edfaff 70%,#d9f3ff 100%)}
+ .hero-grid{display:flex;flex-direction:column;gap:16px;padding:38px 0 45px}
+ .roof-icon{display:none}
+ .hero-copy{order:0;width:100%}
+ .hero h1{font-size:clamp(38px,8.7vw,56px);max-width:570px;margin:10px 0 14px}
+ html[lang="es"] .hero h1{font-size:clamp(36px,8.7vw,52px)}
+ .hero-subtitle{font-size:10px}
+ .hero-description{font-size:16px;line-height:1.6}
+ .hero-buttons{gap:10px}
+ .hero-visual{order:1;align-self:stretch}
+ .hero-visual img{width:100%;max-height:295px;object-fit:cover;object-position:center;border-radius:22px;box-shadow:0 6px 20px #163e5d16}
+ .hero .palm{opacity:.20}
+ .cake-section.shell{grid-template-columns:1fr;gap:18px;padding:24px 16px 37px}
+ .cake-visual{order:0;width:100%;max-width:520px;margin:auto}
+ .cake-visual img{max-height:360px;object-fit:contain}
+ .cake-copy{order:1;text-align:center}
+ .cake-gift-label{justify-content:center}
+ .cake-copy h2{font-size:clamp(31px,7vw,43px)}
+ .cake-copy p{font-size:14px}
+ .cake-ribbon{text-align:center;padding:15px 16px}
+ .quick-benefits.shell{margin-top:25px;margin-bottom:25px}
+ .benefit{padding:14px 22px}
+ .benefit h2{font-size:17px}
+ .how-section{padding-top:22px}
+}
+@media(max-width:440px){
+ .legacy-brand{font-size:12px}
+ .legacy-brand .water-logo{width:24px;height:33px}
+ .welcome-script{font-size:21px}
+ .casita-brand{font-size:8px}
+ .campaign-identity{max-width:127px}
+ .hero-grid{padding-top:29px}
+ .hero h1{font-size:clamp(35px,9.4vw,44px)}
+ html[lang="es"] .hero h1{font-size:clamp(33px,9vw,43px)}
+ .hero-description{font-size:15px}
+ .hero-visual img{max-height:265px}
+ .cake-visual img{max-height:280px}
+ .cake-copy h2{font-size:33px}
+ .cake-ribbon strong{font-size:16px}
+ .cake-ribbon span{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){.hero .button{transition:none}}
