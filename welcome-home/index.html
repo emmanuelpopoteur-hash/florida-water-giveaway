@@ -55,6 +55,11 @@
       <h1 id="welcomeHeading" data-en="Your home is new. How well do you know its water?" data-es="Tu hogar es nuevo. ¿Qué sabes del agua que utilizas?">Your home is new. How well do you know its water?</h1>
       <p class="hero-subtitle" data-en="WELCOME TO THE NEIGHBORHOOD" data-es="BIENVENIDOS AL VECINDARIO">WELCOME TO THE NEIGHBORHOOD</p>
       <p class="hero-description" data-en="Congratulations on your new St. Cloud home! A complimentary in-home water check helps you understand selected water characteristics and compare your treatment options before making a decision." data-es="¡Felicidades por tu nuevo hogar en St. Cloud! Una evaluación gratuita del agua te ayuda a conocer algunas de sus características y comparar opciones de tratamiento antes de decidir.">Welcome to your new home in St. Cloud! We'd love to help you settle in with a complimentary in-home water check — a simple, friendly way to get to know your household water.</p>
+      <div class="buyer-hero-promos" id="buyerHeroPromos" hidden aria-label="Selected homeowner options">
+        <span data-en="System options from $3,990*" data-es="Opciones desde $3,990*">System options from $3,990*</span>
+        <span data-en="Ask about 6 months without payments*" data-es="Pregunta por 6 meses sin pagos*">Ask about 6 months without payments*</span>
+        <span data-en="Ask about RO with qualifying packages*" data-es="Pregunta por RO en paquetes elegibles*">Ask about RO with qualifying packages*</span>
+      </div>
       <div class="hero-buttons">
         <a id="bookTop" class="button button-yellow" href="/check/"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 2v6M17 2v6M3 10h18" stroke="currentColor" stroke-width="2"/></svg><span data-en="Request My Free Water Check" data-es="Solicitar mi prueba gratis">Request My Free Water Check</span></a>
         <a class="button button-white" href="tel:+14072576911"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true"><path d="M4 3c-2 2-1 5 0 7 3 6 8 10 14 11 2 .4 4-2 4-4l-5-3-3 2c-2-1-4-3-5-5l2-3-4-5Z" stroke="currentColor" stroke-width="1.6"/></svg><span data-en="Call (407) 257-6911" data-es="Llamar (407) 257-6911">Call (407) 257-6911</span></a>
@@ -159,6 +164,17 @@
  const menu = document.getElementById('menuButton');
  const buyerLetter = batch === 'sc01b';
  if (buyerLetter) {
+   document.body.classList.add('buyer-letter');
+   document.getElementById('buyerHeroPromos').hidden=false;
+   const subtitle=document.querySelector('.hero-subtitle');
+   subtitle.setAttribute('data-en','COMPARE BEFORE YOU COMMIT');
+   subtitle.setAttribute('data-es','COMPARA ANTES DE DECIDIR');
+   const callLabel=document.querySelector('.hero-buttons .button-white [data-en]');
+   callLabel.setAttribute('data-en','Call to Compare: (407) 257-6911');
+   callLabel.setAttribute('data-es','Llama para comparar: (407) 257-6911');
+   const note=document.querySelector('.appointment-note');
+   note.setAttribute('data-en','*Offers depend on qualifying systems and lender terms. Financing approval required; no-payment periods may accrue interest. Call us for full details.');
+   note.setAttribute('data-es','*Ofertas sujetas a equipos elegibles y condiciones del prestamista. El financiamiento requiere aprobación; puede acumular intereses durante el período sin pagos. Llámanos para conocer los detalles.');
    const h = document.getElementById('welcomeHeading');
    h.setAttribute('data-en','Already have a water system quote?');
    h.setAttribute('data-es','¿Ya tienes una cotización de agua?');
