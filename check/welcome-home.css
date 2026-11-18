@@ -31,7 +31,13 @@
 .welcome-home-flow .step-icon{color:#1a89b6}
 .welcome-home-flow .steps h3{color:#164064}
 .welcome-home-flow .how-bottom{color:#415d70;border-color:#ccdfeb}
-.welcome-home-flow footer{background:#082b57;color:#d6e8f5}
+/* The fixed water-advisor bubble covers the ZIP and submit controls on
+   narrow phones. Keep it elsewhere; this campaign uses the dedicated form. */
+.welcome-home-flow .lw-chat-button{display:none!important}
+.welcome-home-flow footer{background:#f7fbff;color:#31556b;border-top:1px solid #d9e8f2}
+.welcome-home-flow footer .footer-brand{color:#0b386b}
+.welcome-home-flow .welcome-footer-bakery{display:block;margin-top:9px;color:#ab1739;font:700 25px "Dancing Script",cursive;letter-spacing:normal}
+.welcome-footer-bakery[hidden]{display:none!important}
 .welcome-home-flow .welcome-success-note{padding:15px 18px;margin-top:23px;border-radius:10px;background:#f3faff;border:1px solid #c7e1f1;color:#1d4d6f;font-size:13px;text-align:left}
 @media(max-width:760px){
  .welcome-lead{padding:23px 18px 20px}
