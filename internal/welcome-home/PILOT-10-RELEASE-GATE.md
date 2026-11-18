@@ -1,5 +1,5 @@
 # Welcome Home — controlled 10-house pilot (NO GO)
-**Updated:** 2026-11-18. **Public branding:** Legacy Water USA + La Casita Celebrations.  
+**Updated:** 2026-11-18. **Voucher valid:** 30 calendar days after issue at completed visit. **Public branding:** Legacy Water USA + La Casita Celebrations.  
 **Owner data:** never commit recipient records, addresses or phone numbers to this repository.
 
 ## Experience to preserve
@@ -8,7 +8,7 @@
 3. `/check/` collects ZIP, *preferred* weekday/weekend + morning/afternoon/evening, full name and phone. This is an **appointment request, not a confirmed reservation**.
 4. Team calls to confirm; technician performs the free evaluation, may explain optional paid treatment, **no system purchase or financing application required**.
 5. **After the completed visit**, the representative hands a physical La Casita Celebrations voucher. The envelope contains NO voucher.
-6. Bakery fulfills **one traditional ¼-lb-size Dominican mini cake without interior filling + three traditional fillings in separately packaged cups**, subject to finalized terms and safe food-handling rules.
+6. Bakery fulfills **one traditional ¼-lb-size Dominican mini cake without interior filling + three confirmed fillings: guava, pineapple and dulce de leche, in separately packaged cups**. Recipes, packaging and food-handling rules still require validation.
 
 ## Gates (all required before sending even one letter)
 | Gate | Status | Acceptance evidence |
@@ -18,8 +18,8 @@
 | Staging Resend delivery | **PASS (existing staging version)** | Delivery recorded 2026-11-18; subject is still generic |
 | New Welcome Home email code | **PASS (mock + GitHub Actions)** | `node --test tests/welcome-home-notification.test.mjs`, 4/4 tests; no real sending |
 | Enhanced subject on full-binding staging | **PENDING** | Real isolated staging delivery specifically using latest PR code and campaign; do not alter public production |
-| Cake formulation and food handling | **PENDING** | Exact approved fillings, manufacturer/production permit or eligible lawful pathway, food-safe preparation/labels, allergens, refrigeration and shelf-life validated |
-| Voucher terms and logistics | **PENDING** | Eligible area, household limit, clear redemption/collection process, expiration and pickup hours; written approval from La Casita |
+| Cake formulation and food handling | **PARTIAL — flavors confirmed; compliance PENDING** | Confirmed guava, pineapple, dulce de leche. Validate recipes, licensing or suitable lawful production pathway, safe storage, allergen labels, refrigeration and finished-product shelf life (especially dairy-based dulce de leche) |
+| Voucher terms and logistics | **PARTIAL — validity confirmed; logistics PENDING** | Voucher valid for **30 calendar days from date handed out after completed water evaluation**. Confirm eligible area, one-per-household implementation, redemption/collection process and pickup hours; written fulfillment approval from La Casita |
 | Pilot economics and inventory | **PENDING** | Cost of one kit × eligible visits, fulfillment capacity for **all** vouchers promised; do not assume sales conversion |
 | Mailing recipients | **PENDING** | Ten homeowners independently checked for current ownership, postal deliverability, property ready, confidentiality/opt-out; choose only verified records |
 | Postage/addressing | **PENDING** | Approved physical sender address and printed #10 envelope test |
@@ -37,8 +37,8 @@
 
 ## Immediate next decision package
 Confirm only the operational details that cannot be inferred from code:
-1. The actual **three fillings**, their ingredients and whether each requires refrigeration/licensed food preparation.
-2. **Where and when** the family redeems/picks up the tasting kit, and the voucher's expiration.
+1. **Confirmed fillings: guava, pineapple, dulce de leche.** Verify ingredients, actual preparations and which require refrigeration/licensed food preparation, especially dulce de leche.
+2. **Where and when** the family redeems/picks up the tasting kit; voucher expiration is **30 calendar days after issuance** (not after mailing or scheduling). Track issued date and expiration on each numbered voucher.
 3. An actual sender address and ten independently verified mailing recipients.
 
-Once agreed: update EN/ES landing + physical print terms together, make a proof and approve public launch explicitly.
+Confirmed customer-facing terms were updated in EN/ES landing and form on 2026-11-18, but remain **preview-only** until safe production/fulfillment and pickup are approved. Next: update the physical printed voucher to display its issuance date and expiry date, review mailing artwork, and obtain explicit public launch approval.
