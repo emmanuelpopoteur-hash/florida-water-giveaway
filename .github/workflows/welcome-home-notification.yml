@@ -1,0 +1,27 @@
+name: Welcome Home notification QA
+
+on:
+  pull_request:
+    paths:
+      - 'functions/api/leads.js'
+      - 'tests/welcome-home-notification.test.mjs'
+      - '.github/workflows/welcome-home-notification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-network-email-tests:
+    name: Verify notification content without sending email
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test Welcome Home notification (mocked API, no secrets)
+        run: node --test tests/welcome-home-notification.test.mjs
