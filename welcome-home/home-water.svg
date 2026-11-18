@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 570" role="img" aria-labelledby="title desc"><title id="title">A welcoming Florida home</title><desc id="desc">A sunny Florida house surrounded by tropical landscaping, with a glass of clear water in the foreground.</desc>
+<defs><linearGradient id="sky" x1="0" y1="0" x2=".2" y2="1"><stop stop-color="#d8f6ff"/><stop offset=".72" stop-color="#fdf6e8"/><stop offset="1" stop-color="#fff9e9"/></linearGradient><linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e4fcff" stop-opacity=".85"/><stop offset=".55" stop-color="#8edbef" stop-opacity=".28"/><stop offset="1" stop-color="#3d97b5" stop-opacity=".56"/></linearGradient><filter id="soft"><feDropShadow dx="0" dy="13" stdDeviation="14" flood-color="#0d384d" flood-opacity=".14"/></filter></defs>
+<rect width="760" height="570" rx="38" fill="url(#sky)"/>
+<circle cx="577" cy="100" r="58" fill="#fff1b5" opacity=".72"/><path d="M0 335Q218 295 391 328T760 308V570H0Z" fill="#dbefc5"/>
+<path d="M0 398Q182 357 367 394T760 367V570H0Z" fill="#bad79b"/>
+<g transform="translate(135 126)" filter="url(#soft)">
+<path d="M36 169L257 15L494 169V379H36Z" fill="#fff9ec" stroke="#eadaba" stroke-width="5"/>
+<path d="M5 173L257-5L530 173L514 192L257 40L31 193Z" fill="#c67848"/>
+<path d="M43 176L257 39L483 177" fill="none" stroke="#a95835" stroke-width="14"/>
+<path d="M235 240H332V379H235Z" fill="#a87256" stroke="#f2e3cc" stroke-width="9"/>
+<circle cx="314" cy="309" r="5" fill="#eec77d"/>
+<g fill="#c1eefa" stroke="#f3e8cd" stroke-width="9"><rect x="80" y="225" width="98" height="96" rx="3"/><rect x="381" y="225" width="83" height="96" rx="3"/></g>
+<path d="M129 229V318M80 270H177M422 228V317M382 269H463" stroke="#f8e8c9" stroke-width="8"/>
+<path d="M25 374H505" stroke="#d0c8b8" stroke-width="20"/>
+</g>
+<g fill="#3f963c"><ellipse cx="90" cy="442" rx="105" ry="42"/><ellipse cx="674" cy="445" rx="121" ry="50"/><ellipse cx="461" cy="488" rx="90" ry="20"/></g>
+<g stroke="#638e35" fill="none" stroke-linecap="round"><path d="M35 353Q88 180 102 54" stroke-width="14"/><path d="M91 80Q21 25-5 39M88 91Q21 85 0 110M90 81Q160 10 211 26M93 96Q176 66 216 98" stroke-width="20"/><path d="M703 365Q676 194 676 63" stroke-width="13"/><path d="M676 78Q600 10 572 49M675 101Q599 84 551 112M676 80Q734 22 760 26M680 108Q739 88 759 106" stroke-width="18"/></g>
+<g fill="#e86d62"><circle cx="65" cy="414" r="13"/><circle cx="98" cy="428" r="12"/><circle cx="639" cy="425" r="13"/><circle cx="701" cy="438" r="16"/><circle cx="659" cy="452" r="12"/></g>
+<g transform="translate(513 308)" filter="url(#soft)">
+<ellipse cx="122" cy="213" rx="106" ry="20" fill="#35617b" opacity=".13"/>
+<path d="M35 12H208L185 200Q121 226 60 200Z" fill="url(#glass)" stroke="#2c83a9" stroke-width="7"/>
+<path d="M48 92Q122 74 193 92L178 192Q120 215 68 191Z" fill="#4bb4db" opacity=".65"/>
+<ellipse cx="122" cy="15" rx="86" ry="16" fill="#eafcff" stroke="#268db5" stroke-width="6"/>
+<path d="M57 94Q121 110 186 91" fill="none" stroke="#e8fcff" stroke-width="5" opacity=".65"/>
+<g fill="#d9f6ff" opacity=".85"><circle cx="85" cy="149" r="7"/><circle cx="144" cy="121" r="9"/><circle cx="167" cy="162" r="6"/><circle cx="110" cy="177" r="5"/></g>
+</g></svg>
