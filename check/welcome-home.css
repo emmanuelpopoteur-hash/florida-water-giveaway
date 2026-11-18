@@ -39,8 +39,9 @@
  .welcome-lead-copy h2{font-size:31px;margin:8px 0 9px}
  .welcome-lead-copy p{font-size:13px;line-height:1.55;margin-bottom:10px}
  .welcome-lead-kicker{font-size:10px}
- .welcome-lead img{max-height:145px;object-position:left}
- .welcome-home-flow .booking{padding:42px 18px 65px;gap:24px}
+ .welcome-lead img{max-height:105px;object-position:left}
+ .welcome-home-flow .booking-intro{display:none}
+ .welcome-home-flow .booking{padding:25px 18px 57px;gap:0}
  .welcome-home-flow .how{padding:48px 18px}
 }
 @media(prefers-reduced-motion:reduce){.welcome-home-flow *{scroll-behavior:auto}}
