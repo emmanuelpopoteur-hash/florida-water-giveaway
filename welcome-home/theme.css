@@ -1,0 +1,68 @@
+
+/* Welcome Home: cheerful, friendly, direct-mail-matched visual theme (draft). */
+:root{--navy:#093869;--deep:#0c3965;--teal:#087bb6;--ink:#173753;--muted:#4f677e;--cream:#fff7e7;--copper:#dc9d26;--border:#d5e7ee;--blue:#0078c1;--red:#a71b3a;--gold:#f2b327}
+body{background:#fff;color:var(--ink);font-family:"DM Sans",sans-serif}
+header{background:#fff;border-bottom:1px solid #d7e5eb;color:#08355f}
+.head{min-height:86px}
+.brand{font-family:"Manrope",sans-serif;color:#12365a;letter-spacing:-.04em;font-size:19px}
+.brand small{color:#007ebc;letter-spacing:.08em}
+.mark{background:transparent;color:#0ca1d6;font-size:36px;font-weight:800;width:42px;height:48px}
+.brand::after{content:"│  La Casita Celebrations";white-space:pre;color:#a91436;font:700 21px "Dancing Script",cursive;letter-spacing:-.03em;margin-left:4px}
+.languages{border-color:#aecbd9}
+.languages button{color:#42647b}
+.languages button[aria-pressed=true]{background:#0a4e87;color:#fff}
+.hero{color:#12395f;background:linear-gradient(160deg,#f7fcff,#e8f6fe 57%,#fff 100%)}
+.hero:before,.hero:after{content:"";position:absolute;height:280px;width:180px;background:repeating-conic-gradient(from 190deg at 50% 8%,#6d9c48 0deg 5deg,transparent 7deg 21deg);opacity:.15;pointer-events:none;border-radius:90%}
+.hero:before{left:-100px;top:-160px}
+.hero:after{right:-100px;top:-170px;transform:scaleX(-1)}
+.hero .wrap{grid-template-columns:1.08fr .92fr;gap:25px;padding:60px 0 66px;position:relative;z-index:1}
+.eyebrow{color:#32718f;font-size:11px;letter-spacing:.17em}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;letter-spacing:-.02em}
+h1{font-family:"Dancing Script",cursive;font-size:clamp(69px,8vw,116px);font-weight:700;letter-spacing:-.055em;line-height:.95;margin:13px 0 22px;color:#082e63}
+h1 em{color:#0a67a8}
+.lead{color:#2e5066;font-size:17px;line-height:1.72;max-width:540px}
+.offerline{color:#264e69;align-items:flex-start;font-size:14px;line-height:1.6;font-weight:700;background:#fff9eb;border-left:4px solid var(--gold);border-radius:0 14px 14px 0;padding:15px 16px;box-shadow:0 4px 18px #2b64800d}
+.offerline svg{color:#dc9d26}
+.btn{border-radius:13px;min-height:54px;letter-spacing:0;padding:14px 19px}
+.primary{background:linear-gradient(145deg,#007ab9,#064775);color:#fff;box-shadow:0 9px 20px #09467025}
+.secondary{border:1.5px solid #7ab5cf;color:#0a4e80;background:#fff}
+.note{color:#456d83;font-size:12px}
+.gift{min-height:470px;box-shadow:0 15px 35px #27597522;background:#fffaf1;border:1px solid #f1e1bc;border-radius:30px;padding:18px 26px 29px}
+.gift:before{content:"";display:block;width:min(100%,390px);height:235px;background:url('/welcome-home/tasting-kit.svg') center/contain no-repeat;margin:7px auto 1px;border-radius:22px}
+.gift svg{display:none}
+.gift .pill{background:#ffe8aa;color:#7b5115;font-size:10px;margin-bottom:4px}
+.gift h2{font-family:"Dancing Script",cursive;color:#9e1740;font-size:clamp(37px,4vw,52px);line-height:1.03;margin:10px 0 9px}
+.gift p{color:#51667a;font-size:14px;line-height:1.65}
+.gift .signature{font-family:"Dancing Script",cursive;color:#ac1c3f;font-size:26px;letter-spacing:-.01em;margin-top:12px}
+.water-showcase{padding:56px 0 52px;background:#fff}
+.water-showcase .wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:48px}
+.water-showcase img{width:100%;height:auto;border-radius:24px}
+.water-showcase h2{font-size:clamp(30px,3.4vw,46px);line-height:1.1;color:#0a3c6c;margin:0 0 18px}
+.water-showcase p{color:#456275;line-height:1.72;margin-bottom:16px}
+.water-benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:24px 0}
+.water-benefits div{border:1px solid #cce8f6;border-radius:16px;background:#f2fbff;text-align:center;padding:16px 6px 14px}
+.water-benefits strong{display:block;color:#113967;font-size:12px;line-height:1.35}
+.water-benefits span{font-size:26px;display:block;margin-bottom:6px}
+.steps{background:#f1faff;border-top:1px solid #d5eaf4;padding:66px 0 78px}
+.steps h2{color:#0d3867;font-size:clamp(30px,3.7vw,45px)}
+.steps .n{color:#fff;background:#0479b9;border-radius:100%;display:inline-grid;place-items:center;width:45px;height:45px;font-size:19px;letter-spacing:0}
+.steps article{border-color:#d6e8ef;box-shadow:0 10px 25px #22537910}
+.steps h3{font-size:21px;margin:15px 0 10px;color:#0d3767}
+.steps p{color:#4e677c;line-height:1.65}
+.conditions{background:#fff;border-color:#e4edf2;padding:30px 0}
+.conditions .wrap{max-width:860px}
+.conditions details{border:1px solid #cddfe9;border-radius:15px;padding:17px 22px}
+.conditions summary{cursor:pointer;font-weight:800;color:#214d6e;font-size:14px}
+.conditions p{margin-top:14px;font-size:13px;color:#4d6475;line-height:1.65}
+.conditions h2{display:none}
+.bottom{background:#073d74;color:white;border-top:5px solid #efb12d;padding:68px 0}
+.bottom h2{color:white;font-family:"Dancing Script",cursive;font-size:clamp(46px,5vw,68px)}
+.bottom p{color:#d5e9f8}
+.bottom .primary{background:white;color:#0b4376}
+.bottom .secondary{color:white;border-color:#a7d2e9;background:transparent}
+footer{background:#f7fbfd;color:#466479;padding:25px 15px}
+footer a{color:#0a5b8b}
+:focus-visible{outline:3px solid #eeb637;outline-offset:4px}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr}.gift{max-width:560px;min-height:0}.gift:before{height:255px}.water-showcase .wrap{grid-template-columns:1fr;gap:20px}.water-showcase img{max-width:550px;justify-self:center}.steps .cards{grid-template-columns:1fr}.brand::after{font-size:19px}}
+@media(max-width:520px){.head{min-height:75px}.brand{font-size:14px}.mark{width:32px;height:38px;font-size:28px}.brand::after{font-size:15px;margin-left:0}.languages button{padding:6px 8px}.hero .wrap{padding:46px 0}.hero h1{font-size:clamp(64px,13vw,84px)}.lead{font-size:16px}.gift:before{height:200px}.gift h2{font-size:38px}.water-benefits strong{font-size:10px}.water-benefits span{font-size:22px}.water-showcase{padding:41px 0}.buttons{flex-direction:column}.buttons .btn{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
