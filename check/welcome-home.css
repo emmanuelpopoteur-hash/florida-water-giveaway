@@ -22,7 +22,9 @@
 .welcome-home-flow .progress span{background:#0b88bf}
 .welcome-home-flow .form-top,.welcome-home-flow .field-kicker{color:#127caa}
 .welcome-home-flow .choices input:checked+span{background:#e1f5fd;border-color:#0c8cc1;color:#0b527a}
-.welcome-home-flow .how{background:linear-gradient(145deg,#effaff,#fff);color:#0c3665;padding-top:60px;padding-bottom:60px}
+/* Visitors already saw the three-step explanation on /welcome-home/.
+   Remove the duplicated generic section and second CTA from this campaign form. */
+.welcome-home-flow .how{display:none}
 .welcome-home-flow .how .section-kicker{color:#087bae}
 .welcome-home-flow .how-heading h2{color:#0d3968}
 .welcome-home-flow .how-heading>p{color:#4b6c7c}
