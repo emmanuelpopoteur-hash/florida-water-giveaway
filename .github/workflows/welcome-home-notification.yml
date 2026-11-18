@@ -7,6 +7,9 @@ on:
       - 'check/app.js'
       - 'tests/welcome-home-notification.test.mjs'
       - 'tests/welcome-home-comparison-form.test.mjs'
+      - 'tests/welcome-home-variant-copy.test.mjs'
+      - 'welcome-home/index.html'
+      - 'welcome-home/buyer-options.css'
       - '.github/workflows/welcome-home-notification.yml'
   workflow_dispatch:
 
@@ -26,4 +29,4 @@ jobs:
         with:
           node-version: '22'
       - name: Test Welcome Home notification and quote form (mocked, no secrets)
-        run: node --test tests/welcome-home-notification.test.mjs tests/welcome-home-comparison-form.test.mjs
+        run: node --test tests/welcome-home-notification.test.mjs tests/welcome-home-comparison-form.test.mjs tests/welcome-home-variant-copy.test.mjs
