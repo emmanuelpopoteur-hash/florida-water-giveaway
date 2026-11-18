@@ -6,6 +6,7 @@ if(welcomeBatch){
   document.body.classList.add('welcome-home-flow');
   document.getElementById('welcomeLeadIntro').hidden=false;
   document.getElementById('welcomeSuccess').hidden=false;
+  document.getElementById('welcomeFooterBrand').hidden=false;
   const welcomeBack=document.getElementById('welcomeBack');
   const updateWelcomeBack=()=>{
     const destination=new URL('/welcome-home/',location.origin);
