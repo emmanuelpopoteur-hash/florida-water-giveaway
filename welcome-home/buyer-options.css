@@ -40,3 +40,30 @@
  .offer-point strong{font-size:17px}
  .offer-point span{font-size:9px}
 }
+
+/* Version B: the first screen should speak to active system shoppers.
+   The actual installation photograph remains a separate release gate. */
+.buyer-hero-promos[hidden]{display:none!important}
+.buyer-letter .hero{background:linear-gradient(105deg,#f8fcff 0%,#ebf7ff 60%,#d7edfa 100%)}
+.buyer-letter .hero-grid{min-height:0;padding-bottom:70px}
+.buyer-letter .hero h1{font-size:clamp(37px,4.1vw,61px);line-height:1.04}
+.buyer-letter .roof-icon{display:none}
+.buyer-letter .hero-subtitle{font-weight:900;color:#0870a6}
+.buyer-letter .hero-description{font-size:clamp(14px,1.4vw,16px);line-height:1.55}
+.buyer-letter .hero-buttons{margin-top:15px}
+.buyer-letter .appointment-note{max-width:570px;line-height:1.5;font-size:11px;color:#52677c}
+.buyer-hero-promos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:19px}
+.buyer-hero-promos span{border:1px solid #b8d9e8;background:#fff;border-top:3px solid #f7bc1a;padding:12px 10px;border-radius:12px;font:800 12px/1.35 "DM Sans",sans-serif;color:#123c68;box-shadow:0 7px 20px #20465c12}
+@media(max-width:760px){
+ .buyer-letter .hero-grid{padding-top:26px;padding-bottom:55px}
+ .buyer-letter .hero h1{font-size:clamp(32px,9vw,43px)}
+ .buyer-hero-promos{gap:6px;margin-top:14px}
+ .buyer-hero-promos span{font-size:10px;padding:10px 7px;line-height:1.35}
+ .buyer-letter .hero-description{margin-bottom:10px}
+ .buyer-letter .hero-buttons{gap:8px}
+ .buyer-letter .hero-buttons .button{font-size:12px;padding:12px 15px}
+}
+@media(max-width:390px){
+ .buyer-hero-promos{grid-template-columns:1fr;gap:5px}
+ .buyer-hero-promos span{padding:7px 10px;border-top-width:1px;border-left:3px solid #f7bc1a}
+}
