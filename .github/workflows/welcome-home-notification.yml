@@ -1,10 +1,12 @@
-name: Welcome Home notification QA
+name: Welcome Home funnel QA
 
 on:
   pull_request:
     paths:
       - 'functions/api/leads.js'
+      - 'check/app.js'
       - 'tests/welcome-home-notification.test.mjs'
+      - 'tests/welcome-home-comparison-form.test.mjs'
       - '.github/workflows/welcome-home-notification.yml'
   workflow_dispatch:
 
@@ -13,7 +15,7 @@ permissions:
 
 jobs:
   no-network-email-tests:
-    name: Verify notification content without sending email
+    name: Verify notifications and quote UI without network access
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -23,5 +25,5 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Test Welcome Home notification (mocked API, no secrets)
-        run: node --test tests/welcome-home-notification.test.mjs
+      - name: Test Welcome Home notification and quote form (mocked, no secrets)
+        run: node --test tests/welcome-home-notification.test.mjs tests/welcome-home-comparison-form.test.mjs
