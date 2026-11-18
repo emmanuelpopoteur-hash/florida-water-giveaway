@@ -2,8 +2,8 @@
   const translations = {
     "WELCOME HOME · ST. CLOUD": "BIENVENIDO A CASA · ST. CLOUD",
     "A sweet welcome to your new home.": "Una dulce bienvenida a tu nuevo hogar.",
-    "You're one step closer to your complimentary home water check. After your confirmed visit and completed evaluation, receive a tasting voucher from": "Estás a un paso de solicitar tu evaluación gratuita del agua. Después de confirmar y completar la visita, recibirás un voucher de degustación de",
-    "for a traditional ¼-lb Dominican mini cake without filling, plus three fillings served separately. No system purchase required.": "para un mini bizcocho dominicano tradicional de ¼ de libra sin relleno, más tres rellenos por separado. No necesitas comprar ningún sistema.",
+    "Choose when you'd like your complimentary water check. After the completed visit, receive a tasting voucher from": "Elige cuándo prefieres tu evaluación gratuita del agua. Después de completar la visita, recibe un voucher de",
+    "for a traditional ¼-lb Dominican mini cake without filling inside, plus three fillings served separately. No purchase required.": "para un mini bizcocho dominicano tradicional de ¼ de libra sin relleno interior y tres rellenos por separado. Sin obligación de compra.",
     "← Back to Welcome Home": "← Volver a Welcome Home",
     "Thank you for your Welcome Home request! We will contact you to confirm your water evaluation. Your cake tasting voucher is provided after the completed visit, not when this form is submitted.": "¡Gracias por tu solicitud de Welcome Home! Te contactaremos para confirmar la evaluación de agua. Tu voucher para degustar el bizcocho se entrega después de completar la visita, no al enviar este formulario.",
     'FLORIDA HOMEOWNERS': 'PROPIETARIOS EN FLORIDA',
