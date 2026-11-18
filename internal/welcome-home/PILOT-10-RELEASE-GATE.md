@@ -3,7 +3,7 @@
 **Owner data:** never commit recipient records, addresses or phone numbers to this repository.
 
 ## Experience to preserve
-1. Personally addressed welcome letter → QR `legacywaterusa.com/welcome-home/?c=sc01` or phone `(407) 257-6911`.
+1. Personally addressed welcome letter → A/B group QR with `?c=sc01a` or `?c=sc01b`, or phone `(407) 257-6911`. The code only identifies the letter variant.
 2. Warm, bilingual landing with a complimentary in-home water check and a Dominican cake tasting.
 3. `/check/` collects ZIP, *preferred* weekday/weekend + morning/afternoon/evening, full name and phone. This is an **appointment request, not a confirmed reservation**.
 4. Team calls to confirm; technician performs the free evaluation, may explain optional paid treatment, **no system purchase or financing application required**.
@@ -16,8 +16,8 @@
 | Responsive landing and EN/ES UX | **PASS in preview** | iPhone recordings, Cloudflare mobile checks; final public-host check pending |
 | Lead form → staging D1 → CRM | **PASS** | 2026-11-18 synthetic HTTP 201 and matching staging records; exact cleanup verified |
 | Staging Resend delivery | **PASS (existing staging version)** | Delivery recorded 2026-11-18; subject is still generic |
-| New Welcome Home email code | **PASS (mock + GitHub Actions)** | `node --test tests/welcome-home-notification.test.mjs`, 4/4 tests; no real sending |
-| Enhanced subject on full-binding staging | **PENDING** | Real isolated staging delivery specifically using latest PR code and campaign; do not alter public production |
+| New Welcome Home email code | **PASS (mock + GitHub Actions)** | 9 no-network tests across notification (6) and comparison form (3); GitHub Actions `Welcome Home funnel QA` passed on PR; no real email sending |
+| New priority quote subject on full-binding staging | **PENDING** | Real isolated staging delivery specifically using latest PR code and campaign; do not alter public production |
 | Cake formulation and food handling | **PARTIAL — flavors confirmed; compliance PENDING** | Confirmed guava, pineapple, dulce de leche. Validate recipes, licensing or suitable lawful production pathway, safe storage, allergen labels, refrigeration and finished-product shelf life (especially dairy-based dulce de leche) |
 | Voucher terms and logistics | **PARTIAL — validity confirmed; logistics PENDING** | Voucher valid for **30 calendar days from date handed out after completed water evaluation**. Confirm eligible area, one-per-household implementation, redemption/collection process and pickup hours; written fulfillment approval from La Casita |
 | Pilot economics and inventory | **PENDING** | Cost of one kit × eligible visits, fulfillment capacity for **all** vouchers promised; do not assume sales conversion |
@@ -27,6 +27,10 @@
 | Final print and release | **PENDING** | Correct artwork, logos, cake image/description, final offer conditions, no draft watermark, owner approval |
 
 **NO GO** until all pending gates are closed. Do not merge draft PR #17 solely because technical tests passed.
+
+**Commercial approval is a separate hard gate:** written validation of the exact $3,990 installed package, lender-approved six-month no-payment terms (including interest behavior and disclosures), and RO-included vs genuinely free pricing. See `internal/welcome-home/OFFER-VERIFICATION-2026-11-18.md`. Florida water-device and free-gift advertising rules, FTC free-offer guidance, and relevant consumer-credit rules all require truthful, non-misleading terms. Do not release promotional claims solely on oral descriptions.
+
+**Quote-comparison mobile/form journey:** dedicated English/Spanish copy for comparison requests, ZIP and callback window, CTA and success state; normal free-water-check flow remains unchanged. Latest PR CI passes, but **manual browser + physical QR QA and updated full-binding email delivery are still pending**.
 
 ## Roles and low-cost operating method
 - **Legacy Water USA:** source and verify postal addresses, mail letters, receive/confirm appointments, conduct water checks, record eligible completed visits, hand out vouchers, respond to questions.
