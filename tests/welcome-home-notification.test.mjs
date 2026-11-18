@@ -87,3 +87,31 @@ test('Only the explicitly mocked network path is available', async () => {
   assert.equal(calls[0].url, 'https://api.resend.com/emails');
   assert.equal(calls[0].email.subject, 'WELCOME HOME — New water test request — 34771');
 });
+
+test('A/B letter source and quote-intent routing appear in notification', async () => {
+  const { calls, notifyOwner } = makeHarness();
+  await notifyOwner(fakeEnv, fakeLead('welcome_home_2026_sc01a'));
+  await notifyOwner(fakeEnv, fakeLead('welcome_home_2026_sc01b'));
+  await notifyOwner(fakeEnv, fakeLead('welcome_home_2026_sc01b__compare'));
+  assert.equal(calls.length, 3);
+  assert.match(calls[0].email.text, /Mail variant: A/);
+  assert.match(calls[1].email.text, /Mail variant: B/);
+  assert.match(calls[2].email.text, /Mail variant: B/);
+  assert.match(calls[2].email.text, /Intent: customer requested a quote\/options comparison/);
+  assert.match(calls[2].email.text, /No appointment has been confirmed/);
+  assert.match(calls[2].email.text, /Campaign: welcome_home_2026_sc01b__compare/);
+  assert.equal(calls[2].email.subject, 'WELCOME HOME — QUOTE COMPARISON — 34771');
+  assert.equal(calls[0].email.subject, 'WELCOME HOME — New water test request — 34771');
+  assert.equal(calls[1].email.subject, 'WELCOME HOME — New water test request — 34771');
+});
+
+test('Malformed external campaign cannot activate priority quote labeling', async () => {
+  const { calls, notifyOwner } = makeHarness();
+  await notifyOwner(fakeEnv, fakeLead('generic_water__compare'));
+  await notifyOwner(fakeEnv, fakeLead('welcome_home_2026_sc01b__compare EXTRA'));
+  assert.equal(calls.length, 2);
+  for (const call of calls) {
+    assert.equal(call.email.subject, 'New water test request — 34771');
+    assert.doesNotMatch(call.email.text, /Intent: customer requested|Mail variant:/);
+  }
+});
