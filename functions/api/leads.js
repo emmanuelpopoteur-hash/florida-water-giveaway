@@ -6,6 +6,7 @@ const json = (body, status) => Response.json(body, {
 
 async function notifyOwner(env, lead) {
   if (!env.RESEND_API_KEY || !env.LEAD_ALERT_TO) return;
+  const isWelcomeHome = /^welcome_home_2026_[a-z0-9_-]{1,24}$/.test(lead.campaign || '');
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -17,7 +18,9 @@ async function notifyOwner(env, lead) {
       body: JSON.stringify({
         from: 'Legacy Water USA <leads@legacywaterusa.com>',
         to: env.LEAD_ALERT_TO,
-        subject: `New water test request — ${lead.zip}`,
+        subject: isWelcomeHome
+          ? `WELCOME HOME — New water test request — ${lead.zip}`
+          : `New water test request — ${lead.zip}`,
         text: [
           'A new request was saved in Legacy Water USA.',
           `Name: ${lead.full_name}`,
@@ -27,6 +30,11 @@ async function notifyOwner(env, lead) {
           `Preferred time: ${lead.preferred_time}`,
           `Source: ${lead.source}`,
           `Campaign: ${lead.campaign || '(none)'}`,
+          ...(isWelcomeHome ? [
+            'Program: Welcome Home — Legacy Water USA + La Casita Celebrations',
+            'Voucher: physically hand out after the completed eligible in-home evaluation; no purchase required.',
+            'Appointment: preferred day/time is a request, not a confirmed booking.',
+          ] : []),
           `Lead ID: ${lead.id}`,
         ].join('\n'),
       }),
