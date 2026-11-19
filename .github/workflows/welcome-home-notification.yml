@@ -1,0 +1,31 @@
+name: Welcome Home funnel QA
+
+on:
+  pull_request:
+    paths:
+      # Keep the full A/B landing + booking UI inside the QA trigger boundary.
+      - 'welcome-home/**'
+      - 'check/**'
+      - 'functions/api/leads.js'
+      - 'tests/welcome-home-*.test.mjs'
+      - 'scripts/build-cloudflare.mjs'
+      - '.github/workflows/welcome-home-notification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  no-network-email-tests:
+    name: Verify notifications and quote UI without network access
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test Welcome Home notification and quote form (mocked, no secrets)
+        run: node --test tests/welcome-home-*.test.mjs

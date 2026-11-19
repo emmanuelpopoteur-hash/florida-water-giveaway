@@ -3,6 +3,11 @@
   const panel = document.getElementById('localWaterResult');
   if (!input || !panel) return;
 
+  // Welcome Home is a short appointment request, not a utility-data research flow.
+  // Skip the optional EWG panel here; preserve it on the normal water-test form.
+  const requestedCampaign = (new URLSearchParams(location.search).get('utm_campaign') || '').trim();
+  if (/^welcome_home_2026_[a-z0-9_-]{1,24}$/.test(requestedCampaign)) return;
+
   // Historical utility averages from EWG system records, not household results.
   const records = {
     FL3491373: { name: 'City of St. Cloud', total: 11, aboveCount: 5, above: [

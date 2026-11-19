@@ -1,5 +1,11 @@
 (() => {
   const translations = {
+    "WELCOME HOME · ST. CLOUD": "BIENVENIDO A CASA · ST. CLOUD",
+    "A sweet welcome to your new home.": "Una dulce bienvenida a tu nuevo hogar.",
+    "Choose when you'd like your complimentary water check. After the completed visit, receive a 30-day tasting voucher from": "Elige cuándo prefieres tu evaluación gratuita del agua. Después de completar la visita, recibe un voucher de degustación válido por 30 días desde su entrega de",
+    "for a traditional ¼-lb Dominican mini cake without filling inside, plus guava, pineapple and dulce de leche fillings served separately. No purchase required.": "para un mini bizcocho dominicano tradicional de ¼ de libra sin relleno interior y rellenos de guayaba, piña y dulce de leche por separado. Sin obligación de compra.",
+    "← Back to Welcome Home": "← Volver a Welcome Home",
+    "Thank you for your Welcome Home request! We will contact you to confirm your water evaluation. Your cake tasting voucher is provided after the completed visit, not when this form is submitted. It is valid for 30 calendar days from the date of issue.": "¡Gracias por tu solicitud de Welcome Home! Te contactaremos para confirmar la evaluación de agua. Tu voucher para degustar el bizcocho se entrega después de completar la visita, no al enviar este formulario. Es válido por 30 días calendario a partir de la entrega.",
     'FLORIDA HOMEOWNERS': 'PROPIETARIOS EN FLORIDA',
     'COMPLIMENTARY WATER TEST': 'PRUEBA DE AGUA GRATIS',
     'COMPLIMENTARY WATER TEST • FLORIDA HOMEOWNERS': 'PRUEBA DE AGUA GRATIS • PROPIETARIOS EN FLORIDA',

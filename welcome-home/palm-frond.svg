@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400"><defs><linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#266521"/><stop offset=".47" stop-color="#4e9b27"/><stop offset="1" stop-color="#9cae28"/></linearGradient><linearGradient id="leaf2" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#478d24"/><stop offset=".58" stop-color="#70aa32"/><stop offset="1" stop-color="#1c6b28"/></linearGradient></defs>
+<g transform="rotate(-8 0 0)">
+<path d="M-13 -22Q80 73 216 225" fill="none" stroke="#567b2d" stroke-width="6" stroke-linecap="round"/>
+<path d="M22 19Q135 38 276 47Q224 57 128 59Q84 58 22 19Z" fill="url(#leaf)"/>
+<path d="M43 34Q145 5 259 1Q184 23 130 49Z" fill="url(#leaf2)"/>
+<path d="M67 55Q159 51 328 103Q226 95 117 75Z" fill="url(#leaf)"/>
+<path d="M85 74Q188 89 339 157Q231 138 116 92Z" fill="url(#leaf2)"/>
+<path d="M106 97Q185 129 318 216Q222 170 126 112Z" fill="url(#leaf)"/>
+<path d="M127 121Q215 174 277 291Q198 211 143 142Z" fill="url(#leaf2)"/>
+<path d="M151 148Q216 212 249 331Q197 250 163 161Z" fill="url(#leaf)"/>
+<path d="M176 177Q248 238 267 359Q224 278 182 189Z" fill="url(#leaf2)"/>
+<path d="M22 19Q3 92 9 181Q30 124 47 42Z" fill="url(#leaf2)"/>
+<path d="M38 39Q17 115 50 231Q57 137 62 55Z" fill="url(#leaf)"/>
+<path d="M62 64Q55 157 93 255Q94 172 86 82Z" fill="url(#leaf2)"/>
+<path d="M85 83Q91 177 132 284Q125 191 107 111Z" fill="url(#leaf)"/>
+<path d="M106 102Q136 187 173 282Q156 205 131 135Z" fill="url(#leaf2)"/>
+<path d="M49 41Q141 28 218 9Q165 47 80 59Z" fill="#71a93b"/>
+</g></svg>

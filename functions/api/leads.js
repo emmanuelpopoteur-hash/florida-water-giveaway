@@ -6,6 +6,14 @@ const json = (body, status) => Response.json(body, {
 
 async function notifyOwner(env, lead) {
   if (!env.RESEND_API_KEY || !env.LEAD_ALERT_TO) return;
+  const rawCampaign = lead.campaign || '';
+  const compareRequest = rawCampaign.endsWith('__compare');
+  const baseCampaign = compareRequest ? rawCampaign.slice(0, -'__compare'.length) : rawCampaign;
+  const welcomeMatch = baseCampaign.match(/^welcome_home_2026_([a-z0-9_-]{1,24})$/);
+  const isWelcomeHome = Boolean(welcomeMatch);
+  const letterVariant = isWelcomeHome && /^sc01[ab]$/.test(welcomeMatch[1])
+    ? welcomeMatch[1].slice(-1).toUpperCase() : null;
+  const isWelcomeCompare = isWelcomeHome && compareRequest;
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -17,7 +25,11 @@ async function notifyOwner(env, lead) {
       body: JSON.stringify({
         from: 'Legacy Water USA <leads@legacywaterusa.com>',
         to: env.LEAD_ALERT_TO,
-        subject: `New water test request — ${lead.zip}`,
+        subject: isWelcomeCompare
+          ? `WELCOME HOME — QUOTE COMPARISON — ${lead.zip}`
+          : isWelcomeHome
+            ? `WELCOME HOME — New water test request — ${lead.zip}`
+            : `New water test request — ${lead.zip}`,
         text: [
           'A new request was saved in Legacy Water USA.',
           `Name: ${lead.full_name}`,
@@ -26,6 +38,18 @@ async function notifyOwner(env, lead) {
           `Preferred day: ${lead.preferred_day}`,
           `Preferred time: ${lead.preferred_time}`,
           `Source: ${lead.source}`,
+          `Campaign: ${lead.campaign || '(none)'}`,
+          ...(letterVariant ? [`Mail variant: ${letterVariant}`] : []),
+          ...(isWelcomeCompare ? [
+            'Intent: customer requested a quote/options comparison',
+            'Follow-up: contact promptly; ask about their existing quote and available callback time.',
+            'No appointment has been confirmed and no price or promotional eligibility is guaranteed.',
+          ] : []),
+          ...(isWelcomeHome ? [
+            'Program: Welcome Home — Legacy Water USA + La Casita Celebrations',
+            'Voucher: physically hand out after the completed eligible in-home evaluation; no purchase required.',
+            'Appointment: preferred day/time is a request, not a confirmed booking.',
+          ] : []),
           `Lead ID: ${lead.id}`,
         ].join('\n'),
       }),
