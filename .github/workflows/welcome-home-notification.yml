@@ -3,13 +3,12 @@ name: Welcome Home funnel QA
 on:
   pull_request:
     paths:
+      # Keep the full A/B landing + booking UI inside the QA trigger boundary.
+      - 'welcome-home/**'
+      - 'check/**'
       - 'functions/api/leads.js'
-      - 'check/app.js'
-      - 'tests/welcome-home-notification.test.mjs'
-      - 'tests/welcome-home-comparison-form.test.mjs'
-      - 'tests/welcome-home-variant-copy.test.mjs'
-      - 'welcome-home/index.html'
-      - 'welcome-home/buyer-options.css'
+      - 'tests/welcome-home-*.test.mjs'
+      - 'scripts/build-cloudflare.mjs'
       - '.github/workflows/welcome-home-notification.yml'
   workflow_dispatch:
 
