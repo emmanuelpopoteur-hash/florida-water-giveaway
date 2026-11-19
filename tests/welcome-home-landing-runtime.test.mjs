@@ -64,6 +64,7 @@ function makePage(batch, lang = 'en') {
     waterOffer: element(),
     compareOffer: element(),
     menuButton: menu,
+    'main-nav': navigation,
   };
   const body = element();
   const document = {
