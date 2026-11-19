@@ -84,3 +84,9 @@ Confirmed customer-facing terms were updated in EN/ES landing and form on 2026-1
 - Existing printed B proof embeds an unaltered crop of the original owner-provided Ecoverse installation photo. A 672×909 PNG and ≈43 KB WebP derivative were recovered locally, **not uploaded into the website, not public**, and do not replace the original landscape photo. Public usage permission remains pending.
 - No current, signed SKU/installed-price terms, exact lender six-month promotion or RO-bundle authorization was established. $3,990, six months without payments and RO inclusion **must not be released** based on the draft alone.
 - **No authorization for mailing or merge; keep NO GO.**
+
+## QA trigger coverage improvement — 2026-11-18
+- Existing `Welcome Home funnel QA` GitHub Actions path filter did not include changes to `check/index.html`, `check/i18n.js`, `check/contaminants.js`, `check/welcome-home.css` or other landing assets/styles. Such changes could leave the existing A/B tests untriggered.
+- Expanded the **draft-only** workflow trigger to `welcome-home/**`, `check/**`, `functions/api/leads.js`, `tests/welcome-home-*.test.mjs` and `scripts/build-cloudflare.mjs`, so all relevant landing, booking, language, conversion and build edits rerun the same secret-free, no-network tests. Commit `3dd9b929cca47ab7c61d6e3bc2588c27bbeeaa93`.
+- Checks observed on that commit: **Welcome Home funnel QA PASS**, **Public Pages CRM mirror regression PASS**. Legacy Water Insights build/content QA was still in progress at observation time; consult the actual Actions result before recording it as passed.
+- No backend schema change, mailings, customer records, real emails, preview-publishing or production merge. Pilot **NO GO** still applies.
